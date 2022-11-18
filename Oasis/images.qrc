@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/buttons">
+        <file>Select.png</file>
+        <file>PowerButton.png</file>
+        <file>yellowUp.png</file>
+        <file>yellowDown.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>connect.PNG</file>
+        <file>electrode.PNG</file>
+        <file>audio.PNG</file>
+        <file>connectOff.png</file>
+        <file>logo.PNG</file>
+        <file>logo2.PNG</file>
+        <file>logo3.PNG</file>
+        <file>20Minute.png</file>
+        <file>20MinuteOn.png</file>
+        <file>45Minute.png</file>
+        <file>45MinuteOn.png</file>
+        <file>UserDesignated.png</file>
+        <file>UserDesignatedOn.png</file>
+        <file>Alpha.png</file>
+        <file>AlphaOn.png</file>
+        <file>Theta.png</file>
+        <file>ThetaOn.png</file>
+        <file>Beta1.png</file>
+        <file>Beta1On.png</file>
+        <file>Beta2.png</file>
+        <file>Beta2On.png</file>
+    </qresource>
+</RCC>
