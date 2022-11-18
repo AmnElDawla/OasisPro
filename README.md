@@ -13,3 +13,8 @@ After this, we will need to create a local repository that store a clone of the 
 After this go to the directory of that folder as seen in the image below. 
 
 ![](image/Image3.PNG)
+
+After this clone this repository by using the git clone command followed by this link: https://github.com/Andre-Nonaka/OasisPro.git as seen in the image below. 
+
+![](image/Image4.PNG)
+
