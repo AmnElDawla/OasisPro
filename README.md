@@ -6,4 +6,4 @@ To begin, we have to make sure that you have installed git in your virtual machi
 
 ![](image/Image1.PNG)
 
-After this, we will need to create a local repository that store a clone of the project somewhere in your computer. In my workspace, I created mine in my desktop as seen in the image below. 
+After this, we will need to create a local repository that store a clone of the project somewhere in your computer. In my workspace, I created mine in my desktop as seen in the image below (circled in blue). 
