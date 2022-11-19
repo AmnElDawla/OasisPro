@@ -10,8 +10,8 @@ Not completed. We need to finish the database integration as well as the logic o
 &#128993; = In Progress<br>
 &#128308; = Not Started
 
-<b>Notice 1</b>: The ${\color{red}Replay \space Therapy \space Feature}$ will need to be assigned ASAP. <br>
-<b>Notice 2</b>: The ${\color{red}Progress \space Report \space Table}$ will need to be updated throughout the project. 
+**Notice 1**: The ${\color{red}Replay \space Therapy \space Feature}$ will need to be assigned ASAP. <br>
+**Notice 2**: The ${\color{red}Progress \space Report \space Table}$ will need to be updated throughout the project. 
 
 | Task             | Status          | Lead                  | Collaborators | Expected end date | Actual end date | Time spent | Notes |
 | ---------------- | :-------------: | --------------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
