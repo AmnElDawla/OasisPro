@@ -67,8 +67,8 @@ After doing this, we will pull from the repository any new updated or added file
 
 ![](image/Image18.PNG)
 
-After pulling the files, you will be able to push your newly created commit to the repository using git push origin main as seen in the image below.
+After pulling the files, you will be able to push your newly created commit to the repository using git push origin main as seen in the image below (remember that your password is the personal access token you created in your Github account and not actual your actual password).
 
 ![](image/Image19.PNG)
 
-Using these instructions, you will now be able to fully update and push your changes to the project without any issues. 
+Using these instructions, you will now be able to fully update and push your changes to the project without any issues (remember that your password is the personal access token you created in your Github account and not actual your actual password). 
