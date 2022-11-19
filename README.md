@@ -19,6 +19,7 @@ Notice: The ${\color{red}readme.md}$ file will be continuously updated throughou
 | Connection Test Feature | In Progress   | Andre Nonaka Cordova  | Content Cell  | ----------------- | 2022-11-19      | ---------- | ----- |
 | Intensity Feature  | In Progress   | Andre Nonaka Cordova  | Content Cell  | ----------------- | 2022-11-19      | ---------- | ----- |
 | Record Therapy Feature (should have support for at least 4 users) | In Progress   | Andre Nonaka Cordova  | Content Cell  | ----------------- | 2022-11-19      | ---------- | ----- |
+| Replay Therapy Feature (should have support for at least 4 users) | In Progress   | Andre Nonaka Cordova  | N/A           | N/A               | 2022-11-19      | N/A        | N/A   |
 
 ## How to work on this project in your personal computer
 
