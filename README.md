@@ -10,7 +10,7 @@ Our team number is 37.
 
 | Team Members         | Tasks                 |
 | -------------------- | --------------------- |
-| Andre Nonaka Cordova | --------------------- |
+| Andre Nonaka Cordova | Readme.md<br>GUI Creation<br>Use Case Model<br>OO Design Model<br>Traceability Matrix |
 | Alex Nedev | --------------------- |
 | Khaled Farag | --------------------- |
 | Mingrui Liang | --------------------- |
