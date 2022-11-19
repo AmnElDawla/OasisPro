@@ -1,6 +1,6 @@
 # OasisPro 
 
-## Team
+## Team Number
 
 ```diff
 Our team number is 37. 
