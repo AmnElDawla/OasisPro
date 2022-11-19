@@ -29,7 +29,7 @@ This project also has 2 optional milestones, which are:
 - [ ] `Record feature` where users can choose to record a therapy and add to treatment history.
 - [ ] `Replay feature` where users can replay selected treatments from history of treatments.
 
-## Task Assignment
+## Tasks Assignment
 
 | Team Members         | Tasks                 |
 | -------------------- | --------------------- |
