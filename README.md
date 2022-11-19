@@ -6,7 +6,7 @@ Not completed. We need to finish the database integration as well as the logic o
 
 ## Progress report
 
-Notice: The <b>readme.md</b> file will be continuously updated throughout the life cycle of this project. 
+Notice: The <b style="color: red">readme.md</b> file will be continuously updated throughout the life cycle of this project. 
 
 | Task             | Status        | Lead          | Collaborators | Expected end date | Actual end date | Time spent | Notes |
 | ---------------- | ------------- | ------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
