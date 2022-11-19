@@ -4,9 +4,8 @@
 
 Not completed. Checklist as of November 19, 2022:
 
-- [x] #739
-- [ ] https://github.com/octo-org/octo-repo/issues/740
-- [ ] Add delight to the experience when all tasks are complete :tada:
+- [x] Finishing our GUI application with database integration (SQL).
+- [ ] Adding logic to our GUI application.
 
 ## Progress Report Table
 
