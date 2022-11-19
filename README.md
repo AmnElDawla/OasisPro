@@ -6,8 +6,8 @@ Not completed. We need to finish the database integration as well as the logic o
 
 ## Progress Report Table
 
-&#128994; = Completed
-&#128993; = In Progress
+&#128994; = Completed<br>
+&#128993; = In Progress<br>
 &#128308; = Not Started
 
 Notice 1: The ${\color{red}readme.md}$ file will be continuously updated throughout the life cycle of this project. <br>
