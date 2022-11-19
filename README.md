@@ -1,4 +1,13 @@
-# OasisPro
+# OasisPro 
+
+## Team
+
+Our team number is 37. 
+
+## Project Summary
+
+| Team Members    | Tasks                 |
+| :-------------: | --------------------- |
 
 ## Status of OasisPro
 
