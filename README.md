@@ -4,7 +4,7 @@
 
 Not completed. Checklist as of November 19, 2022:
 
-- [x] Finishing our GUI application with database integration (SQL).
+- [ ] Finishing our GUI application with database integration (SQL).
 - [ ] Adding logic to our GUI application.
 
 ## Progress Report Table
