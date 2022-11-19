@@ -66,3 +66,9 @@ After doing this, we will pull from the repository any new updated or added file
 ![](image/Image17.PNG)
 
 ![](image/Image18.PNG)
+
+After pulling the files, you will be able to push your newly created commit to the repository using git push origin main as seen in the image below.
+
+![](image/Image19.PNG)
+
+Using these instructions, you will now be able to fully update and push your changes to the project without any issues. 
