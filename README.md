@@ -42,3 +42,4 @@ Step 7
 ![](image/Image11.PNG)
 
 Once you have generated your personal access token, copy and paste it into the gnome-terminal for your password. 
+After processing your login information, the clone of the repository should be added to your repository folder in your personal computer (or virtual machine). 
