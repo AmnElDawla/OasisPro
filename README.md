@@ -56,3 +56,7 @@ Now that we have finished and confirmed that we cloned our repository, we will n
 After opening the project in Qt Creator, we will need to check if the project has the path for the git binary file configure in it. To check this, go to the Tools tab and select the Options tab. From there go to the Version Control section and check the Configuration path. If it is empty please enter the path to where the git binary file is stored at within your personal computer or virtual machine as seen in the image below. 
 
 ![](image/Image15.PNG)
+
+After this, you will be able to push, commit, and pull the files to the local and remote repository. Once you have finish editing the project, it will be time to commit your changes to the repository. To this, we will need to type in gnome-terminal git commit "Put whatever you want here" as seen in the image below. 
+
+![](image/Image16.PNG)
