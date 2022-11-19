@@ -4,7 +4,7 @@
 
 Please review and read the following necessary files (the specification document will be added after consultation with thee client) provided to us by our customer (client): 
 
-![](client/OASIS_Pro_Manual_v1r8.pdf)
+![download this](client/OASIS_Pro_Manual_v1r8.pdf)
 
 ## Team Number
 
