@@ -2,7 +2,7 @@
 
 ## Team
 
-Our team number is 37. 
+Our team number is &#12978;. 
 
 ## Project Summary
 
