@@ -12,7 +12,7 @@ Notice 3: The ${\color{red}Progress \space Report \space Table}$ will need to be
 
 | Task             | Status        | Lead                  | Collaborators | Expected end date | Actual end date | Time spent | Notes |
 | ---------------- | ------------- | --------------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
-| Readme.md        | U+1F7E2 In Progress   | Andre Nonaka Cordova  | N/A           | 2022-11-25        | 2022-11-25      | N/A        | N/A   |
+| Readme.md        | 	&#128994; In Progress   | Andre Nonaka Cordova  | N/A           | 2022-11-25        | 2022-11-25      | N/A        | N/A   |
 | <br><br><br><br>Use Case Model,<br>OO Design Model,<br> and Traceability Matrix<br><br><br><br> | In Progress  | Andre Nonaka Cordova  | Alex Nedev | 2022-11-22 | N/A | N/A | Completed a Preliminary draft of the Use Cases.<br>However, we will most likely change certain cases as we move along in the project.<br> Alex N provided some feedback on Use Cases.<br>Will work back and forth with lead until we believe we’re done. |
 | GUI Creation     | Completed   | Andre Nonaka Cordova  | N/A  | 2022-11-14 | 2022-11-19      | N/A | N/A |
 | Power Feature    | In Progress   | Khaled farag          | N/A  | N/A | 2022-11-18      | N/A | N/A |
