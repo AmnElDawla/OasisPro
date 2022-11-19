@@ -45,6 +45,6 @@ Once you have generated your personal access token, copy and paste it into the g
 
 ![](image/Image12.PNG)
 
-To check if your initial commit was made (this commit would be cloning of the prository), type git log in gnome-terminal as seen in the image below. 
+To check if your initial commit was made (this commit would be the cloning of the repository), type git log in gnome-terminal as seen in the image below. 
 
 ![](image/Image13.PNG)
