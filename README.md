@@ -48,3 +48,5 @@ Once you have generated your personal access token, copy and paste it into the g
 To check if your initial commit was made (this commit would be the cloning of the repository), type git log in gnome-terminal as seen in the image below. 
 
 ![](image/Image13.PNG)
+
+Now that we have finished and confirmed that we cloned our repository, we will need to ensure that our Qt Creator application is configured to push, pull, and commit files to the local and remote repository. First we will open the project from the repository into Qt Creator as seen in the image below: 
