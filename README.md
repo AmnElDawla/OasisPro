@@ -11,8 +11,8 @@ Notice: The ${\color{red}readme.md}$ file will be continuously updated throughou
 | Task             | Status        | Lead                  | Collaborators | Expected end date | Actual end date | Time spent | Notes |
 | ---------------- | ------------- | --------------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
 | Readme.md        | In Progress   | Andre Nonaka Cordova  | Content Cell  | ----------------- | 2022-11-19      | ---------- | ----- |
-| Use Case Model,<br>OO Design Model,<br> and Traceability Matrix  | In Progress  | Andre Nonaka Cordova  | Alex N | 2022-11-22 | --------------- | ---------- | Completed a Preliminary draft of the Use Cases. However, we will most likely change certain cases as we move along in the project. 
-Alex N provided some feedback on Use Cases. Will work back and forth with lead until we believe we’re done
+| Use Case Model,<br>OO Design Model,<br> and Traceability Matrix  | In Progress  | Andre Nonaka Cordova  | Alex N | 2022-11-22 | --------------- | ---------- | Completed a Preliminary draft of the Use Cases.<br>However, we will most likely change certain cases as we move along in the project.<br> 
+Alex N provided some feedback on Use Cases.<br>Will work back and forth with lead until we believe we’re done.
  |
 
 ## How to work on this project in your personal computer
