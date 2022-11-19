@@ -2,7 +2,11 @@
 
 ## Status of OasisPro
 
-Not completed. We need to finish the database integration as well as the logic of the program as of November 19, 2022.
+Not completed. Checklist as of November 19, 2022:
+
+- [x] #739
+- [ ] https://github.com/octo-org/octo-repo/issues/740
+- [ ] Add delight to the experience when all tasks are complete :tada:
 
 ## Progress Report Table
 
