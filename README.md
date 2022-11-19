@@ -14,7 +14,7 @@ This project has 5 milestones (necessary), which are:
 
 - [ ] Power `Turn On/Turn Off` and `Ending A Session` as described on p4 of the manual.
 - [ ] Battery level as described in section on p5 of the manual. 
-- [ ] Selecting a session as per `Selecting A Session` on p5 of the manual but only with 3 groups (20min, 45min and user designated) and 4 session types per group
+- [ ] Selecting a session as per `Selecting A Session` on p5 of the manual.
 - [ ] Connection test as per `Connection Test` on p6 of the manual.
 - [ ] Intensity as per `Adjusting Intensity` on p7 of the manual.
 
