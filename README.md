@@ -49,4 +49,6 @@ To check if your initial commit was made (this commit would be the cloning of th
 
 ![](image/Image13.PNG)
 
-Now that we have finished and confirmed that we cloned our repository, we will need to ensure that our Qt Creator application is configured to push, pull, and commit files to the local and remote repository. First we will open the project from the repository into Qt Creator as seen in the image below: 
+Now that we have finished and confirmed that we cloned our repository, we will need to ensure that our Qt Creator application is configured to push, pull, and commit files to the local and remote repository. First we will open the project from the repository into the Qt Creator application as seen in the image below.
+
+![](image/Image14.PNG)
