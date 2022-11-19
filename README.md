@@ -10,21 +10,9 @@ Notice 1: The ${\color{red}readme.md}$ file will be continuously updated through
 Notice 2: The ${\color{red}Replay \space Therapy \space Feature}$ will need to be assigned ASAP. <br>
 Notice 3: The ${\color{red}Progress \space Report \space Table}$ will need to be updated throughout the project. 
 
-<style>
-    .tableColor {
-        width: 70%;
-        text-align: left;
-    }
-    .heatMap tr:nth-child(1) { background: red; }
-    .heatMap tr:nth-child(2) { background: orange; }
-    .heatMap tr:nth-child(3) { background: green; }
-</style>
-
-<div class="tableColor">
-
 | Task             | Status        | Lead                  | Collaborators | Expected end date | Actual end date | Time spent | Notes |
 | ---------------- | ------------- | --------------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
-| Readme.md        | In Progress   | Andre Nonaka Cordova  | N/A           | 2022-11-25        | 2022-11-25      | N/A        | N/A   |
+| Readme.md        | U+1F7E2 In Progress   | Andre Nonaka Cordova  | N/A           | 2022-11-25        | 2022-11-25      | N/A        | N/A   |
 | <br><br><br><br>Use Case Model,<br>OO Design Model,<br> and Traceability Matrix<br><br><br><br> | In Progress  | Andre Nonaka Cordova  | Alex Nedev | 2022-11-22 | N/A | N/A | Completed a Preliminary draft of the Use Cases.<br>However, we will most likely change certain cases as we move along in the project.<br> Alex N provided some feedback on Use Cases.<br>Will work back and forth with lead until we believe we’re done. |
 | GUI Creation     | Completed   | Andre Nonaka Cordova  | N/A  | 2022-11-14 | 2022-11-19      | N/A | N/A |
 | Power Feature    | In Progress   | Khaled farag          | N/A  | N/A | 2022-11-18      | N/A | N/A |
@@ -34,8 +22,6 @@ Notice 3: The ${\color{red}Progress \space Report \space Table}$ will need to be
 | Intensity Feature  | In Progress   | Alex Nedev  | N/A   | N/A | 2022-11-18      | N/A | N/A |
 | Record Therapy Feature (should have support for at least 4 users) | In Progress   | Mingrui Liang  | N/A  | N/A | 2022-11-19      | N/A | N/A |
 | Replay Therapy Feature (should have support for at least 4 users) | In Progress   | N/A  | N/A | N/A               | 2022-11-19      | N/A        | N/A   |
-  
-</div>
 
 ## How to work on this project in your personal computer
 
