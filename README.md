@@ -6,7 +6,7 @@
 Our team number is 37. 
 ```
 
-## Project Summary
+## Task Assignment
 
 | Team Members         | Tasks                 |
 | -------------------- | --------------------- |
