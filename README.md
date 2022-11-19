@@ -53,6 +53,6 @@ Now that we have finished and confirmed that we cloned our repository, we will n
 
 ![](image/Image14.PNG)
 
-After opening the project in Qt Creator, we will need to check if the project has loaded the path for the git. To check this, go to the Tools tab and select the options tab. From there go to the version control section and check the configuration path. If it is empty please enter the path to where the git binary file is stored at within your person computer or virtual machine as seen in the image below. 
+After opening the project in Qt Creator, we will need to check if the project has loaded the path for the git. To check this, go to the Tools tab and select the options tab. From there go to the version control section and check the configuration path. If it is empty please enter the path to where the git binary file is stored at within your personal computer or virtual machine as seen in the image below. 
 
 ![](image/Image15.PNG)
