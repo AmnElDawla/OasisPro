@@ -44,3 +44,7 @@ Step 7
 Once you have generated your personal access token, copy and paste it into the gnome-terminal for your password. After processing your login information, the clone of the repository should be added to your repository folder in your personal computer (or virtual machine). You can check if you have OasisPro folder in your repo by typing ls in gnome-terminal as seen in the image below. 
 
 ![](image/Image12.PNG)
+
+To check if your initial commit was made (this commit would be cloning of the prository), type git log in gnome-terminal as seen in the image below. 
+
+![](image/Image13.PNG)
