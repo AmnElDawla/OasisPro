@@ -6,10 +6,10 @@ Not completed. We need to finish the database integration as well as the logic o
 
 ## Progress report
 
-| Task            | Status        | Lead          | Collaborators | Expected end date | Actual end date | Time spent | Notes |
-| --------------- | ------------- | ------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
-| Readme.md       | Content Cell  | Content Cell  | Content Cell  | ----------------- | --------------- | ---------- | ----- |
-| Use Case Model<br>OO Design Model<br>Traceability Matrix  | Content Cell  | Content Cell  | Content Cell  | ----------------- | --------------- | ---------- | ----- |
+| Task             | Status        | Lead          | Collaborators | Expected end date | Actual end date | Time spent | Notes |
+| ---------------- | ------------- | ------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
+| Readme.md        | Content Cell  | Content Cell  | Content Cell  | ----------------- | --------------- | ---------- | ----- |
+| Use Case Model,<br>OO Design Model,<br> and Traceability Matrix  | Content Cell  | Content Cell  | Content Cell  | ----------------- | --------------- | ---------- | ----- |
 
 ## How to work on this project in your personal computer
 
