@@ -12,7 +12,7 @@ Please download, review, and read the following necessary files (the specificati
 Our team number is 37. 
 ```
 
-## Milestone & Package Release
+## Milestones & Package Releases
 
 Each milestone in this project will bring a package release showcasing what we have completed so far in this project. 
 
