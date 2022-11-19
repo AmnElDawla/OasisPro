@@ -2,7 +2,7 @@
 
 ## Important files:
 
-Please review and read the following necessary files provided to us by our customer (client): 
+Please review and read the following necessary files (the specification document will be added after consultation with thee client) provided to us by our customer (client): 
 
 
 
