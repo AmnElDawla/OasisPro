@@ -13,12 +13,8 @@ Each milestone in this project will bring a package release showcasing what we h
 This project has 5 milestones (necessary), which are: 
 
 - [ ] Power: “Turn On/Turn Off” and “Ending A Session” as described on p4 of the manual.
-- [ ] Battery level: battery level and battery low warnings as per “Battery Level” section on p5
-of the manual. Your simulation should handle battery depletion as a function of length of
-therapy, intensity, and connection to skin.
-- [ ] Selecting a session: as per “Selecting A Session” on p5 of the manual but only with 3
-groups (20min, 45min and user designated) and 4 session types per group. You can
-choose any 4 types from p12 of the manual.
+- [ ] Battery level: battery level and battery low warnings as per “Battery Level” section on p5 of the manual. Your simulation should handle battery depletion as a function of length of therapy, intensity, and connection to skin.
+- [ ] Selecting a session: as per “Selecting A Session” on p5 of the manual but only with 3 groups (20min, 45min and user designated) and 4 session types per group. You can choose any 4 types from p12 of the manual.
 - [ ] Connection test: as per “Connection Test” on p6 of the manual.
 - [ ] Intensity: as per “Adjusting Intensity” on p7 of the manual.
 
