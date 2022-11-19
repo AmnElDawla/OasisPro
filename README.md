@@ -6,8 +6,8 @@ Not completed. We need to finish the database integration as well as the logic o
 
 ## Progress Report Table
 
-Notice 1: The ${\color{red}readme.md}$ file will be continuously updated throughout the life cycle of this project. 
-Notice 2: The ${\color{red}Replay Therapy Feature}$ will need to be assigned ASAP. 
+Notice 1: The ${\color{red}readme.md}$ file will be continuously updated throughout the life cycle of this project. <br>
+Notice 2: The ${\color{red}Replay Therapy Feature}$ will need to be assigned ASAP. <br>
 Notice 3: The ${\color{red}Progress Report Table}$ will need to be updated throughout the project. 
 
 | Task             | Status        | Lead                  | Collaborators | Expected end date | Actual end date | Time spent | Notes |
