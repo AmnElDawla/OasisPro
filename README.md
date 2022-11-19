@@ -1,13 +1,3 @@
-<style>
-    .tableColor {
-        width: 70%;
-        text-align: left;
-    }
-    .heatMap tr:nth-child(1) { background: red; }
-    .heatMap tr:nth-child(2) { background: orange; }
-    .heatMap tr:nth-child(3) { background: green; }
-</style>
-
 # OasisPro
 
 ## Status of OasisPro
@@ -19,6 +9,16 @@ Not completed. We need to finish the database integration as well as the logic o
 Notice 1: The ${\color{red}readme.md}$ file will be continuously updated throughout the life cycle of this project. <br>
 Notice 2: The ${\color{red}Replay \space Therapy \space Feature}$ will need to be assigned ASAP. <br>
 Notice 3: The ${\color{red}Progress \space Report \space Table}$ will need to be updated throughout the project. 
+
+<style>
+    .tableColor {
+        width: 70%;
+        text-align: left;
+    }
+    .heatMap tr:nth-child(1) { background: red; }
+    .heatMap tr:nth-child(2) { background: orange; }
+    .heatMap tr:nth-child(3) { background: green; }
+</style>
 
 <div class="tableColor">
 
