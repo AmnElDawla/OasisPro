@@ -6,8 +6,12 @@ Our team number is 37.
 
 ## Project Summary
 
-| Team Members    | Tasks                 |
-| :-------------: | --------------------- |
+| Team Members         | Tasks                 |
+| -------------------- | --------------------- |
+| Andre Nonaka Cordova | --------------------- |
+| Alex Nedev | --------------------- |
+| Khaled Farag | --------------------- |
+| Mingrui Liang | --------------------- |
 
 ## Status of OasisPro
 
@@ -32,8 +36,8 @@ Notice 2: The Progress Report Table will need to be updated throughout the proje
 | Readme.md (will be continuously updated)       | 	 &#128993;     | Andre Nonaka Cordova  | N/A           | 2022-11-25        | 2022-11-25      | N/A        | N/A   |
 | <br><br><br><br>Use Case Model,<br>OO Design Model,<br> and Traceability Matrix<br><br><br><br> |  &#128993;  | Andre Nonaka Cordova  | Alex Nedev | 2022-11-22 | N/A | N/A | Completed a Preliminary draft of the Use Cases.<br>However, we will most likely change certain cases as we move along in the project.<br> Alex N provided some feedback on Use Cases.<br>Will work back and forth with lead until we believe we’re done. |
 | GUI Creation     |   &#128994;     | Andre Nonaka Cordova  | N/A  | 2022-11-14 | 2022-11-19      | N/A | N/A |
-| Power Feature    |   &#128993;     | Khaled farag          | N/A  | N/A | 2022-11-18      | N/A | N/A |
-| Battery Level    |   &#128993;     | Khaled farag          | N/A  | N/A | 2022-11-18      | N/A | N/A |
+| Power Feature    |   &#128993;     | Khaled Farag          | N/A  | N/A | 2022-11-18      | N/A | N/A |
+| Battery Level    |   &#128993;     | Khaled Farag          | N/A  | N/A | 2022-11-18      | N/A | N/A |
 | Session Selection Feature |   &#128993;  | Alex Nedev   | N/A  | N/A | 2022-11-18      | N/A | N/A |
 | Connection Test Feature |   &#128993;  | Mingrui Liang  | N/A  | N/A | 2022-11-18      | N/A | N/A |
 | Intensity Feature  |   &#128993;   | Alex Nedev  | N/A   | N/A | 2022-11-18      | N/A | N/A |
