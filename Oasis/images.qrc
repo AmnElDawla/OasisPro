@@ -1,31 +1,29 @@
 <RCC>
-    <qresource prefix="/buttons">
-        <file>Select.png</file>
-        <file>PowerButton.png</file>
-        <file>yellowUp.png</file>
-        <file>yellowDown.png</file>
-    </qresource>
-    <qresource prefix="/icons">
-        <file>connect.PNG</file>
-        <file>electrode.PNG</file>
-        <file>audio.PNG</file>
-        <file>connectOff.png</file>
-        <file>logo.PNG</file>
-        <file>logo2.PNG</file>
-        <file>logo3.PNG</file>
-        <file>20Minute.png</file>
-        <file>20MinuteOn.png</file>
-        <file>45Minute.png</file>
-        <file>45MinuteOn.png</file>
-        <file>UserDesignated.png</file>
-        <file>UserDesignatedOn.png</file>
-        <file>Alpha.png</file>
-        <file>AlphaOn.png</file>
-        <file>Theta.png</file>
-        <file>ThetaOn.png</file>
-        <file>Beta1.png</file>
-        <file>Beta1On.png</file>
-        <file>Beta2.png</file>
-        <file>Beta2On.png</file>
+    <qresource prefix="/resources">
+        <file>buttons/yellowUp.png</file>
+        <file>buttons/yellowDown.png</file>
+        <file>buttons/powerButton.png</file>
+        <file>buttons/Select.png</file>
+        <file>icons/20Minute.png</file>
+        <file>icons/20MinuteOn.png</file>
+        <file>icons/45Minute.png</file>
+        <file>icons/45MinuteOn.png</file>
+        <file>icons/Alpha.png</file>
+        <file>icons/AlphaOn.png</file>
+        <file>icons/audio.PNG</file>
+        <file>icons/Beta1.png</file>
+        <file>icons/Beta1On.png</file>
+        <file>icons/Beta2.png</file>
+        <file>icons/Beta2On.png</file>
+        <file>icons/connect.PNG</file>
+        <file>icons/connectOff.png</file>
+        <file>icons/electrode.PNG</file>
+        <file>icons/logo.PNG</file>
+        <file>icons/logo2.PNG</file>
+        <file>icons/logo3.PNG</file>
+        <file>icons/Theta.png</file>
+        <file>icons/ThetaOn.png</file>
+        <file>icons/UserDesignated.png</file>
+        <file>icons/UserDesignatedOn.png</file>
     </qresource>
 </RCC>

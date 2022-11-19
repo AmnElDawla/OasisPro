@@ -337,7 +337,7 @@ background-color: black;
       </property>
       <property name="styleSheet">
        <string notr="true">#pushButton{
-border-image: url(:/buttons/PowerButton.png);
+border-image: url(:/resources/buttons/powerButton.png);
 border: 2px solid red;
 border-radius: 20px;
 }
@@ -381,7 +381,7 @@ background-color: black;
       </property>
       <property name="styleSheet">
        <string notr="true">#pushButton_2{
-border-image: url(:/buttons/Select.png);
+border-image: url(:/resources/buttons/Select.png);
 border: 2px solid red;
 border-radius: 20px;
 }
@@ -425,7 +425,7 @@ background-color: black;
       </property>
       <property name="styleSheet">
        <string notr="true">#pushButton_3{
-border-image: url(:/buttons/yellowUp.png);
+border-image: url(&quot;:/resources/buttons/yellowUp.png&quot;);
 border-radius: 10px;
 }
 
@@ -468,7 +468,7 @@ background-color: black;
       </property>
       <property name="styleSheet">
        <string notr="true">#pushButton_4{
-border-image: url(:/buttons/yellowDown.png);
+border-image: url(&quot;:/resources/buttons/yellowDown.png&quot;);
 border-radius: 10px;
 }
 
@@ -557,103 +557,6 @@ color: rgb(255, 255, 255);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QListWidget" name="listWidget">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>0</y>
-       <width>261</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: black;
-</string>
-     </property>
-     <property name="flow">
-      <enum>QListView::LeftToRight</enum>
-     </property>
-     <item>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>20MinuteOn.png</normaloff>
-        <activeoff>20Minute.png</activeoff>20MinuteOn.png</iconset>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>45MinuteOn.png</normaloff>45MinuteOn.png</iconset>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>UserDesignatedOn.png</normaloff>UserDesignatedOn.png</iconset>
-      </property>
-     </item>
-    </widget>
-    <widget class="QListWidget" name="listWidget_2">
-     <property name="geometry">
-      <rect>
-       <x>450</x>
-       <y>70</y>
-       <width>251</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: black;</string>
-     </property>
-     <property name="flow">
-      <enum>QListView::LeftToRight</enum>
-     </property>
-     <item>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>AlphaOn.png</normaloff>AlphaOn.png</iconset>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>ThetaOn.png</normaloff>ThetaOn.png</iconset>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>Beta1On.png</normaloff>Beta1On.png</iconset>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>Beta2On.png</normaloff>Beta2On.png</iconset>
-      </property>
-     </item>
-    </widget>
     <widget class="QLabel" name="label_13">
      <property name="geometry">
       <rect>
@@ -665,7 +568,7 @@ color: rgb(255, 255, 255);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">#label_13{
-border-image: url(:/icons/logo3.PNG);
+border-image: url(:/resources/icons/logo3.PNG);
 }
 
 </string>
@@ -685,7 +588,7 @@ border-image: url(:/icons/logo3.PNG);
      </property>
      <property name="styleSheet">
       <string notr="true">#label_14{
-border-image: url(:/icons/logo2.PNG);
+border-image: url(:/resources/icons/logo2.PNG);
 border: 2px solid red;
 border-radius: 20px;
 }
@@ -707,7 +610,7 @@ border-radius: 20px;
      </property>
      <property name="styleSheet">
       <string notr="true">#label_15{
-border-image: url(:/icons/logo.PNG);
+border-image: url(:/resources/icons/logo.PNG);
 border: 2px solid red;
 border-radius: 20px;
 }
@@ -728,7 +631,7 @@ border-radius: 20px;
      </property>
      <property name="styleSheet">
       <string notr="true">#label_16{
-border-image: url(:/icons/connect.PNG);
+border-image: url(:/resources/icons/connect.PNG);
 border: 2px solid red;
 border-radius: 20px;
 }
@@ -750,7 +653,7 @@ border-radius: 20px;
      </property>
      <property name="styleSheet">
       <string notr="true">#label_17{
-border-image: url(:/icons/electrode.PNG);
+border-image: url(:/resources/icons/electrode.PNG);
 border: 2px solid red;
 border-radius: 20px;
 }
@@ -772,7 +675,7 @@ border-radius: 20px;
      </property>
      <property name="styleSheet">
       <string notr="true">#label_18{
-border-image: url(:/icons/audio.PNG);
+border-image: url(:/resources/icons/audio.PNG);
 border: 2px solid red;
 border-radius: 20px;
 }
@@ -781,6 +684,16 @@ border-radius: 20px;
      </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+    <widget class="QListView" name="listView">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>20</y>
+       <width>291</width>
+       <height>141</height>
+      </rect>
      </property>
     </widget>
    </widget>
