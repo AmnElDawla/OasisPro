@@ -30,7 +30,7 @@ Notice 2: The Progress Report Table will need to be updated throughout the proje
 
 ## How to work on this project in your personal computer
 
-To begin, we have to make sure that you have installed git in your virtual machine. To check this, go to gnome-terminal and type `git --version` as seen in the picture below. Make sure that you receive a version for your git and not an error. 
+To begin, we have to make sure that you have installed git in your virtual machine. To check this, type in gnome-terminal `git --version` as seen in the picture below. Make sure that you receive a version for your git and not an error. 
 
 ![](image/Image1.PNG)
 
