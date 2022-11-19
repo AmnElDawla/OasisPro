@@ -8,9 +8,9 @@ Not completed. We need to finish the database integration as well as the logic o
 
 Notice: The ${\color{red}readme.md}$ file will be continuously updated throughout the life cycle of this project. 
 
-| Task             | Status        | Lead          | Collaborators | Expected end date | Actual end date | Time spent | Notes |
-| ---------------- | ------------- | ------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
-| Readme.md        | Content Cell  | Content Cell  | Content Cell  | ----------------- | --------------- | ---------- | ----- |
+| Task             | Status        | Lead                  | Collaborators | Expected end date | Actual end date | Time spent | Notes |
+| ---------------- | ------------- | --------------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
+| Readme.md        | In Progress   | Andre Nonaka Cordova  | Content Cell  | ----------------- | --------------- | ---------- | ----- |
 | Use Case Model,<br>OO Design Model,<br> and Traceability Matrix  | Content Cell  | Content Cell  | Content Cell  | ----------------- | --------------- | ---------- | ----- |
 
 ## How to work on this project in your personal computer
