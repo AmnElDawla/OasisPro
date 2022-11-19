@@ -15,7 +15,9 @@ Our team number is 37.
 
 ## Status of OasisPro
 
-Not completed. Checklist as of November 19, 2022:
+Not completed. 
+
+Checklist as of November 19, 2022:
 
 - [ ] Finishing our GUI application with database integration (SQL).
 - [ ] Adding logic to our GUI application.
