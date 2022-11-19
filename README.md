@@ -87,7 +87,7 @@ After opening the project in Qt Creator, we will need to check if the project ha
 
 After this, you will be able to push, commit, and pull the files to the local and remote repository. Once you have finish editing the project, it will be time to commit your changes to the repository. To do this, we will need to first add the files to our list of commit files using `git add -A` or `git add .` as seen in the image below.
 
-![](image/Image21.PNG)
+![](image/Image22.PNG)
 
 After this, type in gnome-terminal `git commit -m "Put whatever you want here"` as seen in the image below. 
 
