@@ -10,8 +10,8 @@ Notice: The ${\color{red}readme.md}$ file will be continuously updated throughou
 
 | Task             | Status        | Lead                  | Collaborators | Expected end date | Actual end date | Time spent | Notes |
 | ---------------- | ------------- | --------------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
-| Readme.md        | In Progress   | Andre Nonaka Cordova  | Content Cell  | ----------------- | --------------- | ---------- | ----- |
-| Use Case Model,<br>OO Design Model,<br> and Traceability Matrix  | Content Cell  | Content Cell  | Content Cell  | ----------------- | --------------- | ---------- | ----- |
+| Readme.md        | In Progress   | Andre Nonaka Cordova  | Content Cell  | ----------------- | 2022/11/11      | ---------- | ----- |
+| Use Case Model,<br>OO Design Model,<br> and Traceability Matrix  | Andre Nonaka Cordova  | Content Cell  | Content Cell  | ----------------- | --------------- | ---------- | ----- |
 
 ## How to work on this project in your personal computer
 
