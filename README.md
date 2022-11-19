@@ -61,7 +61,7 @@ After this, you will be able to push, commit, and pull the files to the local an
 
 ![](image/Image16.PNG)
 
-After doing this, we will pull from the repository any new updated or added files using git pull as seen in the images below.
+After doing this, we will pull from the repository any new updated or added files using git pull as seen in the images below (remember that your password is the personal access token you created in your Github account and not your actual password).
 
 ![](image/Image17.PNG)
 
@@ -71,4 +71,4 @@ After pulling the files, you will be able to push your newly created commit to t
 
 ![](image/Image19.PNG)
 
-Using these instructions, you will now be able to fully update and push your changes to the project without any issues (remember that your password is the personal access token you created in your Github account and not your actual password). 
+Using these instructions, you will now be able to fully update and push your changes to the project without any issues. 
