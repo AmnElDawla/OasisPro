@@ -12,14 +12,14 @@ Notice: The ${\color{red}readme.md}$ file will be continuously updated throughou
 | ---------------- | ------------- | --------------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
 | Readme.md        | In Progress   | Andre Nonaka Cordova  | N/A           | N/A               | 2022-11-19      | N/A        | N/A   |
 | <br><br><br><br>Use Case Model,<br>OO Design Model,<br> and Traceability Matrix<br><br><br><br> | In Progress  | Andre Nonaka Cordova  | Alex Nedev | 2022-11-22 | N/A | N/A | Completed a Preliminary draft of the Use Cases.<br>However, we will most likely change certain cases as we move along in the project.<br> Alex N provided some feedback on Use Cases.<br>Will work back and forth with lead until we believe we’re done. |
-| GUI Creation | In Progress   | Andre Nonaka Cordova  | N/A  | ----------------- | 2022-11-19      | ---------- | ----- |
-| Power Feature | In Progress   | Khaled farag  | N/A  | ----------------- | 2022-11-18      | ---------- | ----- |
-| Battery Level | In Progress   | Khaled farag  | N/A  | ----------------- | 2022-11-18      | ---------- | ----- |
-| Session Selection Feature | In Progress   | Alex Nedev  | N/A  | ----------------- | 2022-11-18      | ---------- | ----- |
-| Connection Test Feature | In Progress   | Mingrui Liang  | N/A  | ----------------- | 2022-11-18      | ---------- | ----- |
-| Intensity Feature  | In Progress   | Alex Nedev  | Content Cell  | ----------------- | 2022-11-18      | ---------- | ----- |
-| Record Therapy Feature (should have support for at least 4 users) | In Progress   | Mingrui Liang  | N/A  | ----------------- | 2022-11-19      | ---------- | ----- |
-| Replay Therapy Feature (should have support for at least 4 users) | In Progress   | N/A  | N/A           | N/A               | 2022-11-19      | N/A        | N/A   |
+| GUI Creation | In Progress   | Andre Nonaka Cordova  | N/A  | 2022-11-14 | 2022-11-19      | N/A | N/A |
+| Power Feature | In Progress   | Khaled farag  | N/A  | N/A | 2022-11-18      | N/A | N/A |
+| Battery Level | In Progress   | Khaled farag  | N/A  | N/A | 2022-11-18      | N/A | N/A |
+| Session Selection Feature | In Progress   | Alex Nedev  | N/A  | N/A | 2022-11-18      | N/A | N/A |
+| Connection Test Feature | In Progress   | Mingrui Liang  | N/A  | N/A | 2022-11-18      | N/A | N/A |
+| Intensity Feature  | In Progress   | Alex Nedev  | N/A  | N/A | 2022-11-18      | N/A | N/A |
+| Record Therapy Feature (should have support for at least 4 users) | In Progress   | Mingrui Liang  | N/A  | N/A | 2022-11-19      | N/A | N/A |
+| Replay Therapy Feature (should have support for at least 4 users) | In Progress   | N/A  | N/A | N/A               | 2022-11-19      | N/A        | N/A   |
 
 ## How to work on this project in your personal computer
 
