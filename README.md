@@ -11,7 +11,7 @@ Not completed. We need to finish the database integration as well as the logic o
 &#128308; = Not Started
 
 **Notice 1**: The `Replay Therapy Feature` will need to be assigned ASAP. <br>
-**Notice 2**: The ${\color{red}Progress \space Report \space Table}$ will need to be updated throughout the project. 
+**Notice 2**: The `Progress Report Table` will need to be updated throughout the project. 
 
 | Task             | Status          | Lead                  | Collaborators | Expected end date | Actual end date | Time spent | Notes |
 | ---------------- | :-------------: | --------------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
