@@ -15,7 +15,7 @@ Our team number is 37.
 
 ## Status of OasisPro
 
-Not completed. 
+Not completed &#10060;. 
 
 ## Tested Scenarios
 
