@@ -85,7 +85,11 @@ After opening the project in Qt Creator, we will need to check if the project ha
 
 ![](image/Image15.PNG)
 
-After this, you will be able to push, commit, and pull the files to the local and remote repository. Once you have finish editing the project, it will be time to commit your changes to the repository. To do this, we will need to type in gnome-terminal `git commit -m "Put whatever you want here"` as seen in the image below. 
+After this, you will be able to push, commit, and pull the files to the local and remote repository. Once you have finish editing the project, it will be time to commit your changes to the repository. To do this, we will need to first add the files to our list of commit files using `git add -A` or `git add .` as seen in the image below.
+
+![](image/Image20.PNG)
+
+After this, type in gnome-terminal `git commit -m "Put whatever you want here"` as seen in the image below. 
 
 ![](image/Image16.PNG)
 
@@ -95,7 +99,7 @@ After doing this, we will pull from the repository any new updated or added file
 
 ![](image/Image18.PNG)
 
-After pulling the files, you will be able to push your newly created commit to the repository using `git push origin main` as seen in the image below (remember that your password is the personal access token you created in your Github account and not your actual password).
+After pulling the files, you will be able to push your newly created commit to the repository using `git push origin main` or `git push -u origin main` as seen in the image below (remember that your password is the personal access token you created in your Github account and not your actual password).
 
 ![](image/Image19.PNG)
 
