@@ -18,3 +18,15 @@ After this clone this repository by using the git clone command followed by this
 
 ![](image/Image4.PNG)
 
+After running the above command, you will be asked to enter your username and password. For your username, it is the username of your github account, while the password is the personal access token you will need generate from Github by going to your settings and selecting developer settings followed by personal access tokens as seen in the images below.
+
+![](image/Image5.PNG)
+![](image/Image6.PNG)
+![](image/Image7.PNG)
+![](image/Image8.PNG)
+![](image/Image9.PNG)
+![](image/Image10.PNG)
+![](image/Image11.PNG)
+
+
+
