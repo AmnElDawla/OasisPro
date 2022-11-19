@@ -1,6 +1,6 @@
 # OasisPro
 
-## Status
+## Status of OasisPro
 
 Not completed. We need to finish the database integration as well as the logic of the program as of November 19, 2022.
 
