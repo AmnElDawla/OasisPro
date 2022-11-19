@@ -2,9 +2,7 @@
 
 ## Team
 
-```diff
-- Our team number is &#12978;. 
-```
+Our team number is &#12978;. 
 
 ## Project Summary
 
