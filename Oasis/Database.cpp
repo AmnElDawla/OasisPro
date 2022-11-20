@@ -25,7 +25,7 @@ bool Database::initializeDatabaseTables() {
 
     databaseGui.transaction();
 
-    QString queryDatabaseUsersTable = "CREATE TABLE IF NOT EXISTS users (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, joined DATE NOT NULL, age INT NOT NULL, birth_date TEXT NOT NULL, username TEXT NOT NULL UNIQUE)";
+    QString queryDatabaseUsersTable = "CREATE TABLE IF NOT EXISTS users (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL)";
     QString queryDatabaseTherapyTable = "CREATE TABLE IF NOT EXISTS therapy (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, session_type TEXT NOT NULL, duration INT NOT NULL, intensity_level INT NOT NULL)";
     QString queryDatabaseTreatmentHistoryTable = "CREATE TABLE IF NOT EXISTS treatmentHistory (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, fk_therapy INT NOT NULL, fk_users INT NOT NULL)";
 
@@ -42,49 +42,65 @@ bool Database::initializeDefaultUserRecord() {
 
     databaseGui.transaction();
 
-    QString queryRecordUser = "INSERT INTO users (name, joined, age, birth_date, username) VALUES (Bot, )";
+    QString queryRecordUser1 = "INSERT INTO users (name) VALUES (Eric)";
+    QString queryRecordUser2 = "INSERT INTO users (name) VALUES (Robert)";
+    QString queryRecordUser3 = "INSERT INTO users (name) VALUES (Angelina)";
+    QString queryRecordUser4 = "INSERT INTO users (name) VALUES (Emma)";
 
-    //QSqlQuery queryTable;
-    //queryTable.exec(queryDatabaseUsersTable);
+    SqlQuery queryTable;
 
-    return databaseGui.commit();
-
-}
-
-bool Database::addTherapyRecord() {
-
-    databaseGui.transaction();
-
-    QString queryRecordTherapy = "";
-
-    //QSqlQuery queryTable;
-    //queryTable.exec(queryDatabaseUsersTable);
+    queryTable.exec(queryRecordUser1);
+    queryTable.exec(queryRecordUser2);
+    queryTable.exec(queryRecordUser3);
+    queryTable.exec(queryRecordUser4);
 
     return databaseGui.commit();
 
 }
 
-bool Database::addTherapyHistoryRecord() {
+bool Database::addTherapyRecord(QString session, int intensity, int duration) {
 
     databaseGui.transaction();
 
-    QString queryRecordHistory = "";
-
-    //QSqlQuery queryTable;
-    //queryTable.exec(queryDatabaseUsersTable);
-
-    return databaseGui.commit();
-
-}
-
-bool Database::addUserRecord() {
-
-    databaseGui.transaction();
-
-    QString queryDatabaseUsersTable = "";
+    QString queryRecordTherapy1 = "INSERT INTO therapy (session_type, intensity_level, duration) VALUES (:session, :intensity, :duration)";
 
     QSqlQuery queryTable;
-    queryTable.exec(queryDatabaseUsersTable);
+    queryTable.prepare(queryRecordTherapy1);
+    queryTable.bindValue(":session", session);
+    queryTable.bindValue(":intensity", intensity);
+    queryTable.bindValue(":duration", duration);
+    queryTable.exec();
+
+    return databaseGui.commit();
+
+}
+
+bool Database::addTherapyHistoryRecord(int userId, int therapyId) {
+
+    databaseGui.transaction();
+
+    QString queryRecordHistory = "INSERT INTO treatmentHistory (fk_therapy, fk_users) VALUES (:therapy, :users)";
+
+    QSqlQuery queryTable;
+    queryTable.prepare(queryRecordHistory);
+    queryTable.bindValue(":therapy", therapyId);
+    queryTable.bindValue(":users", userId);
+    queryTable.exec();
+
+    return databaseGui.commit();
+
+}
+
+bool Database::addUserRecord(QString name) {
+
+    databaseGui.transaction();
+
+    QString queryDatabaseUsersTable = "INSERT INTO users (name) VALUES (:name)";
+
+    QSqlQuery queryTable;
+    queryTable.prepare(queryDatabaseUsersTable);
+    queryTable.bindValue(":name", name);
+    queryTable.exec();
 
     return databaseGui.commit();
 
