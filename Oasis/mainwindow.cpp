@@ -32,6 +32,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     if(success == 0) {
         qDebug() << "Operation was successfully completed...";
+        qDebug() << "Testing: Getting users details...";
+        mainDatabase->getUserData(0);
+        mainDatabase->getUserData(1);
+        mainDatabase->getUserData(2);
+        mainDatabase->getUserData(3);
+        qDebug() << "Operation was successfully completed...";
     }
     else {
         qDebug() << "Operation was not successfully completed...";

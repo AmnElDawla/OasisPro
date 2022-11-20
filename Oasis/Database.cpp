@@ -113,10 +113,20 @@ QVector<Users*> Database::getUserData(int id) {
     QString queryDatabaseUsersTable = "SELECT * FROM users WHERE id = :id";
 
     QSqlQuery queryTable;
+    QVector<Users*> userData;
+
     queryTable.prepare(queryDatabaseUsersTable);
     queryTable.bindValue(":id", id);
     queryTable.exec();
 
-    return databaseGui.commit();
+    int count = 0;
+
+    while(queryTable.next()) {
+        QString names = queryTable.value("name").ToString();
+        QDebug << "User "+count+" is named "+names;
+        count++;
+    }
+
+    return queryTable;
 
 }
