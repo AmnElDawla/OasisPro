@@ -4,8 +4,6 @@
 #include <QtSql>
 #include <QSqlQuery>
 
-// Testing name change
-
 class Database {
 public:
     Database();
