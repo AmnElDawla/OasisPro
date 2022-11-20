@@ -2,7 +2,7 @@
 
 ## Important files:
 
-Please download, review, and read the following necessary files (the specification document will be added after consultation with thee client) provided to us by our customer (client): 
+Please download, review, and read the following necessary files (the specification document will be added after consultation with the client) provided to us by our customer (client): 
 
 ![Download OASIS_Pro_Manual_v1r8.pdf](client/OASIS_Pro_Manual_v1r8.pdf)
 
@@ -24,7 +24,7 @@ This project has 5 milestones (necessary), which are:
 - [ ] Connection test as per `Connection Test` on page 6 of the manual.
 - [ ] Intensity as per `Adjusting Intensity` on page 7 of the manual.
 
-This project also has 2 optional milestones, which are: 
+This project also has 2 additional milestones, which are: 
 
 - [ ] `Record feature` where users can choose to record a therapy and add to treatment history.
 - [ ] `Replay feature` where users can replay selected treatments from history of treatments.
@@ -33,7 +33,7 @@ This project also has 2 optional milestones, which are:
 
 | Team Members         | Tasks                 |
 | -------------------- | --------------------- |
-| Andre Nonaka Cordova | Readme.md<br>GUI Creation<br>Use Case Model<br>OO Design Model<br>Traceability Matrix |
+| Andre Nonaka Cordova | Readme.md<br>GUI Creation<br>Use Case Model<br>OO Design Model<br>Traceability Matrix<br>Database |
 | Alex Nedev | Session Selection Feature<br>Intensity Feature |
 | Khaled Farag | Power Feature<br>Battery Level |
 | Mingrui Liang | Connection Test Feature<br>Record Therapy Feature |
