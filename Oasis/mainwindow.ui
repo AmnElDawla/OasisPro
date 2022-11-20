@@ -80,7 +80,7 @@ background-color: transparent;
 font-weight: 600;
 color: black;
 background-repeat: none;
-background: #FF7e82;
+background: #4d0000;
 
 }</string>
          </property>
@@ -107,7 +107,7 @@ background-color: transparent;
 font-weight: 600;
 color: black;
 background-repeat: none;
-background: #FF7e82;
+background: #4d0000;
 
 }</string>
          </property>
@@ -134,7 +134,7 @@ background-color: transparent;
 font-weight: 600;
 color: black;
 background-repeat: none;
-background: yellow;
+background: rgb(120, 120, 0);
 
 }</string>
          </property>
@@ -161,7 +161,7 @@ background-color: transparent;
 font-weight: 600;
 color: black;
 background-repeat: none;
-background: yellow;
+background: rgb(120, 120, 0);
 
 }</string>
          </property>
@@ -188,7 +188,7 @@ background-color: transparent;
 font-weight: 600;
 color: black;
 background-repeat: none;
-background: yellow;
+background: rgb(120, 120, 0);
 
 }</string>
          </property>
@@ -215,7 +215,7 @@ background-color: transparent;
 font-weight: 600;
 color: black;
 background-repeat: none;
-background: #5ced73;
+background: #2e7639;
 
 }</string>
          </property>
@@ -242,7 +242,7 @@ background-color: transparent;
 font-weight: 600;
 color: black;
 background-repeat: none;
-background: #5ced73;
+background: #2e7639;
 
 }</string>
          </property>
@@ -269,7 +269,7 @@ background-color: transparent;
 font-weight: 600;
 color: black;
 background-repeat: none;
-background: #5ced73;
+background: #2e7639;
 
 }</string>
          </property>
@@ -295,7 +295,7 @@ background: #5ced73;
      </property>
      <property name="styleSheet">
       <string notr="true">#progressBar::chunk{
-background-color: #01fe00;
+background-color: #ff0000;
 }</string>
      </property>
      <property name="value">
@@ -327,6 +327,9 @@ background-color: black;
       <string/>
      </property>
      <widget class="QPushButton" name="pushButton">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -371,6 +374,9 @@ background-color: black;
       <string/>
      </property>
      <widget class="QPushButton" name="pushButton_2">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -415,6 +421,9 @@ background-color: black;
       <string/>
      </property>
      <widget class="QPushButton" name="pushButton_3">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -458,6 +467,9 @@ background-color: black;
       <string/>
      </property>
      <widget class="QPushButton" name="pushButton_4">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -770,6 +782,9 @@ background-repeat: none;
       <widget class="QPushButton" name="pushButton_5">
        <property name="text">
         <string>New Battery</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
        </property>
       </widget>
      </item>

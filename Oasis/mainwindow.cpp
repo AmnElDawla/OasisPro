@@ -44,3 +44,37 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    // Change color of lights, enable/disable buttons.
+    if(deviceOn == false){
+        ui->progressBar->setStyleSheet("#progressBar::chunk{background-color: #01fe00;}");
+        ui->label_4->setStyleSheet("#label_4{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82;}");
+        ui->label_6->setStyleSheet("#label_6{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82;}");
+        ui->label_7->setStyleSheet("#label_7{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0);}");
+        ui->label_8->setStyleSheet("#label_8{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0);}");
+        ui->label_9->setStyleSheet("#label_9{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0);}");
+        ui->label_10->setStyleSheet("#label_10{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73;}");
+        ui->label_11->setStyleSheet("#label_11{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73;}");
+        ui->label_12->setStyleSheet("#label_12{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73;}");
+        ui->pushButton_2->setEnabled(true);
+        ui->pushButton_3->setEnabled(true);
+        ui->pushButton_4->setEnabled(true);
+    } else if(deviceOn == true){
+        ui->progressBar->setStyleSheet("#progressBar::chunk{background-color: #ff0000;}");
+        ui->label_4->setStyleSheet("#label_4{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #4d0000;}");
+        ui->label_6->setStyleSheet("#label_6{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #4d0000;}");
+        ui->label_7->setStyleSheet("#label_7{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(120, 120, 0);}");
+        ui->label_8->setStyleSheet("#label_8{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(120, 120, 0);}");
+        ui->label_9->setStyleSheet("#label_9{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(120, 120, 0);}");
+        ui->label_10->setStyleSheet("#label_10{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #2e7639;}");
+        ui->label_11->setStyleSheet("#label_11{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #2e7639;}");
+        ui->label_12->setStyleSheet("#label_12{background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #2e7639;}");
+        ui->pushButton_2->setEnabled(false);
+        ui->pushButton_3->setEnabled(false);
+        ui->pushButton_4->setEnabled(false);
+    }
+    // Change device on/off bool variable.
+    deviceOn = !deviceOn;
+}

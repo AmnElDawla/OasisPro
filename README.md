@@ -1,8 +1,60 @@
-# OasisPro
+# OasisPro 
+
+## Important files:
+
+Please download, review, and read the following necessary files (the specification document will be added after consultation with the client) provided to us by our customer (client): 
+
+![Download OASIS_Pro_Manual_v1r8.pdf](client/OASIS_Pro_Manual_v1r8.pdf)
+
+## Team Number
+
+```diff
+Our team number is 37. 
+```
+
+## Milestones & Package Releases
+
+Each milestone in this project will bring a package release showcasing what we have completed so far in this project. 
+
+This project has 5 milestones (necessary), which are: 
+
+- [ ] Power which has `Turn On/Turn Off` and `Ending A Session` features as described on page 4 of the manual.
+- [ ] Battery level as described in section on page 5 of the manual. 
+- [ ] Selecting a session as per `Selecting A Session` on page 5 of the manual.
+- [ ] Connection test as per `Connection Test` on page 6 of the manual.
+- [ ] Intensity as per `Adjusting Intensity` on page 7 of the manual.
+
+This project also has 2 additional milestones, which are: 
+
+- [ ] `Record feature` where users can choose to record a therapy and add to treatment history.
+- [ ] `Replay feature` where users can replay selected treatments from history of treatments.
+
+## Tasks Assignment
+
+| Team Members         | Tasks                 |
+| -------------------- | --------------------- |
+| Andre Nonaka Cordova | Readme.md<br>GUI Creation<br>Use Case Model<br>OO Design Model<br>Traceability Matrix<br>Database |
+| Alex Nedev | Session Selection Feature<br>Intensity Feature |
+| Khaled Farag | Power Feature<br>Battery Level |
+| Mingrui Liang | Connection Test Feature<br>Record Therapy Feature |
 
 ## Status of OasisPro
 
-Not completed. We need to finish the database integration as well as the logic of the program as of November 19, 2022.
+Not completed &#10060;. 
+
+## Tested Scenarios
+
+Tested Scenarios as of November 19, 2022:
+
+- [ ] Finishing our GUI application with database integration (SQL).
+- [ ] Adding logic to our GUI application.
+
+## Checklist
+
+Checklist as of November 19, 2022:
+
+- [ ] Finishing our GUI application with database integration (SQL).
+- [ ] Adding logic to our GUI application.
 
 ## Progress Report Table
 
@@ -20,8 +72,8 @@ Notice 2: The Progress Report Table will need to be updated throughout the proje
 | Readme.md (will be continuously updated)       | 	 &#128993;     | Andre Nonaka Cordova  | N/A           | 2022-11-25        | 2022-11-25      | N/A        | N/A   |
 | <br><br><br><br>Use Case Model,<br>OO Design Model,<br> and Traceability Matrix<br><br><br><br> |  &#128993;  | Andre Nonaka Cordova  | Alex Nedev | 2022-11-22 | N/A | N/A | Completed a Preliminary draft of the Use Cases.<br>However, we will most likely change certain cases as we move along in the project.<br> Alex N provided some feedback on Use Cases.<br>Will work back and forth with lead until we believe we’re done. |
 | GUI Creation     |   &#128994;     | Andre Nonaka Cordova  | N/A  | 2022-11-14 | 2022-11-19      | N/A | N/A |
-| Power Feature    |   &#128993;     | Khaled farag          | N/A  | N/A | 2022-11-18      | N/A | N/A |
-| Battery Level    |   &#128993;     | Khaled farag          | N/A  | N/A | 2022-11-18      | N/A | N/A |
+| Power Feature    |   &#128994;     | Khaled Farag          | N/A  | N/A | 2022-11-18      | 2022-11-19 | Completed basic functionality.<br>Will edit as needed as project develops further.<br>Changed default colors to off and buttons to disabled, instead of being on at simulator launch. |
+| Battery Level    |   &#128993;     | Khaled Farag          | N/A  | N/A | 2022-11-18      | N/A | N/A |
 | Session Selection Feature |   &#128993;  | Alex Nedev   | N/A  | N/A | 2022-11-18      | N/A | N/A |
 | Connection Test Feature |   &#128993;  | Mingrui Liang  | N/A  | N/A | 2022-11-18      | N/A | N/A |
 | Intensity Feature  |   &#128993;   | Alex Nedev  | N/A   | N/A | 2022-11-18      | N/A | N/A |
@@ -30,7 +82,7 @@ Notice 2: The Progress Report Table will need to be updated throughout the proje
 
 ## How to work on this project in your personal computer
 
-To begin, we have to make sure that you have installed git in your virtual machine. To check this, go to gnome-terminal and type git --version as seen in the picture below. Make sure that you receive a version for your git and not an error. 
+To begin, we have to make sure that you have installed git in your virtual machine. To check this, type in gnome-terminal `git --version` as seen in the picture below. Make sure that you receive a version for your git and not an error. 
 
 ![](image/Image1.PNG)
 
@@ -42,7 +94,7 @@ After this go to the directory of that folder as seen in the image below.
 
 ![](image/Image3.PNG)
 
-After this clone this repository by using the git clone command followed by this link: https://github.com/Andre-Nonaka/OasisPro.git as seen in the image below. 
+After this clone this repository by using the `git clone` command followed by this link: https://github.com/Andre-Nonaka/OasisPro.git as seen in the image below. 
 
 ![](image/Image4.PNG)
 
@@ -69,11 +121,11 @@ Step 6
 Step 7
 ![](image/Image11.PNG)
 
-Once you have generated your personal access token, copy and paste it into the gnome-terminal for your password. After processing your login information, the clone of the repository should be added to your repository folder in your personal computer (or virtual machine). You can check if you have OasisPro folder in your repo by typing ls in gnome-terminal as seen in the image below. 
+Once you have generated your personal access token, copy and paste it into the gnome-terminal for your password. After processing your login information, the clone of the repository should be added to your repository folder in your personal computer (or virtual machine). You can check if you have OasisPro folder in your repo by typing `ls` in gnome-terminal as seen in the image below. 
 
 ![](image/Image12.PNG)
 
-To check if your initial commit was made (this commit would be the cloning of the repository), type git log in gnome-terminal as seen in the image below. 
+To check if your initial commit was made (this commit would be the cloning of the repository), type `git log` in gnome-terminal as seen in the image below (mine will have many logs as I have already committed multiple items to the repository, but yours should have only one named `initial commit` if it is your first time working on this repository). 
 
 ![](image/Image13.PNG)
 
@@ -81,21 +133,25 @@ Now that we have finished and confirmed that we cloned our repository, we will n
 
 ![](image/Image14.PNG)
 
-After opening the project in Qt Creator, we will need to check if the project has the path for the git binary file configure in it. To check this, go to the Tools tab and select the Options tab. From there go to the Version Control section and check the Configuration path. If it is empty please enter the path to where the git binary file is stored at within your personal computer or virtual machine as seen in the image below. 
+After opening the project in Qt Creator, we will need to check if the project has the path for the git binary file configure in it. To check this, go to the `Tools tab` and select the `Options tab`. From there go to the `Version Control section` and check the `Configuration` path. If it is empty please enter the path to where the git binary file is stored at within your personal computer or virtual machine as seen in the image below. 
 
 ![](image/Image15.PNG)
 
-After this, you will be able to push, commit, and pull the files to the local and remote repository. Once you have finish editing the project, it will be time to commit your changes to the repository. To do this, we will need to type in gnome-terminal git commit -m "Put whatever you want here" as seen in the image below. 
+After this, you will be able to push, commit, and pull the files to the local and remote repository. Once you have finish editing the project, it will be time to commit your changes to the repository. To do this, we will need to first add the files to our list of files to commit using `git add -A` or `git add .` as seen in the image below.
+
+![](image/Image22.PNG)
+
+After this, type in gnome-terminal `git commit -m "Put whatever you want here"` as seen in the image below. 
 
 ![](image/Image16.PNG)
 
-After doing this, we will pull from the repository any new updated or added files using git pull as seen in the images below (remember that your password is the personal access token you created in your Github account and not your actual password).
+After doing this, we will pull from the repository any new updated or added files using `git pull` as seen in the images below (remember that your password is the personal access token you created in your Github account and not your actual password).
 
 ![](image/Image17.PNG)
 
 ![](image/Image18.PNG)
 
-After pulling the files, you will be able to push your newly created commit to the repository using git push origin main as seen in the image below (remember that your password is the personal access token you created in your Github account and not your actual password).
+After pulling the files, you will be able to push your newly created commit to the repository using `git push origin main` or `git push -u origin main` as seen in the image below (remember that your password is the personal access token you created in your Github account and not your actual password).
 
 ![](image/Image19.PNG)
 
