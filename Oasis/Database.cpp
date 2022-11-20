@@ -105,3 +105,18 @@ bool Database::addUserRecord(QString name) {
     return databaseGui.commit();
 
 }
+
+QVector<Users*> Database::getUserData(int id) {
+
+    databaseGui.transaction();
+
+    QString queryDatabaseUsersTable = "SELECT * FROM users WHERE id = :id";
+
+    QSqlQuery queryTable;
+    queryTable.prepare(queryDatabaseUsersTable);
+    queryTable.bindValue(":id", id);
+    queryTable.exec();
+
+    return databaseGui.commit();
+
+}
