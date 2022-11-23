@@ -1,5 +1,9 @@
 # OasisPro 
 
+## Notice
+
+To get the most updated version of the project, please type in gnome-terminal in the folder that you created as repo for the project the following command: `git pull`.
+
 ## Important files:
 
 Please download, review, and read the following necessary files (the specification document will be added after consultation with the client) provided to us by our customer (client): 
