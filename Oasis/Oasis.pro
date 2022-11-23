@@ -17,11 +17,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Database.cpp \
+    Users.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     Database.h \
+    Users.h \
     mainwindow.h
 
 FORMS += \

@@ -25,5 +25,7 @@
         <file>icons/ThetaOn.png</file>
         <file>icons/UserDesignated.png</file>
         <file>icons/UserDesignatedOn.png</file>
+        <file>icons/LeftEar_Connected.PNG</file>
+        <file>icons/LeftEar_Off.PNG</file>
     </qresource>
 </RCC>

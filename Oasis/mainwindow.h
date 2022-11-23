@@ -26,6 +26,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Database* newDatabase = new Database();
-    bool deviceOn;
+    QVector<int> levels;
+    int numTimesClicked = 0;
 };
 #endif // MAINWINDOW_H

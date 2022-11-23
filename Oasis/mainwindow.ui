@@ -305,7 +305,7 @@ background-color: #ff0000;
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QGroupBox" name="groupBox_3">
+    <widget class="QGroupBox" name="powerButton">
      <property name="geometry">
       <rect>
        <x>760</x>
@@ -315,7 +315,7 @@ background-color: #ff0000;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#groupBox_3{
+      <string notr="true">#powerButton{
 border: 5px solid #ADD8E6;
 border-radius: 30px;
 background-color: black;
@@ -519,56 +519,6 @@ background-repeat: none;
       <string>INT</string>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="graphicsView">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>170</y>
-       <width>321</width>
-       <height>151</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>140</y>
-       <width>321</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(52, 101, 164);
-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>TREATMENT HISTORY</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>320</y>
-       <width>321</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(52, 101, 164);
-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_13">
      <property name="geometry">
       <rect>
@@ -635,8 +585,8 @@ border-radius: 20px;
     <widget class="QLabel" name="label_16">
      <property name="geometry">
       <rect>
-       <x>750</x>
-       <y>10</y>
+       <x>650</x>
+       <y>20</y>
        <width>61</width>
        <height>41</height>
       </rect>
@@ -698,14 +648,44 @@ border-radius: 20px;
       <string/>
      </property>
     </widget>
-    <widget class="QListView" name="listView">
+    <widget class="QListWidget" name="listWidget">
      <property name="geometry">
       <rect>
-       <x>400</x>
-       <y>20</y>
+       <x>120</x>
+       <y>30</y>
        <width>291</width>
-       <height>141</height>
+       <height>71</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="listWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>120</y>
+       <width>291</width>
+       <height>71</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_20">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>60</y>
+       <width>61</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label_20{
+border-image: url(:/resources/icons/LeftEar_Off.PNG);
+border: 2px solid red;
+border-radius: 20px;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -789,6 +769,56 @@ background-repeat: none;
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>250</y>
+      <width>321</width>
+      <height>151</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>400</y>
+      <width>321</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(52, 101, 164);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>220</y>
+      <width>321</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(52, 101, 164);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>TREATMENT HISTORY</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -3,6 +3,7 @@
 
 #include <QtSql>
 #include <QSqlQuery>
+#include "Users.h"
 
 class Database {
 public:
@@ -13,6 +14,11 @@ public:
     bool addTherapyRecord();
     bool addTherapyHistoryRecord();
     bool addUserRecord();
+    bool addTherapyHistoryRecord(int userId, int therapyId);
+    bool addTherapyRecord(QString session, int intensity, int duration);
+    bool addUserRecord(QString name);
+    QVector<Users*> getUserData(int id);
+
     ~Database();
 
 private:

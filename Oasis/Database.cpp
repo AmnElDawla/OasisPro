@@ -47,7 +47,7 @@ bool Database::initializeDefaultUserRecord() {
     QString queryRecordUser3 = "INSERT INTO users (name) VALUES (Angelina)";
     QString queryRecordUser4 = "INSERT INTO users (name) VALUES (Emma)";
 
-    SqlQuery queryTable;
+    QSqlQuery queryTable;
 
     queryTable.exec(queryRecordUser1);
     queryTable.exec(queryRecordUser2);
@@ -122,11 +122,12 @@ QVector<Users*> Database::getUserData(int id) {
     int count = 0;
 
     while(queryTable.next()) {
-        QString names = queryTable.value("name").ToString();
-        QDebug << "User "+count+" is named "+names;
+        QString names = queryTable.value("name").toString();
+        QString newCount = QString::fromStdString(std::to_string(count));
+        qDebug() << "User " << newCount << " is named " << names;
         count++;
     }
 
-    return queryTable;
+    return userData;
 
 }
