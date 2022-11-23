@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    //off icons
+    // device off's icons
     QString arrQListAbove[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
     QString arrQListBelow[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "Operation was not successfully completed...";
     }
 
-    //Everything needs to be off in the GUI
+    // Everything needs start in off state (power off) in the GUI
     deviceOff();
     offConnect();
     initialiazeListOfIcons();
@@ -67,22 +67,27 @@ void MainWindow::on_pushButton_clicked()
 
     // Change color of lights, enable/disable buttons.
 
-    if(numTimesClicked == 0) {
+    // Clicked power button once...
+    if(numberOfTimesPowerBtnClicked == 0) {
 
         deviceOn();
 
-        numTimesClicked = 1;
+        numberOfTimesPowerBtnClicked = 1;
 
     }
-    else if(numTimesClicked == 1) {
+
+    // Clicked power button for the second time...
+    else if(numberOfTimesPowerBtnClicked == 1) {
 
         onConnect();
 
         iconsOn();
 
-        numTimesClicked = 2;
+        numberOfTimesPowerBtnClicked = 2;
 
     }
+
+    // Clicked power button for the third time...
     else {
 
         deviceOff();
@@ -91,7 +96,7 @@ void MainWindow::on_pushButton_clicked()
 
         offConnect();
 
-        numTimesClicked = 0;
+        numberOfTimesPowerBtnClicked = 0;
 
     }
 

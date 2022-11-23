@@ -34,6 +34,6 @@ private:
     Ui::MainWindow *ui;
     Database* newDatabase = new Database();
     QVector<int> levels;
-    int numTimesClicked = 0;
+    int numberOfTimesPowerBtnClicked = 0;
 };
 #endif // MAINWINDOW_H
