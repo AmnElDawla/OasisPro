@@ -2,7 +2,9 @@
 
 ## Notice
 
-To get the most updated version of the project, please type in gnome-terminal in the folder that you created as repo for the project the following command: `git pull`.
+To get the most updated version of the project, please type in gnome-terminal in the folder that you created as repo for the project the following command: `git pull` as seen in the picture below. 
+
+![](image/Image23.PNG)
 
 ## Important files:
 
