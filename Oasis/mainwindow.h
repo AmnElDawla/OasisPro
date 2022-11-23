@@ -19,6 +19,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void onConnect();
+    void offConnect();
+    void deviceOff();
+    void deviceOn();
+    void iconsOn();
+    void iconsOff();
+    void initialiazeListOfIcons();
 
 private slots:
     void on_pushButton_clicked();
