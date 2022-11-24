@@ -232,38 +232,64 @@ void MainWindow::initialiazeListOfIcons() {
 void MainWindow::on_aboveLeft_clicked()
 {
     if(newRowItemAbove == 0) {
-        newRowItemAbove = 3;
+        newRowItemAbove = 2;
+    }
+    else if(newRowItemAbove == 1) {
+        newRowItemAbove = 0;
+    }
+    else {
+        newRowItemAbove = 1;
     }
     ui->listWidget->setCurrentRow(newRowItemAbove);
-    newRowItemAbove--;
 }
 
 // Goes left from the second QListWidget of icons.
 void MainWindow::on_belowLeft_clicked()
 {
     if(newRowItemBelow == 0) {
-        newRowItemBelow = 4;
+        newRowItemBelow = 3;
+    }
+    else if(newRowItemBelow == 1) {
+        newRowItemBelow = 0;
+    }
+    else if(newRowItemBelow == 2) {
+        newRowItemBelow = 1;
+    }
+    else {
+        newRowItemBelow = 2;
     }
     ui->listWidget_2->setCurrentRow(newRowItemBelow);
-    newRowItemBelow--;
 }
 
 // Goes right from the first QListWidget of icons.
 void MainWindow::on_aboveRight_clicked()
 {
-    if(newRowItemAbove == 3) {
+    if(newRowItemAbove == 0) {
+        newRowItemAbove = 1;
+    }
+    else if(newRowItemAbove == 1) {
+        newRowItemAbove = 2;
+    }
+    else {
         newRowItemAbove = 0;
     }
     ui->listWidget->setCurrentRow(newRowItemAbove);
-    newRowItemAbove++;
 }
 
 // Goes right from the second QListWidget of icons.
 void MainWindow::on_belowRight_clicked()
 {
-    if(newRowItemBelow == 4) {
+    if(newRowItemBelow == 0) {
+        newRowItemBelow = 1;
+    }
+    else if(newRowItemBelow == 1) {
+        newRowItemBelow = 2;
+    }
+    else if(newRowItemBelow == 2) {
+        newRowItemBelow = 3;
+    }
+    else {
         newRowItemBelow = 0;
     }
     ui->listWidget_2->setCurrentRow(newRowItemBelow);
-    newRowItemBelow++;
 }

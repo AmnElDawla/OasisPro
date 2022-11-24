@@ -663,9 +663,9 @@ border-radius: 20px;
     <widget class="QListWidget" name="listWidget">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>210</x>
        <y>30</y>
-       <width>231</width>
+       <width>221</width>
        <height>71</height>
       </rect>
      </property>
@@ -673,9 +673,9 @@ border-radius: 20px;
     <widget class="QListWidget" name="listWidget_2">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>200</x>
        <y>120</y>
-       <width>241</width>
+       <width>231</width>
        <height>71</height>
       </rect>
      </property>
@@ -703,7 +703,7 @@ border-radius: 20px;
     <widget class="QPushButton" name="aboveRight">
      <property name="geometry">
       <rect>
-       <x>420</x>
+       <x>440</x>
        <y>40</y>
        <width>51</width>
        <height>51</height>
@@ -724,7 +724,7 @@ border-radius: 10px;
     <widget class="QPushButton" name="belowRight">
      <property name="geometry">
       <rect>
-       <x>420</x>
+       <x>440</x>
        <y>130</y>
        <width>51</width>
        <height>51</height>
@@ -744,7 +744,7 @@ border-radius: 10px;
     <widget class="QPushButton" name="aboveLeft">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>100</x>
        <y>40</y>
        <width>51</width>
        <height>51</height>
@@ -764,7 +764,7 @@ border-radius: 10px;
     <widget class="QPushButton" name="belowLeft">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>100</x>
        <y>130</y>
        <width>51</width>
        <height>51</height>
