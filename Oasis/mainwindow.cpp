@@ -97,31 +97,31 @@ void MainWindow::on_powerBtn_clicked()
 
 void MainWindow::onConnect() {
 
-    ui->label_16->setStyleSheet("#label_16 { border-image: url(:/resources/icons/connect.PNG); border: 2px solid red; border-radius: 20px; }");
-    ui->label_20->setStyleSheet("#label_20 { border-image: url(:/resources/icons/LeftEar_Connected.PNG); border: 2px solid red; border-radius: 20px; }");
-    ui->label_21->setStyleSheet("#label_21 { border-image: url(:/resources/icons/rightConnectOn.PNG); border: 2px solid red; border-radius: 20px; }");
+    ui->graphSession->setStyleSheet("#graphSession { border-image: url(:/resources/icons/connect.PNG); border: 2px solid red; border-radius: 20px; }");
+    ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Connected.PNG); border: 2px solid red; border-radius: 20px; }");
+    ui->rightEar->setStyleSheet("#rightEar { border-image: url(:/resources/icons/rightConnectOn.PNG); border: 2px solid red; border-radius: 20px; }");
 
 }
 
 void MainWindow::offConnect() {
 
-    ui->label_20->setStyleSheet("#label_20 { border-image: url(:/resources/icons/LeftEar_Off.PNG); border: 2px solid red; border-radius: 20px; }");
-    ui->label_16->setStyleSheet("#label_16 { border-image: url(:/resources/icons/connectOff.png); border: 2px solid red; border-radius: 20px; }");
-    ui->label_21->setStyleSheet("#label_21 { border-image: url(:/resources/icons/rightConnect.PNG); border: 2px solid red; border-radius: 20px; }");
+    ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Off.PNG); border: 2px solid red; border-radius: 20px; }");
+    ui->graphSession->setStyleSheet("#graphSession { border-image: url(:/resources/icons/connectOff.png); border: 2px solid red; border-radius: 20px; }");
+    ui->rightEar->setStyleSheet("#rightEar { border-image: url(:/resources/icons/rightConnect.PNG); border: 2px solid red; border-radius: 20px; }");
 
 }
 
 void MainWindow::deviceOff() {
 
-    ui->progressBar->setStyleSheet("#progressBar::chunk{ background-color: white; }");
-    ui->label_4->setStyleSheet("#label_4 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-    ui->label_6->setStyleSheet("#label_6 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-    ui->label_7->setStyleSheet("#label_7 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-    ui->label_8->setStyleSheet("#label_8 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-    ui->label_9->setStyleSheet("#label_9 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-    ui->label_10->setStyleSheet("#label_10 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-    ui->label_11->setStyleSheet("#label_11 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-    ui->label_12->setStyleSheet("#label_12 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
+    ui->indicatorOffOrOn->setStyleSheet("#indicatorOffOrOn::chunk{ background-color: white; }");
+    ui->ledEight->setStyleSheet("#ledEight { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
+    ui->ledSeven->setStyleSheet("#ledSeven { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
+    ui->ledSix->setStyleSheet("#ledSix { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
+    ui->ledFive->setStyleSheet("#ledFive { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
+    ui->ledFour->setStyleSheet("#ledFour { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
+    ui->ledThree->setStyleSheet("#ledThree { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
+    ui->ledTwo->setStyleSheet("#ledTwo { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
+    ui->ledOne->setStyleSheet("#ledOne { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ui->selectionBtn->setEnabled(false);
     ui->increaseIntensityBtn->setEnabled(false);
     ui->decreaseIntensityBtn->setEnabled(false);
@@ -130,15 +130,15 @@ void MainWindow::deviceOff() {
 
 void MainWindow::deviceOn() {
 
-    ui->progressBar->setStyleSheet("#progressBar::chunk { background-color: #01fe00; }");
-    ui->label_4->setStyleSheet("#label_4 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
-    ui->label_6->setStyleSheet("#label_6 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
-    ui->label_7->setStyleSheet("#label_7 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
-    ui->label_8->setStyleSheet("#label_8 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
-    ui->label_9->setStyleSheet("#label_9 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
-    ui->label_10->setStyleSheet("#label_10 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
-    ui->label_11->setStyleSheet("#label_11 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
-    ui->label_12->setStyleSheet("#label_12 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
+    ui->indicatorOffOrOn->setStyleSheet("#indicatorOffOrOn::chunk { background-color: #01fe00; }");
+    ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
+    ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
+    ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
+    ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
+    ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
+    ui->ledThree->setStyleSheet("#ledThree { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
+    ui->ledTwo->setStyleSheet("#ledTwo { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
+    ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ui->selectionBtn->setEnabled(true);
     ui->increaseIntensityBtn->setEnabled(true);
     ui->decreaseIntensityBtn->setEnabled(true);
@@ -151,18 +151,18 @@ void MainWindow::iconsOn() {
     QString arrQListDurationOn[3] = {":/resources/icons/20MinuteOn.png", ":/resources/icons/45MinuteOn.png", ":/resources/icons/UserDesignatedOn.png"};
     QString arrQListSessionOn[4] = {":/resources/icons/AlphaOn.png", ":/resources/icons/Beta1On.png", ":/resources/icons/Beta2On.png", ":/resources/icons/ThetaOn.png"};
 
-    ui->listWidget->setIconSize(QSize(48, 48));
-    ui->listWidget_2->setIconSize(QSize(48, 48));
+    ui->listDuration->setIconSize(QSize(48, 48));
+    ui->listSession->setIconSize(QSize(48, 48));
 
     for(int i = 0; i < 3; i++)  {
 
-        ui->listWidget->item(i)->setIcon(QIcon(arrQListDurationOn[i]));
+        ui->listDuration->item(i)->setIcon(QIcon(arrQListDurationOn[i]));
 
     }
 
     for(int i = 0; i < 4; i++)  {
 
-        ui->listWidget_2->item(i)->setIcon(QIcon(arrQListSessionOn[i]));
+        ui->listSession->item(i)->setIcon(QIcon(arrQListSessionOn[i]));
 
     }
 
@@ -174,18 +174,18 @@ void MainWindow::iconsOff() {
     QString arrQListDuration[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
     QString arrQListSession[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
-    ui->listWidget->setIconSize(QSize(48, 48));
-    ui->listWidget_2->setIconSize(QSize(48, 48));
+    ui->listDuration->setIconSize(QSize(48, 48));
+    ui->listSession->setIconSize(QSize(48, 48));
 
     for(int i = 0; i < 3; i++)  {
 
-        ui->listWidget->item(i)->setIcon(QIcon(arrQListDuration[i]));
+        ui->listDuration->item(i)->setIcon(QIcon(arrQListDuration[i]));
 
     }
 
     for(int i = 0; i < 4; i++)  {
 
-        ui->listWidget_2->item(i)->setIcon(QIcon(arrQListSession[i]));
+        ui->listSession->item(i)->setIcon(QIcon(arrQListSession[i]));
 
     }
 
@@ -197,34 +197,34 @@ void MainWindow::initialiazeListOfIcons() {
     QString arrQListSession[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
     //QList (above) initialize starts here...
-    ui->listWidget->setFlow(QListView::Flow::LeftToRight);
-    ui->listWidget->setIconSize(QSize(48, 48));
-    ui->listWidget->setStyleSheet("#listWidget { background: black; }");
+    ui->listDuration->setFlow(QListView::Flow::LeftToRight);
+    ui->listDuration->setIconSize(QSize(48, 48));
+    ui->listDuration->setStyleSheet("#listDuration { background: black; }");
 
     for(int i = 0; i < 3; i++)  {
 
-        ui->listWidget->addItem(new QListWidgetItem(QIcon(arrQListDuration[i]), NULL));
+        ui->listDuration->addItem(new QListWidgetItem(QIcon(arrQListDuration[i]), NULL));
 
     }
 
-    ui->listWidget->setCurrentRow(0);
+    ui->listDuration->setCurrentRow(0);
 
     //QList (below) initialize starts here...
-    ui->listWidget_2->setFlow(QListView::Flow::LeftToRight);
-    ui->listWidget_2->setIconSize(QSize(48, 48));
-    ui->listWidget_2->setStyleSheet("#listWidget_2 { background: black; }");
+    ui->listSession->setFlow(QListView::Flow::LeftToRight);
+    ui->listSession->setIconSize(QSize(48, 48));
+    ui->listSession->setStyleSheet("#listSession { background: black; }");
 
     for(int i = 0; i < 4; i++)  {
 
-        ui->listWidget_2->addItem(new QListWidgetItem(QIcon(arrQListSession[i]), NULL));
+        ui->listSession->addItem(new QListWidgetItem(QIcon(arrQListSession[i]), NULL));
 
     }
 
-    ui->listWidget_2->setCurrentRow(0);
+    ui->listSession->setCurrentRow(0);
 
 }
 
-// Goes left from the first QListWidget of icons.
+// Goes left from the first QlistDuration of icons.
 void MainWindow::on_durationLeft_clicked()
 {
     if(newRowItemDuration == 0) {
@@ -236,10 +236,10 @@ void MainWindow::on_durationLeft_clicked()
     else {
         newRowItemDuration = 1;
     }
-    ui->listWidget->setCurrentRow(newRowItemDuration);
+    ui->listDuration->setCurrentRow(newRowItemDuration);
 }
 
-// Goes left from the second QListWidget of icons.
+// Goes left from the second QlistDuration of icons.
 void MainWindow::on_sessionLeft_clicked()
 {
     if(newRowItemSession == 0) {
@@ -254,10 +254,10 @@ void MainWindow::on_sessionLeft_clicked()
     else {
         newRowItemSession = 2;
     }
-    ui->listWidget_2->setCurrentRow(newRowItemSession);
+    ui->listSession->setCurrentRow(newRowItemSession);
 }
 
-// Goes right from the first QListWidget of icons.
+// Goes right from the first QlistDuration of icons.
 void MainWindow::on_durationRight_clicked()
 {
     if(newRowItemDuration == 0) {
@@ -269,10 +269,10 @@ void MainWindow::on_durationRight_clicked()
     else {
         newRowItemDuration = 0;
     }
-    ui->listWidget->setCurrentRow(newRowItemDuration);
+    ui->listDuration->setCurrentRow(newRowItemDuration);
 }
 
-// Goes right from the second QListWidget of icons.
+// Goes right from the second QlistDuration of icons.
 void MainWindow::on_sessionRight_clicked()
 {
     if(newRowItemSession == 0) {
@@ -287,7 +287,7 @@ void MainWindow::on_sessionRight_clicked()
     else {
         newRowItemSession = 0;
     }
-    ui->listWidget_2->setCurrentRow(newRowItemSession);
+    ui->listSession->setCurrentRow(newRowItemSession);
 }
 
 void MainWindow::on_selectionBtn_clicked()

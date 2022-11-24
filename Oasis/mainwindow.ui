@@ -78,7 +78,7 @@ border-radius: 30px;
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="ledEight">
          <property name="font">
           <font>
            <pointsize>15</pointsize>
@@ -87,7 +87,7 @@ border-radius: 30px;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#label_4{
+          <string notr="true">#ledEight{
 background-color: transparent;
 font-weight: 600;
 color: black;
@@ -105,7 +105,7 @@ background: #4d0000;
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="ledSeven">
          <property name="font">
           <font>
            <pointsize>15</pointsize>
@@ -114,7 +114,7 @@ background: #4d0000;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#label_6{
+          <string notr="true">#ledSeven{
 background-color: transparent;
 font-weight: 600;
 color: black;
@@ -132,7 +132,7 @@ background: #4d0000;
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="ledSix">
          <property name="font">
           <font>
            <pointsize>15</pointsize>
@@ -141,7 +141,7 @@ background: #4d0000;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#label_7{
+          <string notr="true">#ledSix{
 background-color: transparent;
 font-weight: 600;
 color: black;
@@ -159,7 +159,7 @@ background: rgb(120, 120, 0);
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="ledFive">
          <property name="font">
           <font>
            <pointsize>15</pointsize>
@@ -168,7 +168,7 @@ background: rgb(120, 120, 0);
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#label_8{
+          <string notr="true">#ledFive{
 background-color: transparent;
 font-weight: 600;
 color: black;
@@ -186,7 +186,7 @@ background: rgb(120, 120, 0);
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_9">
+        <widget class="QLabel" name="ledFour">
          <property name="font">
           <font>
            <pointsize>15</pointsize>
@@ -195,7 +195,7 @@ background: rgb(120, 120, 0);
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#label_9{
+          <string notr="true">#ledFour{
 background-color: transparent;
 font-weight: 600;
 color: black;
@@ -213,7 +213,7 @@ background: rgb(120, 120, 0);
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_10">
+        <widget class="QLabel" name="ledThree">
          <property name="font">
           <font>
            <pointsize>15</pointsize>
@@ -222,7 +222,7 @@ background: rgb(120, 120, 0);
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#label_10{
+          <string notr="true">#ledThree{
 background-color: transparent;
 font-weight: 600;
 color: black;
@@ -240,7 +240,7 @@ background: #2e7639;
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_11">
+        <widget class="QLabel" name="ledTwo">
          <property name="font">
           <font>
            <pointsize>15</pointsize>
@@ -249,7 +249,7 @@ background: #2e7639;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#label_11{
+          <string notr="true">#ledTwo{
 background-color: transparent;
 font-weight: 600;
 color: black;
@@ -267,7 +267,7 @@ background: #2e7639;
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_12">
+        <widget class="QLabel" name="ledOne">
          <property name="font">
           <font>
            <pointsize>15</pointsize>
@@ -276,7 +276,7 @@ background: #2e7639;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#label_12{
+          <string notr="true">#ledOne{
 background-color: transparent;
 font-weight: 600;
 color: black;
@@ -296,7 +296,7 @@ background: #2e7639;
       </layout>
      </widget>
     </widget>
-    <widget class="QProgressBar" name="progressBar">
+    <widget class="QProgressBar" name="indicatorOffOrOn">
      <property name="geometry">
       <rect>
        <x>780</x>
@@ -306,8 +306,8 @@ background: #2e7639;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#progressBar::chunk{
-background-color: #ff0000;
+      <string notr="true">#indicatorOffOrOn::chunk{
+background-color: white;
 }</string>
      </property>
      <property name="value">
@@ -503,7 +503,7 @@ border-radius: 10px;
       </property>
      </widget>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="intensityLogo">
      <property name="geometry">
       <rect>
        <x>590</x>
@@ -520,7 +520,7 @@ border-radius: 10px;
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label{
+      <string notr="true">#intensityLogo{
 background-color: transparent;
 font-weight: 600;
 color: yellow;
@@ -531,7 +531,7 @@ background-repeat: none;
       <string>INT</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_13">
+    <widget class="QLabel" name="mindAlive">
      <property name="geometry">
       <rect>
        <x>910</x>
@@ -541,7 +541,7 @@ background-repeat: none;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_13{
+      <string notr="true">#mindAlive{
 border-image: url(:/resources/icons/logo3.PNG);
 }
 
@@ -551,7 +551,7 @@ border-image: url(:/resources/icons/logo3.PNG);
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_14">
+    <widget class="QLabel" name="logoCanada">
      <property name="geometry">
       <rect>
        <x>930</x>
@@ -561,7 +561,7 @@ border-image: url(:/resources/icons/logo3.PNG);
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_14{
+      <string notr="true">#logoCanada{
 border-image: url(:/resources/icons/logo2.PNG);
 border: 2px solid red;
 border-radius: 20px;
@@ -573,7 +573,7 @@ border-radius: 20px;
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_15">
+    <widget class="QLabel" name="logoOasis">
      <property name="geometry">
       <rect>
        <x>760</x>
@@ -583,7 +583,7 @@ border-radius: 20px;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_15{
+      <string notr="true">#logoOasis{
 border-image: url(:/resources/icons/logo.PNG);
 border: 2px solid red;
 border-radius: 20px;
@@ -594,7 +594,7 @@ border-radius: 20px;
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_16">
+    <widget class="QLabel" name="graphSession">
      <property name="geometry">
       <rect>
        <x>650</x>
@@ -604,8 +604,8 @@ border-radius: 20px;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_16{
-border-image: url(:/resources/icons/connect.PNG);
+      <string notr="true">#graphSession{
+border-image: url(:/resources/icons/connectOff.png);
 border: 2px solid red;
 border-radius: 20px;
 }
@@ -616,7 +616,7 @@ border-radius: 20px;
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_17">
+    <widget class="QLabel" name="graphLogo">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -626,7 +626,7 @@ border-radius: 20px;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_17{
+      <string notr="true">#graphLogo{
 border-image: url(:/resources/icons/electrode.PNG);
 border: 2px solid red;
 border-radius: 20px;
@@ -638,7 +638,7 @@ border-radius: 20px;
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_18">
+    <widget class="QLabel" name="connectLogo">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -648,7 +648,7 @@ border-radius: 20px;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_18{
+      <string notr="true">#connectLogo{
 border-image: url(:/resources/icons/audio.PNG);
 border: 2px solid red;
 border-radius: 20px;
@@ -660,7 +660,7 @@ border-radius: 20px;
       <string/>
      </property>
     </widget>
-    <widget class="QListWidget" name="listWidget">
+    <widget class="QListWidget" name="listDuration">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -670,7 +670,7 @@ border-radius: 20px;
       </rect>
      </property>
     </widget>
-    <widget class="QListWidget" name="listWidget_2">
+    <widget class="QListWidget" name="listSession">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -680,7 +680,7 @@ border-radius: 20px;
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="label_20">
+    <widget class="QLabel" name="leftEar">
      <property name="geometry">
       <rect>
        <x>650</x>
@@ -690,7 +690,7 @@ border-radius: 20px;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_20{
+      <string notr="true">#leftEar{
 border-image: url(:/resources/icons/LeftEar_Off.PNG);
 border: 2px solid red;
 border-radius: 20px;
@@ -781,17 +781,17 @@ border-radius: 10px;
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_21">
+    <widget class="QLabel" name="rightEar">
      <property name="geometry">
       <rect>
        <x>650</x>
-       <y>100</y>
-       <width>61</width>
+       <y>110</y>
+       <width>56</width>
        <height>35</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">#label_21{
+      <string notr="true">#rightEar{
 border-image: url(:/resources/icons/rightConnect.PNG);
 border: 2px solid red;
 border-radius: 20px;
