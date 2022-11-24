@@ -30,10 +30,20 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_aboveLeft_clicked();
+
+    void on_belowLeft_clicked();
+
+    void on_aboveRight_clicked();
+
+    void on_belowRight_clicked();
+
 private:
     Ui::MainWindow *ui;
     Database* newDatabase = new Database();
     QVector<int> levels;
     int numberOfTimesPowerBtnClicked = 0;
+    int newRowItemAbove = 1;
+    int newRowItemBelow = 1;
 };
 #endif // MAINWINDOW_H

@@ -211,6 +211,8 @@ void MainWindow::initialiazeListOfIcons() {
 
     }
 
+    ui->listWidget->setCurrentRow(0);
+
     //QList (below) initialize starts here...
     ui->listWidget_2->setFlow(QListView::Flow::LeftToRight);
     ui->listWidget_2->setIconSize(QSize(48, 48));
@@ -222,28 +224,46 @@ void MainWindow::initialiazeListOfIcons() {
 
     }
 
+    ui->listWidget_2->setCurrentRow(0);
+
 }
 
 // Goes left from the first QListWidget of icons.
 void MainWindow::on_aboveLeft_clicked()
 {
-
+    if(newRowItemAbove == 0) {
+        newRowItemAbove = 3;
+    }
+    ui->listWidget->setCurrentRow(newRowItemAbove);
+    newRowItemAbove--;
 }
 
 // Goes left from the second QListWidget of icons.
 void MainWindow::on_belowLeft_clicked()
 {
-
+    if(newRowItemBelow == 0) {
+        newRowItemBelow = 4;
+    }
+    ui->listWidget_2->setCurrentRow(newRowItemBelow);
+    newRowItemBelow--;
 }
 
 // Goes right from the first QListWidget of icons.
 void MainWindow::on_aboveRight_clicked()
 {
-
+    if(newRowItemAbove == 3) {
+        newRowItemAbove = 0;
+    }
+    ui->listWidget->setCurrentRow(newRowItemAbove);
+    newRowItemAbove++;
 }
 
 // Goes right from the second QListWidget of icons.
 void MainWindow::on_belowRight_clicked()
 {
-
+    if(newRowItemBelow == 4) {
+        newRowItemBelow = 0;
+    }
+    ui->listWidget_2->setCurrentRow(newRowItemBelow);
+    newRowItemBelow++;
 }
