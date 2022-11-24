@@ -506,7 +506,7 @@ border-radius: 10px;
     <widget class="QLabel" name="intensityLogo">
      <property name="geometry">
       <rect>
-       <x>590</x>
+       <x>580</x>
        <y>260</y>
        <width>81</width>
        <height>41</height>
@@ -519,6 +519,9 @@ border-radius: 10px;
        <bold>true</bold>
       </font>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
      <property name="styleSheet">
       <string notr="true">#intensityLogo{
 background-color: transparent;
@@ -529,6 +532,9 @@ background-repeat: none;
      </property>
      <property name="text">
       <string>INT</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="mindAlive">
