@@ -227,71 +227,71 @@ void MainWindow::initialiazeListOfIcons() {
 // Goes left from the first QListWidget of icons.
 void MainWindow::on_durationLeft_clicked()
 {
-    if(newRowItemAbove == 0) {
-        newRowItemAbove = 2;
+    if(newRowItemDuration == 0) {
+        newRowItemDuration = 2;
     }
-    else if(newRowItemAbove == 1) {
-        newRowItemAbove = 0;
+    else if(newRowItemDuration == 1) {
+        newRowItemDuration = 0;
     }
     else {
-        newRowItemAbove = 1;
+        newRowItemDuration = 1;
     }
-    ui->listWidget->setCurrentRow(newRowItemAbove);
+    ui->listWidget->setCurrentRow(newRowItemDuration);
 }
 
 // Goes left from the second QListWidget of icons.
 void MainWindow::on_sessionLeft_clicked()
 {
-    if(newRowItemBelow == 0) {
-        newRowItemBelow = 3;
+    if(newRowItemSession == 0) {
+        newRowItemSession = 3;
     }
-    else if(newRowItemBelow == 1) {
-        newRowItemBelow = 0;
+    else if(newRowItemSession == 1) {
+        newRowItemSession = 0;
     }
-    else if(newRowItemBelow == 2) {
-        newRowItemBelow = 1;
+    else if(newRowItemSession == 2) {
+        newRowItemSession = 1;
     }
     else {
-        newRowItemBelow = 2;
+        newRowItemSession = 2;
     }
-    ui->listWidget_2->setCurrentRow(newRowItemBelow);
+    ui->listWidget_2->setCurrentRow(newRowItemSession);
 }
 
 // Goes right from the first QListWidget of icons.
 void MainWindow::on_durationRight_clicked()
 {
-    if(newRowItemAbove == 0) {
-        newRowItemAbove = 1;
+    if(newRowItemDuration == 0) {
+        newRowItemDuration = 1;
     }
-    else if(newRowItemAbove == 1) {
-        newRowItemAbove = 2;
+    else if(newRowItemDuration == 1) {
+        newRowItemDuration = 2;
     }
     else {
-        newRowItemAbove = 0;
+        newRowItemDuration = 0;
     }
-    ui->listWidget->setCurrentRow(newRowItemAbove);
+    ui->listWidget->setCurrentRow(newRowItemDuration);
 }
 
 // Goes right from the second QListWidget of icons.
 void MainWindow::on_sessionRight_clicked()
 {
-    if(newRowItemBelow == 0) {
-        newRowItemBelow = 1;
+    if(newRowItemSession == 0) {
+        newRowItemSession = 1;
     }
-    else if(newRowItemBelow == 1) {
-        newRowItemBelow = 2;
+    else if(newRowItemSession == 1) {
+        newRowItemSession = 2;
     }
-    else if(newRowItemBelow == 2) {
-        newRowItemBelow = 3;
+    else if(newRowItemSession == 2) {
+        newRowItemSession = 3;
     }
     else {
-        newRowItemBelow = 0;
+        newRowItemSession = 0;
     }
-    ui->listWidget_2->setCurrentRow(newRowItemBelow);
+    ui->listWidget_2->setCurrentRow(newRowItemSession);
 }
 
 void MainWindow::on_selectionBtn_clicked()
 {
-    selectedDuration = newRowItemAbove;
-    selectedSession = newRowItemBelow;
+    selectedDuration = newRowItemDuration;
+    selectedSession = newRowItemSession;
 }

@@ -40,8 +40,8 @@ private:
     Database* newDatabase = new Database();
     QVector<int> levels;
     int numberOfTimesPowerBtnClicked = 0;
-    int newRowItemAbove = 0;
-    int newRowItemBelow = 0;
+    int newRowItemDuration = 0;
+    int newRowItemSession = 0;
     int selectedDuration = 0;
     int selectedSession = 0;
 };
