@@ -669,7 +669,7 @@ border-radius: 20px;
     <widget class="QListWidget" name="listDuration">
      <property name="geometry">
       <rect>
-       <x>210</x>
+       <x>240</x>
        <y>30</y>
        <width>221</width>
        <height>71</height>
@@ -679,7 +679,7 @@ border-radius: 20px;
     <widget class="QListWidget" name="listSession">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>230</x>
        <y>120</y>
        <width>231</width>
        <height>71</height>
@@ -706,87 +706,6 @@ border-radius: 20px;
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="durationRight">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>40</y>
-       <width>51</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#durationRight {
-border-image: url(&quot;:/resources/buttons/rightButton.png&quot;);
-border-radius: 10px;
-}
-
-</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="sessionRight">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>130</y>
-       <width>51</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#sessionRight {
-border-image: url(&quot;:/resources/buttons/rightButton.png&quot;);
-border-radius: 10px;
-}
-</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="durationLeft">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>40</y>
-       <width>51</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#durationLeft {
-border-image: url(&quot;:/resources/buttons/leftButton.png&quot;);
-border-radius: 10px;
-}
-</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="sessionLeft">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>130</y>
-       <width>51</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">#sessionLeft {
-border-image: url(&quot;:/resources/buttons/leftButton.png&quot;);
-border-radius: 10px;
-}
-</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
     <widget class="QLabel" name="rightEar">
      <property name="geometry">
       <rect>
@@ -806,6 +725,171 @@ border-radius: 20px;
      <property name="text">
       <string/>
      </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>120</y>
+       <width>81</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#groupBox_3{
+border: 5px solid #ADD8E6;
+border-radius: 30px;
+background-color: black;
+}
+</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="sessionLeft">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>51</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#sessionLeft {
+border-image: url(&quot;:/resources/buttons/leftButton.png&quot;);
+border-radius: 10px;
+}
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_7">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>30</y>
+       <width>81</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#groupBox_7{
+border: 5px solid #ADD8E6;
+border-radius: 30px;
+background-color: black;
+}
+</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="durationLeft">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>51</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#durationLeft {
+border-image: url(&quot;:/resources/buttons/leftButton.png&quot;);
+border-radius: 10px;
+}
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_8">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>120</y>
+       <width>81</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#groupBox_8{
+border: 5px solid #ADD8E6;
+border-radius: 30px;
+background-color: black;
+}
+</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="sessionRight">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>51</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#sessionRight {
+border-image: url(&quot;:/resources/buttons/rightButton.png&quot;);
+border-radius: 10px;
+}
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_9">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>30</y>
+       <width>81</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#groupBox_9{
+border: 5px solid #ADD8E6;
+border-radius: 30px;
+background-color: black;
+}
+</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="durationRight">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>51</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#durationRight {
+border-image: url(&quot;:/resources/buttons/rightButton.png&quot;);
+border-radius: 10px;
+}
+
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="layoutWidget">
