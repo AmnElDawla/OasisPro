@@ -295,3 +295,7 @@ void MainWindow::on_selectionBtn_clicked()
     selectedDuration = newRowItemDuration;
     selectedSession = newRowItemSession;
 }
+
+void MainWindow::batteryLevel(int sessionDuration) {
+
+}

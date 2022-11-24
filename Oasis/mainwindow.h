@@ -26,6 +26,7 @@ public:
     void iconsOn();
     void iconsOff();
     void initialiazeListOfIcons();
+    void batteryLevel(int);
 
 private slots:
     void on_powerBtn_clicked();
