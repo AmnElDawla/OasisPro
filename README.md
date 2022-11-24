@@ -11,7 +11,7 @@ To get the most updated version of the project, please type in gnome-terminal in
 Please download, review, and read the following necessary files (the specification document will be added after consultation with the client) provided to us by our customer (client): 
 
 ![Download OASIS_Pro_Manual_v1r8.pdf](client/OASIS_Pro_Manual_v1r8.pdf)<br>
-[![Watch Oasis Pro Demo video](https://www.drdiane.com/wp-content/uploads/2015/10/CES-Oasis-Pro-Treating-Pain-Insomnia-and-Depression.png))](https://www.youtube.com/watch?v=PDgN03Fx6fg&t=2s)
+[![Watch Oasis Pro Demo video]([https://www.drdiane.com/wp-content/uploads/2015/10/CES-Oasis-Pro-Treating-Pain-Insomnia-and-Depression.png](https://files.ekmcdn.com/352cec/images/oasis-pro-the-ces-device-from-mind-alive-2142-p.jpg?v=232021-184902)))](https://www.youtube.com/watch?v=PDgN03Fx6fg&t=2s)
 
 ## Team Number
 
