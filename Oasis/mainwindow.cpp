@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    //off icons
+    // device off's icons
     QString arrQListAbove[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
     QString arrQListBelow[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
@@ -46,8 +46,78 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "Operation was not successfully completed...";
     }
 
-    //Everything needs to be off in the GUI
+    // Everything needs start in off state (power off) in the GUI
+    deviceOff();
+    offConnect();
+    initialiazeListOfIcons();
+
+}
+
+MainWindow::~MainWindow()
+{
+
+
+    delete ui;
+
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+
+    // Change color of lights, enable/disable buttons.
+
+    // Clicked power button once...
+    if(numberOfTimesPowerBtnClicked == 0) {
+
+        deviceOn();
+
+        numberOfTimesPowerBtnClicked = 1;
+
+    }
+
+    // Clicked power button for the second time...
+    else if(numberOfTimesPowerBtnClicked == 1) {
+
+        onConnect();
+
+        iconsOn();
+
+        numberOfTimesPowerBtnClicked = 2;
+
+    }
+
+    // Clicked power button for the third time...
+    else {
+
+        deviceOff();
+
+        iconsOff();
+
+        offConnect();
+
+        numberOfTimesPowerBtnClicked = 0;
+
+    }
+
+}
+
+void MainWindow::onConnect() {
+
+    ui->label_16->setStyleSheet("#label_16 { border-image: url(:/resources/icons/connect.PNG); border: 2px solid red; border-radius: 20px; }");
+    ui->label_20->setStyleSheet("#label_20 { border-image: url(:/resources/icons/LeftEar_Connected.PNG); border: 2px solid red; border-radius: 20px; }");
+
+}
+
+void MainWindow::offConnect() {
+
+    ui->label_20->setStyleSheet("#label_20 { border-image: url(:/resources/icons/LeftEar_Off.PNG); border: 2px solid red; border-radius: 20px; }");
     ui->label_16->setStyleSheet("#label_16 { border-image: url(:/resources/icons/connectOff.png); border: 2px solid red; border-radius: 20px; }");
+
+}
+
+void MainWindow::deviceOff() {
+
     ui->progressBar->setStyleSheet("#progressBar::chunk{ background-color: white; }");
     ui->label_4->setStyleSheet("#label_4 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ui->label_6->setStyleSheet("#label_6 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
@@ -57,6 +127,79 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_10->setStyleSheet("#label_10 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ui->label_11->setStyleSheet("#label_11 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ui->label_12->setStyleSheet("#label_12 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
+    ui->pushButton_2->setEnabled(false);
+    ui->pushButton_3->setEnabled(false);
+    ui->pushButton_4->setEnabled(false);
+
+}
+
+void MainWindow::deviceOn() {
+
+    ui->progressBar->setStyleSheet("#progressBar::chunk { background-color: #01fe00; }");
+    ui->label_4->setStyleSheet("#label_4 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
+    ui->label_6->setStyleSheet("#label_6 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
+    ui->label_7->setStyleSheet("#label_7 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
+    ui->label_8->setStyleSheet("#label_8 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
+    ui->label_9->setStyleSheet("#label_9 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
+    ui->label_10->setStyleSheet("#label_10 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
+    ui->label_11->setStyleSheet("#label_11 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
+    ui->label_12->setStyleSheet("#label_12 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
+    ui->pushButton_2->setEnabled(true);
+    ui->pushButton_3->setEnabled(true);
+    ui->pushButton_4->setEnabled(true);
+
+}
+
+void MainWindow::iconsOn() {
+
+    //on icons
+    QString arrQListAboveOn[3] = {":/resources/icons/20MinuteOn.png", ":/resources/icons/45MinuteOn.png", ":/resources/icons/UserDesignatedOn.png"};
+    QString arrQListBelowOn[4] = {":/resources/icons/AlphaOn.png", ":/resources/icons/Beta1On.png", ":/resources/icons/Beta2On.png", ":/resources/icons/ThetaOn.png"};
+
+    ui->listWidget->setIconSize(QSize(48, 48));
+    ui->listWidget_2->setIconSize(QSize(48, 48));
+
+    for(int i = 0; i < 3; i++)  {
+
+        ui->listWidget->item(i)->setIcon(QIcon(arrQListAboveOn[i]));
+
+    }
+
+    for(int i = 0; i < 4; i++)  {
+
+        ui->listWidget_2->item(i)->setIcon(QIcon(arrQListBelowOn[i]));
+
+    }
+
+}
+
+void MainWindow::iconsOff() {
+
+    //off icons
+    QString arrQListAbove[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
+    QString arrQListBelow[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
+
+    ui->listWidget->setIconSize(QSize(48, 48));
+    ui->listWidget_2->setIconSize(QSize(48, 48));
+
+    for(int i = 0; i < 3; i++)  {
+
+        ui->listWidget->item(i)->setIcon(QIcon(arrQListAbove[i]));
+
+    }
+
+    for(int i = 0; i < 4; i++)  {
+
+        ui->listWidget_2->item(i)->setIcon(QIcon(arrQListBelow[i]));
+
+    }
+
+}
+
+void MainWindow::initialiazeListOfIcons() {
+
+    QString arrQListAbove[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
+    QString arrQListBelow[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
     //QList (above) initialize starts here...
     ui->listWidget->setFlow(QListView::Flow::LeftToRight);
@@ -77,103 +220,6 @@ MainWindow::MainWindow(QWidget *parent)
     for(int i = 0; i < 4; i++)  {
 
         ui->listWidget_2->addItem(new QListWidgetItem(QIcon(arrQListBelow[i]), NULL));
-
-    }
-
-}
-
-MainWindow::~MainWindow()
-{
-
-    delete ui;
-
-}
-
-
-void MainWindow::on_pushButton_clicked()
-{
-
-    //on icons
-    QString arrQListAboveOn[3] = {":/resources/icons/20MinuteOn.png", ":/resources/icons/45MinuteOn.png", ":/resources/icons/UserDesignatedOn.png"};
-    QString arrQListBelowOn[4] = {":/resources/icons/AlphaOn.png", ":/resources/icons/Beta1On.png", ":/resources/icons/Beta2On.png", ":/resources/icons/ThetaOn.png"};
-
-    //off icons
-    QString arrQListAbove[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
-    QString arrQListBelow[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
-
-    // Change color of lights, enable/disable buttons.
-
-    if(numTimesClicked == 0) {
-
-        ui->progressBar->setStyleSheet("#progressBar::chunk { background-color: #01fe00; }");
-        ui->label_4->setStyleSheet("#label_4 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
-        ui->label_6->setStyleSheet("#label_6 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
-        ui->label_7->setStyleSheet("#label_7 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
-        ui->label_8->setStyleSheet("#label_8 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
-        ui->label_9->setStyleSheet("#label_9 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
-        ui->label_10->setStyleSheet("#label_10 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
-        ui->label_11->setStyleSheet("#label_11 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
-        ui->label_12->setStyleSheet("#label_12 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
-        ui->pushButton_2->setEnabled(true);
-        ui->pushButton_3->setEnabled(true);
-        ui->pushButton_4->setEnabled(true);
-        numTimesClicked = 1;
-
-    }
-    else if(numTimesClicked == 1) {
-
-        ui->label_16->setStyleSheet("#label_16 { border-image: url(:/resources/icons/connect.PNG); border: 2px solid red; border-radius: 20px; }");
-        ui->label_20->setStyleSheet("#label_20 { border-image: url(:/resources/icons/LeftEar_Connected.PNG); border: 2px solid red; border-radius: 20px; }");
-
-        numTimesClicked = 2;
-        ui->listWidget->setIconSize(QSize(48, 48));
-        ui->listWidget_2->setIconSize(QSize(48, 48));
-
-        for(int i = 0; i < 3; i++)  {
-
-            ui->listWidget->item(i)->setIcon(QIcon(arrQListAboveOn[i]));
-
-        }
-
-        for(int i = 0; i < 4; i++)  {
-
-            ui->listWidget_2->item(i)->setIcon(QIcon(arrQListBelowOn[i]));
-
-        }
-
-    }
-    else {
-
-        ui->label_20->setStyleSheet("#label_20 { border-image: url(:/resources/icons/LeftEar_Off.PNG); border: 2px solid red; border-radius: 20px; }");
-        ui->label_16->setStyleSheet("#label_16 { border-image: url(:/resources/icons/connectOff.png); border: 2px solid red; border-radius: 20px; }");
-        ui->progressBar->setStyleSheet("#progressBar::chunk{ background-color: white; }");
-        ui->label_4->setStyleSheet("#label_4 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-        ui->label_6->setStyleSheet("#label_6 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-        ui->label_7->setStyleSheet("#label_7 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-        ui->label_8->setStyleSheet("#label_8 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-        ui->label_9->setStyleSheet("#label_9 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-        ui->label_10->setStyleSheet("#label_10 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-        ui->label_11->setStyleSheet("#label_11 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-        ui->label_12->setStyleSheet("#label_12 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-        ui->pushButton_2->setEnabled(false);
-        ui->pushButton_3->setEnabled(false);
-        ui->pushButton_4->setEnabled(false);
-
-        ui->listWidget->setIconSize(QSize(48, 48));
-        ui->listWidget_2->setIconSize(QSize(48, 48));
-
-        for(int i = 0; i < 3; i++)  {
-
-            ui->listWidget->item(i)->setIcon(QIcon(arrQListAbove[i]));
-
-        }
-
-        for(int i = 0; i < 4; i++)  {
-
-            ui->listWidget_2->item(i)->setIcon(QIcon(arrQListBelow[i]));
-
-        }
-        numTimesClicked = 0;
 
     }
 
