@@ -51,6 +51,8 @@ MainWindow::MainWindow(QWidget *parent)
     offConnect();
     initialiazeListOfIcons();
 
+    setWindowIcon(QIcon(":/icons/companyIcon.png"));
+
 }
 
 MainWindow::~MainWindow()
