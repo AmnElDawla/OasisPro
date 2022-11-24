@@ -6,11 +6,18 @@ To get the most updated version of the project, please type in gnome-terminal in
 
 ![](image/Image23.PNG)
 
-## Important files:
+## Important files
 
 Please download, review, and read the following necessary files (the specification document will be added after consultation with the client) provided to us by our customer (client): 
 
 ![Download OASIS_Pro_Manual_v1r8.pdf](client/OASIS_Pro_Manual_v1r8.pdf)
+
+## Client Demo Video
+
+Click on the image below to watch the Oasis Pro demo video (this project will be partly based on this). 
+<br>
+<br>
+[![Watch Oasis Pro Demo video](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdUHycsxGxDWaGKb1WMPsf325BxuOMV0mn3z6H18SXzOULhURqQdiInSm2hqLYJ_q7tGs&usqp=CAU)](https://www.youtube.com/watch?v=PDgN03Fx6fg&t=2s)
 
 ## Team Number
 
