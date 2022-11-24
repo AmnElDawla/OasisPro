@@ -148,21 +148,21 @@ void MainWindow::deviceOn() {
 void MainWindow::iconsOn() {
 
     //on icons
-    QString arrQListAboveOn[3] = {":/resources/icons/20MinuteOn.png", ":/resources/icons/45MinuteOn.png", ":/resources/icons/UserDesignatedOn.png"};
-    QString arrQListBelowOn[4] = {":/resources/icons/AlphaOn.png", ":/resources/icons/Beta1On.png", ":/resources/icons/Beta2On.png", ":/resources/icons/ThetaOn.png"};
+    QString arrQListDurationOn[3] = {":/resources/icons/20MinuteOn.png", ":/resources/icons/45MinuteOn.png", ":/resources/icons/UserDesignatedOn.png"};
+    QString arrQListSessionOn[4] = {":/resources/icons/AlphaOn.png", ":/resources/icons/Beta1On.png", ":/resources/icons/Beta2On.png", ":/resources/icons/ThetaOn.png"};
 
     ui->listWidget->setIconSize(QSize(48, 48));
     ui->listWidget_2->setIconSize(QSize(48, 48));
 
     for(int i = 0; i < 3; i++)  {
 
-        ui->listWidget->item(i)->setIcon(QIcon(arrQListAboveOn[i]));
+        ui->listWidget->item(i)->setIcon(QIcon(arrQListDurationOn[i]));
 
     }
 
     for(int i = 0; i < 4; i++)  {
 
-        ui->listWidget_2->item(i)->setIcon(QIcon(arrQListBelowOn[i]));
+        ui->listWidget_2->item(i)->setIcon(QIcon(arrQListSessionOn[i]));
 
     }
 
@@ -171,21 +171,21 @@ void MainWindow::iconsOn() {
 void MainWindow::iconsOff() {
 
     //off icons
-    QString arrQListAbove[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
-    QString arrQListBelow[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
+    QString arrQListDuration[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
+    QString arrQListSession[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
     ui->listWidget->setIconSize(QSize(48, 48));
     ui->listWidget_2->setIconSize(QSize(48, 48));
 
     for(int i = 0; i < 3; i++)  {
 
-        ui->listWidget->item(i)->setIcon(QIcon(arrQListAbove[i]));
+        ui->listWidget->item(i)->setIcon(QIcon(arrQListDuration[i]));
 
     }
 
     for(int i = 0; i < 4; i++)  {
 
-        ui->listWidget_2->item(i)->setIcon(QIcon(arrQListBelow[i]));
+        ui->listWidget_2->item(i)->setIcon(QIcon(arrQListSession[i]));
 
     }
 
@@ -193,8 +193,8 @@ void MainWindow::iconsOff() {
 
 void MainWindow::initialiazeListOfIcons() {
 
-    QString arrQListAbove[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
-    QString arrQListBelow[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
+    QString arrQListDuration[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
+    QString arrQListSession[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
     //QList (above) initialize starts here...
     ui->listWidget->setFlow(QListView::Flow::LeftToRight);
@@ -203,7 +203,7 @@ void MainWindow::initialiazeListOfIcons() {
 
     for(int i = 0; i < 3; i++)  {
 
-        ui->listWidget->addItem(new QListWidgetItem(QIcon(arrQListAbove[i]), NULL));
+        ui->listWidget->addItem(new QListWidgetItem(QIcon(arrQListDuration[i]), NULL));
 
     }
 
@@ -216,7 +216,7 @@ void MainWindow::initialiazeListOfIcons() {
 
     for(int i = 0; i < 4; i++)  {
 
-        ui->listWidget_2->addItem(new QListWidgetItem(QIcon(arrQListBelow[i]), NULL));
+        ui->listWidget_2->addItem(new QListWidgetItem(QIcon(arrQListSession[i]), NULL));
 
     }
 
@@ -292,5 +292,6 @@ void MainWindow::on_sessionRight_clicked()
 
 void MainWindow::on_selectionBtn_clicked()
 {
-
+    selectedDuration = newRowItemAbove;
+    selectedSession = newRowItemBelow;
 }

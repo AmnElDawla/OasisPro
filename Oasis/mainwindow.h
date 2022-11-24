@@ -42,5 +42,7 @@ private:
     int numberOfTimesPowerBtnClicked = 0;
     int newRowItemAbove = 0;
     int newRowItemBelow = 0;
+    int selectedDuration = 0;
+    int selectedSession = 0;
 };
 #endif // MAINWINDOW_H
