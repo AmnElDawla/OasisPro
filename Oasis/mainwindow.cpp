@@ -61,7 +61,7 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_powerBtn_clicked()
 {
 
     // Change color of lights, enable/disable buttons.
@@ -70,7 +70,6 @@ void MainWindow::on_pushButton_clicked()
     if(numberOfTimesPowerBtnClicked == 0) {
 
         deviceOn();
-
         numberOfTimesPowerBtnClicked = 1;
 
     }
@@ -79,9 +78,7 @@ void MainWindow::on_pushButton_clicked()
     else if(numberOfTimesPowerBtnClicked == 1) {
 
         onConnect();
-
         iconsOn();
-
         numberOfTimesPowerBtnClicked = 2;
 
     }
@@ -90,11 +87,8 @@ void MainWindow::on_pushButton_clicked()
     else {
 
         deviceOff();
-
         iconsOff();
-
         offConnect();
-
         numberOfTimesPowerBtnClicked = 0;
 
     }
@@ -105,6 +99,7 @@ void MainWindow::onConnect() {
 
     ui->label_16->setStyleSheet("#label_16 { border-image: url(:/resources/icons/connect.PNG); border: 2px solid red; border-radius: 20px; }");
     ui->label_20->setStyleSheet("#label_20 { border-image: url(:/resources/icons/LeftEar_Connected.PNG); border: 2px solid red; border-radius: 20px; }");
+    ui->label_21->setStyleSheet("#label_21 { border-image: url(:/resources/icons/rightConnectOn.PNG); border: 2px solid red; border-radius: 20px; }");
 
 }
 
@@ -112,6 +107,7 @@ void MainWindow::offConnect() {
 
     ui->label_20->setStyleSheet("#label_20 { border-image: url(:/resources/icons/LeftEar_Off.PNG); border: 2px solid red; border-radius: 20px; }");
     ui->label_16->setStyleSheet("#label_16 { border-image: url(:/resources/icons/connectOff.png); border: 2px solid red; border-radius: 20px; }");
+    ui->label_21->setStyleSheet("#label_21 { border-image: url(:/resources/icons/rightConnect.PNG); border: 2px solid red; border-radius: 20px; }");
 
 }
 
@@ -126,9 +122,9 @@ void MainWindow::deviceOff() {
     ui->label_10->setStyleSheet("#label_10 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ui->label_11->setStyleSheet("#label_11 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ui->label_12->setStyleSheet("#label_12 { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
-    ui->pushButton_2->setEnabled(false);
-    ui->pushButton_3->setEnabled(false);
-    ui->pushButton_4->setEnabled(false);
+    ui->selectionBtn->setEnabled(false);
+    ui->increaseIntensityBtn->setEnabled(false);
+    ui->decreaseIntensityBtn->setEnabled(false);
 
 }
 
@@ -143,9 +139,9 @@ void MainWindow::deviceOn() {
     ui->label_10->setStyleSheet("#label_10 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ui->label_11->setStyleSheet("#label_11 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ui->label_12->setStyleSheet("#label_12 { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
-    ui->pushButton_2->setEnabled(true);
-    ui->pushButton_3->setEnabled(true);
-    ui->pushButton_4->setEnabled(true);
+    ui->selectionBtn->setEnabled(true);
+    ui->increaseIntensityBtn->setEnabled(true);
+    ui->decreaseIntensityBtn->setEnabled(true);
 
 }
 
@@ -229,7 +225,7 @@ void MainWindow::initialiazeListOfIcons() {
 }
 
 // Goes left from the first QListWidget of icons.
-void MainWindow::on_aboveLeft_clicked()
+void MainWindow::on_durationLeft_clicked()
 {
     if(newRowItemAbove == 0) {
         newRowItemAbove = 2;
@@ -244,7 +240,7 @@ void MainWindow::on_aboveLeft_clicked()
 }
 
 // Goes left from the second QListWidget of icons.
-void MainWindow::on_belowLeft_clicked()
+void MainWindow::on_sessionLeft_clicked()
 {
     if(newRowItemBelow == 0) {
         newRowItemBelow = 3;
@@ -262,7 +258,7 @@ void MainWindow::on_belowLeft_clicked()
 }
 
 // Goes right from the first QListWidget of icons.
-void MainWindow::on_aboveRight_clicked()
+void MainWindow::on_durationRight_clicked()
 {
     if(newRowItemAbove == 0) {
         newRowItemAbove = 1;
@@ -277,7 +273,7 @@ void MainWindow::on_aboveRight_clicked()
 }
 
 // Goes right from the second QListWidget of icons.
-void MainWindow::on_belowRight_clicked()
+void MainWindow::on_sessionRight_clicked()
 {
     if(newRowItemBelow == 0) {
         newRowItemBelow = 1;
@@ -292,4 +288,9 @@ void MainWindow::on_belowRight_clicked()
         newRowItemBelow = 0;
     }
     ui->listWidget_2->setCurrentRow(newRowItemBelow);
+}
+
+void MainWindow::on_selectionBtn_clicked()
+{
+
 }

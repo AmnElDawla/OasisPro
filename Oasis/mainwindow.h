@@ -28,11 +28,12 @@ public:
     void initialiazeListOfIcons();
 
 private slots:
-    void on_pushButton_clicked();
-    void on_aboveLeft_clicked();
-    void on_belowLeft_clicked();
-    void on_aboveRight_clicked();
-    void on_belowRight_clicked();
+    void on_powerBtn_clicked();
+    void on_durationLeft_clicked();
+    void on_sessionLeft_clicked();
+    void on_durationRight_clicked();
+    void on_sessionRight_clicked();
+    void on_selectionBtn_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -29,5 +29,7 @@
         <file>icons/LeftEar_Off.PNG</file>
         <file>buttons/leftButton.png</file>
         <file>buttons/rightButton.png</file>
+        <file>icons/rightConnect.PNG</file>
+        <file>icons/rightConnectOn.PNG</file>
     </qresource>
 </RCC>
