@@ -15,7 +15,6 @@ Please download, review, and read the following necessary files (the specificati
 <br>
 Click on the image below to watch the Oasis Pro demo video. 
 <br>
-<br>
 [![Watch Oasis Pro Demo video](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdUHycsxGxDWaGKb1WMPsf325BxuOMV0mn3z6H18SXzOULhURqQdiInSm2hqLYJ_q7tGs&usqp=CAU)](https://www.youtube.com/watch?v=PDgN03Fx6fg&t=2s)
 
 ## Team Number
