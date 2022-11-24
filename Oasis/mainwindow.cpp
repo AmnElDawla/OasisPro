@@ -224,3 +224,27 @@ void MainWindow::initialiazeListOfIcons() {
     }
 
 }
+
+// Goes left from the first QListWidget of icons.
+void MainWindow::on_aboveLeft_clicked()
+{
+
+}
+
+// Goes left from the second QListWidget of icons.
+void MainWindow::on_belowLeft_clicked()
+{
+
+}
+
+// Goes right from the first QListWidget of icons.
+void MainWindow::on_aboveRight_clicked()
+{
+
+}
+
+// Goes right from the second QListWidget of icons.
+void MainWindow::on_belowRight_clicked()
+{
+
+}
