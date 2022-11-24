@@ -6,7 +6,7 @@ To get the most updated version of the project, please type in gnome-terminal in
 
 ![](image/Image23.PNG)
 
-## Important files:
+## Important files
 
 Please download, review, and read the following necessary files (the specification document will be added after consultation with the client) provided to us by our customer (client): 
 
