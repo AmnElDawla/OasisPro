@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <unistd.h>
 #include <QMainWindow>
 #include <QtSql>
 #include <QSqlDatabase>
@@ -27,6 +28,8 @@ public:
     void iconsOff();
     void initialiazeListOfIcons();
     void batteryLevel(int);
+    void resetButtons();
+    void flashSelectedLevel();
 
 private slots:
     void on_powerBtn_clicked();
@@ -34,7 +37,9 @@ private slots:
     void on_sessionLeft_clicked();
     void on_durationRight_clicked();
     void on_sessionRight_clicked();
-    void on_selectionBtn_clicked();
+    void on_selectionBtn_clicked();    
+    void on_increaseIntensityBtn_clicked();
+    void on_decreaseIntensityBtn_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -45,5 +50,14 @@ private:
     int newRowItemSession = 0;
     int selectedDuration = 0;
     int selectedSession = 0;
+
+    /*
+     * This array is special. Its indices all follow a standard that should
+     * be used everywhere in the project. The standard is as follows:
+     *      sessionArray[0]: Stores duration of the session
+     *      sessionArray[1]: Stores session type
+     *      sessionArray[2]: Stores intensity level of the session at the time of completion
+     */
+    int sessionArray[3];
 };
 #endif // MAINWINDOW_H

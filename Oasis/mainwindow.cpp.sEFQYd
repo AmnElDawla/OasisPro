@@ -62,57 +62,6 @@ MainWindow::~MainWindow()
 
 }
 
-//============================================================================//
-//                             Helper Functions                               //
-//============================================================================//
-
-// Keep buttons lit on while removing the highlighting of any single button
-void MainWindow::resetButtons() {
-    ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
-    ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
-    ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
-    ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
-    ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
-    ui->ledThree->setStyleSheet("#ledThree { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
-    ui->ledTwo->setStyleSheet("#ledTwo { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
-    ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
-}
-
-// Flash the current selected intensity level for 3 seconds
-void MainWindow::flashSelectedLevel(){
-    resetButtons();
-
-    if(sessionArray[2] == 1){
-        ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
-    }
-    else if(sessionArray[2] == 2){
-        ui->ledTwo->setStyleSheet("#ledTwo { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
-    }
-    else if(sessionArray[2] == 3){
-        ui->ledThree->setStyleSheet("#ledThree { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
-    }
-    else if(sessionArray[2] == 4){
-        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: rgb(255, 255, 0); border:2px solid rgb(255, 255, 255); }");
-    }
-    else if(sessionArray[2] == 5){
-        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: rgb(255, 255, 0); border:2px solid rgb(255, 255, 255); }");
-    }
-    else if(sessionArray[2] == 6){
-        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: rgb(255, 255, 0); border:2px solid rgb(255, 255, 255); }");
-    }
-    else if(sessionArray[2] == 7){
-        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #FF7e82; border:2px solid rgb(255, 255, 255); }");
-    }
-    else if(sessionArray[2] == 8){
-        ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #FF7e82; border:2px solid rgb(255, 255, 255); }");
-    }
-}
-
-
-
-//============================================================================//
-//                             Button Functionality                           //
-//============================================================================//
 
 void MainWindow::on_powerBtn_clicked()
 {
@@ -185,7 +134,14 @@ void MainWindow::deviceOff() {
 void MainWindow::deviceOn() {
 
     ui->indicatorOffOrOn->setStyleSheet("#indicatorOffOrOn::chunk { background-color: #01fe00; }");
-    resetButtons();
+    ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
+    ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
+    ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
+    ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
+    ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
+    ui->ledThree->setStyleSheet("#ledThree { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
+    ui->ledTwo->setStyleSheet("#ledTwo { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
+    ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ui->selectionBtn->setEnabled(true);
     ui->increaseIntensityBtn->setEnabled(true);
     ui->decreaseIntensityBtn->setEnabled(true);
@@ -339,40 +295,26 @@ void MainWindow::on_sessionRight_clicked()
     ui->listSession->setCurrentRow(newRowItemSession);
 }
 
+void MainWindow::on_selectionBtn_clicked()
+{
+    selectedDuration = newRowItemDuration;
+    selectedSession = newRowItemSession;
+
+    qDebug("%d\n", selectedDuration);
+    qDebug("%d\n", selectedSession);
+}
+
 void MainWindow::batteryLevel(int sessionDuration) {
 
 }
 
-void MainWindow::on_selectionBtn_clicked()
-{
-    // ADD CODE TO DISABLE BUTTON WHEN WE HAVE A WAY
-    // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
-    // BUTTON HAS BEEN PRESSED
-
-    selectedDuration = newRowItemDuration;
-    selectedSession = newRowItemSession;
-
-    sessionArray[0] = selectedDuration;
-    sessionArray[1] = selectedSession;
-    sessionArray[2] = 0;
-}
-
 void MainWindow::on_increaseIntensityBtn_clicked()
 {
-    // Don't increase intensity level beyond 8
-    if(sessionArray[2] < 8){
-        sessionArray[2]++;
-    }
-
-    flashSelectedLevel();
+    qDebug() << "Increase";
+    ui->verticalLayout_2->itemAt(0); // here
 }
 
 void MainWindow::on_decreaseIntensityBtn_clicked()
 {
-    // Don't decrease intensity level beyond 0
-    if(sessionArray[2] > 0){
-        sessionArray[2]--;
-    }
-
-    flashSelectedLevel();
+    qDebug() << "decrease";
 }
