@@ -230,6 +230,10 @@ void MainWindow::deviceOn() {
     ui->selectionBtn->setEnabled(true);
     ui->increaseIntensityBtn->setEnabled(true);
     ui->decreaseIntensityBtn->setEnabled(true);
+    ui->listDuration->selectionModel()->clear();
+    ui->listSession->selectionModel()->clear();
+    ui->listDuration->setAttribute(Qt::WA_MacShowFocusRect, 0);
+    ui->listSession->setAttribute(Qt::WA_MacShowFocusRect, 0);
 
 }
 
@@ -258,6 +262,8 @@ void MainWindow::iconsOn() {
 
     ui->listDuration->setCurrentRow(newRowItemDuration);
     ui->listSession->setCurrentRow(newRowItemSession);
+    ui->listDuration->setStyleSheet("#listDuration::item:selected { background: transparent; border: 2px solid yellow; } #listDuration { background: black; } #listDuration::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
+    ui->listSession->setStyleSheet("#listSession::item:selected { background: transparent; border: 2px solid yellow; } #listSession { background: black; } #listSession::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
 
 }
 
@@ -310,6 +316,9 @@ void MainWindow::initialiazeListOfIcons() {
         ui->listSession->addItem(new QListWidgetItem(QIcon(arrQListSession[i]), NULL));
 
     }
+
+    ui->listDuration->setStyleSheet("#listDuration { background: black; } #listDuration::item { background: black; outline: none; border: 2px solid black; padding-left: 3px; padding-right: 6px; }");
+    ui->listSession->setStyleSheet("#listSession { background: black; } #listSession::item { background: black; outline: none; border: 2px solid black; padding-left: 3px; padding-right: 6px; }");
 
 }
 
