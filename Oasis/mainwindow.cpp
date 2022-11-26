@@ -218,6 +218,8 @@ void MainWindow::deviceOff() {
     ui->selectionBtn->setEnabled(false);
     ui->increaseIntensityBtn->setEnabled(false);
     ui->decreaseIntensityBtn->setEnabled(false);
+    ui->listDuration->selectionModel()->clear();
+    ui->listSession->selectionModel()->clear();
 
 }
 
@@ -228,6 +230,8 @@ void MainWindow::deviceOn() {
     ui->selectionBtn->setEnabled(true);
     ui->increaseIntensityBtn->setEnabled(true);
     ui->decreaseIntensityBtn->setEnabled(true);
+    ui->listDuration->setCurrentRow(newRowItemDuration);
+    ui->listSession->setCurrentRow(newRowItemSession);
 
 }
 
@@ -295,8 +299,6 @@ void MainWindow::initialiazeListOfIcons() {
 
     }
 
-    ui->listDuration->setCurrentRow(0);
-
     //QList (below) initialize starts here...
     ui->listSession->setFlow(QListView::Flow::LeftToRight);
     ui->listSession->setIconSize(QSize(48, 48));
@@ -307,8 +309,6 @@ void MainWindow::initialiazeListOfIcons() {
         ui->listSession->addItem(new QListWidgetItem(QIcon(arrQListSession[i]), NULL));
 
     }
-
-    ui->listSession->setCurrentRow(0);
 
 }
 
