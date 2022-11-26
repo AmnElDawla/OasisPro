@@ -87,14 +87,7 @@ border-radius: 30px;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#ledEight{
-background-color: transparent;
-font-weight: 600;
-color: black;
-background-repeat: none;
-background: #4d0000;
-
-}</string>
+          <string notr="true">#ledEight { background-color: white; font-weight: 600; color: black; background-repeat: none; }</string>
          </property>
          <property name="text">
           <string>8</string>
@@ -114,14 +107,7 @@ background: #4d0000;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#ledSeven{
-background-color: transparent;
-font-weight: 600;
-color: black;
-background-repeat: none;
-background: #4d0000;
-
-}</string>
+          <string notr="true">#ledSeven { background-color: white; font-weight: 600; color: black; background-repeat: none; }</string>
          </property>
          <property name="text">
           <string>7</string>
@@ -141,14 +127,7 @@ background: #4d0000;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#ledSix{
-background-color: transparent;
-font-weight: 600;
-color: black;
-background-repeat: none;
-background: rgb(120, 120, 0);
-
-}</string>
+          <string notr="true">#ledSix { background-color: white; font-weight: 600; color: black; background-repeat: none; }</string>
          </property>
          <property name="text">
           <string>6</string>
@@ -168,14 +147,7 @@ background: rgb(120, 120, 0);
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#ledFive{
-background-color: transparent;
-font-weight: 600;
-color: black;
-background-repeat: none;
-background: rgb(120, 120, 0);
-
-}</string>
+          <string notr="true">#ledFive { background-color: white; font-weight: 600; color: black; background-repeat: none; }</string>
          </property>
          <property name="text">
           <string>5</string>
@@ -195,14 +167,7 @@ background: rgb(120, 120, 0);
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#ledFour{
-background-color: transparent;
-font-weight: 600;
-color: black;
-background-repeat: none;
-background: rgb(120, 120, 0);
-
-}</string>
+          <string notr="true">#ledFour { background-color: white; font-weight: 600; color: black; background-repeat: none; }</string>
          </property>
          <property name="text">
           <string>4</string>
@@ -222,14 +187,7 @@ background: rgb(120, 120, 0);
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#ledThree{
-background-color: transparent;
-font-weight: 600;
-color: black;
-background-repeat: none;
-background: #2e7639;
-
-}</string>
+          <string notr="true">#ledThree { background-color: white; font-weight: 600; color: black; background-repeat: none; }</string>
          </property>
          <property name="text">
           <string>3</string>
@@ -249,14 +207,7 @@ background: #2e7639;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#ledTwo{
-background-color: transparent;
-font-weight: 600;
-color: black;
-background-repeat: none;
-background: #2e7639;
-
-}</string>
+          <string notr="true">#ledTwo { background-color: white; font-weight: 600; color: black; background-repeat: none; }</string>
          </property>
          <property name="text">
           <string>2</string>
@@ -276,14 +227,7 @@ background: #2e7639;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">#ledOne{
-background-color: transparent;
-font-weight: 600;
-color: black;
-background-repeat: none;
-background: #2e7639;
-
-}</string>
+          <string notr="true">#ledOne { background-color: white; font-weight: 600; color: black; background-repeat: none; }</string>
          </property>
          <property name="text">
           <string>1</string>
