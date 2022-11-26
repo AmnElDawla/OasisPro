@@ -230,8 +230,6 @@ void MainWindow::deviceOn() {
     ui->selectionBtn->setEnabled(true);
     ui->increaseIntensityBtn->setEnabled(true);
     ui->decreaseIntensityBtn->setEnabled(true);
-    ui->listDuration->setCurrentRow(newRowItemDuration);
-    ui->listSession->setCurrentRow(newRowItemSession);
 
 }
 
@@ -257,6 +255,9 @@ void MainWindow::iconsOn() {
         ui->listSession->item(i)->setIcon(QIcon(arrQListSessionOn[i]));
 
     }
+
+    ui->listDuration->setCurrentRow(newRowItemDuration);
+    ui->listSession->setCurrentRow(newRowItemSession);
 
 }
 
