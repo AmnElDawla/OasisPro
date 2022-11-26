@@ -68,6 +68,7 @@ private slots:
     void stopBatteryLevel();
     void on_increaseIntensityBtn_clicked();
     void on_decreaseIntensityBtn_clicked();
+    void turnOffNoSessionSelected();
 
 private:
     Ui::MainWindow *ui;
@@ -80,6 +81,7 @@ private:
     int selectedSession = 0;
     QTimer *batteryStartTimer;
     QTimer *batteryStopTimer;
+    bool selectedSessionOrNot = false;
     int batteryLevel = 12;
     bool ledOneStatus = false;
     bool ledTwoStatus = false;
@@ -89,6 +91,7 @@ private:
     bool ledSixStatus = false;
     bool ledSevenStatus = false;
     bool ledEightStatus = false;
+    QTimer *timer;
 
     /*
      * This array is special. Its indices all follow a standard that should

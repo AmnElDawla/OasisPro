@@ -269,6 +269,9 @@ void MainWindow::iconsOn() {
     ui->increaseIntensityBtn->setEnabled(true);
     ui->decreaseIntensityBtn->setEnabled(true);
 
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(turnOffNoSessionSelected()));
+    timer->start(120000);
 
 }
 
@@ -490,12 +493,26 @@ void MainWindow::on_selectionBtn_clicked()
     // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
     // BUTTON HAS BEEN PRESSED
 
+    timer->stop();
+    selectedSessionOrNot = true;
+
     selectedDuration = newRowItemDuration;
     selectedSession = newRowItemSession;
 
     sessionArray[0] = selectedDuration;
     sessionArray[1] = selectedSession;
     sessionArray[2] = 0;
+}
+
+void MainWindow::turnOffNoSessionSelected() {
+
+    timer->stop();
+    qDebug() << "Stop";
+    deviceOff();
+    iconsOff();
+    offConnect();
+    numberOfTimesPowerBtnClicked = 0;
+
 }
 
 void MainWindow::on_increaseIntensityBtn_clicked()
