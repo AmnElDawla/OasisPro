@@ -135,6 +135,14 @@ void MainWindow::on_powerBtn_clicked()
     // Clicked power button once...
     if(numberOfTimesPowerBtnClicked == 0) {
 
+        ui->powerBtn->setEnabled(false);
+        ui->selectionBtn->setEnabled(false);
+        ui->increaseIntensityBtn->setEnabled(false);
+        ui->decreaseIntensityBtn->setEnabled(false);
+        ui->sessionRight->setEnabled(false);
+        ui->sessionLeft->setEnabled(false);
+        ui->durationRight->setEnabled(false);
+        ui->durationLeft->setEnabled(false);
         deviceOn();
         batteryStartTimer->start(500);
         batteryStopTimer->start(3500);
@@ -457,6 +465,14 @@ void MainWindow::stopBatteryLevel() {
     ledThreeOn();
     ledTwoOn();
     ledOneOn();
+    ui->powerBtn->setEnabled(true);
+    ui->selectionBtn->setEnabled(true);
+    ui->increaseIntensityBtn->setEnabled(true);
+    ui->decreaseIntensityBtn->setEnabled(true);
+    ui->sessionRight->setEnabled(true);
+    ui->sessionLeft->setEnabled(true);
+    ui->durationRight->setEnabled(true);
+    ui->durationLeft->setEnabled(true);
 }
 
 void MainWindow::on_selectionBtn_clicked()
