@@ -80,7 +80,7 @@ private:
     int selectedSession = 0;
     QTimer *batteryStartTimer;
     QTimer *batteryStopTimer;
-    int batteryLevel = 53;
+    int batteryLevel = 12;
     bool ledOneStatus = false;
     bool ledTwoStatus = false;
     bool ledThreeStatus = false;
