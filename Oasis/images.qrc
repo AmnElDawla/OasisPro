@@ -32,5 +32,7 @@
         <file>icons/rightConnect.PNG</file>
         <file>icons/rightConnectOn.PNG</file>
         <file>icons/companyIcon.png</file>
+        <file>buttons/leftButtonDisabled.png</file>
+        <file>buttons/rightButtonDisabled.png</file>
     </qresource>
 </RCC>

@@ -220,6 +220,10 @@ void MainWindow::deviceOff() {
     ui->decreaseIntensityBtn->setEnabled(false);
     ui->listDuration->selectionModel()->clear();
     ui->listSession->selectionModel()->clear();
+    ui->sessionRight->setEnabled(false);
+    ui->sessionLeft->setEnabled(false);
+    ui->durationRight->setEnabled(false);
+    ui->durationLeft->setEnabled(false);
 
 }
 
@@ -227,13 +231,6 @@ void MainWindow::deviceOn() {
 
     ui->indicatorOffOrOn->setStyleSheet("#indicatorOffOrOn::chunk { background-color: #01fe00; }");
     resetButtons();
-    ui->selectionBtn->setEnabled(true);
-    ui->increaseIntensityBtn->setEnabled(true);
-    ui->decreaseIntensityBtn->setEnabled(true);
-    ui->listDuration->selectionModel()->clear();
-    ui->listSession->selectionModel()->clear();
-    ui->listDuration->setAttribute(Qt::WA_MacShowFocusRect, 0);
-    ui->listSession->setAttribute(Qt::WA_MacShowFocusRect, 0);
 
 }
 
@@ -264,6 +261,14 @@ void MainWindow::iconsOn() {
     ui->listSession->setCurrentRow(newRowItemSession);
     ui->listDuration->setStyleSheet("#listDuration::item:selected { background: transparent; border: 2px solid yellow; } #listDuration { background: black; } #listDuration::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
     ui->listSession->setStyleSheet("#listSession::item:selected { background: transparent; border: 2px solid yellow; } #listSession { background: black; } #listSession::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
+    ui->sessionRight->setEnabled(true);
+    ui->sessionLeft->setEnabled(true);
+    ui->durationRight->setEnabled(true);
+    ui->durationLeft->setEnabled(true);
+    ui->selectionBtn->setEnabled(true);
+    ui->increaseIntensityBtn->setEnabled(true);
+    ui->decreaseIntensityBtn->setEnabled(true);
+
 
 }
 
@@ -476,13 +481,7 @@ void MainWindow::stopBatteryLevel() {
     ledTwoOn();
     ledOneOn();
     ui->powerBtn->setEnabled(true);
-    ui->selectionBtn->setEnabled(true);
-    ui->increaseIntensityBtn->setEnabled(true);
-    ui->decreaseIntensityBtn->setEnabled(true);
-    ui->sessionRight->setEnabled(true);
-    ui->sessionLeft->setEnabled(true);
-    ui->durationRight->setEnabled(true);
-    ui->durationLeft->setEnabled(true);
+
 }
 
 void MainWindow::on_selectionBtn_clicked()
@@ -512,7 +511,7 @@ void MainWindow::on_increaseIntensityBtn_clicked()
 void MainWindow::on_decreaseIntensityBtn_clicked()
 {
     // Don't decrease intensity level beyond 0
-    if(sessionArray[2] > 0){
+    if(sessionArray[2] > 1){
         sessionArray[2]--;
     }
 

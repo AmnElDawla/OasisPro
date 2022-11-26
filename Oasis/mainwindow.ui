@@ -682,6 +682,10 @@ background-color: black;
 border-image: url(&quot;:/resources/buttons/leftButton.png&quot;);
 border-radius: 10px;
 }
+
+#sessionLeft:disabled {
+border-image: url(&quot;:/resources/buttons/leftButtonDisabled.png&quot;);
+}
 </string>
       </property>
       <property name="text">
@@ -723,6 +727,10 @@ background-color: black;
 border-image: url(&quot;:/resources/buttons/leftButton.png&quot;);
 border-radius: 10px;
 }
+
+#durationLeft:disabled {
+border-image: url(&quot;:/resources/buttons/leftButtonDisabled.png&quot;);
+}
 </string>
       </property>
       <property name="text">
@@ -763,6 +771,10 @@ background-color: black;
        <string notr="true">#sessionRight {
 border-image: url(&quot;:/resources/buttons/rightButton.png&quot;);
 border-radius: 10px;
+}
+
+#sessionRight:disabled {
+border-image: url(&quot;:/resources/buttons/rightButtonDisabled.png&quot;);
 }
 </string>
       </property>
@@ -806,6 +818,9 @@ border-image: url(&quot;:/resources/buttons/rightButton.png&quot;);
 border-radius: 10px;
 }
 
+#durationRight:disabled {
+border-image: url(&quot;:/resources/buttons/rightButtonDisabled.png&quot;);
+}
 </string>
       </property>
       <property name="text">
@@ -959,23 +974,13 @@ background-repeat: none;
      </item>
     </layout>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>1100</x>
-      <y>250</y>
-      <width>321</width>
-      <height>151</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
       <x>1100</x>
       <y>400</y>
       <width>321</width>
-      <height>61</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1007,6 +1012,79 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>250</y>
+      <width>321</width>
+      <height>151</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="treatmentUpBtn">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>410</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#increaseIntensityBtn{
+border-image: url(&quot;:/resources/buttons/yellowUp.png&quot;);
+border-radius: 10px;
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>Up</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="treatmentDownBtn">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>460</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#increaseIntensityBtn{
+border-image: url(&quot;:/resources/buttons/yellowUp.png&quot;);
+border-radius: 10px;
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>Down</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="treatmenSelectpBtn">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>430</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#increaseIntensityBtn{
+border-image: url(&quot;:/resources/buttons/yellowUp.png&quot;);
+border-radius: 10px;
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>Select</string>
     </property>
    </widget>
   </widget>
