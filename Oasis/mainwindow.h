@@ -56,6 +56,8 @@ public:
     void toggleLedSeven();
     void toggleLedEight();
     //LED controls end
+    void flashSelectedLevelAfterSelection();
+    void selectedIntensityAtStart();
 
 private slots:
     void on_powerBtn_clicked();
@@ -69,6 +71,7 @@ private slots:
     void on_increaseIntensityBtn_clicked();
     void on_decreaseIntensityBtn_clicked();
     void turnOffNoSessionSelected();
+    void flashTimer();
 
 private:
     Ui::MainWindow *ui;
@@ -91,7 +94,13 @@ private:
     bool ledSixStatus = false;
     bool ledSevenStatus = false;
     bool ledEightStatus = false;
+    int valueIntUntilEndOfFlash = 0;
+    bool ledFourFlash = false;
+    bool ledFiveFlash = false;
+    bool ledSixFlash = false;
+    bool ledSevenFlash = false;
     QTimer *timer;
+    QTimer *timerFlashes;
 
     /*
      * This array is special. Its indices all follow a standard that should
