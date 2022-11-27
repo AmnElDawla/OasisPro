@@ -539,7 +539,10 @@ void MainWindow::on_selectionBtn_clicked()
     // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
     // BUTTON HAS BEEN PRESSED
 
-    timer->stop();
+    if(timer->isActive()) {
+        timer->stop();
+        qDebug() << "Stopping timer...";
+    }
     valueIntUntilEndOfFlash = 0;
     selectedSessionOrNot = true;
 
@@ -606,7 +609,9 @@ void MainWindow::flashTimer() {
 
 void MainWindow::turnOffNoSessionSelected() {
 
-    timer->stop();
+    if(timer->isActive()) {
+        timer->stop();
+    }
     qDebug() << "Shut down OasisPro...";
     deviceOff();
     iconsOff();
