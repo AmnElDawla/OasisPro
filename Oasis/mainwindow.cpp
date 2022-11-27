@@ -273,6 +273,9 @@ void MainWindow::iconsOn() {
     connect(timer, SIGNAL(timeout()), this, SLOT(turnOffNoSessionSelected()));
     timer->start(120000);
 
+    resetButtons();
+    ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
+
 }
 
 void MainWindow::iconsOff() {
@@ -333,6 +336,7 @@ void MainWindow::initialiazeListOfIcons() {
 // Goes left from the first QlistDuration of icons.
 void MainWindow::on_durationLeft_clicked()
 {
+
     if(newRowItemDuration == 0) {
         newRowItemDuration = 2;
     }
@@ -343,29 +347,41 @@ void MainWindow::on_durationLeft_clicked()
         newRowItemDuration = 1;
     }
     ui->listDuration->setCurrentRow(newRowItemDuration);
+
 }
 
 // Goes left from the second QlistDuration of icons.
 void MainWindow::on_sessionLeft_clicked()
 {
+
     if(newRowItemSession == 0) {
         newRowItemSession = 3;
+        resetButtons();
+        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
     }
     else if(newRowItemSession == 1) {
         newRowItemSession = 0;
+        resetButtons();
+        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
     }
     else if(newRowItemSession == 2) {
         newRowItemSession = 1;
+        resetButtons();
+        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
     }
     else {
         newRowItemSession = 2;
+        resetButtons();
+        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
     }
     ui->listSession->setCurrentRow(newRowItemSession);
+
 }
 
 // Goes right from the first QlistDuration of icons.
 void MainWindow::on_durationRight_clicked()
 {
+
     if(newRowItemDuration == 0) {
         newRowItemDuration = 1;
     }
@@ -376,27 +392,39 @@ void MainWindow::on_durationRight_clicked()
         newRowItemDuration = 0;
     }
     ui->listDuration->setCurrentRow(newRowItemDuration);
+
 }
 
 // Goes right from the second QlistDuration of icons.
 void MainWindow::on_sessionRight_clicked()
 {
+
     if(newRowItemSession == 0) {
         newRowItemSession = 1;
+        resetButtons();
+        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
     }
     else if(newRowItemSession == 1) {
         newRowItemSession = 2;
+        resetButtons();
+        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
     }
     else if(newRowItemSession == 2) {
         newRowItemSession = 3;
+        resetButtons();
+        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
     }
     else {
         newRowItemSession = 0;
+        resetButtons();
+        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
     }
     ui->listSession->setCurrentRow(newRowItemSession);
+
 }
 
 void MainWindow::showBatteryLevel() {
+
     if(batteryLevel > 87){
         toggleLedEight();
         toggleLedSeven();
@@ -470,9 +498,11 @@ void MainWindow::showBatteryLevel() {
         ledTwoOff();
         toggleLedOne();
     }
+
 }
 
 void MainWindow::stopBatteryLevel() {
+
     // stop timer
     batteryStartTimer->stop();
     ledEightOn();
@@ -502,12 +532,13 @@ void MainWindow::on_selectionBtn_clicked()
     sessionArray[0] = selectedDuration;
     sessionArray[1] = selectedSession;
     sessionArray[2] = 0;
+
 }
 
 void MainWindow::turnOffNoSessionSelected() {
 
     timer->stop();
-    qDebug() << "Stop";
+    qDebug() << "Shut down OasisPro...";
     deviceOff();
     iconsOff();
     offConnect();
@@ -517,22 +548,26 @@ void MainWindow::turnOffNoSessionSelected() {
 
 void MainWindow::on_increaseIntensityBtn_clicked()
 {
+
     // Don't increase intensity level beyond 8
     if(sessionArray[2] < 8){
         sessionArray[2]++;
     }
 
     flashSelectedLevel();
+
 }
 
 void MainWindow::on_decreaseIntensityBtn_clicked()
 {
+
     // Don't decrease intensity level beyond 0
     if(sessionArray[2] > 1){
         sessionArray[2]--;
     }
 
     flashSelectedLevel();
+
 }
 
 //============================================================================//
@@ -540,23 +575,31 @@ void MainWindow::on_decreaseIntensityBtn_clicked()
 //============================================================================//
 
 void MainWindow::ledOneOff(){
+
     ui->ledOne->setStyleSheet("#ledOne { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledOneStatus = false;
+
 }
 
 void MainWindow::ledTwoOff(){
+
     ui->ledTwo->setStyleSheet("#ledTwo { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledTwoStatus = false;
+
 }
 
 void MainWindow::ledThreeOff(){
+
     ui->ledThree->setStyleSheet("#ledThree { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledThreeStatus = false;
+
 }
 
 void MainWindow::ledFourOff(){
+
     ui->ledFour->setStyleSheet("#ledFour { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledFourStatus = false;
+
 }
 
 void MainWindow::ledFiveOff(){
@@ -565,121 +608,159 @@ void MainWindow::ledFiveOff(){
 }
 
 void MainWindow::ledSixOff(){
+
     ui->ledSix->setStyleSheet("#ledSix { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledSixStatus = false;
+
 }
 
 void MainWindow::ledSevenOff(){
+
     ui->ledSeven->setStyleSheet("#ledSeven { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledSevenStatus = false;
+
 }
 
 void MainWindow::ledEightOff(){
+
     ui->ledEight->setStyleSheet("#ledEight { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledEightStatus = false;
+
 }
 
 void MainWindow::ledOneOn(){
+
     ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ledOneStatus = true;
+
 }
 
 void MainWindow::ledTwoOn(){
+
     ui->ledTwo->setStyleSheet("#ledTwo { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ledTwoStatus = true;
+
 }
 
 void MainWindow::ledThreeOn(){
+
     ui->ledThree->setStyleSheet("#ledThree { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ledThreeStatus = true;
+
 }
 
 void MainWindow::ledFourOn(){
+
     ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
     ledFourStatus = true;
+
 }
 
 void MainWindow::ledFiveOn(){
+
     ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
     ledFiveStatus = true;
+
 }
 
 void MainWindow::ledSixOn(){
+
     ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
     ledSixStatus = true;
+
 }
 
 void MainWindow::ledSevenOn(){
+
     ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
     ledSevenStatus = true;
+
 }
 
 void MainWindow::ledEightOn(){
+
     ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
     ledEightStatus = true;
+
 }
 
 void MainWindow::toggleLedOne(){
+
     if(ledOneStatus == false){
         ledOneOn();
     } else if(ledOneStatus == true){
         ledOneOff();
     }
+
 }
 
 void MainWindow::toggleLedTwo(){
+
     if(ledTwoStatus == false){
         ledTwoOn();
     } else if(ledTwoStatus == true){
         ledTwoOff();
     }
+
 }
 
 
 void MainWindow::toggleLedThree(){
+
     if(ledThreeStatus == false){
         ledThreeOn();
     } else if(ledThreeStatus == true){
         ledThreeOff();
     }
+
 }
 
 void MainWindow::toggleLedFour(){
+
     if(ledFourStatus == false){
         ledFourOn();
     } else if(ledFourStatus == true){
         ledFourOff();
     }
+
 }
 
 void MainWindow::toggleLedFive(){
+
     if(ledFiveStatus == false){
         ledFiveOn();
     } else if(ledFiveStatus == true){
         ledFiveOff();
     }
+
 }
 
 void MainWindow::toggleLedSix(){
+
     if(ledSixStatus == false){
         ledSixOn();
     } else if(ledSixStatus == true){
         ledSixOff();
     }
+
 }
 
 void MainWindow::toggleLedSeven(){
+
     if(ledSevenStatus == false){
         ledSevenOn();
     } else if(ledSevenStatus == true){
         ledSevenOff();
     }
+
 }
 
 void MainWindow::toggleLedEight(){
+
     if(ledEightStatus == false){
         ledEightOn();
     } else if(ledEightStatus == true){
         ledEightOff();
     }
+
 }
