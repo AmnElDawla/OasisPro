@@ -58,6 +58,7 @@ public:
     void toggleLedSix();
     void toggleLedSeven();
     void toggleLedEight();
+<<<<<<< HEAD
     // LED controls end
 
     // Connection test:
@@ -76,6 +77,11 @@ public:
     void displayConnection(int signal);
     void playScollAnimation();
     int connectionTestMain(); // connection test main control
+=======
+    //LED controls end
+    void flashSelectedLevelAfterSelection();
+    void selectedIntensityAtStart();
+>>>>>>> 96e04640a7fc298f883604dac228d1d08e9a6248
 
 private slots:
     void on_powerBtn_clicked();
@@ -89,6 +95,7 @@ private slots:
     void on_increaseIntensityBtn_clicked();
     void on_decreaseIntensityBtn_clicked();
     void turnOffNoSessionSelected();
+    void flashTimer();
 
 private:
     Ui::MainWindow *ui;
@@ -111,10 +118,19 @@ private:
     bool ledSixStatus = false;
     bool ledSevenStatus = false;
     bool ledEightStatus = false;
+    int valueIntUntilEndOfFlash = 0;
+    bool ledFourFlash = false;
+    bool ledFiveFlash = false;
+    bool ledSixFlash = false;
+    bool ledSevenFlash = false;
     QTimer *timer;
+<<<<<<< HEAD
     // Connection test:
     bool graphSessionStatus = false;
     bool connectivity = false;
+=======
+    QTimer *timerFlashes;
+>>>>>>> 96e04640a7fc298f883604dac228d1d08e9a6248
 
     /*
      * This array is special. Its indices all follow a standard that should
