@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by QtCreator 4.11.0, 2022-11-29T17:21:55. -->
+||||||| 9839701
+=======
+<!-- Written by QtCreator 4.11.0, 2022-11-26T19:56:57. -->
+>>>>>>> e820de7c17f87956db0733f0fdfc3313bd7c486f
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -54,7 +59,10 @@
  </data>
  <data>
   <variable>ProjectExplorer.Project.PluginSettings</variable>
-  <valuemap type="QVariantMap"/>
+  <valuemap type="QVariantMap">
+   <valuelist type="QVariantList" key="ClangCodeModel.CustomCommandLineKey"/>
+   <value type="bool" key="ClangCodeModel.UseGlobalConfig">true</value>
+  </valuemap>
  </data>
  <data>
   <variable>ProjectExplorer.Project.Target.0</variable>

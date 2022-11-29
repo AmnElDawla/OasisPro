@@ -11,7 +11,10 @@
 #include "Database.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui
+{
+    class MainWindow;
+}
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -30,7 +33,7 @@ public:
     void initialiazeListOfIcons();
     void resetButtons();
     void flashSelectedLevel();
-    //LED controls
+    // LED controls
     void ledOneOff();
     void ledTwoOff();
     void ledThreeOff();
@@ -55,9 +58,30 @@ public:
     void toggleLedSix();
     void toggleLedSeven();
     void toggleLedEight();
+<<<<<<< HEAD
+    // LED controls end
+
+    // Connection test:
+    /* CES Mode light control */
+    QTimer *connectionTestStartTimer;
+    QTimer *connectionTestStopTimer;
+    void graphSessionOn();
+    void graphSessionOff();
+    void flashCesModeLight();
+    bool getConnectivity();
+    void onConnectivity();
+    void offConnectivity();
+    void offLeds();
+    void onLeds();
+    void toggleCesModeLight();
+    void displayConnection(int signal);
+    void playScollAnimation();
+    int connectionTestMain(); // connection test main control
+=======
     //LED controls end
     void flashSelectedLevelAfterSelection();
     void selectedIntensityAtStart();
+>>>>>>> 96e04640a7fc298f883604dac228d1d08e9a6248
 
 private slots:
     void on_powerBtn_clicked();
@@ -65,7 +89,7 @@ private slots:
     void on_sessionLeft_clicked();
     void on_durationRight_clicked();
     void on_sessionRight_clicked();
-    void on_selectionBtn_clicked();    
+    void on_selectionBtn_clicked();
     void showBatteryLevel();
     void stopBatteryLevel();
     void on_increaseIntensityBtn_clicked();
@@ -75,7 +99,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Database* newDatabase = new Database();
+    Database *newDatabase = new Database();
     QVector<int> levels;
     int numberOfTimesPowerBtnClicked = 0;
     int newRowItemDuration = 0;
@@ -100,7 +124,13 @@ private:
     bool ledSixFlash = false;
     bool ledSevenFlash = false;
     QTimer *timer;
+<<<<<<< HEAD
+    // Connection test:
+    bool graphSessionStatus = false;
+    bool connectivity = false;
+=======
     QTimer *timerFlashes;
+>>>>>>> 96e04640a7fc298f883604dac228d1d08e9a6248
 
     /*
      * This array is special. Its indices all follow a standard that should

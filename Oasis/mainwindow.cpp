@@ -58,6 +58,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(batteryStartTimer, SIGNAL(timeout()), this, SLOT(showBatteryLevel()));
     connect(batteryStopTimer, SIGNAL(timeout()), this, SLOT(stopBatteryLevel()));
     batteryStopTimer->setSingleShot(true);
+
+    // When connection test passed:
+    connectionTestStartTimer = new QTimer(this);
+    connectionTestStopTimer = new QTimer(this);
+    connect(batteryStartTimer, SIGNAL(timeout()), this, SLOT(showBatteryLevel()));
+    connect(batteryStopTimer, SIGNAL(timeout()), this, SLOT(stopBatteryLevel()));
+    connectionTestStopTimer->setSingleShot(true);
+
 }
 
 MainWindow::~MainWindow()
@@ -122,8 +130,6 @@ void MainWindow::flashSelectedLevel(){
 
 }
 
-
-
 //============================================================================//
 //                             Button Functionality                           //
 //============================================================================//
@@ -156,6 +162,8 @@ void MainWindow::on_powerBtn_clicked()
 
         onConnect();
         iconsOn();
+        connectionTestStartTimer->start(500);
+        connectionTestStopTimer->start(3500);
         numberOfTimesPowerBtnClicked = 2;
 
     }
@@ -838,3 +846,252 @@ void MainWindow::toggleLedEight(){
     }
 
 }
+
+
+
+//============================================================================//
+//                          Connection Test Functions                         //
+//============================================================================//
+
+/* UI control of CES mode light */
+void MainWindow::graphSessionOn()
+{
+    ui->graphSession->setStyleSheet("#graphSession { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
+    graphSessionStatus = true;
+};
+
+void MainWindow::graphSessionOff()
+{
+    ui->graphSession->setStyleSheet("#graphSession { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
+    graphSessionStatus = false;
+};
+
+void MainWindow::toggleCesModeLight()
+{
+    if (graphSessionStatus == false)
+    {
+        graphSessionOn();
+    }
+    else if (graphSessionStatus == true)
+    {
+        graphSessionOff();
+    }
+};
+
+/* Flash the CES Mode light for 3 seconds */
+void MainWindow::flashCesModeLight()
+{
+    ui->graphSession->setStyleSheet("#graphSession { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
+};
+
+/* Retrieve and set connection status of ear clips */
+bool MainWindow::getConnectivity()
+{
+    return this->connectivity;
+};
+
+void MainWindow::onConnectivity()
+{
+    this->connectivity = true;
+};
+
+void MainWindow::offConnectivity()
+{
+    this->connectivity = false;
+};
+
+/* Set elements in graph to blanked status*/
+void MainWindow::offLeds()
+{
+    ledEightOff();
+    ledSevenOff();
+    ledSixOff();
+    ledFiveOff();
+    ledFourOff();
+    ledThreeOff();
+    ledTwoOff();
+    ledOneOff();
+};
+
+/* Resume graph display */
+void MainWindow::onLeds()
+{
+    ledEightOn();
+    ledSevenOn();
+    ledSixOn();
+    ledFiveOn();
+    ledFourOn();
+    ledThreeOn();
+    ledTwoOn();
+    ledOneOn();
+};
+
+// Updating connection status on GUI:
+void MainWindow::displayConnection(int signal)
+{
+    switch (signal)
+    {
+    case 0:
+        // No connection: blink Led Group (7 and 8):
+        /* [...] */
+    case 1:
+        // tigger by: dry tesing mode
+        // OK connection: blink Led Group (6, 5 and 4):
+        /* [...] */
+    case 2:
+        // triggered by: wet testing mode
+        // Excellent connection: blink Led Group (3, 2 and 1):
+        /* [...] */
+    }
+};
+
+// Play scroll animation on GUI:
+void MainWindow::playScollAnimation()
+{
+    // update Qtimer
+    /* [...] */
+    int timeout = 5; // <- subject to change based on Qtimer
+    int ledIndex = 0;
+    for (int i = 0; i < timeout; i++)
+    {
+        // Initialize graphics:
+        offLeds();
+        ledOneOn();
+
+        // Render graphics:
+        for (int j = 0; j < 8; j++)
+        {
+            offLeds();
+            ledIndex = j + 1;
+            switch (ledIndex)
+            {
+            case 1:
+                ledTwoOn();
+            case 2:
+                ledThreeOn();
+            case 3:
+                ledFourOn();
+            case 4:
+                ledFiveOn();
+            case 5:
+                ledSixOn();
+            case 6:
+                ledSevenOn();
+            case 7:
+                ledEightOn();
+            case 8:
+                ledOneOn();
+            }
+        }
+    }
+};
+
+/* Main control of connection test
+ *** Note: check power level before calling this function ***
+ */
+int MainWindow::connectionTestMain()
+{
+    qDebug() << "Connection test started...";
+
+    // Define maximum value for safe voltage level:
+    int defaultSafeLevel = 4;
+
+    // Disable intensity buttons:
+    ui->increaseIntensityBtn->setEnabled(false);
+    ui->decreaseIntensityBtn->setEnabled(false);
+
+    // Blink CES mode light
+    /* set & stop timer:
+        [...]
+    */
+    flashCesModeLight();
+
+    // Check if intensity level of the selected session is safe:
+    if (sessionArray[2] > defaultSafeLevel)
+    {
+        sessionArray[2] = defaultSafeLevel;
+    }
+
+    int signal = 0;
+    int timeNow = 0; // a counter to keep track of the waiting process
+    int timeout = 20;
+
+    // Check connection:
+    if (!getConnectivity()){
+        qDebug() << "Device is disconnected...";
+
+        // Update connection status:
+        offConnectivity();
+        signal = 0;
+
+        // Update GUI elements:
+        graphSessionOff();
+        displayConnection(signal);
+
+        // Pause for 3 secs:
+        /* [... default timer/Qtimer? ] */
+
+        playScollAnimation();
+
+        // Pause selected session by stopping timer:
+        /* [...] */
+
+        // Pause for 5 secs:
+        /* [... default timer/Qtimer? ] */
+
+        // Clear graph:
+        offLeds();
+    };
+
+    // Wait for connection:
+    while  (!getConnectivity()) {
+        if (getConnectivity()){
+            qDebug() << "Device is successfully connected...";
+
+            // Update connection status:
+            onConnectivity(); // Called by dropdown menu
+
+            bool OptionDry = false; // <- Determined by selected value of dropdown menu
+            bool OptionWet = false;
+
+            if (OptionDry)
+            {
+                signal = 1; // Ok connection
+            }
+            else if (OptionWet)
+            {
+                signal = 2; // Excellent connection
+            }
+
+            // Update GUI elements:
+            graphSessionOn();
+            displayConnection(signal);
+
+            // Enable intensity buttons:
+            ui->increaseIntensityBtn->setEnabled(true);
+            ui->decreaseIntensityBtn->setEnabled(true);
+
+            // Display current intensity level:
+            /* [...] */
+
+            // Exit with connection:
+            qDebug() << "Connection test ended...";
+
+            return 0;
+        }
+        // Exceptions that will terminate the while loop:
+        // 1. low battery level
+
+        // 2. press powerbutton:
+
+        // 3. time is out (> 20 secs)
+        if (timeNow > timeOut){
+            break;
+        }
+
+    }
+
+    // Exit without connection:
+    qDebug() << "Connection test has been terminated ...";
+    return -1;
+};
