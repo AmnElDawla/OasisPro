@@ -21,6 +21,8 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+    Database objData;
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -58,13 +60,8 @@ public:
     void toggleLedSix();
     void toggleLedSeven();
     void toggleLedEight();
-<<<<<<< HEAD
     // LED controls end
 
-    // Connection test:
-    /* CES Mode light control */
-    QTimer *connectionTestStartTimer;
-    QTimer *connectionTestStopTimer;
     void graphSessionOn();
     void graphSessionOff();
     void flashCesModeLight();
@@ -75,13 +72,14 @@ public:
     void onLeds();
     void toggleCesModeLight();
     void displayConnection(int signal);
-    void playScollAnimation();
-    int connectionTestMain(); // connection test main control
-=======
+    void playScrollAnimation();
+    // connection test main control
+    int connectionTestMain();
     //LED controls end
     void flashSelectedLevelAfterSelection();
     void selectedIntensityAtStart();
->>>>>>> 96e04640a7fc298f883604dac228d1d08e9a6248
+    void pauseTimer(int);
+    void ledBlinkTimer();
 
 private slots:
     void on_powerBtn_clicked();
@@ -96,6 +94,9 @@ private slots:
     void on_decreaseIntensityBtn_clicked();
     void turnOffNoSessionSelected();
     void flashTimer();
+    void flashGraphCounter();
+    void pauseCounter();
+    void blinkCounter();
 
 private:
     Ui::MainWindow *ui;
@@ -124,21 +125,31 @@ private:
     bool ledSixFlash = false;
     bool ledSevenFlash = false;
     QTimer *timer;
-<<<<<<< HEAD
     // Connection test:
     bool graphSessionStatus = false;
-    bool connectivity = false;
-=======
+    bool connectivity = true;
     QTimer *timerFlashes;
->>>>>>> 96e04640a7fc298f883604dac228d1d08e9a6248
-
+    QTimer *timerCES;
+    // Connection test:
+    /* CES Mode light control */
+    QTimer *connectionTestStartTimer;
+    QTimer *connectionTestStopTimer;
+    int counterFlashGraph = 0;
+    bool OptionDry = false;
+    bool OptionWet = false;
+    QTimer *pauseTimerDefault;
+    int valuePause = 0;
+    int countForPauseEnd = 0;
+    QTimer *timerBlinkLed;
     /*
-     * This array is special. Its indices all follow a standard that should
-     * be used everywhere in the project. The standard is as follows:
-     *      sessionArray[0]: Stores duration of the session
-     *      sessionArray[1]: Stores session type
-     *      sessionArray[2]: Stores intensity level of the session at the time of completion
+     * Grp 0 ====> blinking LED 7 and 8
+     * Grp 1 ====> blinking LED 4, 5, and 6
+     * Grp 2 ====> blinking LED 1, 2, and 3
      */
-    int sessionArray[3];
+    int groupToBlink = 0;
+    int counterBlinkingLed = 0;
+    bool blinkTrueOrFalse = true;
+    int signal = 0;
+
 };
 #endif // MAINWINDOW_H

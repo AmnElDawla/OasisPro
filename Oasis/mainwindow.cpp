@@ -66,6 +66,18 @@ MainWindow::MainWindow(QWidget *parent)
     connect(batteryStopTimer, SIGNAL(timeout()), this, SLOT(stopBatteryLevel()));
     connectionTestStopTimer->setSingleShot(true);
 
+    //Add items to the comboboxes.
+    ui->listWetOrDry->addItem(tr("Wet"));
+    ui->listWetOrDry->addItem(tr("Dry"));
+
+    ui->listOfSkins->addItem(tr("Connect"));
+    ui->listOfSkins->addItem((tr("Disconnect")));
+
+    ui->listOfUsers->addItem(tr("User 1"));
+    ui->listOfUsers->addItem(tr("User 2"));
+    ui->listOfUsers->addItem(tr("User 3"));
+    ui->listOfUsers->addItem(tr("User 4"));
+
 }
 
 MainWindow::~MainWindow()
@@ -103,29 +115,29 @@ void MainWindow::resetButtons() {
 void MainWindow::flashSelectedLevel(){
     resetButtons();
 
-    if(sessionArray[2] == 1){
-        ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
+    if(objData.sessionArray[2] == 1){
+        ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; border: 3px solid cyan; }");
     }
-    else if(sessionArray[2] == 2){
-        ui->ledTwo->setStyleSheet("#ledTwo { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
+    else if(objData.sessionArray[2] == 2){
+        ui->ledTwo->setStyleSheet("#ledTwo { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; border: 3px solid cyan; }");
     }
-    else if(sessionArray[2] == 3){
-        ui->ledThree->setStyleSheet("#ledThree { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #5ced73; border:2px solid rgb(255, 255, 255); }");
+    else if(objData.sessionArray[2] == 3){
+        ui->ledThree->setStyleSheet("#ledThree { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; border: 3px solid cyan; }");
     }
-    else if(sessionArray[2] == 4){
-        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: rgb(255, 255, 0); border:2px solid rgb(255, 255, 255); }");
+    else if(objData.sessionArray[2] == 4){
+        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid cyan; }");
     }
-    else if(sessionArray[2] == 5){
-        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: rgb(255, 255, 0); border:2px solid rgb(255, 255, 255); }");
+    else if(objData.sessionArray[2] == 5){
+        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid cyan; }");
     }
-    else if(sessionArray[2] == 6){
-        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: rgb(255, 255, 0); border:2px solid rgb(255, 255, 255); }");
+    else if(objData.sessionArray[2] == 6){
+        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid cyan; }");
     }
-    else if(sessionArray[2] == 7){
-        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #FF7e82; border:2px solid rgb(255, 255, 255); }");
+    else if(objData.sessionArray[2] == 7){
+        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
     }
-    else if(sessionArray[2] == 8){
-        ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #FF7e82; border:2px solid rgb(255, 255, 255); }");
+    else if(objData.sessionArray[2] == 8){
+        ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
     }
 
 }
@@ -288,16 +300,16 @@ void MainWindow::iconsOn() {
 void MainWindow::selectedIntensityAtStart() {
 
     if(newRowItemSession == 0) {
-        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: yellow; border:2px solid rgb(255, 255, 255); }");
+        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
     }
     else if(newRowItemSession == 1) {
-        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: yellow; border:2px solid rgb(255, 255, 255); }");
+        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
     }
     else if(newRowItemSession == 2) {
-        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #FF7e82; border:2px solid rgb(255, 255, 255); }");
+        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
     }
     else {
-        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: yellow; border:2px solid rgb(255, 255, 255); }");
+        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
     }
 
 }
@@ -381,22 +393,22 @@ void MainWindow::on_sessionLeft_clicked()
     if(newRowItemSession == 0) {
         newRowItemSession = 3;
         resetButtons();
-        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: yellow; border:2px solid rgb(255, 255, 255); }");
+        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
     }
     else if(newRowItemSession == 1) {
         newRowItemSession = 0;
         resetButtons();
-        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: yellow; border:2px solid rgb(255, 255, 255); }");
+        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
     }
     else if(newRowItemSession == 2) {
         newRowItemSession = 1;
         resetButtons();
-        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: yellow; border:2px solid rgb(255, 255, 255); }");
+        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
     }
     else {
         newRowItemSession = 2;
         resetButtons();
-        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #FF7e82; border:2px solid rgb(255, 255, 255); }");
+        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
     }
     ui->listSession->setCurrentRow(newRowItemSession);
 
@@ -426,22 +438,22 @@ void MainWindow::on_sessionRight_clicked()
     if(newRowItemSession == 0) {
         newRowItemSession = 1;
         resetButtons();
-        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: yellow; border:2px solid rgb(255, 255, 255); }");
+        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
     }
     else if(newRowItemSession == 1) {
         newRowItemSession = 2;
         resetButtons();
-        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #FF7e82; border:2px solid rgb(255, 255, 255); }");
+        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
     }
     else if(newRowItemSession == 2) {
         newRowItemSession = 3;
         resetButtons();
-        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: yellow; border:2px solid rgb(255, 255, 255); }");
+        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
     }
     else {
         newRowItemSession = 0;
         resetButtons();
-        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: yellow; border:2px solid rgb(255, 255, 255); }");
+        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
     }
     ui->listSession->setCurrentRow(newRowItemSession);
 
@@ -557,9 +569,9 @@ void MainWindow::on_selectionBtn_clicked()
     selectedDuration = newRowItemDuration;
     selectedSession = newRowItemSession;
 
-    sessionArray[0] = selectedDuration;
-    sessionArray[1] = selectedSession;
-    sessionArray[2] = 0;
+    objData.sessionArray[0] = selectedDuration;
+    objData.sessionArray[1] = selectedSession;
+    objData.sessionArray[2] = 0;
 
     flashSelectedLevelAfterSelection();
 
@@ -576,41 +588,45 @@ void MainWindow::flashSelectedLevelAfterSelection() {
 
 void MainWindow::flashTimer() {
 
-    if(sessionArray[1] == 0 && ledFiveFlash == true){
-        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border:2px solid red; }");
+    if(objData.sessionArray[1] == 0 && ledFiveFlash == true){
+        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border: 3px solid red; }");
         ledFiveFlash = false;
     }
-    else if(sessionArray[1] == 0 && ledFiveFlash == false){
-        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: yellow; border:2px solid white; }");
+    else if(objData.sessionArray[1] == 0 && ledFiveFlash == false){
+        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ledFiveFlash = true;
     }
-    else if(sessionArray[1] == 1 && ledSixFlash == true){
-        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border:2px solid red; }");
+    else if(objData.sessionArray[1] == 1 && ledSixFlash == true){
+        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border: 3px solid red; }");
         ledSixFlash = false;
     }
-    else if(sessionArray[1] == 1 && ledSixFlash == false){
-        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: yellow; border:2px solid white; }");
+    else if(objData.sessionArray[1] == 1 && ledSixFlash == false){
+        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ledSixFlash = true;
     }
-    else if(sessionArray[1] == 2 && ledSevenFlash == true){
-        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: #FF7e82; border:2px solid red; }");
+    else if(objData.sessionArray[1] == 2 && ledSevenFlash == true){
+        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: #FF7e82; border: 3px solid red; }");
         ledSevenFlash = false;
     }
-    else if(sessionArray[1] == 2 && ledSevenFlash == false){
-        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: #FF7e82; border:2px solid white; }");
+    else if(objData.sessionArray[1] == 2 && ledSevenFlash == false){
+        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
         ledSevenFlash = true;
     }
-    else if(sessionArray[1] == 3 && ledFourFlash == true){
-        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: rgb(255, 255, 0); border:2px solid red; }");
+    else if(objData.sessionArray[1] == 3 && ledFourFlash == true){
+        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid red; }");
         ledFourFlash = false;
     }
-    else if(sessionArray[1] == 3 && ledFourFlash == false){
-        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: white; background-repeat: none; background: rgb(255, 255, 0); ; border:2px solid white; }");
+    else if(objData.sessionArray[1] == 3 && ledFourFlash == false){
+        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); ; border: 3px solid cyan; }");
         ledFourFlash = true;
     }
     valueIntUntilEndOfFlash++;
-    if(valueIntUntilEndOfFlash == 6) {
+    if(valueIntUntilEndOfFlash == 10) {
         timerFlashes->stop();
+        valueIntUntilEndOfFlash = 0;
+        if(connectionTestMain() != -1) {
+            qDebug() << "Start of the connection test...";
+        }
     }
 
 }
@@ -632,8 +648,8 @@ void MainWindow::on_increaseIntensityBtn_clicked()
 {
 
     // Don't increase intensity level beyond 8
-    if(sessionArray[2] < 8){
-        sessionArray[2]++;
+    if(objData.sessionArray[2] < 8){
+        objData.sessionArray[2]++;
     }
 
     flashSelectedLevel();
@@ -644,8 +660,8 @@ void MainWindow::on_decreaseIntensityBtn_clicked()
 {
 
     // Don't decrease intensity level beyond 0
-    if(sessionArray[2] > 1){
-        sessionArray[2]--;
+    if(objData.sessionArray[2] > 1){
+        objData.sessionArray[2]--;
     }
 
     flashSelectedLevel();
@@ -856,18 +872,23 @@ void MainWindow::toggleLedEight(){
 /* UI control of CES mode light */
 void MainWindow::graphSessionOn()
 {
-    ui->graphSession->setStyleSheet("#graphSession { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
+
+    ui->graphSession->setStyleSheet("#graphSession { border-image: url(:/resources/icons/connect.PNG); border: 2px solid red; border-radius: 20px; }");
     graphSessionStatus = true;
-};
+
+}
 
 void MainWindow::graphSessionOff()
 {
-    ui->graphSession->setStyleSheet("#graphSession { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
+
+    ui->graphSession->setStyleSheet("#graphSession { border-image: url(:/resources/icons/connectOff.png); border: 2px solid red; border-radius: 20px; }");
     graphSessionStatus = false;
-};
+
+}
 
 void MainWindow::toggleCesModeLight()
 {
+
     if (graphSessionStatus == false)
     {
         graphSessionOn();
@@ -876,33 +897,56 @@ void MainWindow::toggleCesModeLight()
     {
         graphSessionOff();
     }
-};
+
+}
 
 /* Flash the CES Mode light for 3 seconds */
 void MainWindow::flashCesModeLight()
 {
-    ui->graphSession->setStyleSheet("#graphSession { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
-};
 
-/* Retrieve and set connection status of ear clips */
-bool MainWindow::getConnectivity()
-{
-    return this->connectivity;
-};
+    timerCES = new QTimer(this);
+    timerCES->setInterval(500);
+    connect(timerCES, SIGNAL(timeout()), this, SLOT(flashGraphCounter()));
+    timerCES->start();
+
+}
+
+void MainWindow::flashGraphCounter() {
+
+    toggleCesModeLight();
+    counterFlashGraph++;
+    if(counterFlashGraph == 6) {
+        timerCES->stop();
+        counterFlashGraph = 0;
+        if(connectivity == false) {
+            graphSessionOff();
+        }
+        else {
+            graphSessionOn();
+        }
+        displayConnection(signal);
+    }
+
+}
 
 void MainWindow::onConnectivity()
 {
-    this->connectivity = true;
-};
+
+    connectivity = true;
+
+}
 
 void MainWindow::offConnectivity()
 {
-    this->connectivity = false;
-};
+
+    connectivity = false;
+
+}
 
 /* Set elements in graph to blanked status*/
 void MainWindow::offLeds()
 {
+
     ledEightOff();
     ledSevenOff();
     ledSixOff();
@@ -911,11 +955,13 @@ void MainWindow::offLeds()
     ledThreeOff();
     ledTwoOff();
     ledOneOff();
-};
+
+}
 
 /* Resume graph display */
 void MainWindow::onLeds()
 {
+
     ledEightOn();
     ledSevenOn();
     ledSixOn();
@@ -924,30 +970,145 @@ void MainWindow::onLeds()
     ledThreeOn();
     ledTwoOn();
     ledOneOn();
-};
+
+}
+
+void MainWindow::ledBlinkTimer() {
+
+    timerBlinkLed = new QTimer(this);
+    timerBlinkLed->setInterval(500);
+    connect(timerBlinkLed, SIGNAL(timeout()), this, SLOT(blinkCounter()));
+    timerBlinkLed->start();
+
+}
+
+void MainWindow::blinkCounter() {
+
+    counterBlinkingLed++;
+    if(groupToBlink == 0) {
+
+        if(blinkTrueOrFalse == true) {
+            ledEightOn();
+            ledSevenOn();
+            blinkTrueOrFalse = false;
+        }
+        else {
+            ledEightOff();
+            ledSevenOff();
+            blinkTrueOrFalse = true;
+        }
+
+    }
+    else if(groupToBlink == 0) {
+
+        if(blinkTrueOrFalse == true) {
+            ledSixOn();
+            ledFiveOn();
+            ledFourOn();
+            blinkTrueOrFalse = false;
+        }
+        else {
+            ledSixOff();
+            ledFiveOff();
+            ledFourOff();
+            blinkTrueOrFalse = true;
+        }
+    }
+    else {
+
+        if(blinkTrueOrFalse == true) {
+            ledOneOn();
+            ledTwoOn();
+            ledThreeOn();
+            blinkTrueOrFalse = false;
+        }
+        else {
+            ledOneOff();
+            ledTwoOff();
+            ledThreeOff();
+            blinkTrueOrFalse = true;
+        }
+
+    }
+
+    if(counterBlinkingLed == 6) {
+        timerBlinkLed->stop();
+        counterBlinkingLed = 0;
+
+        // Turn on all leds
+        onLeds();
+
+        // Finding correct intensity level
+
+        qDebug() << "Session is "+QString::number(newRowItemSession);
+
+        int realValueRow = 0;
+        if(newRowItemSession == 0) {
+            realValueRow = 3;
+        }
+        else if(newRowItemSession == 1) {
+            realValueRow = 0;
+        }
+        else if(newRowItemSession == 2) {
+            realValueRow = 1;
+        }
+        else {
+            realValueRow = 2;
+        }
+
+        // Displaying correct intensity level
+        if(realValueRow == 0) {
+            ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        }
+        else if(realValueRow == 1) {
+            ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
+        }
+        else if(realValueRow == 2) {
+            ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        }
+        else {
+            ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        }
+
+        // Enable intensity buttons:
+        ui->increaseIntensityBtn->setEnabled(true);
+        ui->decreaseIntensityBtn->setEnabled(true);
+    }
+
+}
 
 // Updating connection status on GUI:
 void MainWindow::displayConnection(int signal)
 {
+
+    offLeds();
     switch (signal)
     {
-    case 0:
-        // No connection: blink Led Group (7 and 8):
-        /* [...] */
-    case 1:
-        // tigger by: dry tesing mode
-        // OK connection: blink Led Group (6, 5 and 4):
-        /* [...] */
-    case 2:
-        // triggered by: wet testing mode
-        // Excellent connection: blink Led Group (3, 2 and 1):
-        /* [...] */
+        case 0:
+            // No connection: blink Led Group (7 and 8):
+            groupToBlink = 0;
+            ledBlinkTimer();
+            break;
+        case 1:
+            // tigger by: dry tesing mode
+            // OK connection: blink Led Group (6, 5 and 4):
+            groupToBlink = 1;
+            ledBlinkTimer();
+            break;
+        default:
+            // triggered by: wet testing mode
+            // Excellent connection: blink Led Group (3, 2 and 1):
+            groupToBlink = 2;
+            ledBlinkTimer();
+            break;
     }
-};
+
+}
 
 // Play scroll animation on GUI:
-void MainWindow::playScollAnimation()
+void MainWindow::playScrollAnimation()
 {
+
     // update Qtimer
     /* [...] */
     int timeout = 5; // <- subject to change based on Qtimer
@@ -965,32 +1126,63 @@ void MainWindow::playScollAnimation()
             ledIndex = j + 1;
             switch (ledIndex)
             {
-            case 1:
-                ledTwoOn();
-            case 2:
-                ledThreeOn();
-            case 3:
-                ledFourOn();
-            case 4:
-                ledFiveOn();
-            case 5:
-                ledSixOn();
-            case 6:
-                ledSevenOn();
-            case 7:
-                ledEightOn();
-            case 8:
-                ledOneOn();
+                case 1:
+                    ledTwoOn();
+                    break;
+                case 2:
+                    ledThreeOn();
+                    break;
+                case 3:
+                    ledFourOn();
+                    break;
+                case 4:
+                    ledFiveOn();
+                    break;
+                case 5:
+                    ledSixOn();
+                    break;
+                case 6:
+                    ledSevenOn();
+                    break;
+                case 7:
+                    ledEightOn();
+                    break;
+                default:
+                    ledOneOn();
+                    break;
             }
         }
     }
-};
+
+}
+
+void MainWindow::pauseTimer(int value) {
+
+    valuePause = value / 500;
+    pauseTimerDefault = new QTimer(this);
+    pauseTimerDefault->setInterval(500);
+    connect(pauseTimerDefault, SIGNAL(timeout()), this, SLOT(pauseCounter()));
+    pauseTimerDefault->start();
+
+}
+
+void MainWindow::pauseCounter() {
+
+    countForPauseEnd++;
+    if(countForPauseEnd == valuePause) {
+        pauseTimerDefault->stop();
+        countForPauseEnd = 0;
+    }
+
+}
+
 
 /* Main control of connection test
  *** Note: check power level before calling this function ***
  */
 int MainWindow::connectionTestMain()
 {
+
     qDebug() << "Connection test started...";
 
     // Define maximum value for safe voltage level:
@@ -1000,98 +1192,69 @@ int MainWindow::connectionTestMain()
     ui->increaseIntensityBtn->setEnabled(false);
     ui->decreaseIntensityBtn->setEnabled(false);
 
-    // Blink CES mode light
-    /* set & stop timer:
-        [...]
-    */
-    flashCesModeLight();
-
     // Check if intensity level of the selected session is safe:
-    if (sessionArray[2] > defaultSafeLevel)
-    {
-        sessionArray[2] = defaultSafeLevel;
+    if (objData.sessionArray[2] > defaultSafeLevel) {
+        objData.sessionArray[2] = defaultSafeLevel;
     }
 
-    int signal = 0;
-    int timeNow = 0; // a counter to keep track of the waiting process
-    int timeout = 20;
+    if(ui->listOfSkins->itemData(ui->listOfSkins->currentIndex()) == 0) {
+        signal = 2;
+        OptionWet = true;
+        OptionDry = false;
+    }
+    else if(ui->listWetOrDry->itemData(ui->listWetOrDry->currentIndex()) == 1) {
+        signal = 1;
+        OptionDry = true;
+        OptionWet = false;
+    }
+    else {
+        signal = 0;
+    }
 
-    // Check connection:
-    if (!getConnectivity()){
+    int timeNow = 0; // a counter to keep track of the waiting process
+    int timeOut = 20;
+
+    //Check connection:
+    if (connectivity == false) {
         qDebug() << "Device is disconnected...";
 
         // Update connection status:
-        offConnectivity();
         signal = 0;
 
         // Update GUI elements:
-        graphSessionOff();
-        displayConnection(signal);
+        flashCesModeLight();
 
         // Pause for 3 secs:
-        /* [... default timer/Qtimer? ] */
+        pauseTimer(3000);
 
-        playScollAnimation();
+        playScrollAnimation();
 
         // Pause selected session by stopping timer:
         /* [...] */
 
         // Pause for 5 secs:
-        /* [... default timer/Qtimer? ] */
+        pauseTimer(5000);
 
         // Clear graph:
         offLeds();
-    };
+    }
 
-    // Wait for connection:
-    while  (!getConnectivity()) {
-        if (getConnectivity()){
-            qDebug() << "Device is successfully connected...";
+    // Exceptions that will terminate the while loop:
+    // 1. low battery level
+    // 2. press powerbutton
+    // 3. time is out (> 20 secs)
+    if (connectivity == true || timeNow < timeOut){
+        qDebug() << "Device is successfully connected...";
 
-            // Update connection status:
-            onConnectivity(); // Called by dropdown menu
+        // Update GUI elements:
+        flashCesModeLight();
 
-            bool OptionDry = false; // <- Determined by selected value of dropdown menu
-            bool OptionWet = false;
-
-            if (OptionDry)
-            {
-                signal = 1; // Ok connection
-            }
-            else if (OptionWet)
-            {
-                signal = 2; // Excellent connection
-            }
-
-            // Update GUI elements:
-            graphSessionOn();
-            displayConnection(signal);
-
-            // Enable intensity buttons:
-            ui->increaseIntensityBtn->setEnabled(true);
-            ui->decreaseIntensityBtn->setEnabled(true);
-
-            // Display current intensity level:
-            /* [...] */
-
-            // Exit with connection:
-            qDebug() << "Connection test ended...";
-
-            return 0;
-        }
-        // Exceptions that will terminate the while loop:
-        // 1. low battery level
-
-        // 2. press powerbutton:
-
-        // 3. time is out (> 20 secs)
-        if (timeNow > timeOut){
-            break;
-        }
-
+        // Exit with connection:
+        qDebug() << "Connection test ended...";
     }
 
     // Exit without connection:
     qDebug() << "Connection test has been terminated ...";
     return -1;
-};
+
+}

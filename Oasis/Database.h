@@ -6,10 +6,13 @@
 #include <QSqlQuery>
 #include "Users.h"
 #include "TherapyRecord.h"
+#include <QDebug>
+#include <QCoreApplication>
 
 
 class Database
 {
+
 public:
     Database();
     bool initializeDatabaseTables();
@@ -29,8 +32,19 @@ public:
 
     ~Database();
 
+
 private:
     QSqlDatabase databaseGui;
+    /*
+     * This array is special. Its indices all follow a standard that should
+     * be used everywhere in the project. The standard is as follows:
+     *      sessionArray[0]: Stores duration of the session
+     *      sessionArray[1]: Stores session type
+     *      sessionArray[2]: Stores intensity level of the session at the time of completion
+     */
+    int sessionArray[3];
+    friend class MainWindow;
+
 };
 
 #endif // DATABASE_H

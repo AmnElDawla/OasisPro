@@ -894,7 +894,7 @@ border-radius: 20px;
     <property name="geometry">
      <rect>
       <x>1100</x>
-      <y>140</y>
+      <y>150</y>
       <width>321</width>
       <height>51</height>
      </rect>
@@ -923,7 +923,7 @@ background-repeat: none;
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox"/>
+      <widget class="QComboBox" name="listOfSkins"/>
      </item>
     </layout>
    </widget>
@@ -931,7 +931,7 @@ background-repeat: none;
     <property name="geometry">
      <rect>
       <x>1100</x>
-      <y>74</y>
+      <y>84</y>
       <width>321</width>
       <height>51</height>
      </rect>
@@ -978,9 +978,9 @@ background-repeat: none;
     <property name="geometry">
      <rect>
       <x>1100</x>
-      <y>400</y>
+      <y>470</y>
       <width>321</width>
-      <height>91</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -998,7 +998,7 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>1100</x>
-      <y>220</y>
+      <y>290</y>
       <width>321</width>
       <height>31</height>
      </rect>
@@ -1018,7 +1018,7 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>1100</x>
-      <y>250</y>
+      <y>320</y>
       <width>321</width>
       <height>151</height>
      </rect>
@@ -1027,8 +1027,8 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="treatmentUpBtn">
     <property name="geometry">
      <rect>
-      <x>1220</x>
-      <y>410</y>
+      <x>1110</x>
+      <y>490</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -1049,7 +1049,7 @@ border-radius: 10px;
     <property name="geometry">
      <rect>
       <x>1220</x>
-      <y>460</y>
+      <y>490</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -1070,7 +1070,7 @@ border-radius: 10px;
     <property name="geometry">
      <rect>
       <x>1330</x>
-      <y>430</y>
+      <y>490</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -1086,6 +1086,80 @@ border-radius: 10px;
     <property name="text">
      <string>Select</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>20</y>
+      <width>321</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#label{
+background-color: rgb(46, 52, 54);
+font-weight: 600;
+color: white;
+background-repeat: none;
+}</string>
+       </property>
+       <property name="text">
+        <string>Dry/Wet</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="listWetOrDry"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>220</y>
+      <width>321</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#label_4{
+background-color: rgb(46, 52, 54);
+font-weight: 600;
+color: white;
+background-repeat: none;
+}</string>
+       </property>
+       <property name="text">
+        <string>User</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="listOfUsers"/>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

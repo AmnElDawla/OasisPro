@@ -63,7 +63,7 @@ bool Database::initializeDefaultUserRecord()
 bool Database::validateRecord(const QString &sessionType, const int intensityLevel, const int duration)
 {
     bool validity = true;
-    else if (intensityLevel < 1 || intensityLevel > 8)
+    if (intensityLevel < 1 || intensityLevel > 8)
     {
         qDebug() << "Error: Invalid " << sessionType << " record: intensity level is not valid";
         validity = false;
@@ -177,13 +177,26 @@ QVector<TherapyRecord *> Database::getTherapyHistoryRecords(int userId)
 void Database::updateSelectedSession(TherapyRecord &tr)
 {
     QString session = tr.getSessionType();
+    int sessionTypeNumber = 0;
+    if(session == "") {
+        sessionTypeNumber = 0;
+    }
+    else if(session == "") {
+        sessionTypeNumber = 1;
+    }
+    else if(session == "") {
+        sessionTypeNumber = 2;
+    }
+    else  {
+        sessionTypeNumber = 3;
+    }
     int intensity = tr.getIntensityLevel();
     int duration = tr.getDuration();
 
     if (validateRecord(session, intensity, duration))
     {
         sessionArray[0] = duration;
-        sessionArray[1] = session;
+        sessionArray[1] = sessionTypeNumber;
         sessionArray[2] = intensity;
     }
     /* Problem:
