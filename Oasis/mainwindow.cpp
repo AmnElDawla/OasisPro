@@ -1153,7 +1153,7 @@ void MainWindow::intervalTimerIntensity() {
 
 void MainWindow::switchLeds() {
 
-    qDebug() << QString::number(countSwitch);
+    //qDebug() << QString::number(countSwitch);
     if(countSwitch == 0) {
         ledOneOn();
     }
@@ -1236,8 +1236,8 @@ void MainWindow::pauseCounter() {
     }
     else {
         intervalTimerIntensity();
-        qDebug() << "Value 1 is "+QString::number(valuePause);
-        qDebug() << "Value 2 is "+QString::number(countForPauseEnd);
+        //qDebug() << "Value 1 is "+QString::number(valuePause);
+        //qDebug() << "Value 2 is "+QString::number(countForPauseEnd);
         countForPauseEnd++;
     }
 
