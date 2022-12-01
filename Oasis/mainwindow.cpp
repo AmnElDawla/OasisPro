@@ -116,28 +116,28 @@ void MainWindow::flashSelectedLevel(){
     resetButtons();
 
     if(objData.sessionArray[2] == 1){
-        ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; border: 3px solid cyan; }");
+        ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; border: 3px solid #008080; }");
     }
     else if(objData.sessionArray[2] == 2){
-        ui->ledTwo->setStyleSheet("#ledTwo { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; border: 3px solid cyan; }");
+        ui->ledTwo->setStyleSheet("#ledTwo { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; border: 3px solid #008080; }");
     }
     else if(objData.sessionArray[2] == 3){
-        ui->ledThree->setStyleSheet("#ledThree { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; border: 3px solid cyan; }");
+        ui->ledThree->setStyleSheet("#ledThree { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; border: 3px solid #008080; }");
     }
     else if(objData.sessionArray[2] == 4){
-        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid cyan; }");
+        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid #008080; }");
     }
     else if(objData.sessionArray[2] == 5){
-        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid cyan; }");
+        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid #008080; }");
     }
     else if(objData.sessionArray[2] == 6){
-        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid cyan; }");
+        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid #008080; }");
     }
     else if(objData.sessionArray[2] == 7){
-        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
+        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid #008080; }");
     }
     else if(objData.sessionArray[2] == 8){
-        ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
+        ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid #008080; }");
     }
 
 }
@@ -559,6 +559,8 @@ void MainWindow::on_selectionBtn_clicked()
     // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
     // BUTTON HAS BEEN PRESSED
 
+    qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
+
     if(timer->isActive()) {
         timer->stop();
         qDebug() << "Stopping timer...";
@@ -648,6 +650,9 @@ void MainWindow::on_increaseIntensityBtn_clicked()
 {
 
     // Don't increase intensity level beyond 8
+
+    qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
+
     if(objData.sessionArray[2] < 8){
         objData.sessionArray[2]++;
     }
@@ -658,6 +663,8 @@ void MainWindow::on_increaseIntensityBtn_clicked()
 
 void MainWindow::on_decreaseIntensityBtn_clicked()
 {
+
+    qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
 
     // Don't decrease intensity level beyond 0
     if(objData.sessionArray[2] > 1){
@@ -1176,6 +1183,13 @@ void MainWindow::pauseCounter() {
 
 }
 
+//Pause current session if the device becomes disconnected.
+void MainWindow::pauseSession() {
+
+    qDebug() << "Session has been paused...";
+
+
+}
 
 /* Main control of connection test
  *** Note: check power level before calling this function ***
@@ -1230,7 +1244,7 @@ int MainWindow::connectionTestMain()
         playScrollAnimation();
 
         // Pause selected session by stopping timer:
-        /* [...] */
+        pauseSession();
 
         // Pause for 5 secs:
         pauseTimer(5000);
@@ -1243,7 +1257,7 @@ int MainWindow::connectionTestMain()
     // 1. low battery level
     // 2. press powerbutton
     // 3. time is out (> 20 secs)
-    if (connectivity == true || timeNow < timeOut){
+    if (connectivity == true || timeNow < timeOut || numberOfTimesPowerBtnClicked != 3 || batteryLevel >= 25){
         qDebug() << "Device is successfully connected...";
 
         // Update GUI elements:

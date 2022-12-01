@@ -80,6 +80,7 @@ public:
     void selectedIntensityAtStart();
     void pauseTimer(int);
     void ledBlinkTimer();
+    void pauseSession();
 
 private slots:
     void on_powerBtn_clicked();
