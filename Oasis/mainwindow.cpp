@@ -1133,8 +1133,27 @@ void MainWindow::playScrollAnimation()
 
 }
 
-void MainWindow::swicthLeds() {
+void MainWindow::intervalTimerIntensity() {
 
+    if(countForPauseEnd < valuePause) {
+        if(intensityTimer == nullptr) {
+            intensityTimer = new QTimer(this);
+            intensityTimer->setInterval(500);
+            connect(intensityTimer, SIGNAL(timeout()), this, SLOT(switchLeds()));
+            intensityTimer->start();
+        }
+        else {
+            offLeds();
+            countSwitch = 0;
+            intensityTimer->start();
+        }
+    }
+
+}
+
+void MainWindow::switchLeds() {
+
+    qDebug() << QString::number(countSwitch);
     if(countSwitch == 0) {
         ledOneOn();
     }
@@ -1185,22 +1204,12 @@ void MainWindow::swicthLeds() {
     }
 
     if(countSwitch == 15) {
-        intensityTimer->stop();
         countSwitch = 0;
-        offLeds();
+        intensityTimer->stop();
     }
     else {
         countSwitch++;
     }
-
-}
-
-void MainWindow::intervalTimerIntensity() {
-
-    intensityTimer = new QTimer(this);
-    intensityTimer->setInterval(500);
-    connect(intensityTimer, SIGNAL(timeout()), this, SLOT(swicthLeds()));
-    intensityTimer->start();
 
 }
 
@@ -1219,9 +1228,10 @@ void MainWindow::pauseCounter() {
 
     if(countForPauseEnd == valuePause) {
         pauseTimerDefault->stop();
-        intensityTimer->stop();
         countForPauseEnd = 0;
         offLeds();
+        pauseTimerDefault->deleteLater();
+        pauseTimerDefault = nullptr;
         qDebug() << "End";
     }
     else {

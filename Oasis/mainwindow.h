@@ -98,7 +98,7 @@ private slots:
     void flashGraphCounter();
     void pauseCounter();
     void blinkCounter();
-    void swicthLeds();
+    void switchLeds();
 
 private:
     Ui::MainWindow *ui;
@@ -152,7 +152,7 @@ private:
     int counterBlinkingLed = 0;
     bool blinkTrueOrFalse = true;
     int signal = 0;
-    QTimer *intensityTimer;
+    QTimer *intensityTimer = nullptr;
     int countSwitch = 0;
 
 };
