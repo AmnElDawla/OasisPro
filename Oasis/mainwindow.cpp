@@ -62,8 +62,11 @@ MainWindow::MainWindow(QWidget *parent)
     // When connection test passed:
     connectionTestStartTimer = new QTimer(this);
     connectionTestStopTimer = new QTimer(this);
-    connect(batteryStartTimer, SIGNAL(timeout()), this, SLOT(showBatteryLevel()));
-    connect(batteryStopTimer, SIGNAL(timeout()), this, SLOT(stopBatteryLevel()));
+    // ANDRE AND MENGRUI, YOU MADE A MISTAKE HERE. THIS IS REPEATING MY CODE FROM LINE 58 AND 59 AND BROKE THE FLASHING MECHANIC.
+    // I LEFT THIS HERE COMMENTED INSTEAD OF DELETED IN CASE YOU INTENDED TO USE IT FOR SOMETHING ELSE.
+    // DELETE THIS COMMENT WHEN YOU SEE THIS AND DO WHAT YOU WANT WITH THE TWO LINES BELOW.
+    //connect(batteryStartTimer, SIGNAL(timeout()), this, SLOT(showBatteryLevel()));
+    //connect(batteryStopTimer, SIGNAL(timeout()), this, SLOT(stopBatteryLevel()));
     connectionTestStopTimer->setSingleShot(true);
 
     //Add items to the comboboxes.
@@ -212,30 +215,14 @@ void MainWindow::deviceOff() {
 
     ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid white; border-radius: 30px; background-color: black; } ");
     ui->indicatorOffOrOn->setStyleSheet("#indicatorOffOrOn::chunk{ background-color: white; }");
-    if(ledEightStatus == true){
-        toggleLedEight();
-    }
-    if(ledSevenStatus == true){
-        toggleLedSeven();
-    }
-    if(ledSixStatus == true){
-        toggleLedSix();
-    }
-    if(ledFiveStatus == true){
-        toggleLedFive();
-    }
-    if(ledFourStatus == true){
-        toggleLedFour();
-    }
-    if(ledThreeStatus == true){
-        toggleLedThree();
-    }
-    if(ledTwoStatus == true){
-        toggleLedTwo();
-    }
-    if(ledOneStatus == true){
-        toggleLedOne();
-    }
+    ledEightOff();
+    ledSevenOff();
+    ledSixOff();
+    ledFiveOff();
+    ledFourOff();
+    ledThreeOff();
+    ledTwoOff();
+    ledOneOff();
     ui->selectionBtn->setEnabled(false);
     ui->increaseIntensityBtn->setEnabled(false);
     ui->decreaseIntensityBtn->setEnabled(false);
@@ -728,7 +715,6 @@ void MainWindow::ledEightOff(){
 
     ui->ledEight->setStyleSheet("#ledEight { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledEightStatus = false;
-
 }
 
 void MainWindow::ledOneOn(){
@@ -784,7 +770,6 @@ void MainWindow::ledEightOn(){
 
     ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
     ledEightStatus = true;
-
 }
 
 void MainWindow::toggleLedOne(){
@@ -1268,4 +1253,9 @@ int MainWindow::connectionTestMain()
     qDebug() << "Connection test has been terminated ...";
     return -1;
 
+}
+
+void MainWindow::on_newBattery_clicked()
+{
+    batteryLevel = 100;
 }
