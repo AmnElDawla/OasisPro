@@ -100,6 +100,8 @@ private slots:
     void blinkCounter();
     void switchLeds();
 
+    void on_newBattery_clicked();
+
 private:
     Ui::MainWindow *ui;
     Database *newDatabase = new Database();
@@ -112,7 +114,7 @@ private:
     QTimer *batteryStartTimer;
     QTimer *batteryStopTimer;
     bool selectedSessionOrNot = false;
-    int batteryLevel = 12;
+    int batteryLevel = 43;
     bool ledOneStatus = false;
     bool ledTwoStatus = false;
     bool ledThreeStatus = false;
