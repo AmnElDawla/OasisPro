@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
 
@@ -906,15 +906,20 @@ void MainWindow::flashGraphCounter() {
     toggleCesModeLight();
     counterFlashGraph++;
     if(counterFlashGraph == 6) {
+
         timerCES->stop();
         counterFlashGraph = 0;
+
         if(connectivity == false) {
             graphSessionOff();
         }
         else {
             graphSessionOn();
         }
+
+        qDebug() << "Signal is "+QString::number(signal);
         displayConnection(signal);
+
     }
 
 }
@@ -1059,9 +1064,15 @@ void MainWindow::blinkCounter() {
             ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         }
 
-        // Enable intensity buttons:
-        ui->increaseIntensityBtn->setEnabled(true);
-        ui->decreaseIntensityBtn->setEnabled(true);
+        if(connectivity == false) {
+            playScrollAnimation();
+        }
+        else {
+            // Enable intensity buttons:
+            ui->increaseIntensityBtn->setEnabled(true);
+            ui->decreaseIntensityBtn->setEnabled(true);
+        }
+
     }
 
 }
@@ -1098,58 +1109,92 @@ void MainWindow::displayConnection(int signal)
 void MainWindow::playScrollAnimation()
 {
 
+    qDebug() << "Scrolling animation...";
     // update Qtimer
     /* [...] */
     int timeout = 5; // <- subject to change based on Qtimer
-    int ledIndex = 0;
-    for (int i = 0; i < timeout; i++)
-    {
-        // Initialize graphics:
-        offLeds();
-        ledOneOn();
 
-        // Render graphics:
-        for (int j = 0; j < 8; j++)
-        {
-            offLeds();
-            ledIndex = j + 1;
-            switch (ledIndex)
-            {
-                case 1:
-                    ledTwoOn();
-                    break;
-                case 2:
-                    ledThreeOn();
-                    break;
-                case 3:
-                    ledFourOn();
-                    break;
-                case 4:
-                    ledFiveOn();
-                    break;
-                case 5:
-                    ledSixOn();
-                    break;
-                case 6:
-                    ledSevenOn();
-                    break;
-                case 7:
-                    ledEightOn();
-                    break;
-                default:
-                    ledOneOn();
-                    break;
-            }
-        }
+    pauseTimer(timeout);
+
+}
+
+void MainWindow::swicthLeds() {
+
+    if(countSwitch == 0) {
+        ledOneOn();
     }
+    else if(countSwitch == 1) {
+        ledOneOff();
+    }
+    else if(countSwitch == 2) {
+        ledTwoOn();
+    }
+    else if(countSwitch == 3) {
+        ledTwoOff();
+    }
+    else if(countSwitch == 4) {
+        ledThreeOn();
+    }
+    else if(countSwitch == 5) {
+        ledThreeOff();
+    }
+    else if(countSwitch == 6) {
+        ledFourOn();
+    }
+    else if(countSwitch == 7) {
+        ledFourOff();
+    }
+    else if(countSwitch == 8) {
+        ledFiveOn();
+    }
+    else if(countSwitch == 9) {
+        ledFiveOff();
+    }
+    else if(countSwitch == 10) {
+        ledSixOn();
+    }
+    else if(countSwitch == 11) {
+        ledSixOff();
+    }
+    else if(countSwitch == 12) {
+        ledSevenOn();
+    }
+    else if(countSwitch == 13) {
+        ledSevenOff();
+    }
+    else if(countSwitch == 14) {
+        ledEightOn();
+    }
+    else  {
+        ledEightOff();
+    }
+
+    if(countSwitch == 15) {
+        intensityTimer->stop();
+        countSwitch = 0;
+        offLeds();
+    }
+    else {
+        countSwitch++;
+    }
+
+}
+
+void MainWindow::intervalTimerIntensity() {
+
+    intensityTimer = new QTimer(this);
+    intensityTimer->setInterval(500);
+    connect(intensityTimer, SIGNAL(timeout()), this, SLOT(swicthLeds()));
+    intensityTimer->start();
 
 }
 
 void MainWindow::pauseTimer(int value) {
 
-    valuePause = value / 500;
+    offLeds();
+    valuePause = value;
     pauseTimerDefault = new QTimer(this);
-    pauseTimerDefault->setInterval(500);
+    pauseTimerDefault->setInterval(8000);
     connect(pauseTimerDefault, SIGNAL(timeout()), this, SLOT(pauseCounter()));
     pauseTimerDefault->start();
 
@@ -1157,19 +1202,19 @@ void MainWindow::pauseTimer(int value) {
 
 void MainWindow::pauseCounter() {
 
-    countForPauseEnd++;
     if(countForPauseEnd == valuePause) {
         pauseTimerDefault->stop();
+        intensityTimer->stop();
         countForPauseEnd = 0;
+        offLeds();
+        qDebug() << "End";
     }
-
-}
-
-//Pause current session if the device becomes disconnected.
-void MainWindow::pauseSession() {
-
-    qDebug() << "Session has been paused...";
-
+    else {
+        intervalTimerIntensity();
+        qDebug() << "Value 1 is "+QString::number(valuePause);
+        qDebug() << "Value 2 is "+QString::number(countForPauseEnd);
+        countForPauseEnd++;
+    }
 
 }
 
@@ -1193,21 +1238,27 @@ int MainWindow::connectionTestMain()
         objData.sessionArray[2] = defaultSafeLevel;
     }
 
-    if(ui->listOfSkins->itemData(ui->listOfSkins->currentIndex()) == 0) {
+    qDebug() << QString::number(ui->listOfSkins->currentIndex());
+
+    if(ui->listOfSkins->currentIndex() == 0 && ui->listOfSkins->currentIndex() == 0) {
         signal = 2;
         OptionWet = true;
         OptionDry = false;
+        connectivity = true;
     }
-    else if(ui->listWetOrDry->itemData(ui->listWetOrDry->currentIndex()) == 1) {
+    else if(ui->listWetOrDry->currentIndex() == 1 && ui->listOfSkins->currentIndex() == 0) {
         signal = 1;
         OptionDry = true;
         OptionWet = false;
+        connectivity = true;
     }
     else {
         signal = 0;
+        connectivity = false;
     }
 
-    int timeNow = 0; // a counter to keep track of the waiting process
+    // a counter to keep track of the waiting process
+    int timeNow = 0;
     int timeOut = 20;
 
     //Check connection:
@@ -1220,26 +1271,16 @@ int MainWindow::connectionTestMain()
         // Update GUI elements:
         flashCesModeLight();
 
-        // Pause for 3 secs:
-        pauseTimer(3000);
-
-        playScrollAnimation();
-
-        // Pause selected session by stopping timer:
-        pauseSession();
-
-        // Pause for 5 secs:
-        pauseTimer(5000);
-
-        // Clear graph:
-        offLeds();
     }
 
     // Exceptions that will terminate the while loop:
     // 1. low battery level
     // 2. press powerbutton
     // 3. time is out (> 20 secs)
-    if (connectivity == true || timeNow < timeOut || numberOfTimesPowerBtnClicked != 3 || batteryLevel >= 25){
+
+    qDebug() << "Battery level is "+QString::number(batteryLevel)+".";
+
+    if (connectivity == true && timeNow < timeOut && numberOfTimesPowerBtnClicked != 3 && batteryLevel >= 25){
         qDebug() << "Device is successfully connected...";
 
         // Update GUI elements:

@@ -80,7 +80,7 @@ public:
     void selectedIntensityAtStart();
     void pauseTimer(int);
     void ledBlinkTimer();
-    void pauseSession();
+    void intervalTimerIntensity();
 
 private slots:
     void on_powerBtn_clicked();
@@ -98,6 +98,7 @@ private slots:
     void flashGraphCounter();
     void pauseCounter();
     void blinkCounter();
+    void swicthLeds();
 
     void on_newBattery_clicked();
 
@@ -153,6 +154,8 @@ private:
     int counterBlinkingLed = 0;
     bool blinkTrueOrFalse = true;
     int signal = 0;
+    QTimer *intensityTimer;
+    int countSwitch = 0;
 
 };
 #endif // MAINWINDOW_H
