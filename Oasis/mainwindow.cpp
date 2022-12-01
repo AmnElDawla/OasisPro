@@ -559,8 +559,6 @@ void MainWindow::on_selectionBtn_clicked()
     // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
     // BUTTON HAS BEEN PRESSED
 
-    qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
-
     if(timer->isActive()) {
         timer->stop();
         qDebug() << "Stopping timer...";
@@ -1006,7 +1004,7 @@ void MainWindow::blinkCounter() {
         }
 
     }
-    else if(groupToBlink == 0) {
+    else if(groupToBlink == 1) {
 
         if(blinkTrueOrFalse == true) {
             ledSixOn();
@@ -1046,7 +1044,6 @@ void MainWindow::blinkCounter() {
         onLeds();
 
         // Finding correct intensity level
-
         qDebug() << "Session is "+QString::number(newRowItemSession);
 
         int realValueRow = 0;

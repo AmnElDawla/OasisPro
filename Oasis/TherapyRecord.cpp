@@ -7,16 +7,16 @@ TherapyRecord::TherapyRecord(const QString &sessionType, const int intensityLeve
     this->sessionType = sessionType;
     this->duration = duration;
     this->intensityLevel = intensityLevel;
-};
+}
 
 // getters:
-QString TherapyRecord::getSessionType() { return sessionType; };
-int TherapyRecord::getIntensityLevel() { return intensityLevel; };
-int TherapyRecord::getDuration() { return duration; };
+QString TherapyRecord::getSessionType() { return sessionType; }
+int TherapyRecord::getIntensityLevel() { return intensityLevel; }
+int TherapyRecord::getDuration() { return duration; }
 
 // setters:
-void TherapyRecord::setDuration(int d) { duration = d; };
-void TherapyRecord::setIntensityLevel(int i) { intensityLevel = i; };
+void TherapyRecord::setDuration(int d) { duration = d; }
+void TherapyRecord::setIntensityLevel(int i) { intensityLevel = i; }
 
 // member function(s):
 QString TherapyRecord::stringify()
@@ -30,4 +30,4 @@ QString TherapyRecord::stringify()
         "   intensity level: " + QString::number(intensityLevel);
 
     return tmpString;
-};
+}
