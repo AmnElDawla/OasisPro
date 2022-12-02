@@ -546,6 +546,8 @@ void MainWindow::on_selectionBtn_clicked()
     // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
     // BUTTON HAS BEEN PRESSED
 
+    ui->selectionBtn->setDisabled(true);
+
     if(timer->isActive()) {
         timer->stop();
         qDebug() << "Stopping timer...";
@@ -1125,9 +1127,10 @@ void MainWindow::blinkCounter() {
             playScrollAnimation();
         }
         else {
-            // Enable intensity buttons:
+            // Enable intensity and selection buttons:
             ui->increaseIntensityBtn->setEnabled(true);
             ui->decreaseIntensityBtn->setEnabled(true);
+            ui->selectionBtn->setEnabled(true);
         }
 
     }
@@ -1406,4 +1409,19 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
         qDebug() << "Device is not turned on...";
     }
 
+}
+
+void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
+{
+    if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2) {
+        qDebug() << "Changed to wet...";
+        connectionTestMain();
+    }
+    else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2) {
+        qDebug() << "Changed to dry...";
+        connectionTestMain();
+    }
+    else {
+        qDebug() << "Device is not turned on...";
+    }
 }
