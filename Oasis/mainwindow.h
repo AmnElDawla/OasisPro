@@ -153,9 +153,9 @@ private:
     int countForPauseEnd = 0;
     QTimer *timerBlinkLed = nullptr;
     /*
-     * Grp 0 ====> blinking LED 7 and 8
-     * Grp 1 ====> blinking LED 4, 5, and 6
-     * Grp 2 ====> blinking LED 1, 2, and 3
+     * Grp 0 ====> blinking LEDs 7 and 8
+     * Grp 1 ====> blinking LEDs 4, 5, and 6
+     * Grp 2 ====> blinking LEDs 1, 2, and 3
      */
     int groupToBlink = 0;
     int counterBlinkingLed = 0;
