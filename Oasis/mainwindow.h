@@ -35,6 +35,7 @@ public:
     void initialiazeListOfIcons();
     void resetButtons();
     void flashSelectedLevel();
+
     // LED controls
     void ledOneOff();
     void ledTwoOff();
@@ -73,35 +74,75 @@ public:
     void toggleCesModeLight();
     void displayConnection(int signal);
     void playScrollAnimation();
+
     // connection test main control
     int connectionTestMain();
-    //LED controls end
+
     void flashSelectedLevelAfterSelection();
     void selectedIntensityAtStart();
     void pauseTimer(int);
     void ledBlinkTimer();
     void intervalTimerIntensity();
+
+    // Turns on or off left or right ear.
     void onLeftEar();
     void offLeftEar();
     void onRightEar();
     void offRightEar();
+
+    // Turns on or off the border where the right and left ear are found
     void offGroupBoxEars();
     void onGroupBoxEars();
+
+    // This function below makes sure that after pressing the selection button, there 5 seconds delay.
     void delay5Seconds();
+
+    // This function below does the scrolling down animation when user ends the session
+    // (either the user ends the session early or not).
     void descendEndSession();
 
 private slots:
+
+    // This slot below is called when the user clicks the powerbutton. It checks if the power button has been clicked
+    // how many times it has been clicked.
+    // - One clicks means that the device turn on but not completely (this click does not turn on the icons for the duration and session
+    //   as well as the left and right ear and the session graph.
+    // - Two clicks opens the device fully (everything is turned on).
+    // - Three clicks shuts down the device (everything is turned off).
     void on_powerBtn_clicked();
+
+    // This slot below is called when the user presses the left arrow next to the duration icons. This is used
+    // to select a duration for the selected session.
     void on_durationLeft_clicked();
+
+    // This slot below is called when user presses the left arrow next to the session icons. This is used to select
+    // a session.
     void on_sessionLeft_clicked();
+
+    // This slot below is called when the user presses the right arrow next to the duration icons. This is used
+    // to select a duration for the selected session.
     void on_durationRight_clicked();
+
+    // This slot below is called when user presses the right arrow next to the session icons. This is used to select
+    // a session.
     void on_sessionRight_clicked();
+
+    // This slot is called when the user presses the selection button. When this is pressed the chosen duration
+    // and session are stored as variables.
     void on_selectionBtn_clicked();
+
     void showBatteryLevel();
     void stopBatteryLevel();
     void on_increaseIntensityBtn_clicked();
     void on_decreaseIntensityBtn_clicked();
+
+    // This slot is called when QTimer named timer timeout. This is called after 2 minutes (or 120000 miliseconds)
+    // of having no response from the user (who did not select a session).
     void turnOffNoSessionSelected();
+
+    // This slot is called when QTimer named timerFlashes timeout. It flashes (turns on or off at a 500 miliseconds interval)
+    // the respective session number in the intensity column (the column that goes from 1 to 8 in the GUI). It does
+    // this for 3 seconds.
     void flashTimer();
     void flashGraphCounter();
     void pauseCounter();
