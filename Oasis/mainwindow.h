@@ -87,6 +87,7 @@ public:
     void offRightEar();
     void offGroupBoxEars();
     void onGroupBoxEars();
+    void delay5Seconds();
 
 private slots:
     void on_powerBtn_clicked();
@@ -106,8 +107,8 @@ private slots:
     void blinkCounter();
     void switchLeds();
     void on_newBattery_clicked();
-
     void on_listOfSkins_currentIndexChanged(const QString &arg1);
+    void continueAfter5Seconds();
 
 private:
     Ui::MainWindow *ui;
@@ -163,6 +164,7 @@ private:
     int signal = 0;
     QTimer *intensityTimer = nullptr;
     int countSwitch = 0;
+    QTimer *fiveSecondsDelay = nullptr;
 
 };
 #endif // MAINWINDOW_H

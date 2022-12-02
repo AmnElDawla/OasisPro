@@ -611,9 +611,27 @@ void MainWindow::flashTimer() {
     if(valueIntUntilEndOfFlash == 10) {
         timerFlashes->stop();
         valueIntUntilEndOfFlash = 0;
-        if(connectionTestMain() != -1) {
-            qDebug() << "Start of the connection test...";
-        }
+        delay5Seconds();
+    }
+
+}
+
+void MainWindow::delay5Seconds() {
+
+    qDebug() << "Start 5 seconds delay...";
+    fiveSecondsDelay = new QTimer(this);
+    fiveSecondsDelay->setInterval(5000);
+    fiveSecondsDelay->setSingleShot(true);
+    connect(fiveSecondsDelay, SIGNAL(timeout()), this, SLOT(continueAfter5Seconds()));
+    fiveSecondsDelay->start();
+
+}
+
+void MainWindow::continueAfter5Seconds() {
+
+    qDebug() << "5 seconds delay over...";
+    if(connectionTestMain() != -1) {
+        qDebug() << "Start of the connection test...";
     }
 
 }
