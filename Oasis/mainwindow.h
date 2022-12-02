@@ -81,6 +81,12 @@ public:
     void pauseTimer(int);
     void ledBlinkTimer();
     void intervalTimerIntensity();
+    void onLeftEar();
+    void offLeftEar();
+    void onRightEar();
+    void offRightEar();
+    void offGroupBoxEars();
+    void onGroupBoxEars();
 
 private slots:
     void on_powerBtn_clicked();
@@ -99,7 +105,6 @@ private slots:
     void pauseCounter();
     void blinkCounter();
     void switchLeds();
-
     void on_newBattery_clicked();
 
 private:

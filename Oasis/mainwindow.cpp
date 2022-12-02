@@ -876,6 +876,42 @@ void MainWindow::graphSessionOff()
 
 }
 
+void MainWindow::offLeftEar() {
+
+    ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Off.PNG); border: 2px solid red; border-radius: 20px; }");
+
+}
+
+void MainWindow::onLeftEar() {
+
+    ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Connected.PNG); border: 2px solid red; border-radius: 20px; }");
+
+}
+
+void MainWindow::offRightEar() {
+
+    ui->rightEar->setStyleSheet("#rightEar { border-image: url(:/resources/icons/rightConnect.PNG); border: 2px solid red; border-radius: 20px; }");
+
+}
+
+void MainWindow::onRightEar() {
+
+    ui->rightEar->setStyleSheet("#rightEar { border-image: url(:/resources/icons/rightConnectOn.PNG); border: 2px solid red; border-radius: 20px; }");
+
+}
+
+void MainWindow::offGroupBoxEars() {
+
+    ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid white; border-radius: 30px; background-color: black; } ");
+
+}
+
+void MainWindow::onGroupBoxEars() {
+
+    ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid limegreen; border-radius: 30px; background-color: black; } ");
+
+}
+
 void MainWindow::toggleCesModeLight()
 {
 
@@ -917,7 +953,7 @@ void MainWindow::flashGraphCounter() {
             graphSessionOn();
         }
 
-        qDebug() << "Signal is "+QString::number(signal);
+        //qDebug() << "Signal is "+QString::number(signal);
         displayConnection(signal);
 
     }
@@ -1034,7 +1070,6 @@ void MainWindow::blinkCounter() {
         onLeds();
 
         // Finding correct intensity level
-        qDebug() << "Session is "+QString::number(newRowItemSession);
 
         int realValueRow = 0;
         if(newRowItemSession == 0) {
@@ -1217,7 +1252,7 @@ void MainWindow::pauseCounter() {
         offLeds();
         pauseTimerDefault->deleteLater();
         pauseTimerDefault = nullptr;
-        qDebug() << "End";
+        qDebug() << "End scrolling animation...";
     }
     else {
         intervalTimerIntensity();
@@ -1248,8 +1283,6 @@ int MainWindow::connectionTestMain()
         objData.sessionArray[2] = defaultSafeLevel;
     }
 
-    qDebug() << QString::number(ui->listOfSkins->currentIndex());
-
     if(ui->listOfSkins->currentIndex() == 0 && ui->listOfSkins->currentIndex() == 0) {
         signal = 2;
         OptionWet = true;
@@ -1271,14 +1304,19 @@ int MainWindow::connectionTestMain()
     int timeNow = 0;
     int timeOut = 20;
 
-    //Check connection:
+    //Check connection
     if (connectivity == false) {
         qDebug() << "Device is disconnected...";
 
-        // Update connection status:
+        //Disconnect left and right ear
+        offLeftEar();
+        offRightEar();
+        offGroupBoxEars();
+
+        // Update connection status
         signal = 0;
 
-        // Update GUI elements:
+        // Update GUI elements
         flashCesModeLight();
 
     }
@@ -1288,19 +1326,22 @@ int MainWindow::connectionTestMain()
     // 2. press powerbutton
     // 3. time is out (> 20 secs)
 
-    qDebug() << "Battery level is "+QString::number(batteryLevel)+".";
-
     if (connectivity == true && timeNow < timeOut && numberOfTimesPowerBtnClicked != 3 && batteryLevel >= 25){
         qDebug() << "Device is successfully connected...";
 
-        // Update GUI elements:
+        // Connect right and left ear
+        onLeftEar();
+        onRightEar();
+        onGroupBoxEars();
+
+        // Update GUI elements
         flashCesModeLight();
 
-        // Exit with connection:
+        // Exit with connection
         qDebug() << "Connection test ended...";
     }
 
-    // Exit without connection:
+    // Exit without connection
     qDebug() << "Connection test has been terminated ...";
     return -1;
 
@@ -1309,4 +1350,16 @@ int MainWindow::connectionTestMain()
 void MainWindow::on_newBattery_clicked()
 {
     batteryLevel = 100;
+}
+
+void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
+{
+
+    if(ui->listOfSkins->currentIndex() == 0) {
+
+    }
+    else {
+
+    }
+
 }
