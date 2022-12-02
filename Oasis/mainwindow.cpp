@@ -149,12 +149,18 @@ void MainWindow::flashSelectedLevel(){
 //                             Button Functionality                           //
 //============================================================================//
 
+// This function change color of lights and enable/disable buttons based on the number of times the power button
+// has been clicked.
+// Clicked once = 1 (this is the value of numberOfTimesPowerBtnClicked variable).
+// Clicked twice = 2 (this is the value of numberOfTimesPowerBtnClicked variable).
+// Clicked thrice (3 times) = 0 (this is the value of numberOfTimesPowerBtnClicked variable).
 void MainWindow::on_powerBtn_clicked()
 {
 
     // Change color of lights, enable/disable buttons.
 
     // Clicked power button once...
+    // Turns on the device, but not completely (icons for both duration and session, CES graph, and left and right ear.
     if(numberOfTimesPowerBtnClicked == 0) {
 
         ui->powerBtn->setEnabled(false);
@@ -173,6 +179,7 @@ void MainWindow::on_powerBtn_clicked()
     }
 
     // Clicked power button for the second time...
+    // This turns the device completely on (everything is turned on).
     else if(numberOfTimesPowerBtnClicked == 1) {
 
         onConnect();
@@ -184,6 +191,7 @@ void MainWindow::on_powerBtn_clicked()
     }
 
     // Clicked power button for the third time...
+    // This completely turns off the device (everything is off).
     else {
 
         connectionTestMain();
@@ -196,6 +204,8 @@ void MainWindow::on_powerBtn_clicked()
 
 }
 
+// When the device is completely turn on, this function is called to turn on the CES graph, left ear, and right
+// ear icons.
 void MainWindow::onConnect() {
 
     ui->graphSession->setStyleSheet("#graphSession { border-image: url(:/resources/icons/connect.PNG); border: 2px solid red; border-radius: 20px; }");
@@ -204,6 +214,8 @@ void MainWindow::onConnect() {
 
 }
 
+// When the device is completely turn off, this function is called to turn off the CES graph, left ear, and right
+// ear icons.
 void MainWindow::offConnect() {
 
     ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Off.PNG); border: 2px solid red; border-radius: 20px; }");
@@ -212,6 +224,10 @@ void MainWindow::offConnect() {
 
 }
 
+// When the device is completely turn off, this function is called to turn off all the LEDs (the section in the UI
+// where the labels going from 1 to 8 are found), turning off border of where left and right ear are located, changes
+// the colors progress bar found on top of the power button to white, disables all the buttons found in the device's UI,
+// clears (remove selection) and deselect the session and duration icons.
 void MainWindow::deviceOff() {
 
     ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid white; border-radius: 30px; background-color: black; } ");
@@ -236,6 +252,9 @@ void MainWindow::deviceOff() {
 
 }
 
+// This function is called when the device's turned on for the first time (numberOfTimesPowerBtnClicked variable = 1).
+// It changes the color of the progress bar found on top of the power button to green as well as turns on the
+// LEDs of the labels going from 1 to 8 (through the resetButtons function).
 void MainWindow::deviceOn() {
 
     ui->indicatorOffOrOn->setStyleSheet("#indicatorOffOrOn::chunk { background-color: #01fe00; }");
@@ -243,9 +262,13 @@ void MainWindow::deviceOn() {
 
 }
 
+// This function turns on the icons for the duration and session. This occurs when the power button is clicked
+// for the second time. It also calls and starts a QTimer called timer to checks if the user does not respond or click the selection
+// button for 2 minutes (120000 miliseconds), enables the duration and session's left and right arrows, and
+// sets the current selected item in the duration and session's QListWidget.
 void MainWindow::iconsOn() {
 
-    //on icons
+    // turns the icons on
     ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid limegreen; border-radius: 30px; background-color: black; } ");
 
     QString arrQListDurationOn[3] = {":/resources/icons/20MinuteOn.png", ":/resources/icons/45MinuteOn.png", ":/resources/icons/UserDesignatedOn.png"};
@@ -285,6 +308,15 @@ void MainWindow::iconsOn() {
 
 }
 
+// This function checks if there is a value for newRowItemSession (which stores the session number that corresponds to an LED).
+// - If the newRowItemSession (default) equals to  0 then it select (puts a cyan border around the label) corresponding LED, which
+//   is 5.
+// - If the newRowItemSession equals to 1 then it select (puts a cyan border around the label) corresponding LED, which
+//   is 6.
+// - If the newRowItemSession equals to 2 then it select (puts a cyan border around the label) corresponding LED, which
+//   is 7.
+// - If the newRowItemSession equals to 3 then it select (puts a cyan border around the label) corresponding LED, which
+//   is 4.
 void MainWindow::selectedIntensityAtStart() {
 
     if(newRowItemSession == 0) {
@@ -302,6 +334,8 @@ void MainWindow::selectedIntensityAtStart() {
 
 }
 
+// This function is called when the user presses the power button for the third time (to completely turn off the
+// device). This turns off all the icons for the duration and session (bringing them back to white).
 void MainWindow::iconsOff() {
 
     //off icons
@@ -325,6 +359,8 @@ void MainWindow::iconsOff() {
 
 }
 
+// This function initializes the icons for the duration and session as well as sets the parameters for
+// the QListWidget that will contains the duration and session icons.
 void MainWindow::initialiazeListOfIcons() {
 
     QString arrQListDuration[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
@@ -357,7 +393,8 @@ void MainWindow::initialiazeListOfIcons() {
 
 }
 
-// Goes left from the first QlistDuration of icons.
+// This function allows the user to traverse the QListWidget of duration from left to right
+// from the first QlistDuration of icons.
 void MainWindow::on_durationLeft_clicked()
 {
 
@@ -374,7 +411,8 @@ void MainWindow::on_durationLeft_clicked()
 
 }
 
-// Goes left from the second QlistDuration of icons.
+// This function allows the user to traverse the QListWidget of session from left to right
+// from the first QlistSession of icons.
 void MainWindow::on_sessionLeft_clicked()
 {
 
@@ -402,7 +440,8 @@ void MainWindow::on_sessionLeft_clicked()
 
 }
 
-// Goes right from the first QlistDuration of icons.
+// This function allows the user to traverse the QListWidget of duration from right to left
+// from the first QlistDuration of icons.
 void MainWindow::on_durationRight_clicked()
 {
 
@@ -419,7 +458,8 @@ void MainWindow::on_durationRight_clicked()
 
 }
 
-// Goes right from the second QlistDuration of icons.
+// This function allows the user to traverse the QListWidget of session from right to left
+// from the first QlistSession of icons.
 void MainWindow::on_sessionRight_clicked()
 {
 
