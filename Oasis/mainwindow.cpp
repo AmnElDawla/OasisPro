@@ -1407,7 +1407,7 @@ int MainWindow::connectionTestMain()
     ui->increaseIntensityBtn->setEnabled(false);
     ui->decreaseIntensityBtn->setEnabled(false);
 
-    // Check if intensity level of the selected session is safe:
+    // Check if intensity level of the selected session is safe.
     if (objData.sessionArray[2] > defaultSafeLevel) {
         objData.sessionArray[2] = defaultSafeLevel;
     }
@@ -1429,7 +1429,7 @@ int MainWindow::connectionTestMain()
         connectivity = false;
     }
 
-    // a counter to keep track of the waiting process
+    // A counter to keep track of the waiting process
     int timeNow = 0;
     int timeOut = 20;
 
