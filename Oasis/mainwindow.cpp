@@ -1253,7 +1253,7 @@ void MainWindow::pauseCounter() {
         pauseTimerDefault->stop();
         countForPauseEnd = 0;
         offLeds();
-        pauseTimerDefault->deleteLater();
+        delete pauseTimerDefault;
         pauseTimerDefault = nullptr;
         qDebug() << "End scrolling animation...";
     }
@@ -1306,7 +1306,7 @@ int MainWindow::connectionTestMain()
     int timeOut = 20;
 
     //Check connection
-    if (connectivity == false) {
+    if (connectivity == false && numberOfTimesPowerBtnClicked == 2) {
         qDebug() << "Device is disconnected...";
 
         //Disconnect left and right ear
@@ -1327,7 +1327,8 @@ int MainWindow::connectionTestMain()
     // 2. press powerbutton
     // 3. time is out (> 20 secs)
 
-    if (connectivity == true && timeNow < timeOut && numberOfTimesPowerBtnClicked != 2 && batteryLevel >= 25){
+    else if (connectivity == true && timeNow < timeOut && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2){
+
         qDebug() << "Device is successfully connected...";
 
         // Connect right and left ear
@@ -1340,27 +1341,34 @@ int MainWindow::connectionTestMain()
 
         // Exit with connection
         qDebug() << "Connection test ended...";
+
     }
 
     // Exit without connection
-    qDebug() << "Connection test has been terminated ...";
+    else {
+
+        qDebug() << "Connection test has been terminated ...";
+
+    }
+
     return -1;
 
 }
 
 void MainWindow::on_newBattery_clicked()
 {
+    qDebug() << "Battery has been recharged back to 100%...";
     batteryLevel = 100;
 }
 
 void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 {
 
-    if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 1) {
+    if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2) {
         qDebug() << "Connected...";
         connectionTestMain();
     }
-    else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 1) {
+    else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2) {
         qDebug() << "Disconnected...";
         connectionTestMain();
     }
