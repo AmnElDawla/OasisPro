@@ -1173,7 +1173,6 @@ void MainWindow::intervalTimerIntensity() {
 
 void MainWindow::switchLeds() {
 
-    //qDebug() << QString::number(countSwitch);
     if(countSwitch == 0) {
         ledOneOn();
     }
@@ -1356,10 +1355,12 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 {
 
     if(ui->listOfSkins->currentIndex() == 0) {
-
+        qDebug() << "Connected...";
+        connectionTestMain();
     }
     else {
-
+        qDebug() << "Disconnected...";
+        connectionTestMain();
     }
 
 }

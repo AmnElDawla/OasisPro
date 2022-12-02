@@ -107,6 +107,8 @@ private slots:
     void switchLeds();
     void on_newBattery_clicked();
 
+    void on_listOfSkins_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     Database *newDatabase = new Database();
@@ -116,8 +118,8 @@ private:
     int newRowItemSession = 0;
     int selectedDuration = 0;
     int selectedSession = 0;
-    QTimer *batteryStartTimer;
-    QTimer *batteryStopTimer;
+    QTimer *batteryStartTimer = nullptr;
+    QTimer *batteryStopTimer = nullptr;
     bool selectedSessionOrNot = false;
     int batteryLevel = 43;
     bool ledOneStatus = false;
@@ -133,23 +135,23 @@ private:
     bool ledFiveFlash = false;
     bool ledSixFlash = false;
     bool ledSevenFlash = false;
-    QTimer *timer;
+    QTimer *timer = nullptr;
     // Connection test:
     bool graphSessionStatus = false;
     bool connectivity = true;
-    QTimer *timerFlashes;
-    QTimer *timerCES;
+    QTimer *timerFlashes = nullptr;
+    QTimer *timerCES = nullptr;
     // Connection test:
     /* CES Mode light control */
-    QTimer *connectionTestStartTimer;
-    QTimer *connectionTestStopTimer;
+    QTimer *connectionTestStartTimer = nullptr;
+    QTimer *connectionTestStopTimer = nullptr;
     int counterFlashGraph = 0;
     bool OptionDry = false;
     bool OptionWet = false;
-    QTimer *pauseTimerDefault;
+    QTimer *pauseTimerDefault = nullptr;
     int valuePause = 0;
     int countForPauseEnd = 0;
-    QTimer *timerBlinkLed;
+    QTimer *timerBlinkLed = nullptr;
     /*
      * Grp 0 ====> blinking LED 7 and 8
      * Grp 1 ====> blinking LED 4, 5, and 6
