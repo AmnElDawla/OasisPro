@@ -195,8 +195,14 @@ void MainWindow::on_powerBtn_clicked()
     else {
 
         offLeds();
-        timerCES->stop();
-        timerFlashes->stop();
+
+        if(timerCES != nullptr) {
+            timerCES->stop();
+        }
+        if(timerFlashes != nullptr) {
+            timerFlashes->stop();
+        }
+
         connectionTestMain();
         deviceOff();
         iconsOff();
