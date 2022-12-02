@@ -279,7 +279,7 @@ private:
     // End session variables.
     bool sessionOnOrOff = false;
     QTimer *endSession = nullptr;
-    int countSwitchDescent = 15;
+    int countSwitchDescent = 0;
 
 };
 #endif // MAINWINDOW_H

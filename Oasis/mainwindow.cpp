@@ -194,6 +194,9 @@ void MainWindow::on_powerBtn_clicked()
     // This completely turns off the device (everything is off).
     else {
 
+        offLeds();
+        timerCES->stop();
+        timerFlashes->stop();
         connectionTestMain();
         deviceOff();
         iconsOff();
@@ -1408,11 +1411,11 @@ int MainWindow::connectionTestMain()
     int timeNow = 0;
     int timeOut = 20;
 
-    //Check connection
+    // Check connection
     if (connectivity == false && numberOfTimesPowerBtnClicked == 2) {
         qDebug() << "Device is disconnected...";
 
-        //Disconnect left and right ear
+        // Disconnect left and right ear
         offLeftEar();
         offRightEar();
         offGroupBoxEars();
@@ -1453,8 +1456,13 @@ int MainWindow::connectionTestMain()
     else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
 
         qDebug() << "Ending session early...";
+
+        // Scrolling down animation - end of session.
         descendEndSession();
+
+        // Set variable to false as there is no active session.
         sessionOnOrOff = false;
+
         qDebug() << "Session ended...";
 
     }
@@ -1472,8 +1480,10 @@ int MainWindow::connectionTestMain()
 
 void MainWindow::on_newBattery_clicked()
 {
+
     qDebug() << "Battery has been recharged back to 100%...";
     batteryLevel = 100;
+
 }
 
 void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
@@ -1566,19 +1576,19 @@ void MainWindow::startDescendEndSession() {
         ledEightOn();
     }
     else {
-        qDebug() << "Last intensity...";
+        qDebug() << "Arrived at the first intensity...";
         ledEightOff();
     }
 
-    if(countSwitchDescent == -1) {
-        qDebug() << "Stopping timer...";
-        countSwitchDescent = 15;
+    if(countSwitchDescent == 15) {
+        qDebug() << "Stopping end session timer...";
+        countSwitchDescent = 0;
         endSession->stop();
         delete endSession;
         endSession = nullptr;
     }
     else {
-        countSwitchDescent--;
+        countSwitchDescent++;
     }
 
 }
