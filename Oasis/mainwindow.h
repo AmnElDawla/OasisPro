@@ -26,6 +26,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    // Device on or off functions.
     void onConnect();
     void offConnect();
     void deviceOff();
@@ -36,7 +38,7 @@ public:
     void resetButtons();
     void flashSelectedLevel();
 
-    // LED controls
+    // LED controls functions.
     void ledOneOff();
     void ledTwoOff();
     void ledThreeOff();
@@ -61,23 +63,24 @@ public:
     void toggleLedSix();
     void toggleLedSeven();
     void toggleLedEight();
-    // LED controls end
+    void offLeds();
+    void onLeds();
 
+    // Connectivity functions.
     void graphSessionOn();
     void graphSessionOff();
     void flashCesModeLight();
     bool getConnectivity();
     void onConnectivity();
     void offConnectivity();
-    void offLeds();
-    void onLeds();
     void toggleCesModeLight();
     void displayConnection(int signal);
     void playScrollAnimation();
 
-    // connection test main control
+    // Connection test main control.
     int connectionTestMain();
 
+    // Connection test functions.
     void flashSelectedLevelAfterSelection();
     void selectedIntensityAtStart();
     void pauseTimer(int);
@@ -198,7 +201,10 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    // Database variable (starts new database)
     Database *newDatabase = new Database();
+
     QVector<int> levels;
 
     int numberOfTimesPowerBtnClicked = 0;
@@ -209,12 +215,13 @@ private:
     int selectedDuration = 0;
     int selectedSession = 0;
 
+    // Battery variables.
     QTimer *batteryStartTimer = nullptr;
     QTimer *batteryStopTimer = nullptr;
     bool selectedSessionOrNot = false;
     int batteryLevel = 43;
 
-    // LEDs variables (boolean)
+    // LEDs variables (boolean).
     bool ledOneStatus = false;
     bool ledTwoStatus = false;
     bool ledThreeStatus = false;
@@ -233,19 +240,19 @@ private:
     // not click selection button after 2 minutes.
     QTimer *timer = nullptr;
 
-    // Connection test:
+    // Connection test variables
     bool graphSessionStatus = false;
     bool connectivity = true;
     QTimer *timerFlashes = nullptr;
     QTimer *timerCES = nullptr;
+    int signal = 0;
+    bool OptionDry = false;
+    bool OptionWet = false;
 
-    // Connection test:
     /* CES Mode light control */
     QTimer *connectionTestStartTimer = nullptr;
     QTimer *connectionTestStopTimer = nullptr;
     int counterFlashGraph = 0;
-    bool OptionDry = false;
-    bool OptionWet = false;
     QTimer *pauseTimerDefault = nullptr;
     int valuePause = 0;
     int countForPauseEnd = 0;
@@ -258,12 +265,18 @@ private:
      */
     int groupToBlink = 0;
 
+    // Flashes intensity variables.
     int counterBlinkingLed = 0;
     bool blinkTrueOrFalse = true;
-    int signal = 0;
+
+    // Scrolling animation variables
     QTimer *intensityTimer = nullptr;
     int countSwitch = 0;
+
+    // Delay timer.
     QTimer *fiveSecondsDelay = nullptr;
+
+    // End session variables.
     bool sessionOnOrOff = false;
     QTimer *endSession = nullptr;
     int countSwitchDescent = 15;
