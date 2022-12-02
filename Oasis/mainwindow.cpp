@@ -1302,6 +1302,9 @@ int MainWindow::connectionTestMain()
 
     qDebug() << "Connection test started...";
 
+    // Start session
+    sessionOnOrOff = true;
+
     // Define maximum value for safe voltage level:
     int defaultSafeLevel = 4;
 
@@ -1354,7 +1357,7 @@ int MainWindow::connectionTestMain()
 
     // Exceptions that will terminate the while loop:
     // 1. low battery level
-    // 2. press powerbutton
+    // 2. press powerbutton (missing, need add functionality)
     // 3. time is out (> 20 secs)
 
     else if (connectivity == true && timeNow < timeOut && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2){
@@ -1374,6 +1377,13 @@ int MainWindow::connectionTestMain()
 
         // Exit with connection
         qDebug() << "Connection test ended...";
+
+    }
+
+    else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
+
+        qDebug() << "Ending session early...";
+        sessionOnOrOff = false;
 
     }
 
@@ -1424,4 +1434,79 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     else {
         qDebug() << "Device is not turned on...";
     }
+}
+
+void MainWindow::descendEndSession() {
+
+    offLeds();
+    endSession = new QTimer(this);
+    endSession->setInterval(500);
+    connect(endSession, SIGNAL(timeout()), this, SLOT(startDescendEndSession()));
+    endSession->start();
+
+}
+
+void MainWindow::startDescendEndSession() {
+
+    if(countSwitchDescent == 15) {
+        ledOneOn();
+    }
+    else if(countSwitchDescent == 14) {
+        ledOneOff();
+    }
+    else if(countSwitchDescent == 13) {
+        ledTwoOn();
+    }
+    else if(countSwitchDescent == 12) {
+        ledTwoOff();
+    }
+    else if(countSwitchDescent == 11) {
+        ledThreeOn();
+    }
+    else if(countSwitchDescent == 10) {
+        ledThreeOff();
+    }
+    else if(countSwitchDescent == 9) {
+        ledFourOn();
+    }
+    else if(countSwitchDescent == 8) {
+        ledFourOff();
+    }
+    else if(countSwitchDescent == 7) {
+        ledFiveOn();
+    }
+    else if(countSwitchDescent == 6) {
+        ledFiveOff();
+    }
+    else if(countSwitchDescent == 5) {
+        ledSixOn();
+    }
+    else if(countSwitchDescent == 4) {
+        ledSixOff();
+    }
+    else if(countSwitchDescent == 3) {
+        ledSevenOn();
+    }
+    else if(countSwitchDescent == 2) {
+        ledSevenOff();
+    }
+    else if(countSwitchDescent == 1) {
+        ledEightOn();
+    }
+    else {
+        qDebug() << "Last intensity...";
+        ledEightOff();
+    }
+
+    if(countSwitchDescent == -1) {
+        qDebug() << "Stopping timer...";
+        countSwitchDescent = 15;
+        endSession->stop();
+        delete endSession;
+        endSession = nullptr;
+    }
+    else {
+        countSwitchDescent--;
+    }
+
 }

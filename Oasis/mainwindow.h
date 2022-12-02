@@ -88,6 +88,7 @@ public:
     void offGroupBoxEars();
     void onGroupBoxEars();
     void delay5Seconds();
+    void descendEndSession();
 
 private slots:
     void on_powerBtn_clicked();
@@ -109,6 +110,8 @@ private slots:
     void on_newBattery_clicked();
     void on_listOfSkins_currentIndexChanged(const QString &arg1);
     void continueAfter5Seconds();
+    void on_listWetOrDry_currentIndexChanged(const QString &arg1);
+    void startDescendEndSession();
 
 private:
     Ui::MainWindow *ui;
@@ -165,6 +168,9 @@ private:
     QTimer *intensityTimer = nullptr;
     int countSwitch = 0;
     QTimer *fiveSecondsDelay = nullptr;
+    bool sessionOnOrOff = false;
+    QTimer *endSession = nullptr;
+    int countSwitchDescent = 15;
 
 };
 #endif // MAINWINDOW_H
