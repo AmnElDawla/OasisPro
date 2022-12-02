@@ -1161,15 +1161,21 @@ void MainWindow::intervalTimerIntensity() {
 
     if(countForPauseEnd < valuePause) {
         if(intensityTimer == nullptr) {
+            qDebug() << "New intensity timer...";
             intensityTimer = new QTimer(this);
             intensityTimer->setInterval(500);
             connect(intensityTimer, SIGNAL(timeout()), this, SLOT(switchLeds()));
             intensityTimer->start();
         }
-        else {
+        else if(connectivity == false) {
+            qDebug() << "Continue scrolling animation...";
             offLeds();
             countSwitch = 0;
             intensityTimer->start();
+        }
+        else {
+            countSwitch = 0;
+            qDebug() << "Scrolling animation has stopped...";
         }
     }
 
@@ -1177,61 +1183,63 @@ void MainWindow::intervalTimerIntensity() {
 
 void MainWindow::switchLeds() {
 
-    if(countSwitch == 0) {
-        ledOneOn();
-    }
-    else if(countSwitch == 1) {
-        ledOneOff();
-    }
-    else if(countSwitch == 2) {
-        ledTwoOn();
-    }
-    else if(countSwitch == 3) {
-        ledTwoOff();
-    }
-    else if(countSwitch == 4) {
-        ledThreeOn();
-    }
-    else if(countSwitch == 5) {
-        ledThreeOff();
-    }
-    else if(countSwitch == 6) {
-        ledFourOn();
-    }
-    else if(countSwitch == 7) {
-        ledFourOff();
-    }
-    else if(countSwitch == 8) {
-        ledFiveOn();
-    }
-    else if(countSwitch == 9) {
-        ledFiveOff();
-    }
-    else if(countSwitch == 10) {
-        ledSixOn();
-    }
-    else if(countSwitch == 11) {
-        ledSixOff();
-    }
-    else if(countSwitch == 12) {
-        ledSevenOn();
-    }
-    else if(countSwitch == 13) {
-        ledSevenOff();
-    }
-    else if(countSwitch == 14) {
-        ledEightOn();
-    }
-    else  {
-        ledEightOff();
-    }
+    if(connectivity == false) {
+        if(countSwitch == 0) {
+            ledOneOn();
+        }
+        else if(countSwitch == 1) {
+            ledOneOff();
+        }
+        else if(countSwitch == 2) {
+            ledTwoOn();
+        }
+        else if(countSwitch == 3) {
+            ledTwoOff();
+        }
+        else if(countSwitch == 4) {
+            ledThreeOn();
+        }
+        else if(countSwitch == 5) {
+            ledThreeOff();
+        }
+        else if(countSwitch == 6) {
+            ledFourOn();
+        }
+        else if(countSwitch == 7) {
+            ledFourOff();
+        }
+        else if(countSwitch == 8) {
+            ledFiveOn();
+        }
+        else if(countSwitch == 9) {
+            ledFiveOff();
+        }
+        else if(countSwitch == 10) {
+            ledSixOn();
+        }
+        else if(countSwitch == 11) {
+            ledSixOff();
+        }
+        else if(countSwitch == 12) {
+            ledSevenOn();
+        }
+        else if(countSwitch == 13) {
+            ledSevenOff();
+        }
+        else if(countSwitch == 14) {
+            ledEightOn();
+        }
+        else  {
+            ledEightOff();
+        }
 
-    if(countSwitch == 15) {
-        countSwitch = 0;
-        intensityTimer->stop();
-    }
-    else {
-        countSwitch++;
+        if(countSwitch == 15) {
+            countSwitch = 0;
+            intensityTimer->stop();
+        }
+        else {
+            countSwitch++;
+        }
     }
 
 }
@@ -1330,6 +1338,9 @@ int MainWindow::connectionTestMain()
     else if (connectivity == true && timeNow < timeOut && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2){
 
         qDebug() << "Device is successfully connected...";
+
+        // To make sure scrolling animation is off completely.
+        offLeds();
 
         // Connect right and left ear
         onLeftEar();
