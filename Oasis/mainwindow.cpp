@@ -498,7 +498,8 @@ void MainWindow::on_sessionRight_clicked()
 
 void MainWindow::showBatteryLevel() {
 
-    if(batteryLevel > 87){
+    if(batteryLevel > 87) {
+
         toggleLedEight();
         toggleLedSeven();
         toggleLedSix();
@@ -507,7 +508,9 @@ void MainWindow::showBatteryLevel() {
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
-    } else if(batteryLevel <= 87 && batteryLevel > 75){
+
+    } else if(batteryLevel <= 87 && batteryLevel > 75) {
+
         ledEightOff();
         toggleLedSeven();
         toggleLedSix();
@@ -516,7 +519,9 @@ void MainWindow::showBatteryLevel() {
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
-    } else if(batteryLevel <= 75 && batteryLevel > 62){
+
+    } else if(batteryLevel <= 75 && batteryLevel > 62) {
+
         ledEightOff();
         ledSevenOff();
         toggleLedSix();
@@ -525,7 +530,9 @@ void MainWindow::showBatteryLevel() {
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
-    } else if(batteryLevel <= 62 && batteryLevel > 50){
+
+    } else if(batteryLevel <= 62 && batteryLevel > 50) {
+
         ledEightOff();
         ledSevenOff();
         ledSixOff();
@@ -534,7 +541,9 @@ void MainWindow::showBatteryLevel() {
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
-    } else if(batteryLevel <= 50 && batteryLevel > 37){
+
+    } else if(batteryLevel <= 50 && batteryLevel > 37) {
+
         ledEightOff();
         ledSevenOff();
         ledSixOff();
@@ -543,7 +552,9 @@ void MainWindow::showBatteryLevel() {
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
-    } else if(batteryLevel <= 37 && batteryLevel > 25){
+
+    } else if(batteryLevel <= 37 && batteryLevel > 25) {
+
         ledEightOff();
         ledSevenOff();
         ledSixOff();
@@ -552,7 +563,9 @@ void MainWindow::showBatteryLevel() {
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
-    } else if(batteryLevel <= 25 && batteryLevel > 12){
+
+    } else if(batteryLevel <= 25 && batteryLevel > 12) {
+
         ledEightOff();
         ledSevenOff();
         ledSixOff();
@@ -561,7 +574,9 @@ void MainWindow::showBatteryLevel() {
         ledThreeOff();
         toggleLedTwo();
         toggleLedOne();
-    } else if(batteryLevel <= 12 && batteryLevel > 0){
+
+    } else if(batteryLevel <= 12 && batteryLevel > 0) {
+
         ledEightOff();
         ledSevenOff();
         ledSixOff();
@@ -570,6 +585,7 @@ void MainWindow::showBatteryLevel() {
         ledThreeOff();
         ledTwoOff();
         toggleLedOne();
+
     }
 
 }
