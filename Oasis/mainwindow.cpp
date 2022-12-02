@@ -65,21 +65,21 @@ MainWindow::MainWindow(QWidget *parent)
     // ANDRE AND MENGRUI, YOU MADE A MISTAKE HERE. THIS IS REPEATING MY CODE FROM LINE 58 AND 59 AND BROKE THE FLASHING MECHANIC.
     // I LEFT THIS HERE COMMENTED INSTEAD OF DELETED IN CASE YOU INTENDED TO USE IT FOR SOMETHING ELSE.
     // DELETE THIS COMMENT WHEN YOU SEE THIS AND DO WHAT YOU WANT WITH THE TWO LINES BELOW.
-    //connect(batteryStartTimer, SIGNAL(timeout()), this, SLOT(showBatteryLevel()));
-    //connect(batteryStopTimer, SIGNAL(timeout()), this, SLOT(stopBatteryLevel()));
+    // connect(batteryStartTimer, SIGNAL(timeout()), this, SLOT(showBatteryLevel()));
+    // connect(batteryStopTimer, SIGNAL(timeout()), this, SLOT(stopBatteryLevel()));
     connectionTestStopTimer->setSingleShot(true);
 
-    //Add items to the comboboxes.
-    ui->listWetOrDry->addItem(tr("Wet"));
-    ui->listWetOrDry->addItem(tr("Dry"));
+    // Add items to the comboboxes.
+    // ui->listWetOrDry->addItem(tr("Wet"));
+    // ui->listWetOrDry->addItem(tr("Dry"));
 
-    ui->listOfSkins->addItem(tr("Connect"));
-    ui->listOfSkins->addItem((tr("Disconnect")));
+    // ui->listOfSkins->addItem(tr("Connect"));
+    // ui->listOfSkins->addItem((tr("Disconnect")));
 
-    ui->listOfUsers->addItem(tr("User 1"));
-    ui->listOfUsers->addItem(tr("User 2"));
-    ui->listOfUsers->addItem(tr("User 3"));
-    ui->listOfUsers->addItem(tr("User 4"));
+    // ui->listOfUsers->addItem(tr("User 1"));
+    // ui->listOfUsers->addItem(tr("User 2"));
+    // ui->listOfUsers->addItem(tr("User 3"));
+    // ui->listOfUsers->addItem(tr("User 4"));
 
 }
 
@@ -930,10 +930,12 @@ void MainWindow::toggleCesModeLight()
 void MainWindow::flashCesModeLight()
 {
 
-    timerCES = new QTimer(this);
-    timerCES->setInterval(500);
-    connect(timerCES, SIGNAL(timeout()), this, SLOT(flashGraphCounter()));
-    timerCES->start();
+    if(timerCES == nullptr) {
+        timerCES = new QTimer(this);
+        timerCES->setInterval(500);
+        connect(timerCES, SIGNAL(timeout()), this, SLOT(flashGraphCounter()));
+        timerCES->start();
+    }
 
 }
 
@@ -944,6 +946,9 @@ void MainWindow::flashGraphCounter() {
     if(counterFlashGraph == 6) {
 
         timerCES->stop();
+        delete timerCES;
+        timerCES = nullptr;
+
         counterFlashGraph = 0;
 
         if(connectivity == false) {
@@ -953,7 +958,6 @@ void MainWindow::flashGraphCounter() {
             graphSessionOn();
         }
 
-        //qDebug() << "Signal is "+QString::number(signal);
         displayConnection(signal);
 
     }
@@ -1255,8 +1259,6 @@ void MainWindow::pauseCounter() {
     }
     else {
         intervalTimerIntensity();
-        //qDebug() << "Value 1 is "+QString::number(valuePause);
-        //qDebug() << "Value 2 is "+QString::number(countForPauseEnd);
         countForPauseEnd++;
     }
 
@@ -1325,7 +1327,7 @@ int MainWindow::connectionTestMain()
     // 2. press powerbutton
     // 3. time is out (> 20 secs)
 
-    if (connectivity == true && timeNow < timeOut && numberOfTimesPowerBtnClicked != 3 && batteryLevel >= 25){
+    if (connectivity == true && timeNow < timeOut && numberOfTimesPowerBtnClicked != 2 && batteryLevel >= 25){
         qDebug() << "Device is successfully connected...";
 
         // Connect right and left ear
@@ -1354,13 +1356,16 @@ void MainWindow::on_newBattery_clicked()
 void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 {
 
-    if(ui->listOfSkins->currentIndex() == 0) {
+    if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 1) {
         qDebug() << "Connected...";
         connectionTestMain();
     }
-    else {
+    else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 1) {
         qDebug() << "Disconnected...";
         connectionTestMain();
+    }
+    else {
+        qDebug() << "Device is not turned on...";
     }
 
 }

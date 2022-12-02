@@ -923,7 +923,18 @@ background-repeat: none;
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="listOfSkins"/>
+      <widget class="QComboBox" name="listOfSkins">
+       <item>
+        <property name="text">
+         <string>Connected</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Disconnected</string>
+        </property>
+       </item>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -1087,7 +1098,7 @@ border-radius: 10px;
      <string>Select</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>1100</x>
@@ -1120,11 +1131,22 @@ background-repeat: none;
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="listWetOrDry"/>
+      <widget class="QComboBox" name="listWetOrDry">
+       <item>
+        <property name="text">
+         <string>Wet</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Dry</string>
+        </property>
+       </item>
+      </widget>
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>1100</x>
@@ -1157,7 +1179,28 @@ background-repeat: none;
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="listOfUsers"/>
+      <widget class="QComboBox" name="listOfUsers">
+       <item>
+        <property name="text">
+         <string>User 1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User 2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User 3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>User 4</string>
+        </property>
+       </item>
+      </widget>
      </item>
     </layout>
    </widget>
