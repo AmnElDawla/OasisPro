@@ -1284,7 +1284,7 @@ int MainWindow::connectionTestMain()
         objData.sessionArray[2] = defaultSafeLevel;
     }
 
-    if(ui->listOfSkins->currentIndex() == 0 && ui->listOfSkins->currentIndex() == 0) {
+    if(ui->listWetOrDry->currentIndex() == 0 && ui->listOfSkins->currentIndex() == 0) {
         signal = 2;
         OptionWet = true;
         OptionDry = false;
