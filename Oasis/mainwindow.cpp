@@ -1169,7 +1169,6 @@ void MainWindow::intervalTimerIntensity() {
         }
         else if(connectivity == false) {
             qDebug() << "Continue scrolling animation...";
-            offLeds();
             countSwitch = 0;
             intensityTimer->start();
         }
@@ -1229,11 +1228,13 @@ void MainWindow::switchLeds() {
         else if(countSwitch == 14) {
             ledEightOn();
         }
-        else  {
+        else {
+            qDebug() << "Last intensity...";
             ledEightOff();
         }
 
         if(countSwitch == 15) {
+            qDebug() << "Stopping timer...";
             countSwitch = 0;
             intensityTimer->stop();
         }
@@ -1249,7 +1250,7 @@ void MainWindow::pauseTimer(int value) {
     offLeds();
     valuePause = value;
     pauseTimerDefault = new QTimer(this);
-    pauseTimerDefault->setInterval(8000);
+    pauseTimerDefault->setInterval(9000);
     connect(pauseTimerDefault, SIGNAL(timeout()), this, SLOT(pauseCounter()));
     pauseTimerDefault->start();
 
