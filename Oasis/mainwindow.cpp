@@ -186,6 +186,7 @@ void MainWindow::on_powerBtn_clicked()
     // Clicked power button for the third time...
     else {
 
+        connectionTestMain();
         deviceOff();
         iconsOff();
         offConnect();
@@ -1383,7 +1384,9 @@ int MainWindow::connectionTestMain()
     else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
 
         qDebug() << "Ending session early...";
+        descendEndSession();
         sessionOnOrOff = false;
+        qDebug() << "Session ended...";
 
     }
 
