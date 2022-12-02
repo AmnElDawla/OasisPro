@@ -1258,12 +1258,12 @@ void MainWindow::displayConnection(int signal)
 
 }
 
-// Play scroll animation on GUI:
+// Play scroll animation on GUI.
 void MainWindow::playScrollAnimation()
 {
 
     qDebug() << "Scrolling animation...";
-    // update Qtimer
+    // update Qtimer (missing???)
     /* [...] */
     int timeout = 5; // <- subject to change based on Qtimer
 
