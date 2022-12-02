@@ -581,6 +581,11 @@ void MainWindow::stopBatteryLevel() {
 
 }
 
+// This function is called when the user has pressed the selection button.
+// It disables the selection button and checks if the QTimer named timer is active (still running) and turns it
+// off if it is (this QTimer is the one that check if the user has selected a session and duration within 2 minutes
+// (120000 miliseconds). Then, it stores the session and duration values in an array called sessionArray.
+// After this, flashes the selected session's intensity for 3 seconds (3000 miliseconds) at an interval of 500 miliseconds.
 void MainWindow::on_selectionBtn_clicked()
 {
     // ADD CODE TO DISABLE BUTTON WHEN WE HAVE A WAY
@@ -607,6 +612,8 @@ void MainWindow::on_selectionBtn_clicked()
 
 }
 
+// This function starts the QTimer named timerFlashes to flash the selected session's intensity at a 500 miliseconds
+// interval.
 void MainWindow::flashSelectedLevelAfterSelection() {
 
     timerFlashes = new QTimer(this);
@@ -616,6 +623,10 @@ void MainWindow::flashSelectedLevelAfterSelection() {
 
 }
 
+// This function flashes the selected session's intensity based on the QTimer named timerFlashes.
+// It does this for 3 seconds. After 3 seconds, it stops the timer, resets the counter named valueIntUntilEndOfFlash
+// that keeps track of the amount of time this function has been called and starts the 5 seconds delay by calling
+// the delay5Seconds function.
 void MainWindow::flashTimer() {
 
     if(objData.sessionArray[1] == 0 && ledFiveFlash == true){
@@ -659,6 +670,7 @@ void MainWindow::flashTimer() {
 
 }
 
+// This function start the fiveSecondsDelay timer (this timer is a single shot one).
 void MainWindow::delay5Seconds() {
 
     qDebug() << "Start 5 seconds delay...";
@@ -670,6 +682,7 @@ void MainWindow::delay5Seconds() {
 
 }
 
+// After the 5 seconds have been finished, this function will then call the connection test function.
 void MainWindow::continueAfter5Seconds() {
 
     qDebug() << "5 seconds delay over...";
@@ -679,6 +692,8 @@ void MainWindow::continueAfter5Seconds() {
 
 }
 
+// This function completely turns off the device if the user does not select a session after 2 minutes (120000
+// miliseconds).
 void MainWindow::turnOffNoSessionSelected() {
 
     if(timer->isActive()) {
@@ -696,8 +711,7 @@ void MainWindow::on_increaseIntensityBtn_clicked()
 {
 
     // Don't increase intensity level beyond 8
-
-    qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
+    // qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
 
     if(objData.sessionArray[2] < 8){
         objData.sessionArray[2]++;
@@ -710,9 +724,9 @@ void MainWindow::on_increaseIntensityBtn_clicked()
 void MainWindow::on_decreaseIntensityBtn_clicked()
 {
 
-    qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
-
+    // qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
     // Don't decrease intensity level beyond 0
+
     if(objData.sessionArray[2] > 1){
         objData.sessionArray[2]--;
     }
@@ -921,6 +935,7 @@ void MainWindow::toggleLedEight(){
 //============================================================================//
 
 /* UI control of CES mode light */
+// This function turn CES graph (CES mode light) on and set the corresponding boolean variable to true.
 void MainWindow::graphSessionOn()
 {
 
@@ -929,6 +944,7 @@ void MainWindow::graphSessionOn()
 
 }
 
+// This function turn CES graph (CES mode light) off and set the corresponding boolean variable to false.
 void MainWindow::graphSessionOff()
 {
 
@@ -936,42 +952,48 @@ void MainWindow::graphSessionOff()
     graphSessionStatus = false;
 
 }
-
+// This function turn the left ear icon off.
 void MainWindow::offLeftEar() {
 
     ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Off.PNG); border: 2px solid red; border-radius: 20px; }");
 
 }
 
+// This function turn the left ear icon on.
 void MainWindow::onLeftEar() {
 
     ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Connected.PNG); border: 2px solid red; border-radius: 20px; }");
 
 }
 
+// This function turn the right ear icon off.
 void MainWindow::offRightEar() {
 
     ui->rightEar->setStyleSheet("#rightEar { border-image: url(:/resources/icons/rightConnect.PNG); border: 2px solid red; border-radius: 20px; }");
 
 }
 
+// This function turn the right ear icon on.
 void MainWindow::onRightEar() {
 
     ui->rightEar->setStyleSheet("#rightEar { border-image: url(:/resources/icons/rightConnectOn.PNG); border: 2px solid red; border-radius: 20px; }");
 
 }
 
+// This function turns off the group box where the left and right ear are found and change its color to white.
 void MainWindow::offGroupBoxEars() {
 
     ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid white; border-radius: 30px; background-color: black; } ");
 
 }
 
+// This function turns on the group box where the left and right ear are found.
 void MainWindow::onGroupBoxEars() {
 
     ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid limegreen; border-radius: 30px; background-color: black; } ");
 
 }
+
 
 void MainWindow::toggleCesModeLight()
 {
@@ -987,7 +1009,7 @@ void MainWindow::toggleCesModeLight()
 
 }
 
-/* Flash the CES Mode light for 3 seconds */
+// This function flashes the CES Mode light for 3 seconds
 void MainWindow::flashCesModeLight()
 {
 
@@ -1078,6 +1100,11 @@ void MainWindow::ledBlinkTimer() {
 
 }
 
+// This function is called when the QTimer named timerBlinked timeout.
+// Grp 0 - Blinks LEDs 7 and 8 (no connection)
+// Grp 1 - Blinks LEDs 4, 5, and 6 (okay connection)
+// Grp 2 - Blinks LEDs 1, 2, and 3 (good or excellent connection)
+// counterBlinkingLed - counter that keeps track of how many times the blinkCounter
 void MainWindow::blinkCounter() {
 
     counterBlinkingLed++;
@@ -1219,6 +1246,8 @@ void MainWindow::playScrollAnimation()
 
 }
 
+// This function manages the scrolling animation by stopping and starting a timer named
+// intensity timer at an interval of 500 miliseconds (half a second).
 void MainWindow::intervalTimerIntensity() {
 
     if(countForPauseEnd < valuePause) {
