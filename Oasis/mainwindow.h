@@ -337,5 +337,8 @@ private:
     // Custom QTimer for the custom duration
     QTimer *customTimer = nullptr;
 
+    // Custom countdown
+    int countdownCustom = 0;
+
 };
 #endif // MAINWINDOW_H

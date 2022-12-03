@@ -1397,6 +1397,7 @@ void MainWindow::blinkCounter() {
                 customTimer->setInterval(1000);
                 connect(customTimer, SIGNAL(timeout()), this, SLOT(updateUITimeCustomDisplay()));
                 customTimer->start();
+                countdownCustom = customDuration;
             }
         }
         else {
@@ -1409,12 +1410,34 @@ void MainWindow::blinkCounter() {
 
 void MainWindow::updateUITimeCustomDisplay() {
 
-    if(customCounter == customDuration) {
+    if(customCounter == (customDuration+1)) {
+
+        qDebug() << QString::number(customDuration)+"s timer finished...";
+
+        // Stopping, deleteing and making timer equal to nullptr;
+        customTimer->stop();
+        delete customTimer;
+        customTimer = nullptr;
+
+        // Resetting counters
+        customCounter = 0;
+        countdownCustom = 0;
+
+        // Turning all LEDs off.
+        offLeds();
+
+        // Only true if the session ends at the time it needs to end (in this case after 20 seconds).
+        finishedScrolledDown = true;
+
+        // Scrolling down animation - end of session.
+        descendEndSession();
 
     }
     else {
 
+        ui->TimeElapse->setText(QString::number(countdownCustom)+"s");
         customCounter++;
+        countdownCustom--;
 
     }
 
