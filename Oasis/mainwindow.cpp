@@ -1404,6 +1404,8 @@ void MainWindow::updateUITime20sDisplay() {
         // Scrolling down animation - end of session.
         descendEndSession();
 
+        qDebug() << "Resetting all necessary components before shut down...";
+
         // Set variable to false as there is no active session.
         sessionOnOrOff = false;
 
@@ -1465,6 +1467,8 @@ void MainWindow::updateUITime45sDisplay() {
 
         // Scrolling down animation - end of session.
         descendEndSession();
+
+        qDebug() << "Resetting all necessary components before shut down...";
 
         // Set variable to false as there is no active session.
         sessionOnOrOff = false;
