@@ -1388,6 +1388,10 @@ void updateUITime20sDisplay() {
     if(countTo20 == 20) {
 
         qDebug() << "20s timer finished...";
+        seconds20Timer->stop();
+        delete seconds20Timer;
+        seconds20Timer = null;
+        countTo20 = 0;
 
     }
     else {
@@ -1403,6 +1407,10 @@ void updateUITime45sDisplay() {
     if(countTo45 == 45) {
 
         qDebug() << "45s timer finished...";
+        seconds45Timer->stop();
+        delete seconds45Timer;
+        seconds45Timer = null;
+        countTo45 = 0;
 
     }
     else {
