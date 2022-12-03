@@ -176,6 +176,8 @@ void MainWindow::on_powerBtn_clicked()
         batteryStopTimer->start(3500);
         numberOfTimesPowerBtnClicked = 1;
 
+        qDebug() << "Device is partly turned on...";
+
     }
 
     // Clicked power button for the second time...
@@ -187,6 +189,8 @@ void MainWindow::on_powerBtn_clicked()
         connectionTestStartTimer->start(500);
         connectionTestStopTimer->start(3500);
         numberOfTimesPowerBtnClicked = 2;
+
+        qDebug() << "Device is turned on...";
 
     }
 
@@ -217,6 +221,8 @@ void MainWindow::on_powerBtn_clicked()
         deviceOff();
         iconsOff();
         offConnect();
+
+        qDebug() << "Device is turned off...";
 
     }
 
@@ -1500,6 +1506,9 @@ int MainWindow::connectionTestMain()
     else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
 
         qDebug() << "Ending session early...";
+
+        // Turning all LEDs off.
+        offLeds();
 
         // Scrolling down animation - end of session.
         descendEndSession();
