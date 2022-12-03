@@ -1,5 +1,9 @@
 # OasisPro 
 
+## Merge Errors
+
+Notice if you get errors with a merge, please follow the intructions in this [link](https://stackoverflow.com/questions/161813/how-do-i-resolve-merge-conflicts-in-a-git-repository) and use BA (Base) for when merging changes with the mergetool. 
+
 ## Important Notice
 
 To get the most updated version of the project, please type in gnome-terminal in the folder that you created as the repo for the project the following command: `git pull` as seen in the picture below. 
