@@ -291,5 +291,8 @@ private:
     // Finished flashing choosen intensity (based on session) variable
     bool finishedFlashing = false;
 
+    // Check if two minutes timer is deleted
+    bool timerEnded = false;
+
 };
 #endif // MAINWINDOW_H
