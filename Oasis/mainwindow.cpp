@@ -1359,9 +1359,11 @@ void MainWindow::blinkCounter() {
             //Start session timer based on the duration
             if(objData.sessionArray[0] == 0) {
                 qDebug() << "Timer will go on for 20s";
+                seconds20Timer = new QTimer(this);
             }
             else if(objData.sessionArray[0] == 1) {
                 qDebug() << "Timer will go on for 45s";
+                seconds45Timer = new QTimer(this);
             }
             else {
                 qDebug() << "Timer will go on for N/A";
@@ -1409,8 +1411,10 @@ void MainWindow::playScrollAnimation()
 
     qDebug() << "Scrolling animation...";
 
-    int timeout = 5; // <- subject to change based on Qtimer
+    // Run animation 5 times.
+    int timeout = 5;
 
+    // Call QTimer for starting and displaying animation in GUI.
     pauseTimer(timeout);
 
 }
