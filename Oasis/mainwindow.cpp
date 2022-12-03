@@ -1387,9 +1387,13 @@ void updateUITime20sDisplay() {
 
     if(countTo20 == 20) {
 
+        qDebug() << "20s timer finished...";
+
     }
     else {
+
         countTo20++;
+
     }
 
 }
@@ -1398,9 +1402,13 @@ void updateUITime45sDisplay() {
 
     if(countTo45 == 45) {
 
+        qDebug() << "45s timer finished...";
+
     }
     else {
+
         countTo45++;
+
     }
 
 
