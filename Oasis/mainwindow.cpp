@@ -221,6 +221,9 @@ void MainWindow::on_powerBtn_clicked()
         iconsOff();
         offConnect();
 
+        // Set the text in time left section back to default.
+        ui->TimeText->setText("Time Left");
+
         qDebug() << "Device is turned off...";
 
     }
@@ -312,8 +315,21 @@ void MainWindow::iconsOn() {
 
     }
 
+    // Set default values and enables buttons.
     ui->listDuration->setCurrentRow(newRowItemDuration);
     ui->listSession->setCurrentRow(newRowItemSession);
+    if(newRowItemSession == 0) {
+        ui->TimeText->setText("Time Left (Alpha)");
+    }
+    else if(newRowItemSession == 1) {
+        ui->TimeText->setText("Time Left (SMR)");
+    }
+    else if(newRowItemSession == 2) {
+        ui->TimeText->setText("Time Left (Beta)");
+    }
+    else {
+        ui->TimeText->setText("Time Left (Theta)");
+    }
     ui->listDuration->setStyleSheet("#listDuration::item:selected { background: transparent; border: 2px solid yellow; } #listDuration { background: black; } #listDuration::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
     ui->listSession->setStyleSheet("#listSession::item:selected { background: transparent; border: 2px solid yellow; } #listSession { background: black; } #listSession::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
     ui->sessionRight->setEnabled(true);
@@ -445,21 +461,25 @@ void MainWindow::on_sessionLeft_clicked()
         newRowItemSession = 3;
         resetButtons();
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Theta)");
     }
     else if(newRowItemSession == 1) {
         newRowItemSession = 0;
         resetButtons();
         ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Alpha)");
     }
     else if(newRowItemSession == 2) {
         newRowItemSession = 1;
         resetButtons();
         ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (SMR)");
     }
     else {
         newRowItemSession = 2;
         resetButtons();
         ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Beta)");
     }
     ui->listSession->setCurrentRow(newRowItemSession);
 
@@ -492,21 +512,25 @@ void MainWindow::on_sessionRight_clicked()
         newRowItemSession = 1;
         resetButtons();
         ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (SMR)");
     }
     else if(newRowItemSession == 1) {
         newRowItemSession = 2;
         resetButtons();
         ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Beta)");
     }
     else if(newRowItemSession == 2) {
         newRowItemSession = 3;
         resetButtons();
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Theta)");
     }
     else {
         newRowItemSession = 0;
         resetButtons();
         ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Alpha)");
     }
     ui->listSession->setCurrentRow(newRowItemSession);
 

@@ -989,9 +989,9 @@ background-repeat: none;
     <property name="geometry">
      <rect>
       <x>1100</x>
-      <y>470</y>
+      <y>490</y>
       <width>321</width>
-      <height>61</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1009,7 +1009,7 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>1100</x>
-      <y>290</y>
+      <y>350</y>
       <width>321</width>
       <height>31</height>
      </rect>
@@ -1029,9 +1029,9 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>1100</x>
-      <y>320</y>
+      <y>380</y>
       <width>321</width>
-      <height>151</height>
+      <height>111</height>
      </rect>
     </property>
    </widget>
@@ -1039,7 +1039,7 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>1110</x>
-      <y>490</y>
+      <y>500</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -1060,7 +1060,7 @@ border-radius: 10px;
     <property name="geometry">
      <rect>
       <x>1220</x>
-      <y>490</y>
+      <y>500</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -1081,7 +1081,7 @@ border-radius: 10px;
     <property name="geometry">
      <rect>
       <x>1330</x>
-      <y>490</y>
+      <y>500</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -1200,6 +1200,46 @@ background-repeat: none;
          <string>User 4</string>
         </property>
        </item>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>289</y>
+      <width>321</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="TimeText">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Time  Left</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="TimeElapse">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>0:00</string>
+       </property>
       </widget>
      </item>
     </layout>
