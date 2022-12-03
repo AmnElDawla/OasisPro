@@ -1390,7 +1390,7 @@ void MainWindow::updateUITime20sDisplay() {
         qDebug() << "20s timer finished...";
         seconds20Timer->stop();
         delete seconds20Timer;
-        seconds20Timer = null;
+        seconds20Timer = nullptr;
         countTo20 = 0;
         from20to0 = 20;
 
@@ -1412,7 +1412,7 @@ void MainWindow::updateUITime45sDisplay() {
         qDebug() << "45s timer finished...";
         seconds45Timer->stop();
         delete seconds45Timer;
-        seconds45Timer = null;
+        seconds45Timer = nullptr;
         countTo45 = 0;
         from45to0 = 45;
 
