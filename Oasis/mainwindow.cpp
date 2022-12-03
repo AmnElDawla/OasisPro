@@ -1548,6 +1548,9 @@ int MainWindow::connectionTestMain()
         offRightEar();
         offGroupBoxEars();
 
+        // Turn off all LEDs
+        offLeds();
+
         // Update connection status
         signal = 0;
         changeWetOrDry = false;
