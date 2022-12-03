@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QTimer>
 #include "Database.h"
+#include "TherapyRecord.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
