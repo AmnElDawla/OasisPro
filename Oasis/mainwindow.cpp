@@ -194,21 +194,28 @@ void MainWindow::on_powerBtn_clicked()
     // This completely turns off the device (everything is off).
     else {
 
+        // Turn off all LEDs.
         offLeds();
 
+        // Stop timer necessary timers.
         if(timerCES != nullptr) {
             timerCES->stop();
-            counterFlashGraph = 0;
+            counterFlashGraph = 6;
         }
         if(timerFlashes != nullptr) {
             timerFlashes->stop();
-            valueIntUntilEndOfFlash = 0;
+            valueIntUntilEndOfFlash = 10;
         }
 
+        // Restart connection test to end the session.
         connectionTestMain();
+
+        // Turns off the device completely.
         deviceOff();
         iconsOff();
         offConnect();
+
+        //Reset number of clicks to 0.
         numberOfTimesPowerBtnClicked = 0;
 
     }
@@ -688,11 +695,13 @@ void MainWindow::flashTimer() {
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); ; border: 3px solid cyan; }");
         ledFourFlash = true;
     }
-    valueIntUntilEndOfFlash++;
     if(valueIntUntilEndOfFlash == 10) {
         timerFlashes->stop();
         valueIntUntilEndOfFlash = 0;
         delay5Seconds();
+    }
+    else {
+        valueIntUntilEndOfFlash++;
     }
 
 }
