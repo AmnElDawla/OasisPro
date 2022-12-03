@@ -1,5 +1,15 @@
 # OasisPro
 
+## Important Notice (Part 1)
+
+Please make sure to **comment** your code so that we can understand it as well as be able to debug properly. This will also help us in explaining our code to our TA.
+
+## Important Notice (Part 2)
+
+To get the most updated version of the project, please type in gnome-terminal in the folder that you created as the repo for the project the following command: `git pull` as seen in the picture below. 
+
+![](image/Image23.PNG)
+
 ## Timeframe
 
 Some details on the important dates for this project. 
@@ -12,12 +22,6 @@ Some details on the important dates for this project.
 ## Merge Errors
 
 If you get errors with a merge, please follow the intructions in this [link](https://stackoverflow.com/questions/161813/how-do-i-resolve-merge-conflicts-in-a-git-repository) and use BA (Base) for when merging changes with the `mergetool`. 
-
-## Important Notice
-
-To get the most updated version of the project, please type in gnome-terminal in the folder that you created as the repo for the project the following command: `git pull` as seen in the picture below. 
-
-![](image/Image23.PNG)
 
 ## Important files
 
