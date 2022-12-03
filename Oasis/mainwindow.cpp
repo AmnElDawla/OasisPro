@@ -1322,13 +1322,13 @@ void MainWindow::blinkCounter() {
 
             //Start session timer based on the duration
             if(objData.sessionArray[0] == 0) {
-                qDebug << "Timer will go on for 20s";
+                qDebug() << "Timer will go on for 20s";
             }
             else if(objData.sessionArray[0] == 1) {
-                qDebug << "Timer will go on for 45s";
+                qDebug() << "Timer will go on for 45s";
             }
             else {
-                qDebug << "Timer will go on for N/A";
+                qDebug() << "Timer will go on for N/A";
             }
         }
         else {
