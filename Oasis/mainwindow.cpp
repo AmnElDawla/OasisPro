@@ -1269,6 +1269,8 @@ void MainWindow::blinkCounter() {
             ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         }
 
+        // After finishing all the tests, it now performs the following functions based on whether the
+        // device is connected or not.
         if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             playScrollAnimation();
         }
