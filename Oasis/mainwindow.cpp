@@ -1645,32 +1645,30 @@ int MainWindow::connectionTestMain()
 
         ui->selectionBtn->setDisabled(false);
 
-    } else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
+    }
+    else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
 
         // Blink animation of all leds lasts for 3 secs:
         /* [...] */
 
         // Allocate and add a new histroy record into the QSQL database:
         // Show a message:
-        QMessageBox Alert;
-        Alert.setWindowTitle("Add Preferences");
-        Alert.setText("Would you like to create a threapy record for the current user?");
-        Alert.setStandardButtons(QMessageBox::Yes);
-        Alert.addButton(QMessageBox::No);
-        Alert.setDefaultButton(QMessageBox::No);
-        if (Alert.exec() == QMessageBox::Yes)
-        {
-            //newDatabase->;
-            qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
-        }
-        else
-        {
-            // do something else
-            qDebug() << "Action adding therapy record has been cancelled. ";
-        }
-
-    }
-    else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
+        // QMessageBox Alert;
+        // Alert.setWindowTitle("Add Preferences");
+        // Alert.setText("Would you like to create a threapy record for the current user?");
+        // Alert.setStandardButtons(QMessageBox::Yes);
+        // Alert.addButton(QMessageBox::No);
+        // Alert.setDefaultButton(QMessageBox::No);
+        // if (Alert.exec() == QMessageBox::Yes)
+        // {
+        //  //newDatabase->;
+        //  qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
+        // }
+        // else
+        // {
+        //  // do something else
+        //  qDebug() << "Action adding therapy record has been cancelled. ";
+        // }
 
         qDebug() << "Ending session early...";
 
