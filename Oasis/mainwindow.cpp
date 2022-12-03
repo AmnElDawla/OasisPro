@@ -1640,9 +1640,6 @@ int MainWindow::connectionTestMain()
         // Exit with connection
         qDebug() << "Connection test ended successfully...";
 
-        // Blink animation of all leds lasts for 3 secs:
-        /* [...] */
-
         ui->selectionBtn->setDisabled(false);
 
     }
