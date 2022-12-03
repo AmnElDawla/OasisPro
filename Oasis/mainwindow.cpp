@@ -455,12 +455,15 @@ void MainWindow::on_durationLeft_clicked()
 
     if(newRowItemDuration == 0) {
         newRowItemDuration = 2;
+        ui->TimeElapse->setText("N/A");
     }
     else if(newRowItemDuration == 1) {
         newRowItemDuration = 0;
+        ui->TimeElapse->setText("20s");
     }
     else {
         newRowItemDuration = 1;
+        ui->TimeElapse->setText("45s");
     }
     ui->listDuration->setCurrentRow(newRowItemDuration);
 
@@ -506,12 +509,15 @@ void MainWindow::on_durationRight_clicked()
 
     if(newRowItemDuration == 0) {
         newRowItemDuration = 1;
+        ui->TimeElapse->setText("45s");
     }
     else if(newRowItemDuration == 1) {
         newRowItemDuration = 2;
+        ui->TimeElapse->setText("N/S");
     }
     else {
         newRowItemDuration = 0;
+        ui->TimeElapse->setText("20s");
     }
     ui->listDuration->setCurrentRow(newRowItemDuration);
 
