@@ -1392,11 +1392,14 @@ void updateUITime20sDisplay() {
         delete seconds20Timer;
         seconds20Timer = null;
         countTo20 = 0;
+        from20to0 = 20;
 
     }
     else {
 
+        ui->TimeElapse->setText(QString::number(from20to0)+"s");
         countTo20++;
+        from20to0--;
 
     }
 
@@ -1411,11 +1414,14 @@ void updateUITime45sDisplay() {
         delete seconds45Timer;
         seconds45Timer = null;
         countTo45 = 0;
+        from45to0 = 45;
 
     }
     else {
 
+        ui->TimeElapse->setText(QString::number(from45to0)+"s");
         countTo45++;
+        from45to0--;
 
     }
 

@@ -314,5 +314,11 @@ private:
     // 45s counter that will count up to 45.
     int countTo45 = 0;
 
+    // Countdown from 20 to 0
+    int from20to0 = 20;
+
+    // Countdown from 45 to 0
+    int from45to0 = 45;
+
 };
 #endif // MAINWINDOW_H
