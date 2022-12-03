@@ -1383,7 +1383,7 @@ void MainWindow::blinkCounter() {
 
 }
 
-void updateUITime20sDisplay() {
+void MainWindow::updateUITime20sDisplay() {
 
     if(countTo20 == 20) {
 
@@ -1405,7 +1405,7 @@ void updateUITime20sDisplay() {
 
 }
 
-void updateUITime45sDisplay() {
+void MainWindow::updateUITime45sDisplay() {
 
     if(countTo45 == 45) {
 
