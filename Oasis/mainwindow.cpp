@@ -637,6 +637,8 @@ void MainWindow::on_selectionBtn_clicked()
 
     if(timer->isActive()) {
         timer->stop();
+        delete timer;
+        timer = nullptr;
         qDebug() << "Stopping timer...";
     }
     valueIntUntilEndOfFlash = 0;
