@@ -283,5 +283,9 @@ private:
     QTimer *endSession = nullptr;
     int countSwitchDescent = 0;
 
+    //Session countdown timer
+    QTimer *sessionCountdown = nullptr;
+    int countDownSession = 0;
+
 };
 #endif // MAINWINDOW_H

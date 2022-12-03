@@ -333,6 +333,17 @@ void MainWindow::iconsOn() {
     else {
         ui->TimeText->setText("Time Left (Theta)");
     }
+
+    if(newRowItemDuration == 0) {
+        ui->TimeElapse->setText("20s");
+    }
+    else if(newRowItemDuration == 1) {
+        ui->TimeElapse->setText("45s");
+    }
+    else {
+        ui->TimeElapse->setText("N/A");
+    }
+
     ui->listDuration->setStyleSheet("#listDuration::item:selected { background: transparent; border: 2px solid yellow; } #listDuration { background: black; } #listDuration::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
     ui->listSession->setStyleSheet("#listSession::item:selected { background: transparent; border: 2px solid yellow; } #listSession { background: black; } #listSession::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
     ui->sessionRight->setEnabled(true);
