@@ -1,14 +1,27 @@
-# OasisPro 
+# OasisPro
 
-## Merge Errors
+## Important Notice (Part 1)
 
-If you get errors with a merge, please follow the intructions in this [link](https://stackoverflow.com/questions/161813/how-do-i-resolve-merge-conflicts-in-a-git-repository) and use BA (Base) for when merging changes with the `mergetool`. 
+Please make sure to `comment your code` so that we can understand it as well as be able to debug properly. This will also help us in explaining our code to our TA.
 
-## Important Notice
+## Important Notice (Part 2)
 
 To get the most updated version of the project, please type in gnome-terminal in the folder that you created as the repo for the project the following command: `git pull` as seen in the picture below. 
 
 ![](image/Image23.PNG)
+
+## Timeframe
+
+Some details on the important dates for this project. 
+
+| Date(s)              | Importance            |
+| -------------------- | --------------------- |
+| December 5, 2022     | Finished all project  |
+| December 6 to 9, 2022 | Review project <br>Fix bugs<br>Meet with TA |
+
+## Merge Errors
+
+If you get errors with a merge, please follow the intructions in this [link](https://stackoverflow.com/questions/161813/how-do-i-resolve-merge-conflicts-in-a-git-repository) and use BA (Base) for when merging changes with the `mergetool`. 
 
 ## Important files
 
@@ -50,7 +63,7 @@ This project also has 2 additional milestones, which are:
 
 | Team Members         | Tasks                 |
 | -------------------- | --------------------- |
-| Andre Nonaka Cordova | Readme.md<br>GUI Creation<br>Use Case Model<br>OO Design Model<br>Traceability Matrix<br> Logic of the Program |
+| Andre Nonaka Cordova | Readme.md<br>GUI Creation<br>Use Case Model<br>OO Design Model<br>Traceability Matrix<br>Program Logic |
 | Alex Nedev | Session Selection Feature<br>Intensity Feature |
 | Khaled Farag | Power Feature<br>Battery Level |
 | Mingrui Liang | Connection Test Feature<br>Record Therapy Feature |
