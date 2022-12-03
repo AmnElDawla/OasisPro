@@ -1490,13 +1490,20 @@ int MainWindow::connectionTestMain()
         // To make sure scrolling animation is off completely.
         offLeds();
 
-        // Connect right and left ear
-        onLeftEar();
-        onRightEar();
-        onGroupBoxEars();
+        //Checks if the device is still turned on.
+        if(numberOfTimesPowerBtnClicked == 2) {
 
-        // Update GUI elements
-        flashCesModeLight();
+            // Connect right and left ear
+            onLeftEar();
+            onRightEar();
+            onGroupBoxEars();
+
+            qDebug() << "Starting connection test with connected device...";
+
+            // Update GUI elements
+            flashCesModeLight();
+
+        }
 
         // Exit with connection
         qDebug() << "Connection test ended...";
