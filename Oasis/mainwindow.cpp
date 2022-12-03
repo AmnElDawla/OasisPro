@@ -149,8 +149,7 @@ void MainWindow::flashSelectedLevel(){
 //                             Button Functionality                           //
 //============================================================================//
 
-// This function change color of lights and enable/disable buttons based on the number of times the power button
-// has been clicked.
+// This function change color of lights and enable/disable buttons based on the number of times the power button has been clicked.
 // Clicked once = 1 (this is the value of numberOfTimesPowerBtnClicked variable).
 // Clicked twice = 2 (this is the value of numberOfTimesPowerBtnClicked variable).
 // Clicked thrice (3 times) = 0 (this is the value of numberOfTimesPowerBtnClicked variable).
@@ -204,7 +203,7 @@ void MainWindow::on_powerBtn_clicked()
         // Turn off all LEDs.
         offLeds();
 
-        // Stop timer necessary timers.
+        // Stop necessary timers.
         if(timerCES != nullptr) {
             timerCES->stop();
             counterFlashGraph = 6;
@@ -221,6 +220,9 @@ void MainWindow::on_powerBtn_clicked()
         deviceOff();
         iconsOff();
         offConnect();
+
+        // Set the text in time left section back to default.
+        ui->TimeText->setText("Time Left");
 
         qDebug() << "Device is turned off...";
 
@@ -313,8 +315,21 @@ void MainWindow::iconsOn() {
 
     }
 
+    // Set default values and enables buttons.
     ui->listDuration->setCurrentRow(newRowItemDuration);
     ui->listSession->setCurrentRow(newRowItemSession);
+    if(newRowItemSession == 0) {
+        ui->TimeText->setText("Time Left (Alpha)");
+    }
+    else if(newRowItemSession == 1) {
+        ui->TimeText->setText("Time Left (SMR)");
+    }
+    else if(newRowItemSession == 2) {
+        ui->TimeText->setText("Time Left (Beta)");
+    }
+    else {
+        ui->TimeText->setText("Time Left (Theta)");
+    }
     ui->listDuration->setStyleSheet("#listDuration::item:selected { background: transparent; border: 2px solid yellow; } #listDuration { background: black; } #listDuration::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
     ui->listSession->setStyleSheet("#listSession::item:selected { background: transparent; border: 2px solid yellow; } #listSession { background: black; } #listSession::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
     ui->sessionRight->setEnabled(true);
@@ -446,21 +461,25 @@ void MainWindow::on_sessionLeft_clicked()
         newRowItemSession = 3;
         resetButtons();
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Theta)");
     }
     else if(newRowItemSession == 1) {
         newRowItemSession = 0;
         resetButtons();
         ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Alpha)");
     }
     else if(newRowItemSession == 2) {
         newRowItemSession = 1;
         resetButtons();
         ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (SMR)");
     }
     else {
         newRowItemSession = 2;
         resetButtons();
         ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Beta)");
     }
     ui->listSession->setCurrentRow(newRowItemSession);
 
@@ -493,21 +512,25 @@ void MainWindow::on_sessionRight_clicked()
         newRowItemSession = 1;
         resetButtons();
         ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (SMR)");
     }
     else if(newRowItemSession == 1) {
         newRowItemSession = 2;
         resetButtons();
         ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Beta)");
     }
     else if(newRowItemSession == 2) {
         newRowItemSession = 3;
         resetButtons();
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Theta)");
     }
     else {
         newRowItemSession = 0;
         resetButtons();
         ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Alpha)");
     }
     ui->listSession->setCurrentRow(newRowItemSession);
 
@@ -638,6 +661,8 @@ void MainWindow::on_selectionBtn_clicked()
 
     if(timer->isActive()) {
         timer->stop();
+        delete timer;
+        timer = nullptr;
         qDebug() << "Stopping timer...";
     }
     valueIntUntilEndOfFlash = 0;
@@ -1058,7 +1083,7 @@ void MainWindow::toggleCesModeLight()
 void MainWindow::flashCesModeLight()
 {
 
-    if(timerCES == nullptr) {
+    if(timerCES == nullptr && numberOfTimesPowerBtnClicked == 2) {
         timerCES = new QTimer(this);
         timerCES->setInterval(500);
         connect(timerCES, SIGNAL(timeout()), this, SLOT(flashGraphCounter()));
@@ -1069,7 +1094,6 @@ void MainWindow::flashCesModeLight()
 
 void MainWindow::flashGraphCounter() {
 
-    toggleCesModeLight();
     if(counterFlashGraph == 6) {
 
         timerCES->stop();
@@ -1090,6 +1114,7 @@ void MainWindow::flashGraphCounter() {
     }
     else {
 
+        toggleCesModeLight();
         counterFlashGraph++;
 
     }
@@ -1157,7 +1182,7 @@ void MainWindow::ledBlinkTimer() {
 void MainWindow::blinkCounter() {
 
     counterBlinkingLed++;
-    if(groupToBlink == 0) {
+    if(groupToBlink == 0 && numberOfTimesPowerBtnClicked == 2) {
 
         if(blinkTrueOrFalse == true) {
             ledEightOn();
@@ -1171,7 +1196,7 @@ void MainWindow::blinkCounter() {
         }
 
     }
-    else if(groupToBlink == 1) {
+    if(groupToBlink == 1 && numberOfTimesPowerBtnClicked == 2) {
 
         if(blinkTrueOrFalse == true) {
             ledSixOn();
@@ -1186,7 +1211,7 @@ void MainWindow::blinkCounter() {
             blinkTrueOrFalse = true;
         }
     }
-    else {
+    if(groupToBlink == 2 && numberOfTimesPowerBtnClicked == 2) {
 
         if(blinkTrueOrFalse == true) {
             ledOneOn();
@@ -1203,7 +1228,7 @@ void MainWindow::blinkCounter() {
 
     }
 
-    if(counterBlinkingLed == 6) {
+    if(counterBlinkingLed == 6 && numberOfTimesPowerBtnClicked == 2) {
         timerBlinkLed->stop();
         counterBlinkingLed = 0;
 
@@ -1211,7 +1236,6 @@ void MainWindow::blinkCounter() {
         onLeds();
 
         // Finding correct intensity level
-
         int realValueRow = 0;
         if(newRowItemSession == 0) {
             realValueRow = 3;
@@ -1240,14 +1264,17 @@ void MainWindow::blinkCounter() {
             ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         }
 
-        if(connectivity == false) {
+        if(connectivity == false && numberOfTimesPowerBtnClicked == 2) {
             playScrollAnimation();
         }
-        else {
+        else if(connectivity == true && numberOfTimesPowerBtnClicked == 2) {
             // Enable intensity and selection buttons:
             ui->increaseIntensityBtn->setEnabled(true);
             ui->decreaseIntensityBtn->setEnabled(true);
             ui->selectionBtn->setEnabled(true);
+        }
+        else {
+            qDebug() << "Device has been turned off. Unable to process with test....";
         }
 
     }
