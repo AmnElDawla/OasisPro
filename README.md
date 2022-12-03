@@ -2,7 +2,7 @@
 
 ## Important Notice (Part 1)
 
-Please make sure to `comment your code` so that we can understand it as well as be able to debug properly. This will also help us in explaining our code to our TA.
+Please make sure to `comment your code` so that we can understand it as well as be able to debug it properly. This will also help us in explaining our code to our TA.
 
 ## Important Notice (Part 2)
 
