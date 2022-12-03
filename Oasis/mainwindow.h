@@ -324,5 +324,8 @@ private:
     // prescribed time and not earlier than that).
     bool finishedScrolledDown = false;
 
+    // Custom duration value variable
+    int customDuration = 0;
+
 };
 #endif // MAINWINDOW_H

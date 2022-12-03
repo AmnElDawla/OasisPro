@@ -458,7 +458,15 @@ void MainWindow::on_durationLeft_clicked()
 
     if(newRowItemDuration == 0) {
         newRowItemDuration = 2;
-        ui->TimeElapse->setText("N/A");
+
+        // Button index -> actual value of duration
+        qDebug() << "Selected custom duration...";
+
+        // Input box for custom time selection (duration).
+        QString str = QInputDialog::getText(this, "User-defined Duration (Integer)", "0");
+        customDuration = str.toInt();
+
+        ui->TimeElapse->setText(QString::number(customDuration)+"s");
     }
     else if(newRowItemDuration == 1) {
         newRowItemDuration = 0;
@@ -517,7 +525,15 @@ void MainWindow::on_durationRight_clicked()
     }
     else if(newRowItemDuration == 1) {
         newRowItemDuration = 2;
-        ui->TimeElapse->setText("N/A");
+
+        // Button index -> actual value of duration
+        qDebug() << "Selected custom duration...";
+
+        // Input box for custom time selection (duration).
+        QString str = QInputDialog::getText(this, "User-defined Duration (Integer)", "0");
+        customDuration = str.toInt();
+
+        ui->TimeElapse->setText(QString::number(customDuration)+"s");
     }
     else {
         newRowItemDuration = 0;
@@ -703,20 +719,12 @@ void MainWindow::on_selectionBtn_clicked()
     selectedDuration = newRowItemDuration;
     selectedSession = newRowItemSession;
 
-    // Button index -> actual value of duration:
-    int customDuraion = 0;
-    if (selectedSession == 0){
-        objData.sessionArray[0] = 25;
-    } else if (selectedSession == 1){
-        objData.sessionArray[0] = 45;
-    } else if (selectedSession == 2){
-        // Input box:
-        QString str = QInputDialog::getText(this,"User-defined Duration (Integer)","0");
-        customDuraion = str.toInt();
-        objData.sessionArray[0] = customDuraion;
+    objData.sessionArray[0] = selectedDuration;
+
+    if(selectedDuration == 2) {
+        objData.sessionArray[0] = customDuration;
     }
 
-    objData.sessionArray[0] = selectedDuration;
     objData.sessionArray[1] = selectedSession;
     objData.sessionArray[2] = 0;
 
