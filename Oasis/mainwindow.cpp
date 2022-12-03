@@ -1300,14 +1300,14 @@ void MainWindow::playScrollAnimation()
 void MainWindow::intervalTimerIntensity() {
 
     if(countForPauseEnd < valuePause) {
-        if(intensityTimer == nullptr) {
+        if(intensityTimer == nullptr && numberOfTimesPowerBtnClicked == 2) {
             qDebug() << "New intensity timer...";
             intensityTimer = new QTimer(this);
             intensityTimer->setInterval(500);
             connect(intensityTimer, SIGNAL(timeout()), this, SLOT(switchLeds()));
             intensityTimer->start();
         }
-        else if(connectivity == false) {
+        else if(connectivity == false && numberOfTimesPowerBtnClicked == 2) {
             qDebug() << "Continue scrolling animation...";
             countSwitch = 0;
             intensityTimer->start();
@@ -1322,7 +1322,7 @@ void MainWindow::intervalTimerIntensity() {
 
 void MainWindow::switchLeds() {
 
-    if(connectivity == false) {
+    if(connectivity == false && numberOfTimesPowerBtnClicked == 2) {
         if(countSwitch == 0) {
             ledOneOn();
         }
