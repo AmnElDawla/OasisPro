@@ -201,6 +201,14 @@ private slots:
     // in the intensity section of UI (where the vertical labels containing number from 1 to 8 are found).
     void startDescendEndSession();
 
+    // This slot is called when the QTimer named seconds20Timer timeout. It will update the part of the GUI that displays
+    // the time left for the session (time left before the session ends).
+    void updateUITime20sDisplay();
+
+    // This slot is called when the QTimer named seconds45Timer timeout. It will update the part of the GUI that displays
+    // the time left for the session (time left before the session ends).
+    void updateUITime45sDisplay();
+
 private:
     Ui::MainWindow *ui;
 

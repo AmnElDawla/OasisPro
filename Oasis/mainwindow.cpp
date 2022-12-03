@@ -1360,10 +1360,16 @@ void MainWindow::blinkCounter() {
             if(objData.sessionArray[0] == 0) {
                 qDebug() << "Timer will go on for 20s";
                 seconds20Timer = new QTimer(this);
+                seconds20Timer->setInterval(1000);
+                connect(seconds20Timer, SIGNAL(timeout()), this, SLOT(updateUITime20sDisplay()));
+                seconds20Timer->start();
             }
             else if(objData.sessionArray[0] == 1) {
                 qDebug() << "Timer will go on for 45s";
                 seconds45Timer = new QTimer(this);
+                seconds45Timer->setInterval(1000);
+                connect(seconds45Timer, SIGNAL(timeout()), this, SLOT(updateUITime45sDisplay()));
+                seconds45Timer->start();
             }
             else {
                 qDebug() << "Timer will go on for N/A";
@@ -1374,6 +1380,14 @@ void MainWindow::blinkCounter() {
         }
 
     }
+
+}
+
+void updateUITime20sDisplay() {
+
+}
+
+void updateUITime45sDisplay() {
 
 }
 
