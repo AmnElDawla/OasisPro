@@ -1083,7 +1083,7 @@ void MainWindow::toggleCesModeLight()
 void MainWindow::flashCesModeLight()
 {
 
-    if(timerCES == nullptr && numberOfTimesPowerBtnClicked == 2) {
+    if(timerCES == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
         timerCES = new QTimer(this);
         timerCES->setInterval(500);
         connect(timerCES, SIGNAL(timeout()), this, SLOT(flashGraphCounter()));
@@ -1182,7 +1182,7 @@ void MainWindow::ledBlinkTimer() {
 void MainWindow::blinkCounter() {
 
     counterBlinkingLed++;
-    if(groupToBlink == 0 && numberOfTimesPowerBtnClicked == 2) {
+    if(groupToBlink == 0 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
         if(blinkTrueOrFalse == true) {
             ledEightOn();
@@ -1196,7 +1196,7 @@ void MainWindow::blinkCounter() {
         }
 
     }
-    if(groupToBlink == 1 && numberOfTimesPowerBtnClicked == 2) {
+    if(groupToBlink == 1 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
         if(blinkTrueOrFalse == true) {
             ledSixOn();
@@ -1211,7 +1211,7 @@ void MainWindow::blinkCounter() {
             blinkTrueOrFalse = true;
         }
     }
-    if(groupToBlink == 2 && numberOfTimesPowerBtnClicked == 2) {
+    if(groupToBlink == 2 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
         if(blinkTrueOrFalse == true) {
             ledOneOn();
@@ -1228,7 +1228,7 @@ void MainWindow::blinkCounter() {
 
     }
 
-    if(counterBlinkingLed == 6 && numberOfTimesPowerBtnClicked == 2) {
+    if(counterBlinkingLed == 6 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
         timerBlinkLed->stop();
         counterBlinkingLed = 0;
 
@@ -1264,10 +1264,10 @@ void MainWindow::blinkCounter() {
             ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         }
 
-        if(connectivity == false && numberOfTimesPowerBtnClicked == 2) {
+        if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             playScrollAnimation();
         }
-        else if(connectivity == true && numberOfTimesPowerBtnClicked == 2) {
+        else if(connectivity == true && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             // Enable intensity and selection buttons:
             ui->increaseIntensityBtn->setEnabled(true);
             ui->decreaseIntensityBtn->setEnabled(true);
@@ -1327,17 +1327,21 @@ void MainWindow::playScrollAnimation()
 void MainWindow::intervalTimerIntensity() {
 
     if(countForPauseEnd < valuePause) {
-        if(intensityTimer == nullptr && numberOfTimesPowerBtnClicked == 2) {
+        if(intensityTimer == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             qDebug() << "New intensity timer...";
             intensityTimer = new QTimer(this);
             intensityTimer->setInterval(500);
             connect(intensityTimer, SIGNAL(timeout()), this, SLOT(switchLeds()));
             intensityTimer->start();
         }
-        else if(connectivity == false && numberOfTimesPowerBtnClicked == 2) {
+        else if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             qDebug() << "Continue scrolling animation...";
             countSwitch = 0;
             intensityTimer->start();
+        }
+        else if(changeWetOrDry == true) {
+            countSwitch = 0;
+            qDebug() << "Switched stated...";
         }
         else {
             countSwitch = 0;
@@ -1349,7 +1353,7 @@ void MainWindow::intervalTimerIntensity() {
 
 void MainWindow::switchLeds() {
 
-    if(connectivity == false && numberOfTimesPowerBtnClicked == 2) {
+    if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
         if(countSwitch == 0) {
             ledOneOn();
         }
@@ -1496,6 +1500,7 @@ int MainWindow::connectionTestMain()
 
         // Update connection status
         signal = 0;
+        changeWetOrDry = false;
 
         // Update GUI elements
         flashCesModeLight();
@@ -1526,6 +1531,8 @@ int MainWindow::connectionTestMain()
             onGroupBoxEars();
 
             qDebug() << "Starting connection test with connected device...";
+
+            changeWetOrDry = false;
 
             // Update GUI elements
             flashCesModeLight();
@@ -1594,10 +1601,16 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 {
     if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2) {
         qDebug() << "Changed to wet...";
+        changeWetOrDry = true;
+        timerFlashes->stop();
+        valueIntUntilEndOfFlash = 0;
         connectionTestMain();
     }
     else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2) {
         qDebug() << "Changed to dry...";
+        changeWetOrDry = true;
+        timerFlashes->stop();
+        valueIntUntilEndOfFlash = 0;
         connectionTestMain();
     }
     else {

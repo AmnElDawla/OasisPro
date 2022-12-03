@@ -248,6 +248,7 @@ private:
     int signal = 0;
     bool OptionDry = false;
     bool OptionWet = false;
+    bool changeWetOrDry = false;
 
     /* CES Mode light control */
     QTimer *connectionTestStartTimer = nullptr;
