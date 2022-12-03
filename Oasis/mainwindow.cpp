@@ -149,8 +149,7 @@ void MainWindow::flashSelectedLevel(){
 //                             Button Functionality                           //
 //============================================================================//
 
-// This function change color of lights and enable/disable buttons based on the number of times the power button
-// has been clicked.
+// This function change color of lights and enable/disable buttons based on the number of times the power button has been clicked.
 // Clicked once = 1 (this is the value of numberOfTimesPowerBtnClicked variable).
 // Clicked twice = 2 (this is the value of numberOfTimesPowerBtnClicked variable).
 // Clicked thrice (3 times) = 0 (this is the value of numberOfTimesPowerBtnClicked variable).
@@ -204,7 +203,7 @@ void MainWindow::on_powerBtn_clicked()
         // Turn off all LEDs.
         offLeds();
 
-        // Stop timer necessary timers.
+        // Stop necessary timers.
         if(timerCES != nullptr) {
             timerCES->stop();
             counterFlashGraph = 6;
