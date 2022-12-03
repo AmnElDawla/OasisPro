@@ -674,29 +674,23 @@ void MainWindow::stopBatteryLevel() {
 // After this, flashes the selected session's intensity for 3 seconds (3000 miliseconds) at an interval of 500 miliseconds.
 void MainWindow::on_selectionBtn_clicked()
 {
-<<<<<<< HEAD
-||||||| 825069e
-    // ADD CODE TO DISABLE BUTTON WHEN WE HAVE A WAY
-    // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
-    // BUTTON HAS BEEN PRESSED
-
-=======
     // ADD CODE TO DISABLE BUTTON WHEN WE HAVE A WAY
     // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
     // BUTTON HAS BEEN PRESSED
 
     selectedSessionOrNot = true;
     finishedFlashing = false;
->>>>>>> d5a3bad574a5cf8dc7d046993e789b59504fd3fe
+
     ui->selectionBtn->setDisabled(true);
 
-//    *** COMMENT FROM MINGRUI: THIS TIMER WILL TERMINATE THE PROGRAM WHEN CLICKING SELECT BUTTON TWICE
-//    if(timer->isActive()) {
-//        timer->stop();
-//        delete timer;
-//        timer = nullptr;
-//        qDebug() << "Stopping timer...";
-//    }
+    // COMMENT FROM MINGRUI: THIS TIMER WILL TERMINATE THE PROGRAM WHEN CLICKING SELECT BUTTON TWICE
+    // (currently trying to fix this)
+    if(timer->isActive() && timer != nullptr) {
+        timer->stop();
+        delete timer;
+        timer = nullptr;
+        qDebug() << "Stopping timer...";
+    }
 
     valueIntUntilEndOfFlash = 0;
 
@@ -1318,12 +1312,13 @@ void MainWindow::blinkCounter() {
             playScrollAnimation();
         }
         else if(connectivity == true && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
-            // Enable intensity and selection buttons:
-            // Blink animation of all leds lasts for 3 secs:
+            // Enable intensity and selection buttons
+
+            // Blink animation of all leds lasts for 3 secs
             /* [...] */
 
-            // Allocate and add a new histroy record into the QSQL database:
-            // Show a message:
+            // Allocate and add a new histroy record into the QSQL database
+            // Show a message
             QMessageBox Alert;
             Alert.setWindowTitle("Add Preferences");
             Alert.setText("Would you like to create a threapy record for the current user?");
@@ -1332,14 +1327,28 @@ void MainWindow::blinkCounter() {
             Alert.setDefaultButton(QMessageBox::No);
             if (Alert.exec() == QMessageBox::Yes)
             {
-                //newDatabase->; (not sure what this line does)
-                qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database...";
+                int userId = ui->listOfUsers->currentIndex();
+                userId++;
+                qDebug() << "Debug: User id: " << userId;
+                int duration = objData.sessionArray[0];
+                qDebug() << "Debug: Duration: " << duration;
+                int sessionType = objData.sessionArray[1];
+                qDebug() << "Debug: Session type: " << sessionType;
+                int intensityLevel = objData.sessionArray[2];
+                qDebug() << "Debug: Intensity level: " << intensityLevel;
+                TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
+                newDatabase->addTherapyHistoryRecord(userId, tr);
+                qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
+                QString result = tr->stringify();
+                qDebug() << result;
+                // delete tr;
             }
             else
             {
                 // do something else
-                qDebug() << "Action adding therapy record has been cancelled...";
-            }
+                qDebug() << "Action adding therapy record has been cancelled. ";
+            };
+
             ui->increaseIntensityBtn->setEnabled(true);
             ui->decreaseIntensityBtn->setEnabled(true);
             ui->selectionBtn->setEnabled(true);
@@ -1628,46 +1637,13 @@ int MainWindow::connectionTestMain()
         // Exit with connection
         qDebug() << "Connection test ended successfully...";
 
-<<<<<<< HEAD
         // Blink animation of all leds lasts for 3 secs:
         /* [...] */
-
-        // Allocate and add a new histroy record into the QSQL database:
-        // Show a message:
-        QMessageBox Alert;
-        Alert.setWindowTitle("Add Preferences");
-        Alert.setText("Would you like to create a threapy record for the current user?");
-        Alert.setStandardButtons(QMessageBox::Yes);
-        Alert.addButton(QMessageBox::No);
-        Alert.setDefaultButton(QMessageBox::No);
-        if (Alert.exec() == QMessageBox::Yes)
-        {
-            int userId = ui->listOfUsers->currentIndex();
-            userId++;
-            qDebug() << "Debug: User id: " << userId;
-            int duration = objData.sessionArray[0];
-            qDebug() << "Debug: Duration: " << duration;
-            int sessionType = objData.sessionArray[1];
-            qDebug() << "Debug: Session type: " << sessionType;
-            int intensityLevel = objData.sessionArray[2];
-            qDebug() << "Debug: Intensity level: " << intensityLevel;
-            TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
-            newDatabase->addTherapyHistoryRecord(userId, tr);
-            qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
-            QString result = tr->stringify();
-            qDebug() << result;
-            // delete tr;
-        }
-        else
-        {
-            // do something else
-            qDebug() << "Action adding therapy record has been cancelled. ";
-        };
 
         ui->selectionBtn->setDisabled(false);
 
     } else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
-||||||| 825069e
+
         // Blink animation of all leds lasts for 3 secs:
         /* [...] */
 
@@ -1690,11 +1666,8 @@ int MainWindow::connectionTestMain()
             qDebug() << "Action adding therapy record has been cancelled. ";
         }
 
-    } else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
-=======
     }
     else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
->>>>>>> d5a3bad574a5cf8dc7d046993e789b59504fd3fe
 
         qDebug() << "Ending session early...";
 
@@ -1732,6 +1705,8 @@ void MainWindow::on_newBattery_clicked()
 void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 {
 
+    qDebug() << arg1;
+
     if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true) {
         qDebug() << "Connected...";
         connectionTestMain();
@@ -1751,6 +1726,8 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 
 void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 {
+
+    qDebug() << arg1;
 
     if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
         qDebug() << "Changed to wet...";
