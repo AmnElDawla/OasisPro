@@ -1408,8 +1408,7 @@ void MainWindow::playScrollAnimation()
 {
 
     qDebug() << "Scrolling animation...";
-    // update Qtimer (missing???)
-    /* [...] */
+
     int timeout = 5; // <- subject to change based on Qtimer
 
     pauseTimer(timeout);
