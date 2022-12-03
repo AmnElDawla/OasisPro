@@ -1415,9 +1415,6 @@ int MainWindow::connectionTestMain()
 
     qDebug() << "Connection test started...";
 
-    // Start session
-    sessionOnOrOff = true;
-
     // Define maximum value for safe voltage level:
     int defaultSafeLevel = 4;
 
@@ -1453,7 +1450,11 @@ int MainWindow::connectionTestMain()
 
     // Check connection
     if (connectivity == false && numberOfTimesPowerBtnClicked == 2) {
+
         qDebug() << "Device is disconnected...";
+
+        // Not connected to session
+        sessionOnOrOff = false;
 
         // Disconnect left and right ear
         offLeftEar();
@@ -1473,7 +1474,10 @@ int MainWindow::connectionTestMain()
     // 2. press powerbutton (missing, need add functionality)
     // 3. time is out (> 20 secs)
 
-    else if (connectivity == true && timeNow < timeOut && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2){
+    else if (connectivity == true && timeNow < timeOut && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2) {
+
+        // Start session
+        sessionOnOrOff = true;
 
         qDebug() << "Device is successfully connected...";
 
