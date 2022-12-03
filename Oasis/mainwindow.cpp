@@ -962,6 +962,7 @@ void MainWindow::toggleLedEight(){
 //============================================================================//
 
 /* UI control of CES mode light */
+
 // This function turn CES graph (CES mode light) on and set the corresponding boolean variable to true.
 void MainWindow::graphSessionOn()
 {
@@ -1021,7 +1022,7 @@ void MainWindow::onGroupBoxEars() {
 
 }
 
-
+// Toggle between on or off state of the CES mode light (graph turn on or off).
 void MainWindow::toggleCesModeLight()
 {
 
@@ -1092,7 +1093,7 @@ void MainWindow::offConnectivity()
 
 }
 
-/* Set elements in graph to blanked status*/
+// Set elements in graph to blanked status
 void MainWindow::offLeds()
 {
 
@@ -1107,7 +1108,7 @@ void MainWindow::offLeds()
 
 }
 
-/* Resume graph display */
+// Resume graph display
 void MainWindow::onLeds()
 {
 
