@@ -1575,53 +1575,53 @@ void MainWindow::descendEndSession() {
 void MainWindow::startDescendEndSession() {
 
     if(countSwitchDescent == 15) {
-        ledOneOn();
-    }
-    else if(countSwitchDescent == 14) {
         ledOneOff();
     }
-    else if(countSwitchDescent == 13) {
-        ledTwoOn();
+    else if(countSwitchDescent == 14) {
+        ledOneOn();
     }
-    else if(countSwitchDescent == 12) {
+    else if(countSwitchDescent == 13) {
         ledTwoOff();
     }
-    else if(countSwitchDescent == 11) {
-        ledThreeOn();
+    else if(countSwitchDescent == 12) {
+        ledTwoOn();
     }
-    else if(countSwitchDescent == 10) {
+    else if(countSwitchDescent == 11) {
         ledThreeOff();
     }
-    else if(countSwitchDescent == 9) {
-        ledFourOn();
+    else if(countSwitchDescent == 10) {
+        ledThreeOn();
     }
-    else if(countSwitchDescent == 8) {
+    else if(countSwitchDescent == 9) {
         ledFourOff();
     }
-    else if(countSwitchDescent == 7) {
-        ledFiveOn();
+    else if(countSwitchDescent == 8) {
+        ledFourOn();
     }
-    else if(countSwitchDescent == 6) {
+    else if(countSwitchDescent == 7) {
         ledFiveOff();
     }
-    else if(countSwitchDescent == 5) {
-        ledSixOn();
+    else if(countSwitchDescent == 6) {
+        ledFiveOn();
     }
-    else if(countSwitchDescent == 4) {
+    else if(countSwitchDescent == 5) {
         ledSixOff();
     }
-    else if(countSwitchDescent == 3) {
-        ledSevenOn();
+    else if(countSwitchDescent == 4) {
+        ledSixOn();
     }
-    else if(countSwitchDescent == 2) {
+    else if(countSwitchDescent == 3) {
         ledSevenOff();
     }
+    else if(countSwitchDescent == 2) {
+        ledSevenOn();
+    }
     else if(countSwitchDescent == 1) {
-        ledEightOn();
+        ledEightOff();
     }
     else {
         qDebug() << "Arrived at the first intensity...";
-        ledEightOff();
+        ledEightOn();
     }
 
     if(countSwitchDescent == 15) {
