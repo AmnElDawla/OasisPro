@@ -1385,14 +1385,54 @@ void MainWindow::blinkCounter() {
 
 void MainWindow::updateUITime20sDisplay() {
 
-    if(countTo20 == 20) {
+    if(countTo20 == 21) {
 
         qDebug() << "20s timer finished...";
+
+        // Stopping, deleteing and making timer equal to nullptr;
         seconds20Timer->stop();
         delete seconds20Timer;
         seconds20Timer = nullptr;
+
+        // Resetting counters
         countTo20 = 0;
         from20to0 = 20;
+
+        // Turning all LEDs off.
+        offLeds();
+
+        // Scrolling down animation - end of session.
+        descendEndSession();
+
+        // Set variable to false as there is no active session.
+        sessionOnOrOff = false;
+
+        // Reset number of clicks to 0.
+        numberOfTimesPowerBtnClicked = 0;
+
+        // Set selected session boolean variable to false.
+        selectedSessionOrNot = false;
+
+        // Stop necessary timers.
+        if(timerCES != nullptr) {
+            timerCES->stop();
+            counterFlashGraph = 6;
+        }
+        if(timerFlashes != nullptr) {
+            timerFlashes->stop();
+            valueIntUntilEndOfFlash = 10;
+        }
+
+        // Turns off the device completely.
+        deviceOff();
+        iconsOff();
+        offConnect();
+
+        // Set the text in time left section back to default.
+        ui->TimeText->setText("Time Left");
+
+        qDebug() << "Device is turned off...";
+
 
     }
     else {
@@ -1407,14 +1447,53 @@ void MainWindow::updateUITime20sDisplay() {
 
 void MainWindow::updateUITime45sDisplay() {
 
-    if(countTo45 == 45) {
+    if(countTo45 == 46) {
 
         qDebug() << "45s timer finished...";
+
+        // Stopping, deleteing and making timer equal to nullptr;
         seconds45Timer->stop();
         delete seconds45Timer;
         seconds45Timer = nullptr;
+
+        // Resetting counters
         countTo45 = 0;
         from45to0 = 45;
+
+        // Turning all LEDs off.
+        offLeds();
+
+        // Scrolling down animation - end of session.
+        descendEndSession();
+
+        // Set variable to false as there is no active session.
+        sessionOnOrOff = false;
+
+        // Reset number of clicks to 0.
+        numberOfTimesPowerBtnClicked = 0;
+
+        // Set selected session boolean variable to false.
+        selectedSessionOrNot = false;
+
+        // Stop necessary timers.
+        if(timerCES != nullptr) {
+            timerCES->stop();
+            counterFlashGraph = 6;
+        }
+        if(timerFlashes != nullptr) {
+            timerFlashes->stop();
+            valueIntUntilEndOfFlash = 10;
+        }
+
+        // Turns off the device completely.
+        deviceOff();
+        iconsOff();
+        offConnect();
+
+        // Set the text in time left section back to default.
+        ui->TimeText->setText("Time Left");
+
+        qDebug() << "Device is turned off...";
 
     }
     else {
