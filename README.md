@@ -1,4 +1,13 @@
-# OasisPro 
+# OasisPro
+
+## Timeframe
+
+> Some details on the important dates for this project. 
+
+| Date                 | Importance            |
+| -------------------- | --------------------- |
+| December 5, 2022     | Finished all project  |
+| December 6 to 9, 2022 | Review project <br>Fix bugs<br>Meet with TA |
 
 ## Merge Errors
 
