@@ -7,7 +7,7 @@ Database::~Database()
 
     databaseGui.close();
     QSqlDatabase::removeDatabase(databaseGui.defaultConnection);
-}
+};
 
 bool Database::initializeDatabase()
 {
@@ -21,7 +21,7 @@ bool Database::initializeDatabase()
     }
 
     return true;
-}
+};
 
 bool Database::initializeDatabaseTables()
 {
@@ -38,7 +38,7 @@ bool Database::initializeDatabaseTables()
     queryTable.exec(queryDatabaseTreatmentHistoryTable);
 
     return databaseGui.commit();
-}
+};
 
 bool Database::initializeDefaultUserRecord()
 {
@@ -58,9 +58,24 @@ bool Database::initializeDefaultUserRecord()
     queryTable.exec(queryRecordUser4);
 
     return databaseGui.commit();
-}
+};
 
-bool Database::validateRecord(const QString &sessionType, const int intensityLevel, const int duration)
+bool Database::addUserRecord(QString session)
+{
+
+    databaseGui.transaction();
+
+    QString queryDatabaseUsersTable = "INSERT INTO users (session) VALUES (:session)";
+
+    QSqlQuery queryTable;
+    queryTable.prepare(queryDatabaseUsersTable);
+    queryTable.bindValue(":session", session);
+    queryTable.exec();
+
+    return databaseGui.commit();
+};
+
+bool Database::validateTherapyRecord(const QString &sessionType, const int intensityLevel, const int duration)
 {
     bool validity = true;
     if (intensityLevel < 1 || intensityLevel > 8)
@@ -76,27 +91,12 @@ bool Database::validateRecord(const QString &sessionType, const int intensityLev
     return validity;
 }
 
-bool Database::addUserRecord(QString session)
+bool Database::addTherapyHistoryRecord(int userId, TherapyRecord *tr)
 {
-
-    databaseGui.transaction();
-
-    QString queryDatabaseUsersTable = "INSERT INTO users (session) VALUES (:session)";
-
-    QSqlQuery queryTable;
-    queryTable.prepare(queryDatabaseUsersTable);
-    queryTable.bindValue(":session", session);
-    queryTable.exec();
-
-    return databaseGui.commit();
-}
-
-bool Database::addTherapyHistoryRecord(int userId, int therapyId, TherapyRecord &tr)
-{
-    QString session = tr.getSessionType();
-    int intensity = tr.getIntensityLevel();
-    int duration = tr.getDuration();
-    if (!validateRecord(session, intensity, duration))
+    QString session = tr->getSessionType();
+    int intensity = tr->getIntensityLevel();
+    int duration = tr->getDuration();
+    if (!validateTherapyRecord(session, intensity, duration))
     {
         return false;
     }
@@ -105,12 +105,17 @@ bool Database::addTherapyHistoryRecord(int userId, int therapyId, TherapyRecord 
 
     QString queryRecordHistory = "INSERT INTO treatmentHistory (users, therapy, session_type, intensity_level, duration) VALUES (:therapy, :users, :session, :intensity, :duration)";
 
+    // Generate a new therapyId automatically:
     QSqlQuery query;
     int rowCounter = 0;
     query.exec("SELECT COUNT(*) FROM therapy treatmentHistory WHERE userId = :id");
     if (query.first())
+    {
         rowCounter = query.value(0).toInt();
-    therapyId = rowCounter++;
+    }
+    int therapyId = rowCounter++;
+
+    qDebug() << "Therapy Id: " << therapyId;
 
     QSqlQuery queryTable;
     queryTable.prepare(queryRecordHistory);
@@ -122,7 +127,7 @@ bool Database::addTherapyHistoryRecord(int userId, int therapyId, TherapyRecord 
     queryTable.exec();
 
     return databaseGui.commit();
-}
+};
 
 QVector<Users *> Database::getUserData(int id)
 {
@@ -149,7 +154,7 @@ QVector<Users *> Database::getUserData(int id)
     }
 
     return userData;
-}
+};
 
 QVector<TherapyRecord *> Database::getTherapyHistoryRecords(int userId)
 {
@@ -174,26 +179,30 @@ QVector<TherapyRecord *> Database::getTherapyHistoryRecords(int userId)
     return therapyHistoryRecordData;
 };
 
-void Database::updateSelectedSession(TherapyRecord &tr)
+void Database::updateSelectedSession(TherapyRecord *tr)
 {
-    QString session = tr.getSessionType();
+    QString session = tr->getSessionType();
     int sessionTypeNumber = 0;
-    if(session == "") {
+    if (session == "")
+    {
         sessionTypeNumber = 0;
     }
-    else if(session == "") {
+    else if (session == "")
+    {
         sessionTypeNumber = 1;
     }
-    else if(session == "") {
+    else if (session == "")
+    {
         sessionTypeNumber = 2;
     }
-    else  {
+    else
+    {
         sessionTypeNumber = 3;
     }
-    int intensity = tr.getIntensityLevel();
-    int duration = tr.getDuration();
+    int intensity = tr->getIntensityLevel();
+    int duration = tr->getDuration();
 
-    if (validateRecord(session, intensity, duration))
+    if (validateTherapyRecord(session, intensity, duration))
     {
         sessionArray[0] = duration;
         sessionArray[1] = sessionTypeNumber;

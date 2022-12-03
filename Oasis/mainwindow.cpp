@@ -1485,6 +1485,11 @@ int MainWindow::connectionTestMain()
     int timeNow = 0;
     int timeOut = 20;
 
+    // Exceptions lead to connection test shut down:
+    // 1. low battery level
+    // 2. press powerbutton (missing, need add functionality)
+    // 3. time is out (> 20 secs)
+
     // Check connection
     if (connectivity == false && numberOfTimesPowerBtnClicked == 2) {
 
@@ -1505,15 +1510,9 @@ int MainWindow::connectionTestMain()
         // Update GUI elements
         flashCesModeLight();
 
-    }
+    } else if (connectivity == true && timeNow < timeOut && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2) {
 
-    // Exceptions that will terminate the while loop:
-    // 1. low battery level
-    // 2. press powerbutton (missing, need add functionality)
-    // 3. time is out (> 20 secs)
-
-    else if (connectivity == true && timeNow < timeOut && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2) {
-
+        // Successful scenario: passed connection test // Successful scenario: passed connection test
         // Start session
         sessionOnOrOff = true;
 
@@ -1540,11 +1539,31 @@ int MainWindow::connectionTestMain()
         }
 
         // Exit with connection
-        qDebug() << "Connection test ended...";
+        qDebug() << "Connection test ended successfully...";
 
-    }
+        // Blink animation of all leds lasts for 3 secs:
+        /* [...] */
 
-    else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
+        // Allocate and add a new histroy record into the QSQL database:
+        // Show a message:
+        QMessageBox Alert;
+        Alert.setWindowTitle("Add Preferences");
+        Alert.setText("Would you like to create a threapy record for the current user?");
+        Alert.setStandardButtons(QMessageBox::Yes);
+        Alert.addButton(QMessageBox::No);
+        Alert.setDefaultButton(QMessageBox::No);
+        if (Alert.exec() == QMessageBox::Yes)
+        {
+            //newDatabase->;
+            qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
+        }
+        else
+        {
+            // do something else
+            qDebug() << "Action adding therapy record has been cancelled. ";
+        }
+
+    } else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
 
         qDebug() << "Ending session early...";
 
@@ -1559,11 +1578,9 @@ int MainWindow::connectionTestMain()
 
         qDebug() << "Session ended...";
 
-    }
+    } else {
 
-    // Exit without connection
-    else {
-
+        // Exit without connection
         qDebug() << "Connection test has been terminated ...";
 
     }
