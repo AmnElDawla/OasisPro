@@ -198,9 +198,11 @@ void MainWindow::on_powerBtn_clicked()
 
         if(timerCES != nullptr) {
             timerCES->stop();
+            counterFlashGraph = 0;
         }
         if(timerFlashes != nullptr) {
             timerFlashes->stop();
+            valueIntUntilEndOfFlash = 0;
         }
 
         connectionTestMain();
@@ -1050,7 +1052,6 @@ void MainWindow::flashCesModeLight()
 void MainWindow::flashGraphCounter() {
 
     toggleCesModeLight();
-    counterFlashGraph++;
     if(counterFlashGraph == 6) {
 
         timerCES->stop();
@@ -1067,6 +1068,11 @@ void MainWindow::flashGraphCounter() {
         }
 
         displayConnection(signal);
+
+    }
+    else {
+
+        counterFlashGraph++;
 
     }
 
@@ -1429,7 +1435,7 @@ int MainWindow::connectionTestMain()
         connectivity = false;
     }
 
-    // A counter to keep track of the waiting process
+    // Counter to keep track of the waiting process
     int timeNow = 0;
     int timeOut = 20;
 
