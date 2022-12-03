@@ -2,7 +2,7 @@
 #include "TherapyRecord.h"
 
 // constructor:
-TherapyRecord::TherapyRecord(const QString &sessionType, const int intensityLevel, const int duration)
+TherapyRecord::TherapyRecord(const int sessionType, const int intensityLevel, const int duration)
 {
     this->sessionType = sessionType;
     this->duration = duration;
@@ -10,7 +10,7 @@ TherapyRecord::TherapyRecord(const QString &sessionType, const int intensityLeve
 }
 
 // getters:
-QString TherapyRecord::getSessionType() { return sessionType; }
+int TherapyRecord::getSessionType() { return sessionType; }
 int TherapyRecord::getIntensityLevel() { return intensityLevel; }
 int TherapyRecord::getDuration() { return duration; }
 
@@ -21,12 +21,9 @@ void TherapyRecord::setIntensityLevel(int i) { intensityLevel = i; }
 // member function(s):
 QString TherapyRecord::stringify()
 {
-    QString durationToString = QString::number(duration / 60);
-    durationToString += ((duration % 60 < 10) ? +":0" + QString::number(duration % 60)
-                                              : +":" + QString::number(duration % 60));
     QString tmpString =
-        "   session type: " + sessionType + "\n" +
-        "   duration: " + durationToString + "\n" +
+        "   session type: " + QString::number(sessionType) + "\n" +
+        "   duration: " + QString::number(duration) + "\n" +
         "   intensity level: " + QString::number(intensityLevel);
 
     return tmpString;

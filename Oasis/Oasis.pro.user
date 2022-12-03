@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<<<<<<< HEAD
-<!-- Written by QtCreator 4.11.0, 2022-12-02T22:45:14. -->
-||||||| d71c4d8
-<!-- Written by QtCreator 4.11.0, 2022-12-01T03:11:58. -->
-=======
-<!-- Written by QtCreator 4.11.0, 2022-12-02T21:31:21. -->
->>>>>>> 18506cf114956e7c5846df0c7966d61678f1177d
+<!-- Written by QtCreator 4.11.0, 2022-12-03T12:50:33. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -291,17 +285,8 @@
     </valuelist>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-<<<<<<< HEAD
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Oasis2</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/student/Desktop/Repo/OasisPro/Oasis/Oasis.pro</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/student/Desktop/Repo/OasisPro/Oasis/Oasis.pro</value>
-||||||| d71c4d8
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/student/Desktop/Team Project/OasisPro/Oasis/Oasis.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/student/Desktop/Team Project/OasisPro/Oasis/Oasis.pro</value>
-=======
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/student/Desktop/Repo/OasisPro/Oasis/Oasis.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/student/Desktop/Repo/OasisPro/Oasis/Oasis.pro</value>
->>>>>>> 18506cf114956e7c5846df0c7966d61678f1177d
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
     <value type="QString" key="RunConfiguration.OverrideDebuggerStartup"></value>

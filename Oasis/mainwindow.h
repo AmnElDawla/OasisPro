@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QTimer>
+#include <QInputDialog>
 #include "Database.h"
 #include "TherapyRecord.h"
 

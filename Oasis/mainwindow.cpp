@@ -461,6 +461,7 @@ void MainWindow::on_sessionLeft_clicked()
         newRowItemSession = 3;
         resetButtons();
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+
         ui->TimeText->setText("Time Left (Theta)");
     }
     else if(newRowItemSession == 1) {
@@ -653,23 +654,34 @@ void MainWindow::stopBatteryLevel() {
 // After this, flashes the selected session's intensity for 3 seconds (3000 miliseconds) at an interval of 500 miliseconds.
 void MainWindow::on_selectionBtn_clicked()
 {
-    // ADD CODE TO DISABLE BUTTON WHEN WE HAVE A WAY
-    // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
-    // BUTTON HAS BEEN PRESSED
-
     ui->selectionBtn->setDisabled(true);
 
-    if(timer->isActive()) {
-        timer->stop();
-        delete timer;
-        timer = nullptr;
-        qDebug() << "Stopping timer...";
-    }
+//    *** COMMENT FROM MINGRUI: THIS TIMER WILL TERMINATE THE PROGRAM WHEN CLICKING SELECT BUTTON TWICE
+//    if(timer->isActive()) {
+//        timer->stop();
+//        delete timer;
+//        timer = nullptr;
+//        qDebug() << "Stopping timer...";
+//    }
+
     valueIntUntilEndOfFlash = 0;
     selectedSessionOrNot = true;
 
     selectedDuration = newRowItemDuration;
     selectedSession = newRowItemSession;
+
+    // Button index -> actual value of duration:
+    int customDuraion = 0;
+    if (selectedSession == 0){
+        objData.sessionArray[0] = 25;
+    } else if (selectedSession == 1){
+        objData.sessionArray[0] = 45;
+    } else if (selectedSession == 2){
+        // Input box:
+        QString str = QInputDialog::getText(this,"User-defined Duration (Integer)","0");
+        customDuraion = str.toInt();
+        objData.sessionArray[0] = customDuraion;
+    }
 
     objData.sessionArray[0] = selectedDuration;
     objData.sessionArray[1] = selectedSession;
@@ -1456,6 +1468,7 @@ int MainWindow::connectionTestMain()
     ui->decreaseIntensityBtn->setEnabled(false);
 
     // Check if intensity level of the selected session is safe.
+
     if (objData.sessionArray[2] > defaultSafeLevel) {
         objData.sessionArray[2] = defaultSafeLevel;
     }
@@ -1507,7 +1520,7 @@ int MainWindow::connectionTestMain()
 
     } else if (connectivity == true && timeNow < timeOut && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2) {
 
-        // Successful scenario: passed connection test // Successful scenario: passed connection test
+        // Successful scenario: passed connection test
         // Start session
         sessionOnOrOff = true;
 
@@ -1547,14 +1560,29 @@ int MainWindow::connectionTestMain()
         Alert.setDefaultButton(QMessageBox::No);
         if (Alert.exec() == QMessageBox::Yes)
         {
-            //newDatabase->;
+            int userId = ui->listOfUsers->currentIndex();
+            userId++;
+            qDebug() << "Debug: User id: " << userId;
+            int duration = objData.sessionArray[0];
+            qDebug() << "Debug: Duration: " << duration;
+            int sessionType = objData.sessionArray[1];
+            qDebug() << "Debug: Session type: " << sessionType;
+            int intensityLevel = objData.sessionArray[2];
+            qDebug() << "Debug: Intensity level: " << intensityLevel;
+            TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
+            newDatabase->addTherapyHistoryRecord(userId, tr);
             qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
+            QString result = tr->stringify();
+            qDebug() << result;
+            // delete tr;
         }
         else
         {
             // do something else
             qDebug() << "Action adding therapy record has been cancelled. ";
-        }
+        };
+
+        ui->selectionBtn->setDisabled(false);
 
     } else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
 

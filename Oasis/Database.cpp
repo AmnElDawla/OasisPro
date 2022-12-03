@@ -75,10 +75,12 @@ bool Database::addUserRecord(QString session)
     return databaseGui.commit();
 };
 
-bool Database::validateTherapyRecord(const QString &sessionType, const int intensityLevel, const int duration)
+bool Database::validateTherapyRecord(const int sessionType, const int intensityLevel, const int duration)
 {
+    int intensityMin = 0;
+    int intensityMax = 8;
     bool validity = true;
-    if (intensityLevel < 1 || intensityLevel > 8)
+    if (intensityLevel < intensityMin || intensityLevel > intensityMax)
     {
         qDebug() << "Error: Invalid " << sessionType << " record: intensity level is not valid";
         validity = false;
@@ -91,9 +93,15 @@ bool Database::validateTherapyRecord(const QString &sessionType, const int inten
     return validity;
 }
 
+
+/*
+session -> button index
+duration -> actual value of the duration (not button index)
+intensity level -> actual values
+*/
 bool Database::addTherapyHistoryRecord(int userId, TherapyRecord *tr)
 {
-    QString session = tr->getSessionType();
+    int session = tr->getSessionType();
     int intensity = tr->getIntensityLevel();
     int duration = tr->getDuration();
     if (!validateTherapyRecord(session, intensity, duration))
@@ -106,6 +114,7 @@ bool Database::addTherapyHistoryRecord(int userId, TherapyRecord *tr)
     QString queryRecordHistory = "INSERT INTO treatmentHistory (users, therapy, session_type, intensity_level, duration) VALUES (:therapy, :users, :session, :intensity, :duration)";
 
     // Generate a new therapyId automatically:
+    qDebug() << "Generating Therapy Id...";
     QSqlQuery query;
     int rowCounter = 0;
     query.exec("SELECT COUNT(*) FROM therapy treatmentHistory WHERE userId = :id");
@@ -114,8 +123,6 @@ bool Database::addTherapyHistoryRecord(int userId, TherapyRecord *tr)
         rowCounter = query.value(0).toInt();
     }
     int therapyId = rowCounter++;
-
-    qDebug() << "Therapy Id: " << therapyId;
 
     QSqlQuery queryTable;
     queryTable.prepare(queryRecordHistory);
@@ -169,7 +176,7 @@ QVector<TherapyRecord *> Database::getTherapyHistoryRecords(int userId)
     QVector<TherapyRecord *> therapyHistoryRecordData;
     while (queryTable.next())
     {
-        QString session = queryTable.value(0).toString();
+        int session = queryTable.value(0).toString().toInt();
         int intensity = queryTable.value(1).toString().toInt();
         int duration = queryTable.value(2).toString().toInt();
         TherapyRecord *thr = new TherapyRecord(session, intensity, duration);
@@ -181,8 +188,9 @@ QVector<TherapyRecord *> Database::getTherapyHistoryRecords(int userId)
 
 void Database::updateSelectedSession(TherapyRecord *tr)
 {
-    QString session = tr->getSessionType();
+    int session = tr->getSessionType();
     int sessionTypeNumber = 0;
+    /*
     if (session == "")
     {
         sessionTypeNumber = 0;
@@ -199,6 +207,8 @@ void Database::updateSelectedSession(TherapyRecord *tr)
     {
         sessionTypeNumber = 3;
     }
+    */
+
     int intensity = tr->getIntensityLevel();
     int duration = tr->getDuration();
 

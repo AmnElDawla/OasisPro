@@ -13,8 +13,8 @@
  * Member functions:
 
     // getters:
-    Qstring getSessionType(): a function to return a string to store the infomation of session type
-    int getDuration(): a function to return the duration of a treatment (in seconds)
+    int getSessionType(): a function to return an integer to store the infomation of session type
+    int getDuration(): a function to return the duration of a treatment
     int getIntensityLevel(): a function to return the intensitiy level of a treatment
 
     // setters:
@@ -33,9 +33,9 @@
 class TherapyRecord
 {
 public:
-    TherapyRecord(const QString &sessionType, const int intensityLevel, const int duration);
+    TherapyRecord(const int sessionType, const int intensityLevel, const int duration);
 
-    QString getSessionType();
+    int getSessionType();
     int getDuration();
     int getIntensityLevel();
 
@@ -45,7 +45,7 @@ public:
     QString stringify();
 
 private:
-    QString sessionType;
+    int sessionType;
     int intensityLevel;
     int duration;
 };

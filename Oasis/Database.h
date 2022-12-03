@@ -18,7 +18,7 @@ public:
     bool initializeDatabase();
     bool initializeDefaultUserRecord();
     bool addUserRecord();
-    bool validateTherapyRecord(const QString &sessionType, const int intensityLevel, const int duration);
+    bool validateTherapyRecord(const int sessionType, const int intensityLevel, const int duration);
     bool addTherapyHistoryRecord(int userId, TherapyRecord *tr); // Construct a NEW threapy record from current session first
     bool addUserRecord(QString name);
     // void selectFromHistoryRecords();
