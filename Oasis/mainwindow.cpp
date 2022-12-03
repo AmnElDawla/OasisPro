@@ -685,12 +685,14 @@ void MainWindow::on_selectionBtn_clicked()
 
     // COMMENT FROM MINGRUI: THIS TIMER WILL TERMINATE THE PROGRAM WHEN CLICKING SELECT BUTTON TWICE
     // (currently trying to fix this)
-    if(timer->isActive() && timer != nullptr && timerEnded == false) {
-        timer->stop();
-        delete timer;
-        timer = nullptr;
-        timerEnded = true;
-        qDebug() << "Stopping timer...";
+    if(timer != nullptr && timerEnded == false) {
+        if(timer->isActive()) {
+            timer->stop();
+            delete timer;
+            timer = nullptr;
+            timerEnded = true;
+            qDebug() << "Stopping timer...";
+        }
     }
 
     valueIntUntilEndOfFlash = 0;
