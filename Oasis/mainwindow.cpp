@@ -678,6 +678,7 @@ void MainWindow::on_selectionBtn_clicked()
     // BUTTON HAS BEEN PRESSED
 
     selectedSessionOrNot = true;
+    finishedFlashing = false;
     ui->selectionBtn->setDisabled(true);
 
     if(timer->isActive()) {
@@ -752,6 +753,7 @@ void MainWindow::flashTimer() {
         if(valueIntUntilEndOfFlash == 10) {
             timerFlashes->stop();
             valueIntUntilEndOfFlash = 0;
+            finishedFlashing = true;
             delay5Seconds();
         }
         else {
