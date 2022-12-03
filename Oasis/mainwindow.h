@@ -320,7 +320,8 @@ private:
     // Countdown from 45 to 0
     int from45to0 = 45;
 
-    // Finds out if the session scrolldown animation is finished
+    // Finds out if the session scrolldown animation is finished (only works when session finishes at its described /
+    // prescribed time and not earlier than that).
     bool finishedScrolledDown = false;
 
 };
