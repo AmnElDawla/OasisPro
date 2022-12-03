@@ -513,7 +513,7 @@ void MainWindow::on_durationRight_clicked()
     }
     else if(newRowItemDuration == 1) {
         newRowItemDuration = 2;
-        ui->TimeElapse->setText("N/S");
+        ui->TimeElapse->setText("N/A");
     }
     else {
         newRowItemDuration = 0;
