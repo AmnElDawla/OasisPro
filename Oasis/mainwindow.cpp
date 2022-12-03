@@ -1487,7 +1487,7 @@ int MainWindow::connectionTestMain()
 
     // Exceptions lead to connection test shut down:
     // 1. low battery level
-    // 2. press powerbutton (missing, need add functionality)
+    // 2. press powerbutton (added functionality - working)
     // 3. time is out (> 20 secs)
 
     // Check connection
