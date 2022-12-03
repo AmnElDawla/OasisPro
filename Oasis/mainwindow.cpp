@@ -317,10 +317,12 @@ void MainWindow::iconsOn() {
     ui->durationLeft->setEnabled(true);
     ui->selectionBtn->setEnabled(true);
 
+    // Start timer to check if user has not click selection button after 2 minutes.
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(turnOffNoSessionSelected()));
     timer->start(120000);
 
+    // Reset buttons and start find the current intensity (that is based on the session number) based on the database data.
     resetButtons();
     selectedIntensityAtStart();
 
