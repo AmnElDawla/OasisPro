@@ -200,6 +200,9 @@ void MainWindow::on_powerBtn_clicked()
         // Reset number of clicks to 0.
         numberOfTimesPowerBtnClicked = 0;
 
+        // Set selected session boolean variable to false.
+        selectedSessionOrNot = false;
+
         // Turn off all LEDs.
         offLeds();
 
@@ -330,6 +333,17 @@ void MainWindow::iconsOn() {
     else {
         ui->TimeText->setText("Time Left (Theta)");
     }
+
+    if(newRowItemDuration == 0) {
+        ui->TimeElapse->setText("20s");
+    }
+    else if(newRowItemDuration == 1) {
+        ui->TimeElapse->setText("45s");
+    }
+    else {
+        ui->TimeElapse->setText("N/A");
+    }
+
     ui->listDuration->setStyleSheet("#listDuration::item:selected { background: transparent; border: 2px solid yellow; } #listDuration { background: black; } #listDuration::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
     ui->listSession->setStyleSheet("#listSession::item:selected { background: transparent; border: 2px solid yellow; } #listSession { background: black; } #listSession::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
     ui->sessionRight->setEnabled(true);
@@ -441,12 +455,15 @@ void MainWindow::on_durationLeft_clicked()
 
     if(newRowItemDuration == 0) {
         newRowItemDuration = 2;
+        ui->TimeElapse->setText("N/A");
     }
     else if(newRowItemDuration == 1) {
         newRowItemDuration = 0;
+        ui->TimeElapse->setText("20s");
     }
     else {
         newRowItemDuration = 1;
+        ui->TimeElapse->setText("45s");
     }
     ui->listDuration->setCurrentRow(newRowItemDuration);
 
@@ -493,12 +510,15 @@ void MainWindow::on_durationRight_clicked()
 
     if(newRowItemDuration == 0) {
         newRowItemDuration = 1;
+        ui->TimeElapse->setText("45s");
     }
     else if(newRowItemDuration == 1) {
         newRowItemDuration = 2;
+        ui->TimeElapse->setText("N/A");
     }
     else {
         newRowItemDuration = 0;
+        ui->TimeElapse->setText("20s");
     }
     ui->listDuration->setCurrentRow(newRowItemDuration);
 
@@ -654,6 +674,20 @@ void MainWindow::stopBatteryLevel() {
 // After this, flashes the selected session's intensity for 3 seconds (3000 miliseconds) at an interval of 500 miliseconds.
 void MainWindow::on_selectionBtn_clicked()
 {
+<<<<<<< HEAD
+||||||| 825069e
+    // ADD CODE TO DISABLE BUTTON WHEN WE HAVE A WAY
+    // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
+    // BUTTON HAS BEEN PRESSED
+
+=======
+    // ADD CODE TO DISABLE BUTTON WHEN WE HAVE A WAY
+    // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
+    // BUTTON HAS BEEN PRESSED
+
+    selectedSessionOrNot = true;
+    finishedFlashing = false;
+>>>>>>> d5a3bad574a5cf8dc7d046993e789b59504fd3fe
     ui->selectionBtn->setDisabled(true);
 
 //    *** COMMENT FROM MINGRUI: THIS TIMER WILL TERMINATE THE PROGRAM WHEN CLICKING SELECT BUTTON TWICE
@@ -665,7 +699,6 @@ void MainWindow::on_selectionBtn_clicked()
 //    }
 
     valueIntUntilEndOfFlash = 0;
-    selectedSessionOrNot = true;
 
     selectedDuration = newRowItemDuration;
     selectedSession = newRowItemSession;
@@ -708,45 +741,48 @@ void MainWindow::flashSelectedLevelAfterSelection() {
 // the delay5Seconds function.
 void MainWindow::flashTimer() {
 
-    if(objData.sessionArray[1] == 0 && ledFiveFlash == true){
-        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border: 3px solid red; }");
-        ledFiveFlash = false;
-    }
-    else if(objData.sessionArray[1] == 0 && ledFiveFlash == false){
-        ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
-        ledFiveFlash = true;
-    }
-    else if(objData.sessionArray[1] == 1 && ledSixFlash == true){
-        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border: 3px solid red; }");
-        ledSixFlash = false;
-    }
-    else if(objData.sessionArray[1] == 1 && ledSixFlash == false){
-        ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
-        ledSixFlash = true;
-    }
-    else if(objData.sessionArray[1] == 2 && ledSevenFlash == true){
-        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: #FF7e82; border: 3px solid red; }");
-        ledSevenFlash = false;
-    }
-    else if(objData.sessionArray[1] == 2 && ledSevenFlash == false){
-        ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
-        ledSevenFlash = true;
-    }
-    else if(objData.sessionArray[1] == 3 && ledFourFlash == true){
-        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid red; }");
-        ledFourFlash = false;
-    }
-    else if(objData.sessionArray[1] == 3 && ledFourFlash == false){
-        ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); ; border: 3px solid cyan; }");
-        ledFourFlash = true;
-    }
-    if(valueIntUntilEndOfFlash == 10) {
-        timerFlashes->stop();
-        valueIntUntilEndOfFlash = 0;
-        delay5Seconds();
-    }
-    else {
-        valueIntUntilEndOfFlash++;
+    if(changeWetOrDry == false && numberOfTimesPowerBtnClicked == 2) {
+        if(objData.sessionArray[1] == 0 && ledFiveFlash == true){
+            ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border: 3px solid red; }");
+            ledFiveFlash = false;
+        }
+        else if(objData.sessionArray[1] == 0 && ledFiveFlash == false){
+            ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+            ledFiveFlash = true;
+        }
+        else if(objData.sessionArray[1] == 1 && ledSixFlash == true){
+            ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border: 3px solid red; }");
+            ledSixFlash = false;
+        }
+        else if(objData.sessionArray[1] == 1 && ledSixFlash == false){
+            ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+            ledSixFlash = true;
+        }
+        else if(objData.sessionArray[1] == 2 && ledSevenFlash == true){
+            ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: #FF7e82; border: 3px solid red; }");
+            ledSevenFlash = false;
+        }
+        else if(objData.sessionArray[1] == 2 && ledSevenFlash == false){
+            ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
+            ledSevenFlash = true;
+        }
+        else if(objData.sessionArray[1] == 3 && ledFourFlash == true){
+            ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid red; }");
+            ledFourFlash = false;
+        }
+        else if(objData.sessionArray[1] == 3 && ledFourFlash == false){
+            ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); ; border: 3px solid cyan; }");
+            ledFourFlash = true;
+        }
+        if(valueIntUntilEndOfFlash == 10) {
+            timerFlashes->stop();
+            valueIntUntilEndOfFlash = 0;
+            finishedFlashing = true;
+            delay5Seconds();
+        }
+        else {
+            valueIntUntilEndOfFlash++;
+        }
     }
 
 }
@@ -1095,7 +1131,7 @@ void MainWindow::toggleCesModeLight()
 void MainWindow::flashCesModeLight()
 {
 
-    if(timerCES == nullptr && numberOfTimesPowerBtnClicked == 2) {
+    if(timerCES == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
         timerCES = new QTimer(this);
         timerCES->setInterval(500);
         connect(timerCES, SIGNAL(timeout()), this, SLOT(flashGraphCounter()));
@@ -1194,7 +1230,7 @@ void MainWindow::ledBlinkTimer() {
 void MainWindow::blinkCounter() {
 
     counterBlinkingLed++;
-    if(groupToBlink == 0 && numberOfTimesPowerBtnClicked == 2) {
+    if(groupToBlink == 0 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
         if(blinkTrueOrFalse == true) {
             ledEightOn();
@@ -1208,7 +1244,7 @@ void MainWindow::blinkCounter() {
         }
 
     }
-    if(groupToBlink == 1 && numberOfTimesPowerBtnClicked == 2) {
+    if(groupToBlink == 1 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
         if(blinkTrueOrFalse == true) {
             ledSixOn();
@@ -1223,7 +1259,7 @@ void MainWindow::blinkCounter() {
             blinkTrueOrFalse = true;
         }
     }
-    if(groupToBlink == 2 && numberOfTimesPowerBtnClicked == 2) {
+    if(groupToBlink == 2 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
         if(blinkTrueOrFalse == true) {
             ledOneOn();
@@ -1240,7 +1276,7 @@ void MainWindow::blinkCounter() {
 
     }
 
-    if(counterBlinkingLed == 6 && numberOfTimesPowerBtnClicked == 2) {
+    if(counterBlinkingLed == 6 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
         timerBlinkLed->stop();
         counterBlinkingLed = 0;
 
@@ -1276,11 +1312,34 @@ void MainWindow::blinkCounter() {
             ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         }
 
-        if(connectivity == false && numberOfTimesPowerBtnClicked == 2) {
+        // After finishing all the tests, it now performs the following functions based on whether the
+        // device is connected or not.
+        if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             playScrollAnimation();
         }
-        else if(connectivity == true && numberOfTimesPowerBtnClicked == 2) {
+        else if(connectivity == true && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             // Enable intensity and selection buttons:
+            // Blink animation of all leds lasts for 3 secs:
+            /* [...] */
+
+            // Allocate and add a new histroy record into the QSQL database:
+            // Show a message:
+            QMessageBox Alert;
+            Alert.setWindowTitle("Add Preferences");
+            Alert.setText("Would you like to create a threapy record for the current user?");
+            Alert.setStandardButtons(QMessageBox::Yes);
+            Alert.addButton(QMessageBox::No);
+            Alert.setDefaultButton(QMessageBox::No);
+            if (Alert.exec() == QMessageBox::Yes)
+            {
+                //newDatabase->; (not sure what this line does)
+                qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
+            }
+            else
+            {
+                // do something else
+                qDebug() << "Action adding therapy record has been cancelled. ";
+            }
             ui->increaseIntensityBtn->setEnabled(true);
             ui->decreaseIntensityBtn->setEnabled(true);
             ui->selectionBtn->setEnabled(true);
@@ -1339,17 +1398,21 @@ void MainWindow::playScrollAnimation()
 void MainWindow::intervalTimerIntensity() {
 
     if(countForPauseEnd < valuePause) {
-        if(intensityTimer == nullptr && numberOfTimesPowerBtnClicked == 2) {
+        if(intensityTimer == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             qDebug() << "New intensity timer...";
             intensityTimer = new QTimer(this);
             intensityTimer->setInterval(500);
             connect(intensityTimer, SIGNAL(timeout()), this, SLOT(switchLeds()));
             intensityTimer->start();
         }
-        else if(connectivity == false && numberOfTimesPowerBtnClicked == 2) {
+        else if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             qDebug() << "Continue scrolling animation...";
             countSwitch = 0;
             intensityTimer->start();
+        }
+        else if(changeWetOrDry == true) {
+            countSwitch = 0;
+            qDebug() << "Switched stated...";
         }
         else {
             countSwitch = 0;
@@ -1361,7 +1424,7 @@ void MainWindow::intervalTimerIntensity() {
 
 void MainWindow::switchLeds() {
 
-    if(connectivity == false && numberOfTimesPowerBtnClicked == 2) {
+    if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
         if(countSwitch == 0) {
             ledOneOn();
         }
@@ -1496,7 +1559,7 @@ int MainWindow::connectionTestMain()
 
     // Exceptions lead to connection test shut down:
     // 1. low battery level
-    // 2. press powerbutton (missing, need add functionality)
+    // 2. press powerbutton (added functionality - working)
     // 3. time is out (> 20 secs)
 
     // Check connection
@@ -1512,13 +1575,18 @@ int MainWindow::connectionTestMain()
         offRightEar();
         offGroupBoxEars();
 
+        // Turn off all LEDs
+        offLeds();
+
         // Update connection status
         signal = 0;
+        changeWetOrDry = false;
 
         // Update GUI elements
         flashCesModeLight();
 
-    } else if (connectivity == true && timeNow < timeOut && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2) {
+    }
+    else if (connectivity == true && timeNow < timeOut && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2) {
 
         // Successful scenario: passed connection test
         // Start session
@@ -1539,6 +1607,8 @@ int MainWindow::connectionTestMain()
 
             qDebug() << "Starting connection test with connected device...";
 
+            changeWetOrDry = false;
+
             // Update GUI elements
             flashCesModeLight();
 
@@ -1547,6 +1617,7 @@ int MainWindow::connectionTestMain()
         // Exit with connection
         qDebug() << "Connection test ended successfully...";
 
+<<<<<<< HEAD
         // Blink animation of all leds lasts for 3 secs:
         /* [...] */
 
@@ -1585,6 +1656,34 @@ int MainWindow::connectionTestMain()
         ui->selectionBtn->setDisabled(false);
 
     } else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
+||||||| 825069e
+        // Blink animation of all leds lasts for 3 secs:
+        /* [...] */
+
+        // Allocate and add a new histroy record into the QSQL database:
+        // Show a message:
+        QMessageBox Alert;
+        Alert.setWindowTitle("Add Preferences");
+        Alert.setText("Would you like to create a threapy record for the current user?");
+        Alert.setStandardButtons(QMessageBox::Yes);
+        Alert.addButton(QMessageBox::No);
+        Alert.setDefaultButton(QMessageBox::No);
+        if (Alert.exec() == QMessageBox::Yes)
+        {
+            //newDatabase->;
+            qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
+        }
+        else
+        {
+            // do something else
+            qDebug() << "Action adding therapy record has been cancelled. ";
+        }
+
+    } else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
+=======
+    }
+    else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
+>>>>>>> d5a3bad574a5cf8dc7d046993e789b59504fd3fe
 
         qDebug() << "Ending session early...";
 
@@ -1599,7 +1698,8 @@ int MainWindow::connectionTestMain()
 
         qDebug() << "Session ended...";
 
-    } else {
+    }
+    else {
 
         // Exit without connection
         qDebug() << "Connection test has been terminated ...";
@@ -1621,33 +1721,46 @@ void MainWindow::on_newBattery_clicked()
 void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 {
 
-    if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2) {
+    if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true) {
         qDebug() << "Connected...";
         connectionTestMain();
     }
-    else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2) {
+    else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true) {
         qDebug() << "Disconnected...";
         connectionTestMain();
     }
-    else {
+    else if(numberOfTimesPowerBtnClicked == 0) {
         qDebug() << "Device is not turned on...";
+    }
+    else {
+        qDebug() << "Selection button has not been pressed...";
     }
 
 }
 
 void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 {
-    if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2) {
+
+    if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
         qDebug() << "Changed to wet...";
+        changeWetOrDry = true;
         connectionTestMain();
     }
-    else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2) {
+    else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
         qDebug() << "Changed to dry...";
+        changeWetOrDry = true;
         connectionTestMain();
     }
-    else {
+    else if(numberOfTimesPowerBtnClicked == 0){
         qDebug() << "Device is not turned on...";
     }
+    else if(sessionOnOrOff == false) {
+        qDebug() << "Device is disconnected or no session was selected...";
+    }
+    else {
+        qDebug() << "Selection button has not been pressed...";
+    }
+
 }
 
 void MainWindow::descendEndSession() {

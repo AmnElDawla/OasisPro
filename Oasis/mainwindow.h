@@ -250,6 +250,7 @@ private:
     int signal = 0;
     bool OptionDry = false;
     bool OptionWet = false;
+    bool changeWetOrDry = false;
 
     /* CES Mode light control */
     QTimer *connectionTestStartTimer = nullptr;
@@ -282,6 +283,13 @@ private:
     bool sessionOnOrOff = false;
     QTimer *endSession = nullptr;
     int countSwitchDescent = 0;
+
+    // Session countdown timer
+    QTimer *sessionCountdown = nullptr;
+    int countDownSession = 0;
+
+    // Finished flashing choosen intensity (based on session) variable
+    bool finishedFlashing = false;
 
 };
 #endif // MAINWINDOW_H
