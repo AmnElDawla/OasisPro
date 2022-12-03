@@ -458,6 +458,7 @@ void MainWindow::on_durationLeft_clicked()
 
     if(newRowItemDuration == 0) {
         newRowItemDuration = 2;
+        ui->listDuration->setCurrentRow(newRowItemDuration);
 
         // Button index -> actual value of duration
         qDebug() << "Selected custom duration...";
@@ -470,13 +471,14 @@ void MainWindow::on_durationLeft_clicked()
     }
     else if(newRowItemDuration == 1) {
         newRowItemDuration = 0;
+        ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("20s");
     }
     else {
         newRowItemDuration = 1;
+        ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("45s");
     }
-    ui->listDuration->setCurrentRow(newRowItemDuration);
 
 }
 
@@ -521,10 +523,12 @@ void MainWindow::on_durationRight_clicked()
 
     if(newRowItemDuration == 0) {
         newRowItemDuration = 1;
+        ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("45s");
     }
     else if(newRowItemDuration == 1) {
         newRowItemDuration = 2;
+        ui->listDuration->setCurrentRow(newRowItemDuration);
 
         // Button index -> actual value of duration
         qDebug() << "Selected custom duration...";
@@ -537,9 +541,9 @@ void MainWindow::on_durationRight_clicked()
     }
     else {
         newRowItemDuration = 0;
+        ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("20s");
     }
-    ui->listDuration->setCurrentRow(newRowItemDuration);
 
 }
 
@@ -697,38 +701,43 @@ void MainWindow::on_selectionBtn_clicked()
     // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
     // BUTTON HAS BEEN PRESSED
 
-    selectedSessionOrNot = true;
-    finishedFlashing = false;
+    if(customDuration == 0) {
+        qDebug() << "Custom duration cannot be 0 seconds long...";
+    }
+    else {
+        selectedSessionOrNot = true;
+        finishedFlashing = false;
 
-    ui->selectionBtn->setDisabled(true);
+        ui->selectionBtn->setDisabled(true);
 
-    // COMMENT FROM MINGRUI: THIS TIMER WILL TERMINATE THE PROGRAM WHEN CLICKING SELECT BUTTON TWICE
-    // (Fixed)
-    if(timer != nullptr && timerEnded == false) {
-        if(timer->isActive()) {
-            timer->stop();
-            delete timer;
-            timer = nullptr;
-            timerEnded = true;
-            qDebug() << "Stopping timer...";
+        // COMMENT FROM MINGRUI: THIS TIMER WILL TERMINATE THE PROGRAM WHEN CLICKING SELECT BUTTON TWICE
+        // (Fixed)
+        if(timer != nullptr && timerEnded == false) {
+            if(timer->isActive()) {
+                timer->stop();
+                delete timer;
+                timer = nullptr;
+                timerEnded = true;
+                qDebug() << "Stopping timer...";
+            }
         }
+
+        valueIntUntilEndOfFlash = 0;
+
+        selectedDuration = newRowItemDuration;
+        selectedSession = newRowItemSession;
+
+        objData.sessionArray[0] = selectedDuration;
+
+        if(selectedDuration == 2) {
+            objData.sessionArray[0] = customDuration;
+        }
+
+        objData.sessionArray[1] = selectedSession;
+        objData.sessionArray[2] = 0;
+
+        flashSelectedLevelAfterSelection();
     }
-
-    valueIntUntilEndOfFlash = 0;
-
-    selectedDuration = newRowItemDuration;
-    selectedSession = newRowItemSession;
-
-    objData.sessionArray[0] = selectedDuration;
-
-    if(selectedDuration == 2) {
-        objData.sessionArray[0] = customDuration;
-    }
-
-    objData.sessionArray[1] = selectedSession;
-    objData.sessionArray[2] = 0;
-
-    flashSelectedLevelAfterSelection();
 
 }
 
