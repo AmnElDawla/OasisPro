@@ -63,7 +63,7 @@ This project also has 2 additional milestones, which are:
 
 | Team Members         | Tasks                 |
 | -------------------- | --------------------- |
-| Andre Nonaka Cordova | Readme.md<br>GUI Creation<br>Use Case Model<br>OO Design Model<br>Traceability Matrix<br> Logic of the Program |
+| Andre Nonaka Cordova | Readme.md<br>GUI Creation<br>Use Case Model<br>OO Design Model<br>Traceability Matrix<br>Program Logic |
 | Alex Nedev | Session Selection Feature<br>Intensity Feature |
 | Khaled Farag | Power Feature<br>Battery Level |
 | Mingrui Liang | Connection Test Feature<br>Record Therapy Feature |
