@@ -1392,12 +1392,29 @@ void MainWindow::blinkCounter() {
                 seconds45Timer->start();
             }
             else {
-                qDebug() << "Timer will go on for N/A";
+                qDebug() << "Timer will go on for "+QString::number(objData.sessionArray[0])+"s";
+                customTimer = new QTimer(this);
+                customTimer->setInterval(1000);
+                connect(customTimer, SIGNAL(timeout()), this, SLOT(updateUITimeCustomDisplay()));
+                customTimer->start();
             }
         }
         else {
             qDebug() << "Device has been turned off. Unable to process with test....";
         }
+
+    }
+
+}
+
+void MainWindow::updateUITimeCustomDisplay() {
+
+    if(customCounter == customDuration) {
+
+    }
+    else {
+
+        customCounter++;
 
     }
 

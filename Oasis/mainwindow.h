@@ -209,6 +209,10 @@ private slots:
     // the time left for the session (time left before the session ends).
     void updateUITime45sDisplay();
 
+    // This slot is called when the QTimer named customTimer timeout. It will update the part of the GUI that displays
+    // the time left for the session (time left before the session ends).
+    void updateUITimeCustomDisplay();
+
 private:
     Ui::MainWindow *ui;
 
@@ -326,6 +330,12 @@ private:
 
     // Custom duration value variable
     int customDuration = 0;
+
+    // Custom counter for the custom duration (used in the QTimer named customTimer)
+    int customCounter = 0;
+
+    // Custom QTimer for the custom duration
+    QTimer *customTimer = nullptr;
 
 };
 #endif // MAINWINDOW_H
