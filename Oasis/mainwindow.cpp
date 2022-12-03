@@ -1309,16 +1309,27 @@ void MainWindow::blinkCounter() {
             if (Alert.exec() == QMessageBox::Yes)
             {
                 //newDatabase->; (not sure what this line does)
-                qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
+                qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database...";
             }
             else
             {
                 // do something else
-                qDebug() << "Action adding therapy record has been cancelled. ";
+                qDebug() << "Action adding therapy record has been cancelled...";
             }
             ui->increaseIntensityBtn->setEnabled(true);
             ui->decreaseIntensityBtn->setEnabled(true);
             ui->selectionBtn->setEnabled(true);
+
+            //Start session timer based on the duration
+            if(objData.sessionArray[0] == 0) {
+                qDebug << "Timer will go on for 20s";
+            }
+            else if(objData.sessionArray[0] == 1) {
+                qDebug << "Timer will go on for 45s";
+            }
+            else {
+                qDebug << "Timer will go on for N/A";
+            }
         }
         else {
             qDebug() << "Device has been turned off. Unable to process with test....";
