@@ -2,7 +2,7 @@
 
 ## Merge Errors
 
-Notice if you get errors with a merge, please follow the intructions in this [link](https://stackoverflow.com/questions/161813/how-do-i-resolve-merge-conflicts-in-a-git-repository) and use BA (Base) for when merging changes with the `mergetool`. 
+If you get errors with a merge, please follow the intructions in this [link](https://stackoverflow.com/questions/161813/how-do-i-resolve-merge-conflicts-in-a-git-repository) and use BA (Base) for when merging changes with the `mergetool`. 
 
 ## Important Notice
 
@@ -86,16 +86,16 @@ Notice 2: The Progress Report Table will need to be updated throughout the proje
 
 | Task             | Status          | Lead                  | Collaborators | Expected end date | Actual end date | Time spent | Notes |
 | ---------------- | :-------------: | --------------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
-| Readme.md (will be continuously updated)       | 	 &#128993;     | Andre Nonaka Cordova  | N/A           | 2022-11-25        | 2022-11-25      | N/A        | N/A   |
+| Readme.md (will be continuously updated)       | 	 &#128993;     | Andre Nonaka Cordova  | 2022-11-30           | 2022-11-25        | 2022-11-25      | N/A        | N/A   |
 | <br><br><br><br>Use Case Model,<br>OO Design Model,<br> and Traceability Matrix<br><br><br><br> |  &#128993;  | Andre Nonaka Cordova  | Alex Nedev | 2022-11-22 | N/A | N/A | Completed a Preliminary draft of the Use Cases.<br>However, we will most likely change certain cases as we move along in the project.<br> Alex N provided some feedback on Use Cases.<br>Will work back and forth with lead until we believe we’re done. |
 | GUI Creation     |   &#128994;     | Andre Nonaka Cordova  | N/A  | 2022-11-14 | 2022-11-19      | 1 week | N/A |
 | Power Feature    |   &#128994;     | Khaled Farag          | N/A | 2022-11-30 | N/A | N/A | Completed basic functionality.<br>Will add "Session Ended Early" use case when sessions are implemented.<br>Changed default colors to off and buttons to disabled, instead of being on at simulator launch. |
 | Battery Level    |   &#128993;     | Khaled Farag          | N/A  | 2022-11-30 | N/A | N/A | Completed battery level display on launch.<br>Will add battery level display during session and low battery shutdown/lock when said features are implemented. |
-| Session Selection Feature |   &#128994;  | Alex Nedev   | Andre Nonaka Cordova  | N/A | 2022-11-18      | N/A | N/A |
-| Connection Test Feature |   &#128994;  | Mingrui Liang  | Andre Nonaka Cordova  | N/A | 2022-11-18      | N/A | N/A |
+| Session Selection Feature |   &#128994;  | Alex Nedev   | Andre Nonaka Cordova  | 2022-11-30 | 2022-11-18      | N/A | N/A |
+| Connection Test Feature |   &#128994;  | Mingrui Liang  | Andre Nonaka Cordova  | 2022-11-30 | 2022-11-18      | N/A | N/A |
 | Intensity Feature  |   &#128994;   | Alex Nedev  | Andre Nonaka Cordova   | 2022-11-18 | 2022-11-18      | N/A | N/A |
-| Record Therapy Feature (should have support for at least 4 users) |   &#128993;  | Mingrui Liang  | N/A  | N/A | 2022-11-19      | N/A | N/A |
-| Replay Therapy Feature (should have support for at least 4 users) |   &#128308;  | N/A  | N/A | N/A               | 2022-11-19      | N/A        | N/A   |
+| Record Therapy Feature (should have support for at least 4 users) |   &#128993;  | Mingrui Liang  | N/A  | 2022-11-30 | 2022-11-19      | N/A | N/A |
+| Replay Therapy Feature (should have support for at least 4 users) |   &#128308;  | N/A  | N/A | 2022-11-30               | 2022-11-19      | N/A        | N/A   |
 
 ## How to work on this project in your personal computer
 
