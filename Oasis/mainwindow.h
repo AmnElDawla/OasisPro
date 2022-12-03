@@ -320,5 +320,9 @@ private:
     // Countdown from 45 to 0
     int from45to0 = 45;
 
+    // Finds out if the session scrolldown animation is finished
+    bool // Only true if the session ends at the time it needs to end (in this case after 45 seconds).
+    finishedScrolledDown = true;finishedScrolledDown = false;
+
 };
 #endif // MAINWINDOW_H
