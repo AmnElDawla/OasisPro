@@ -302,11 +302,17 @@ private:
     // Check if two minutes timer is deleted
     bool timerEnded = false;
 
-    //20s timer
+    // 20s timer
     QTimer *seconds45Timer = nullptr;
 
-    //45s timer
+    // 45s timer
     QTimer *seconds20Timer = nullptr;
+
+    // 20s counter that will count up to 20.
+    int countTo20 = 0;
+
+    // 45s counter that will count up to 45.
+    int countTo45 = 0;
 
 };
 #endif // MAINWINDOW_H
