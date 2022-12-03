@@ -1057,7 +1057,7 @@ void MainWindow::toggleCesModeLight()
 void MainWindow::flashCesModeLight()
 {
 
-    if(timerCES == nullptr) {
+    if(timerCES == nullptr && numberOfTimesPowerBtnClicked == 2) {
         timerCES = new QTimer(this);
         timerCES->setInterval(500);
         connect(timerCES, SIGNAL(timeout()), this, SLOT(flashGraphCounter()));
@@ -1068,7 +1068,6 @@ void MainWindow::flashCesModeLight()
 
 void MainWindow::flashGraphCounter() {
 
-    toggleCesModeLight();
     if(counterFlashGraph == 6) {
 
         timerCES->stop();
@@ -1089,6 +1088,7 @@ void MainWindow::flashGraphCounter() {
     }
     else {
 
+        toggleCesModeLight();
         counterFlashGraph++;
 
     }
@@ -1156,7 +1156,7 @@ void MainWindow::ledBlinkTimer() {
 void MainWindow::blinkCounter() {
 
     counterBlinkingLed++;
-    if(groupToBlink == 0) {
+    if(groupToBlink == 0 && numberOfTimesPowerBtnClicked == 2) {
 
         if(blinkTrueOrFalse == true) {
             ledEightOn();
@@ -1170,7 +1170,7 @@ void MainWindow::blinkCounter() {
         }
 
     }
-    else if(groupToBlink == 1) {
+    if(groupToBlink == 1 && numberOfTimesPowerBtnClicked == 2) {
 
         if(blinkTrueOrFalse == true) {
             ledSixOn();
@@ -1185,7 +1185,7 @@ void MainWindow::blinkCounter() {
             blinkTrueOrFalse = true;
         }
     }
-    else {
+    if(groupToBlink == 2 && numberOfTimesPowerBtnClicked == 2) {
 
         if(blinkTrueOrFalse == true) {
             ledOneOn();
@@ -1202,7 +1202,7 @@ void MainWindow::blinkCounter() {
 
     }
 
-    if(counterBlinkingLed == 6) {
+    if(counterBlinkingLed == 6 && numberOfTimesPowerBtnClicked == 2) {
         timerBlinkLed->stop();
         counterBlinkingLed = 0;
 
@@ -1210,7 +1210,6 @@ void MainWindow::blinkCounter() {
         onLeds();
 
         // Finding correct intensity level
-
         int realValueRow = 0;
         if(newRowItemSession == 0) {
             realValueRow = 3;
@@ -1239,14 +1238,17 @@ void MainWindow::blinkCounter() {
             ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         }
 
-        if(connectivity == false) {
+        if(connectivity == false && numberOfTimesPowerBtnClicked == 2) {
             playScrollAnimation();
         }
-        else {
+        else if(connectivity == true && numberOfTimesPowerBtnClicked == 2) {
             // Enable intensity and selection buttons:
             ui->increaseIntensityBtn->setEnabled(true);
             ui->decreaseIntensityBtn->setEnabled(true);
             ui->selectionBtn->setEnabled(true);
+        }
+        else {
+            qDebug() << "Device has been turned off. Unable to process with test....";
         }
 
     }
