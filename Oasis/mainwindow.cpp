@@ -1348,7 +1348,7 @@ void MainWindow::blinkCounter() {
             }
             else
             {
-                // do something else
+                // Do something else (cancelled adding action).
                 qDebug() << "Action adding therapy record has been cancelled. ";
             };
 
@@ -1356,7 +1356,7 @@ void MainWindow::blinkCounter() {
             ui->decreaseIntensityBtn->setEnabled(true);
             ui->selectionBtn->setEnabled(true);
 
-            //Start session timer based on the duration
+            // Start session timer based on the duration
             if(objData.sessionArray[0] == 0) {
                 qDebug() << "Timer will go on for 20s";
                 seconds20Timer = new QTimer(this);
