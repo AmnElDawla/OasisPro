@@ -194,7 +194,7 @@ void MainWindow::on_powerBtn_clicked()
     // This completely turns off the device (everything is off).
     else {
 
-        //Reset number of clicks to 0.
+        // Reset number of clicks to 0.
         numberOfTimesPowerBtnClicked = 0;
 
         // Turn off all LEDs.
