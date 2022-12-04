@@ -1797,7 +1797,7 @@ int MainWindow::connectionTestMain()
     // Exceptions lead to connection test shut down:
     // 1. low battery level
     // 2. press powerbutton (added functionality - working)
-    // 3. time is out (> 20 secs)
+    // 3. time is out (> 20 secs) - (Do not think we need this anymore)
 
     // Check if the connection is false (disconnected) and the application is fully turn on.
     if (connectivity == false && numberOfTimesPowerBtnClicked == 2) {
