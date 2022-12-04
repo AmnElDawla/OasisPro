@@ -7,7 +7,7 @@ Database::~Database()
 
     databaseGui.close();
     QSqlDatabase::removeDatabase(databaseGui.defaultConnection);
-};
+}
 
 bool Database::initializeDatabase()
 {
@@ -21,7 +21,8 @@ bool Database::initializeDatabase()
     }
 
     return true;
-};
+
+}
 
 bool Database::initializeDatabaseTables()
 {
@@ -38,7 +39,8 @@ bool Database::initializeDatabaseTables()
     queryTable.exec(queryDatabaseTreatmentHistoryTable);
 
     return databaseGui.commit();
-};
+
+}
 
 bool Database::initializeDefaultUserRecord()
 {
@@ -58,7 +60,8 @@ bool Database::initializeDefaultUserRecord()
     queryTable.exec(queryRecordUser4);
 
     return databaseGui.commit();
-};
+
+}
 
 bool Database::addUserRecord(QString session)
 {
@@ -73,10 +76,12 @@ bool Database::addUserRecord(QString session)
     queryTable.exec();
 
     return databaseGui.commit();
-};
+
+}
 
 bool Database::validateTherapyRecord(const int sessionType, const int intensityLevel, const int duration)
 {
+
     int intensityMin = 0;
     int intensityMax = 8;
     bool validity = true;
@@ -91,8 +96,8 @@ bool Database::validateTherapyRecord(const int sessionType, const int intensityL
         validity = false;
     }
     return validity;
-}
 
+}
 
 /*
 session -> button index
@@ -134,7 +139,8 @@ bool Database::addTherapyHistoryRecord(int userId, TherapyRecord *tr)
     queryTable.exec();
 
     return databaseGui.commit();
-};
+
+}
 
 QVector<Users *> Database::getUserData(int id)
 {
@@ -161,69 +167,107 @@ QVector<Users *> Database::getUserData(int id)
     }
 
     return userData;
-};
+
+}
+
+int Database::getTherapyId(int userId)
+{
+
+    databaseGui.transaction();
+
+    QSqlQuery query;
+    QString queryRecordHistory = "SELECT * FROM treatmentHistory";
+    query.prepare(queryRecordHistory);
+    query.exec();
+
+    int rowCounter = 0;
+
+    while (query.next())
+    {
+        int uid = query.value("uid").toInt();
+        if (uid == userId)
+        {
+            rowCounter++;
+        }
+    }
+    qDebug() << "Generating Therapy Id: found " << rowCounter << "results of user " << userId;
+    int therapyId = rowCounter;
+    therapyId++;
+    return therapyId;
+
+}
+
+/*
+Conversion of each elemment in seesion array:
+
+session -> button index
+duration -> actual value of the duration (not button index)
+intensity level -> actual values
+
+*/
+bool Database::addTherapyHistoryRecord(int userId, TherapyRecord *tr)
+{
+
+    int session = tr->getSessionType();
+    int intensity = tr->getIntensityLevel();
+    int duration = tr->getDuration();
+    if (!validateTherapyRecord(session, intensity, duration))
+    {
+        return false;
+    }
+
+    int therapyId = getTherapyId(userId);
+
+    databaseGui.transaction();
+    qDebug() << userId << therapyId << session << intensity << duration;
+
+    QString queryRecordHistory = "INSERT INTO treatmentHistory (uid, tid, session_type, intensity_level, duration) VALUES (:uid, :tid, :session_type, :intensity_level, :duration);";
+    QSqlQuery queryTable;
+    queryTable.prepare(queryRecordHistory);
+    queryTable.bindValue(":uid", userId);
+    queryTable.bindValue(":tid", therapyId);
+    queryTable.bindValue(":session_type", session);
+    queryTable.bindValue(":intensity_level", intensity);
+    queryTable.bindValue(":duration", duration);
+    queryTable.exec();
+
+    return databaseGui.commit();
+
+}
 
 QVector<TherapyRecord *> Database::getTherapyHistoryRecords(int userId)
 {
+
     // TODO: retrieve all therapy records of a user by userId
     databaseGui.transaction();
-    QString queryDatabaseTherapyHistoryRecordTable = "SELECT * FROM treatmentHistory WHERE userId = :users";
-    //"SELECT session as treatment,date,intensity,duration FROM ( SELECT session as session,tid as rid FROM therapy_records UNION SELECT session as session,fid as rid FROM frequency_records ) NATURAL JOIN records ORDER BY rid;";
+    QString queryDatabaseTherapyHistoryRecordTable = "SELECT * FROM treatmentHistory";
     QSqlQuery queryTable;
     queryTable.prepare(queryDatabaseTherapyHistoryRecordTable);
-    queryTable.bindValue(":id", userId);
+    queryTable.bindValue(":uid", userId);
     queryTable.exec();
     QVector<TherapyRecord *> therapyHistoryRecordData;
     while (queryTable.next())
     {
-        int session = queryTable.value(0).toString().toInt();
-        int intensity = queryTable.value(1).toString().toInt();
-        int duration = queryTable.value(2).toString().toInt();
-        TherapyRecord *thr = new TherapyRecord(session, intensity, duration);
-        therapyHistoryRecordData.push_back(thr);
+        int uid = queryTable.value("uid").toInt();
+        if (uid == userId)
+        {
+            int session = queryTable.value(0).toString().toInt();
+            int intensity = queryTable.value(1).toString().toInt();
+            int duration = queryTable.value(2).toString().toInt();
+            TherapyRecord *thr = new TherapyRecord(session, intensity, duration);
+            therapyHistoryRecordData.push_back(thr);
+        }
     }
 
     return therapyHistoryRecordData;
-};
+
+}
 
 void Database::updateSelectedSession(TherapyRecord *tr)
 {
-    int session = tr->getSessionType();
-    int sessionTypeNumber = 0;
-    /*
-    if (session == "")
-    {
-        sessionTypeNumber = 0;
-    }
-    else if (session == "")
-    {
-        sessionTypeNumber = 1;
-    }
-    else if (session == "")
-    {
-        sessionTypeNumber = 2;
-    }
-    else
-    {
-        sessionTypeNumber = 3;
-    }
-    */
 
-    int intensity = tr->getIntensityLevel();
-    int duration = tr->getDuration();
+    objData.sessionArray[0] = tr->getDuration();
+    objData.sessionArray[1] = tr->getSessionType();
+    objData.sessionArray[2] = tr->getIntensityLevel();
 
-    if (validateTherapyRecord(session, intensity, duration))
-    {
-        sessionArray[0] = duration;
-        sessionArray[1] = sessionTypeNumber;
-        sessionArray[2] = intensity;
-    }
-    /* Problem:
-     * Need another method to access the sessionArray
-     *
-     * possible solutions:
-     * 1. set it as public variable in mainwindow.h?
-     * 2. make this class as a friend
-     *
-     * */
-};
+}

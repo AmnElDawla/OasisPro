@@ -18,15 +18,13 @@ public:
     bool initializeDatabase();
     bool initializeDefaultUserRecord();
     bool addUserRecord();
-    bool validateTherapyRecord(const int sessionType, const int intensityLevel, const int duration);
-    bool addTherapyHistoryRecord(int userId, TherapyRecord *tr); // Construct a NEW threapy record from current session first
-    bool addUserRecord(QString name);
-    // void selectFromHistoryRecords();
-    void updateSelectedSession(TherapyRecord *tr);
-
     QVector<Users *> getUserData(int id);
+    bool validateTherapyRecord(const int sessionType, const int intensityLevel, const int duration);
+    int getTherapyId(int userId);
+    bool addTherapyHistoryRecord(int userId, TherapyRecord *tr);
+    bool addUserRecord(QString name);
     QVector<TherapyRecord *> getTherapyHistoryRecords(int userId);
-    // Need another function to select a record from the list above.
+    void updateSelectedSession(TherapyRecord *tr);
 
     ~Database();
 
