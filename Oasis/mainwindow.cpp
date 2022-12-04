@@ -1727,10 +1727,20 @@ void MainWindow::pauseCounter() {
     // called. If the counter equals to the valuePause, then stop and delete timer and reset all the counter found in that
     // file (or section of the code base.
     if(countForPauseEnd == valuePause) {
+
+        // Stop timer.
         pauseTimerDefault->stop();
+
+        // Reset counter to 0.
         countForPauseEnd = 0;
+
+        // Turned off all LEDs (1 to 8).
         offLeds();
+
+        // Delete the timer.
         delete pauseTimerDefault;
+
+        // Set the timer to nullptr.
         pauseTimerDefault = nullptr;
         qDebug() << "End scrolling animation...";
     }
@@ -1738,7 +1748,11 @@ void MainWindow::pauseCounter() {
     // else statament that is called until the counter named countForPausedEnd is not equal to the valuePause, then
     // increment the counter and star intervalTimerIntensity.
     else {
+
+        // Call this function to start the scrolling animation.
         intervalTimerIntensity();
+
+        // Increment counter by 1.
         countForPauseEnd++;
     }
 
