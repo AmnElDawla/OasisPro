@@ -1844,6 +1844,7 @@ int MainWindow::connectionTestMain()
 
             qDebug() << "Starting connection test with connected device...";
 
+            // Set variable to false as the combobox is no longer being change from dry to wet or vice-versa.
             changeWetOrDry = false;
 
             // Update GUI elements
