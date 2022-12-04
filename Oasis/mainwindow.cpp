@@ -1640,6 +1640,8 @@ void MainWindow::intervalTimerIntensity() {
 // This function does the scrolling animation (scrolling up from 1 to 8)
 void MainWindow::switchLeds() {
 
+    // First checks if the connectivity is false, the application is fully turned on (numberOfTimesPowerBtnClick is equal
+    // to 2 when it is turned on fully, and if the wet/dry combobox has not been changed (or pressed).
     if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
         if(countSwitch == 0) {
             ledOneOn();
