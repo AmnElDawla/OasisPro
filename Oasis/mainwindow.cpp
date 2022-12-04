@@ -1415,6 +1415,10 @@ void MainWindow::updateUITimeCustomDisplay() {
 
     // Checks if application is fully turn on and the wet/dry state has not been changed.
     if(numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+
+        // If the counter that keeps track of how many times this function has been called is equal to custom duration
+        // (given by the user when they selected the custom duration option), then that means that the custom time has
+        // elapsed.
         if(customCounter == (customDuration+1)) {
 
             qDebug().noquote() << QString::number(customDuration)+"s timer finished...";
@@ -1462,6 +1466,9 @@ void MainWindow::updateUITime20sDisplay() {
 
     // Checks if application is fully turn on and the wet/dry state has not been changed.
     if(numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+
+        // If the counter that keeps track of how many times this function has been called is equal to 21, then that means
+        // that the 20 seconds has elapsed.
         if(countTo20 == 21) {
 
             qDebug() << "20s timer finished...";
@@ -1508,6 +1515,9 @@ void MainWindow::updateUITime45sDisplay() {
 
     // Checks if application is fully turn on and the wet/dry state has not been changed.
     if(numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+
+        // If the counter that keeps track of how many times this function has been called is equal to 46, then that means
+        // that the 45 seconds has elapsed.
         if(countTo45 == 46) {
 
             qDebug() << "45s timer finished...";
