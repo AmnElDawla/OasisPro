@@ -1610,6 +1610,7 @@ void MainWindow::playScrollAnimation()
 // intensity timer at an interval of 500 miliseconds (half a second).
 void MainWindow::intervalTimerIntensity() {
 
+    //
     if(countForPauseEnd < valuePause) {
         if(intensityTimer == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             qDebug() << "New intensity timer...";
@@ -1635,6 +1636,7 @@ void MainWindow::intervalTimerIntensity() {
 
 }
 
+// This function manages
 void MainWindow::switchLeds() {
 
     if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {

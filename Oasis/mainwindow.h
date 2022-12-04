@@ -138,7 +138,13 @@ private slots:
 
     void showBatteryLevel();
     void stopBatteryLevel();
+
+    // This slot below is called when user presses the up arrow next to the intensity labels (1 to 8).
+    // This is used to select an intensity.
     void on_increaseIntensityBtn_clicked();
+
+    // This slot below is called when user presses the down arrow next to the intensity labels (1 to 8).
+    // This is used to select an intensity.
     void on_decreaseIntensityBtn_clicked();
 
     // This slot is called when QTimer named timer timeout. This is called after 2 minutes (or 120000 miliseconds)
@@ -221,6 +227,7 @@ private:
 
     QVector<int> levels;
 
+    // Records how many times the power button has been clicked.
     int numberOfTimesPowerBtnClicked = 0;
 
     // Duration and session variables.
