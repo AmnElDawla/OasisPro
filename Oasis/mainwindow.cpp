@@ -1746,6 +1746,9 @@ void MainWindow::pauseCounter() {
 
 /* Main control of connection test
  *** Note: check power level before calling this function ***
+ *** Checks if the application is connected, disconnected and a session ended early.
+ *** The session only truly begins after the connection test ends (successfully - meaning the session timer goes to 0
+ *** and the session did not end early).
  */
 int MainWindow::connectionTestMain()
 {
