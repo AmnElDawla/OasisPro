@@ -1557,11 +1557,17 @@ void MainWindow::updateUITime45sDisplay() {
 
 }
 
-// Updating connection status on GUI
+// This function basically takes three signals, which are:
+// - Signal = 0 => this signal means that there is no connection (application / device is disconnected - red light
+//   will flash - LEDs 7 and 8)
+// - Signal = 1 => this signal means that there is an okay connection (yellow light will flash - LEDs 4, 5, and 6)
+// - Signal = 2 => this signal means that there is an excellent / good connection - green light will flash - LEDs 1, 2 and 3)
+// From the switch case (which is based on signal value), it will decide how to flash the intensity lights (or LEDs) based
+// on the given signal (as stated in the bullet points above).
 void MainWindow::displayConnection(int signal)
 {
 
-    // Turn off all LEDs.
+    // Turn off all LEDs. Just a precaution in case the LEDs are still on.
     offLeds();
 
     switch (signal)
