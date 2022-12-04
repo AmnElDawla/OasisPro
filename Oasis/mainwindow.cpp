@@ -1721,6 +1721,7 @@ void MainWindow::pauseTimer(int value) {
 
 }
 
+// This function
 void MainWindow::pauseCounter() {
 
     // If statement to check if the counter named countForPausedEnd (which keeps track of how times the function has been
@@ -1994,19 +1995,35 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
 }
 
-
+// This function initializes the timer that will allow for the descent scrolling animation from 8 to 1 to work.
 void MainWindow::descendEndSession() {
 
+    // Turns off all LEDS (1 to 8)
     offLeds();
+
+    // Initializes the timer.
     endSession = new QTimer(this);
+
+    // Sets the timer interval to 500 miliseconds.
     endSession->setInterval(500);
+
+    // Connects the timer's timeout to the slot function named startDescendEndSession().
+    // This function is the one that will be called every 500 miliseconds to perform the
+    // scrolling down animation.
     connect(endSession, SIGNAL(timeout()), this, SLOT(startDescendEndSession()));
+
+    // Starts the timer.
     endSession->start();
 
 }
 
+// This function is the one that performs the scrolling down animation when a session ends on-time or when the power button is
+// clicked for a third time (numberOfTimesPowerBtnClicked = 0, this means the session ended early).
+// Notice: countSwitchDescent starts at 0 and increments by 1 everytime this function is called, which is what allows the scrolling
+// animation to happen as for each increment, the corresponding LED will be either turned on or off.
 void MainWindow::startDescendEndSession() {
 
+    // The scrolling animation based on the value of the countSwitchDescent counter.
     if(countSwitchDescent == 15) {
         ledOneOff();
     }
@@ -2057,13 +2074,23 @@ void MainWindow::startDescendEndSession() {
         ledEightOn();
     }
 
+    // Checks if the countSwitchDescent counter is equal to 15.
     if(countSwitchDescent == 15) {
         qDebug() << "Stopping end session timer...";
+
+        // Counter is reset to 0.
         countSwitchDescent = 0;
+
+        // Timer is stopped.
         endSession->stop();
+
+        // Timer is deleted.
         delete endSession;
+
+        // Timer is value is set to nullptr.
         endSession = nullptr;
 
+        // Checks if the session ended on time (this means that no power button has been pressed).
         if(finishedScrolledDown == true) {
 
             qDebug() << "Resetting all necessary components before shut down...";
@@ -2104,6 +2131,8 @@ void MainWindow::startDescendEndSession() {
 
     }
     else {
+
+        // Increment the counter by 1.
         countSwitchDescent++;
     }
 
