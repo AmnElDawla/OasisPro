@@ -1410,107 +1410,112 @@ void MainWindow::blinkCounter() {
 
 void MainWindow::updateUITimeCustomDisplay() {
 
-    if(customCounter == (customDuration+1)) {
+    if(numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+        if(customCounter == (customDuration+1)) {
 
-        qDebug().noquote() << QString::number(customDuration)+"s timer finished...";
+            qDebug().noquote() << QString::number(customDuration)+"s timer finished...";
 
-        // Stopping, deleteing and making timer equal to nullptr;
-        customTimer->stop();
-        delete customTimer;
-        customTimer = nullptr;
+            // Stopping, deleteing and making timer equal to nullptr;
+            customTimer->stop();
+            delete customTimer;
+            customTimer = nullptr;
 
-        // Resetting counters
-        customCounter = 0;
-        countdownCustom = 0;
+            // Resetting counters
+            customCounter = 0;
+            countdownCustom = 0;
 
-        // Turning all LEDs off.
-        offLeds();
+            // Turning all LEDs off.
+            offLeds();
 
-        // Only true if the session ends at the time it needs to end (in this case after 20 seconds).
-        finishedScrolledDown = true;
+            // Only true if the session ends at the time it needs to end (in this case after 20 seconds).
+            finishedScrolledDown = true;
 
-        // Scrolling down animation - end of session.
-        descendEndSession();
+            // Scrolling down animation - end of session.
+            descendEndSession();
 
-    }
-    else {
+        }
+        else {
 
-        ui->TimeElapse->setText(QString::number(countdownCustom)+"s");
-        customCounter++;
-        countdownCustom--;
+            ui->TimeElapse->setText(QString::number(countdownCustom)+"s");
+            customCounter++;
+            countdownCustom--;
 
+        }
     }
 
 }
 
 void MainWindow::updateUITime20sDisplay() {
 
-    if(countTo20 == 21) {
+    if(numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+        if(countTo20 == 21) {
 
-        qDebug() << "20s timer finished...";
+            qDebug() << "20s timer finished...";
 
-        // Stopping, deleteing and making timer equal to nullptr;
-        seconds20Timer->stop();
-        delete seconds20Timer;
-        seconds20Timer = nullptr;
+            // Stopping, deleteing and making timer equal to nullptr;
+            seconds20Timer->stop();
+            delete seconds20Timer;
+            seconds20Timer = nullptr;
 
-        // Resetting counters
-        countTo20 = 0;
-        from20to0 = 20;
+            // Resetting counters
+            countTo20 = 0;
+            from20to0 = 20;
 
-        // Turning all LEDs off.
-        offLeds();
+            // Turning all LEDs off.
+            offLeds();
 
-        // Only true if the session ends at the time it needs to end (in this case after 20 seconds).
-        finishedScrolledDown = true;
+            // Only true if the session ends at the time it needs to end (in this case after 20 seconds).
+            finishedScrolledDown = true;
 
-        // Scrolling down animation - end of session.
-        descendEndSession();
+            // Scrolling down animation - end of session.
+            descendEndSession();
 
-    }
-    else {
+        }
+        else {
 
-        ui->TimeElapse->setText(QString::number(from20to0)+"s");
-        countTo20++;
-        from20to0--;
+            ui->TimeElapse->setText(QString::number(from20to0)+"s");
+            countTo20++;
+            from20to0--;
 
+        }
     }
 
 }
 
 void MainWindow::updateUITime45sDisplay() {
 
-    if(countTo45 == 46) {
+    if(numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+        if(countTo45 == 46) {
 
-        qDebug() << "45s timer finished...";
+            qDebug() << "45s timer finished...";
 
-        // Stopping, deleteing and making timer equal to nullptr;
-        seconds45Timer->stop();
-        delete seconds45Timer;
-        seconds45Timer = nullptr;
+            // Stopping, deleteing and making timer equal to nullptr;
+            seconds45Timer->stop();
+            delete seconds45Timer;
+            seconds45Timer = nullptr;
 
-        // Resetting counters
-        countTo45 = 0;
-        from45to0 = 45;
+            // Resetting counters
+            countTo45 = 0;
+            from45to0 = 45;
 
-        // Turning all LEDs off.
-        offLeds();
+            // Turning all LEDs off.
+            offLeds();
 
-        // Only true if the session ends at the time it needs to end (in this case after 45 seconds).
-        finishedScrolledDown = true;
+            // Only true if the session ends at the time it needs to end (in this case after 45 seconds).
+            finishedScrolledDown = true;
 
-        // Scrolling down animation - end of session.
-        descendEndSession();
+            // Scrolling down animation - end of session.
+            descendEndSession();
 
+        }
+        else {
+
+            ui->TimeElapse->setText(QString::number(from45to0)+"s");
+            countTo45++;
+            from45to0--;
+
+        }
     }
-    else {
-
-        ui->TimeElapse->setText(QString::number(from45to0)+"s");
-        countTo45++;
-        from45to0--;
-
-    }
-
 
 }
 
