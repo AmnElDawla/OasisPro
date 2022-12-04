@@ -1890,27 +1890,47 @@ int MainWindow::connectionTestMain()
 
 }
 
+
+// This function displays the battery level going back to 100%. It sets the battery level variable to 100.
 void MainWindow::on_newBattery_clicked()
 {
 
     qDebug() << "Battery has been recharged back to 100%...";
+
+    // Set batteryLevel varianle back to 100%.
     batteryLevel = 100;
 
 }
 
+// This function only is called when the user press the combobox to connect or disconnect their application / device.
+// Once they press it, this function will check if the value has changed, if the device is still turned on, and if there
+// is a session currently running. If those conditions are true, it will call the connection test again.If they are false, it
+// will check if the device / application is turned off. If it is not turned off, it will assumed that the selection button
+// has not been pressed.
 void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 {
 
     qDebug() << arg1;
 
+    // Checks if the value is connected, if the device / application is fully on, and if there is a session currenly selected (selected button has been pressed).
     if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true) {
         qDebug() << "Connected...";
+
+        //If the conditions are true, it reruns the connection test.
         connectionTestMain();
     }
+    // Checks if the value is disconnected, if the device / application is fully on, and if there is a session currenly selected (selected button has been pressed).
     else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true) {
         qDebug() << "Disconnected...";
+
+        //If the conditions are true, it reruns the connection test.
         connectionTestMain();
     }
+    // Checks if the device is turned off.
+    // Remember:
+    // - numberOfTimesPowerBtnClicked = 0 ======> means device is fully off (turned off).
+    // - numberOfTimesPowerBtnClicked = 1 ======> means device is partly turned on.
+    // - numberOfTimesPowerBtnClicked = 2 ======> means device is completely turned on.
     else if(numberOfTimesPowerBtnClicked == 0) {
         qDebug() << "Device is not turned on...";
     }
@@ -1920,24 +1940,36 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 
 }
 
+// This function only is called when the user press the combobox to change state from wet to dry or dry to wet for their application / device.
+// Once they press it, this function will check if the value has changed, if the device is still turned on, if there
+// is a session currently running, and if there is a session currently selected (selected button has been pressed). If those conditions are true, it will call the connection test again.If they are false, it
+// will check if the device / application is turned off. Then, it will check if there is no session currently running.
+// If it is not turned off and there is a session currenly running, then it will assumed that the selection button has not been pressed
+// (no session has been selected).
 void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 {
 
     qDebug() << arg1;
 
+    // Checks if the value is wet, if the device / application is fully on, if there is a session currently running
+    // and if there is a session currently selected (selected button has been pressed).
     if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
         qDebug() << "Changed to wet...";
         changeWetOrDry = true;
         connectionTestMain();
     }
+    // Checks if the value is dry, if the device / application is fully on, if there is a session currently running
+    // and if there is a session currently selected (selected button has been pressed).
     else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
         qDebug() << "Changed to dry...";
         changeWetOrDry = true;
         connectionTestMain();
     }
+    // Checks if the device / application is turned off.
     else if(numberOfTimesPowerBtnClicked == 0){
         qDebug() << "Device is not turned on...";
     }
+    // Checks if there is no session currently running.
     else if(sessionOnOrOff == false) {
         qDebug() << "Device is disconnected or no session was selected...";
     }
