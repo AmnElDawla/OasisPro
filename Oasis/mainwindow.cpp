@@ -1625,12 +1625,16 @@ void MainWindow::intervalTimerIntensity() {
 
 }
 
-// This function does the scrolling animation (scrolling up from 1 to 8)
+// This function does the scrolling animation (scrolling up from 1 to 8).
+// This only occurs if the device / application's disconnected.
 void MainWindow::switchLeds() {
 
     // First checks if the connectivity is false, the application is fully turned on (numberOfTimesPowerBtnClick is equal
     // to 2 when it is turned on fully, and if the wet/dry combobox has not been changed (or pressed).
     if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+
+        // The scrolling animation based on the value of the countSwitchDescent counter.
+        // It either turns on or off a certain LED based on the counter's current value.
         if(countSwitch == 0) {
             ledOneOn();
         }
@@ -1681,6 +1685,7 @@ void MainWindow::switchLeds() {
             ledEightOff();
         }
 
+        // Checks if the counter named countSwitch is equal to 15 (meaning it reached the last LED and should not continue the scrolling animation).
         if(countSwitch == 15) {
             qDebug() << "Stopping timer...";
 
@@ -1690,6 +1695,7 @@ void MainWindow::switchLeds() {
             // Stops the timer.
             intensityTimer->stop();
         }
+        // If the counter is not equal to 15, then increment the counter by 1.
         else {
 
             // Increments counter by 1.
@@ -1699,7 +1705,8 @@ void MainWindow::switchLeds() {
 
 }
 
-// This function
+// This function creates, defines, and starts the timer that calls the function that those the scrolling animation,
+// which is the function named pauseCounter.
 void MainWindow::pauseTimer(int value) {
 
     // Turn off all LEDs (1 to 8)
@@ -1723,7 +1730,9 @@ void MainWindow::pauseTimer(int value) {
 
 }
 
-// This function
+// This function is called to start the scrolling animation. It does the animation as long as the counter named countForPaused is
+// not equal to the valuePause, which is 5. If it is equal to valuePause, it will proceed to stop the timer, delete it, reset the counter,
+// and set the value of the timer to nullptr.
 void MainWindow::pauseCounter() {
 
     // If statement to check if the counter named countForPausedEnd (which keeps track of how times the function has been
