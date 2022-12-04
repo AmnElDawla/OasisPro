@@ -701,7 +701,7 @@ void MainWindow::on_selectionBtn_clicked()
     // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
     // BUTTON HAS BEEN PRESSED
 
-    if(customDuration == 0) {
+    if(customDuration == 0 && newRowItemDuration == 2) {
         qDebug() << "Custom duration cannot be 0 seconds long...";
     }
     else {
@@ -1246,7 +1246,6 @@ void MainWindow::ledBlinkTimer() {
 // counterBlinkingLed - counter that keeps track of how many times the blinkCounter
 void MainWindow::blinkCounter() {
 
-    counterBlinkingLed++;
     if(groupToBlink == 0 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
         if(blinkTrueOrFalse == true) {
@@ -1401,6 +1400,9 @@ void MainWindow::blinkCounter() {
             qDebug() << "Device has been turned off. Unable to process with test....";
         }
 
+    }
+    else {
+        counterBlinkingLed++;
     }
 
 }
