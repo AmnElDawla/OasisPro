@@ -69,18 +69,6 @@ MainWindow::MainWindow(QWidget *parent)
     // connect(batteryStopTimer, SIGNAL(timeout()), this, SLOT(stopBatteryLevel()));
     connectionTestStopTimer->setSingleShot(true);
 
-    // Add items to the comboboxes.
-    // ui->listWetOrDry->addItem(tr("Wet"));
-    // ui->listWetOrDry->addItem(tr("Dry"));
-
-    // ui->listOfSkins->addItem(tr("Connect"));
-    // ui->listOfSkins->addItem((tr("Disconnect")));
-
-    // ui->listOfUsers->addItem(tr("User 1"));
-    // ui->listOfUsers->addItem(tr("User 2"));
-    // ui->listOfUsers->addItem(tr("User 3"));
-    // ui->listOfUsers->addItem(tr("User 4"));
-
 }
 
 MainWindow::~MainWindow()
