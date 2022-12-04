@@ -1335,10 +1335,6 @@ void MainWindow::blinkCounter() {
             playScrollAnimation();
         }
         else if(connectivity == true && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
-            // Enable intensity and selection buttons
-
-            // Blink animation of all leds lasts for 3 secs
-            /* [...] */
 
             // Allocate and add a new histroy record into the QSQL database
             // Show a message
@@ -1372,6 +1368,7 @@ void MainWindow::blinkCounter() {
                 qDebug() << "Action adding therapy record has been cancelled. ";
             };
 
+            // Enable intensity and selection buttons
             ui->increaseIntensityBtn->setEnabled(true);
             ui->decreaseIntensityBtn->setEnabled(true);
             ui->selectionBtn->setEnabled(true);
