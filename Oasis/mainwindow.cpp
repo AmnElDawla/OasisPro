@@ -1768,19 +1768,23 @@ int MainWindow::connectionTestMain()
         objData.sessionArray[2] = defaultSafeLevel;
     }
 
-    //
+    // Checks if the wet/dry value is equal to wet and that the device is connected.
     if(ui->listWetOrDry->currentIndex() == 0 && ui->listOfSkins->currentIndex() == 0) {
         signal = 2;
         OptionWet = true;
         OptionDry = false;
         connectivity = true;
     }
+
+    // Checks if the wet/dry value is equal to dry and that the device is connected.
     else if(ui->listWetOrDry->currentIndex() == 1 && ui->listOfSkins->currentIndex() == 0) {
         signal = 1;
         OptionDry = true;
         OptionWet = false;
         connectivity = true;
     }
+
+    // This else statement will only be called if the device is disconnected.
     else {
         signal = 0;
         connectivity = false;
@@ -1795,7 +1799,7 @@ int MainWindow::connectionTestMain()
     // 2. press powerbutton (added functionality - working)
     // 3. time is out (> 20 secs)
 
-    // Check connection
+    // Check if the connection is false (disconnected) and the application is fully turn on.
     if (connectivity == false && numberOfTimesPowerBtnClicked == 2) {
 
         qDebug() << "Device is disconnected...";
