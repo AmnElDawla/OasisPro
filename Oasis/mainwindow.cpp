@@ -1392,7 +1392,7 @@ void MainWindow::blinkCounter() {
                 seconds45Timer->start();
             }
             else {
-                qDebug() << "Timer will go on for "+QString::number(objData.sessionArray[0])+"s";
+                qDebug().noquote() << "Timer will go on for "+QString::number(objData.sessionArray[0])+"s";
                 customTimer = new QTimer(this);
                 customTimer->setInterval(1000);
                 connect(customTimer, SIGNAL(timeout()), this, SLOT(updateUITimeCustomDisplay()));
@@ -1412,7 +1412,7 @@ void MainWindow::updateUITimeCustomDisplay() {
 
     if(customCounter == (customDuration+1)) {
 
-        qDebug() << QString::number(customDuration)+"s timer finished...";
+        qDebug().noquote() << QString::number(customDuration)+"s timer finished...";
 
         // Stopping, deleteing and making timer equal to nullptr;
         customTimer->stop();
@@ -1514,7 +1514,7 @@ void MainWindow::updateUITime45sDisplay() {
 
 }
 
-// Updating connection status on GUI:
+// Updating connection status on GUI
 void MainWindow::displayConnection(int signal)
 {
 
