@@ -1705,6 +1705,7 @@ void MainWindow::switchLeds() {
 
 }
 
+// This function
 void MainWindow::pauseTimer(int value) {
 
     // Turn off all LEDs (1 to 8)
@@ -1715,8 +1716,15 @@ void MainWindow::pauseTimer(int value) {
 
     // Start and define parameter for the timer, such as setting the interval to 9 seconds (900 miliseconds).
     pauseTimerDefault = new QTimer(this);
+
+    // Set the interval of this timer to 9 seconds (9000 miliseconds) meaning that this timer will timeout every 9 seconds.
     pauseTimerDefault->setInterval(9000);
+
+    // Connects the timer's timeout signal to the slot function named pausedCounter.
+    // This function will be called at an interval of 9 seconds.
     connect(pauseTimerDefault, SIGNAL(timeout()), this, SLOT(pauseCounter()));
+
+    // Starts the timer.
     pauseTimerDefault->start();
 
 }
@@ -2024,6 +2032,7 @@ void MainWindow::descendEndSession() {
 void MainWindow::startDescendEndSession() {
 
     // The scrolling animation based on the value of the countSwitchDescent counter.
+    // It either turns on or off a certain LED based on the counter's current value.
     if(countSwitchDescent == 15) {
         ledOneOff();
     }
