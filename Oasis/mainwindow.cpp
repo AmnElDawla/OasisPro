@@ -1408,8 +1408,12 @@ void MainWindow::blinkCounter() {
 
 }
 
+// This function updates the time left based on a custom time countdown (if the user chooses the custom duration).
+// Once custom time has elapse, it will proceed to shut down the application, reset all counters, and delete timer for
+// the custom time countdown named customTimer.
 void MainWindow::updateUITimeCustomDisplay() {
 
+    // Checks if application is fully turn on and the wet/dry state has not been changed.
     if(numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
         if(customCounter == (customDuration+1)) {
 
@@ -1436,8 +1440,13 @@ void MainWindow::updateUITimeCustomDisplay() {
         }
         else {
 
+            // Updates the UI with new time (goes down from custom time (given by user) every 1 second).
             ui->TimeElapse->setText(QString::number(countdownCustom)+"s");
+
+            // Increment counter that counts how many times function has been called.
             customCounter++;
+
+            // Decrements counter that is used to keep track of time left or remaining.
             countdownCustom--;
 
         }
@@ -1445,8 +1454,13 @@ void MainWindow::updateUITimeCustomDisplay() {
 
 }
 
+
+// This function updates the time left based on a 20 seconds countdown (if the user chooses the 20 seconds duration).
+// Once 20 seconds has elapse, it will proceed to shut down the application, reset all counters, and delete timer for
+// the 20 seconds countdown named seconds20Timer.
 void MainWindow::updateUITime20sDisplay() {
 
+    // Checks if application is fully turn on and the wet/dry state has not been changed.
     if(numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
         if(countTo20 == 21) {
 
@@ -1473,8 +1487,13 @@ void MainWindow::updateUITime20sDisplay() {
         }
         else {
 
+            // Updates the UI with new time (goes down from 20 seconds every 1 second).
             ui->TimeElapse->setText(QString::number(from20to0)+"s");
+
+            // Increment counter that counts how many times function has been called.
             countTo20++;
+
+            // Decrements counter that is used to keep track of time left or remaining.
             from20to0--;
 
         }
@@ -1482,8 +1501,12 @@ void MainWindow::updateUITime20sDisplay() {
 
 }
 
+// This function updates the time left based on a 45 seconds countdown (if the user chooses the 45 seconds duration).
+// Once 45 seconds has elapse, it will proceed to shut down the application, reset all counters, and delete timer for
+// the 45 seconds countdown named seconds45Timer.
 void MainWindow::updateUITime45sDisplay() {
 
+    // Checks if application is fully turn on and the wet/dry state has not been changed.
     if(numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
         if(countTo45 == 46) {
 
@@ -1510,8 +1533,13 @@ void MainWindow::updateUITime45sDisplay() {
         }
         else {
 
+            // Updates the UI with new time (goes down from 45 seconds every 1 second).
             ui->TimeElapse->setText(QString::number(from45to0)+"s");
+
+            // Increment counter that counts how many times function has been called.
             countTo45++;
+
+            // Decrements counter that is used to keep track of time left or remaining.
             from45to0--;
 
         }
@@ -1523,7 +1551,9 @@ void MainWindow::updateUITime45sDisplay() {
 void MainWindow::displayConnection(int signal)
 {
 
+    // Turn off all LEDs.
     offLeds();
+
     switch (signal)
     {
         case 0:
