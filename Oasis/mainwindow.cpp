@@ -1790,14 +1790,9 @@ int MainWindow::connectionTestMain()
         connectivity = false;
     }
 
-    // Counter to keep track of the waiting process
-    int timeNow = 0;
-    int timeOut = 20;
-
     // Exceptions lead to connection test shut down:
     // 1. low battery level
     // 2. press powerbutton (added functionality - working)
-    // 3. time is out (> 20 secs) - (Do not think we need this anymore)
 
     // Check if the connection is false (disconnected) and the application is fully turn on.
     if (connectivity == false && numberOfTimesPowerBtnClicked == 2) {
@@ -1823,7 +1818,10 @@ int MainWindow::connectionTestMain()
         flashCesModeLight();
 
     }
-    else if (connectivity == true && timeNow < timeOut && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2) {
+
+    // Checks if the device is connected, if the battery level is greater or equal to 25, and
+    // if the device is fully turned on.
+    else if (connectivity == true && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2) {
 
         // Successful scenario: passed connection test
         // Start session
@@ -1858,6 +1856,9 @@ int MainWindow::connectionTestMain()
         ui->selectionBtn->setDisabled(false);
 
     }
+
+    // Checks if device is turned off (that only happens if numberOfTimesPowerBtnClicked == 0), and that there is
+    // a session running.
     else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
 
 
@@ -1978,6 +1979,7 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     }
 
 }
+
 
 void MainWindow::descendEndSession() {
 
