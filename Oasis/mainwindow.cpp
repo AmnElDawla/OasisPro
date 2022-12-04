@@ -820,6 +820,7 @@ void MainWindow::delay5Seconds() {
 void MainWindow::continueAfter5Seconds() {
 
     qDebug() << "5 seconds delay over...";
+    // Checks if the connection test does not
     if(connectionTestMain() != -1) {
         qDebug() << "Start of the connection test...";
     }
@@ -1715,6 +1716,9 @@ void MainWindow::pauseTimer(int value) {
 
 void MainWindow::pauseCounter() {
 
+    // If statement to check if the counter named countForPausedEnd (which keeps track of how times the function has been
+    // called. If the counter equals to the valuePause, then stop and delete timer and reset all the counter found in that
+    // file (or section of the code base.
     if(countForPauseEnd == valuePause) {
         pauseTimerDefault->stop();
         countForPauseEnd = 0;
@@ -1723,6 +1727,9 @@ void MainWindow::pauseCounter() {
         pauseTimerDefault = nullptr;
         qDebug() << "End scrolling animation...";
     }
+
+    // else statament that is called until the counter named countForPausedEnd is not equal to the valuePause, then
+    // increment the counter and star intervalTimerIntensity.
     else {
         intervalTimerIntensity();
         countForPauseEnd++;
@@ -1738,19 +1745,20 @@ int MainWindow::connectionTestMain()
 
     qDebug() << "Connection test started...";
 
-    // Define maximum value for safe voltage level:
+    // Define maximum value for safe voltage level.
     int defaultSafeLevel = 4;
 
-    // Disable intensity buttons:
+    // Disable intensity buttons, which are the increase and decrease buttons (up and down arrow buttons).
     ui->increaseIntensityBtn->setEnabled(false);
     ui->decreaseIntensityBtn->setEnabled(false);
 
     // Check if intensity level of the selected session is safe.
-
+    // If it is greater than the safe value, then set the intensity level to the safe intensity value.
     if (objData.sessionArray[2] > defaultSafeLevel) {
         objData.sessionArray[2] = defaultSafeLevel;
     }
 
+    //
     if(ui->listWetOrDry->currentIndex() == 0 && ui->listOfSkins->currentIndex() == 0) {
         signal = 2;
         OptionWet = true;
@@ -1841,9 +1849,6 @@ int MainWindow::connectionTestMain()
         // Only true if the session ends at the time it needs to end.
         // In this case session ends early.
         finishedScrolledDown = false;
-
-        // Blink animation of all leds lasts for 3 secs:
-        /* [...] */
 
         // Allocate and add a new histroy record into the QSQL database:
         // Show a message:
