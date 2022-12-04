@@ -1695,10 +1695,16 @@ void MainWindow::switchLeds() {
 
         if(countSwitch == 15) {
             qDebug() << "Stopping timer...";
+
+            // Resets the counter to 0.
             countSwitch = 0;
+
+            // Stops the timer.
             intensityTimer->stop();
         }
         else {
+
+            // Increments counter by 1.
             countSwitch++;
         }
     }
