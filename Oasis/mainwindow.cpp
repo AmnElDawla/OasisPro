@@ -1637,7 +1637,7 @@ void MainWindow::intervalTimerIntensity() {
 
 }
 
-// This function manages
+// This function does the scrolling animation (scrolling up from 1 to 8)
 void MainWindow::switchLeds() {
 
     if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
@@ -1705,8 +1705,13 @@ void MainWindow::switchLeds() {
 
 void MainWindow::pauseTimer(int value) {
 
+    // Turn off all LEDs (1 to 8)
     offLeds();
+
+    // Set variable equal to the value
     valuePause = value;
+
+    // Start and define parameter for the timer, such as setting the interval to 9 seconds (900 miliseconds).
     pauseTimerDefault = new QTimer(this);
     pauseTimerDefault->setInterval(9000);
     connect(pauseTimerDefault, SIGNAL(timeout()), this, SLOT(pauseCounter()));
