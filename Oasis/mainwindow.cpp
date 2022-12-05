@@ -1,4 +1,4 @@
-﻿// Including the necessary header files (.h files) and libraries (qDebug).
+﻿// Including the necessary header files (.h files) and libraries (qDebug) to this .cpp file.
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
@@ -727,7 +727,7 @@ void MainWindow::stopBatteryLevel() {
 // It disables the selection button and checks if the QTimer named timer is active (still running) and turns it
 // off if it is (this QTimer is the one that check if the user has selected a session and duration within 2 minutes
 // (120000 miliseconds). Then, it stores the session and duration values in an array called sessionArray.
-// After this, flashes the selected session's intensity for 3 seconds (3000 miliseconds) at an interval of 500 miliseconds.
+// After this, it flashes the selected session's intensity for 3 seconds (3000 miliseconds) at an interval of 500 miliseconds.
 void MainWindow::on_selectionBtn_clicked()
 {
 
