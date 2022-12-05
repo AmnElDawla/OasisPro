@@ -610,6 +610,7 @@ void MainWindow::on_sessionRight_clicked()
 // Toggle graph LEDs to display battery level.
 void MainWindow::showBatteryLevel() {
 
+    // Checks if the battery level is greater than 87%.
     if(batteryLevel > 87) {
 
         toggleLedEight();
@@ -621,7 +622,10 @@ void MainWindow::showBatteryLevel() {
         toggleLedTwo();
         toggleLedOne();
 
-    } else if(batteryLevel <= 87 && batteryLevel > 75) {
+    }
+
+    // Checks if the battery level is greater than 75%, but less than or equal to 87%.
+    else if(batteryLevel <= 87 && batteryLevel > 75) {
 
         ledEightOff();
         toggleLedSeven();
@@ -632,7 +636,10 @@ void MainWindow::showBatteryLevel() {
         toggleLedTwo();
         toggleLedOne();
 
-    } else if(batteryLevel <= 75 && batteryLevel > 62) {
+    }
+
+    // Checks if the battery level is greater than 62%, but less than or equal to 75%.
+    else if(batteryLevel <= 75 && batteryLevel > 62) {
 
         ledEightOff();
         ledSevenOff();
@@ -643,7 +650,10 @@ void MainWindow::showBatteryLevel() {
         toggleLedTwo();
         toggleLedOne();
 
-    } else if(batteryLevel <= 62 && batteryLevel > 50) {
+    }
+
+    // Checks if the battery level is greater than 50%, but less than or equal to 62%.
+    else if(batteryLevel <= 62 && batteryLevel > 50) {
 
         ledEightOff();
         ledSevenOff();
@@ -654,7 +664,10 @@ void MainWindow::showBatteryLevel() {
         toggleLedTwo();
         toggleLedOne();
 
-    } else if(batteryLevel <= 50 && batteryLevel > 37) {
+    }
+
+    // Checks if the battery level is greater than 37%, but less than or equal to 50%.
+    else if(batteryLevel <= 50 && batteryLevel > 37) {
 
         ledEightOff();
         ledSevenOff();
@@ -665,7 +678,10 @@ void MainWindow::showBatteryLevel() {
         toggleLedTwo();
         toggleLedOne();
 
-    } else if(batteryLevel <= 37 && batteryLevel > 25) {
+    }
+
+    // Checks if the battery level is greater than 25%, but less than or equal to 37%.
+    else if(batteryLevel <= 37 && batteryLevel > 25) {
 
         ledEightOff();
         ledSevenOff();
@@ -676,7 +692,10 @@ void MainWindow::showBatteryLevel() {
         toggleLedTwo();
         toggleLedOne();
 
-    } else if(batteryLevel <= 25 && batteryLevel > 12) {
+    }
+
+    // Checks if the battery level is greater than 12%, but less than or equal to 25%.
+    else if(batteryLevel <= 25 && batteryLevel > 12) {
 
         ledEightOff();
         ledSevenOff();
@@ -687,7 +706,10 @@ void MainWindow::showBatteryLevel() {
         toggleLedTwo();
         toggleLedOne();
 
-    } else if(batteryLevel <= 12 && batteryLevel > 0) {
+    }
+
+    // Checks if the battery level is greater than 0%, but less than or equal to 12%.
+    else if(batteryLevel <= 12 && batteryLevel > 0) {
 
         ledEightOff();
         ledSevenOff();
