@@ -82,8 +82,9 @@ MainWindow::~MainWindow()
 //                             Helper Functions                               //
 //============================================================================//
 
-// Keep buttons lit on while removing the highlighting of any single button
+// This function keeps the LEDs on while removing the highlighting of any single LED.
 void MainWindow::resetButtons() {
+
     ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
     ledEightStatus = true;
     ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
@@ -100,10 +101,12 @@ void MainWindow::resetButtons() {
     ledTwoStatus = true;
     ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ledOneStatus = true;
+
 }
 
-// Flash the current selected intensity level for 3 seconds
+// This function flashes the current selected intensity level for 3 seconds
 void MainWindow::flashSelectedLevel(){
+
     resetButtons();
 
     if(objData.sessionArray[2] == 1){
@@ -343,6 +346,8 @@ void MainWindow::iconsOn() {
     ui->durationLeft->setEnabled(true);
     ui->selectionBtn->setEnabled(true);
 
+    qDebug() << "Start the 2 minutes timer...";
+
     // Start timer to check if user has not click selection button after 2 minutes.
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(turnOffNoSessionSelected()));
@@ -568,6 +573,7 @@ void MainWindow::on_sessionRight_clicked()
 
 }
 
+// Need to comment this - Khaled.
 void MainWindow::showBatteryLevel() {
 
     if(batteryLevel > 87) {
@@ -662,10 +668,13 @@ void MainWindow::showBatteryLevel() {
 
 }
 
+// Need to comment this - Khaled.
 void MainWindow::stopBatteryLevel() {
 
-    // stop timer
+    // Stop the timer.
     batteryStartTimer->stop();
+
+    // Turn on all LEDs.
     ledEightOn();
     ledSevenOn();
     ledSixOn();
@@ -674,6 +683,8 @@ void MainWindow::stopBatteryLevel() {
     ledThreeOn();
     ledTwoOn();
     ledOneOn();
+
+    // Enable the power button.
     ui->powerBtn->setEnabled(true);
 
 }
