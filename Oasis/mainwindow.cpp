@@ -453,28 +453,33 @@ void MainWindow::initialiazeListOfIcons() {
     // Initializes and set the values of the array that will contain the path of the images for the sessions icons.
     QString arrQListSession[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
-    //QList (above) for duration initializes starts here...
+    // QList (above) for duration initializes starts here...
     ui->listDuration->setFlow(QListView::Flow::LeftToRight);
     ui->listDuration->setIconSize(QSize(48, 48));
     ui->listDuration->setStyleSheet("#listDuration { background: black; }");
 
+    // Loop through all items in the arrQListDuration array and add these items to the listDuration QListWidgetItem to display them on
+    // the UI.
     for(int i = 0; i < 3; i++)  {
 
         ui->listDuration->addItem(new QListWidgetItem(QIcon(arrQListDuration[i]), NULL));
 
     }
 
-    //QList (below) for session initializes starts here...
+    // QList (below) for session initializes starts here...
     ui->listSession->setFlow(QListView::Flow::LeftToRight);
     ui->listSession->setIconSize(QSize(48, 48));
     ui->listSession->setStyleSheet("#listSession { background: black; }");
 
+    // Loop through all items in the arrQListSession array and add these items to the listSession QListWidgetItem to display them on
+    // the GUI.
     for(int i = 0; i < 4; i++)  {
 
         ui->listSession->addItem(new QListWidgetItem(QIcon(arrQListSession[i]), NULL));
 
     }
 
+    // Style the look for the QListWidget named listDuration and listSession on the GUI.
     ui->listDuration->setStyleSheet("#listDuration { background: black; } #listDuration::item { background: black; outline: none; border: 2px solid black; padding-left: 3px; padding-right: 6px; }");
     ui->listSession->setStyleSheet("#listSession { background: black; } #listSession::item { background: black; outline: none; border: 2px solid black; padding-left: 3px; padding-right: 6px; }");
 
