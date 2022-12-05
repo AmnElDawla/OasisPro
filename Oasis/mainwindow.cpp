@@ -686,46 +686,80 @@ void MainWindow::stopBatteryLevel() {
 void MainWindow::on_selectionBtn_clicked()
 {
 
-    // ADD CODE TO DISABLE BUTTON WHEN WE HAVE A WAY
-    // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
-    // BUTTON HAS BEEN PRESSED
-
+    // Checks if the custom duration value is 0 seconds and if the choosen newRowItemDuration (meaning the duration type that the
+    // user has choosen - either 20 seconds, 45 seconds, or custom timer) is equal to 2, which is the custom time.
     if(customDuration == 0 && newRowItemDuration == 2) {
+
+        // If it is then, display that the custom time cannot be 0 seconds long
+        // (as this does not make sense to have as a session duration).
         qDebug() << "Custom duration cannot be 0 seconds long...";
+
     }
     else {
+
+        // Set the corresponding variables to false or true.
+
+        // Set this variable to true as a session type was indeed selected.
         selectedSessionOrNot = true;
+
+        // Set this variable to false as the flashing of the selected session number has yet to start (has not started).
         finishedFlashing = false;
 
+        // Disable the selection button.
         ui->selectionBtn->setDisabled(true);
 
-        // COMMENT FROM MINGRUI: THIS TIMER WILL TERMINATE THE PROGRAM WHEN CLICKING SELECT BUTTON TWICE
-        // (Fixed)
+        // Check if the timer is not equal to nullptr and it the timeEnded variable is equal to false.
+        // This timer is the one that keeps track if the user has not responded (has not clicked on the selection button)
+        // after 2 minutes (120000 miliseconds).
         if(timer != nullptr && timerEnded == false) {
+
+            // If this timer is still active then do the following.
             if(timer->isActive()) {
+
+                // Stop the timer.
                 timer->stop();
+
+                // Delete the timer.
                 delete timer;
+
+                // Set the timer value to nullptr.
                 timer = nullptr;
+
+                // Set the timerEnded variable to false as the timer has ended (has been deleted).
                 timerEnded = true;
+
                 qDebug() << "Stopping timer...";
+
             }
+
         }
 
+        // Reset the counter to 0.
         valueIntUntilEndOfFlash = 0;
 
+        // Set the selected duration and session values to the corresponding variables.
         selectedDuration = newRowItemDuration;
         selectedSession = newRowItemSession;
 
+        // Set the duration in the session array index to be equal to the selectedDuration variable value.
         objData.sessionArray[0] = selectedDuration;
 
+        // If the selectedDuration variable value is equal to 2 (that means that the custom time was choosen).
         if(selectedDuration == 2) {
+
+            // Set the duration in the session array index to be equal to the customDuration variable value.
             objData.sessionArray[0] = customDuration;
         }
 
+        // Set the session in the session array index to be equal to the selectedSession variable value.
         objData.sessionArray[1] = selectedSession;
+
+        // By default set intensity value to 0.
         objData.sessionArray[2] = 0;
 
+        // Call the function flashSelectedLevelAfterSelection to flash the selected session number.
         flashSelectedLevelAfterSelection();
+
     }
 
 }
