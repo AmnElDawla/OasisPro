@@ -311,6 +311,7 @@ private:
     bool finishedFlashing = false;
 
     // Check if two minutes timer is deleted
+    // Set to false (default)
     bool timerEnded = false;
 
     // 20s timer
@@ -319,23 +320,23 @@ private:
     // 45s timer
     QTimer *seconds20Timer = nullptr;
 
-    // 20s counter that will count up to 20.
+    // 20s counter that will count up to 20
     int countTo20 = 0;
 
-    // 45s counter that will count up to 45.
+    // 45s counter that will count up to 45
     int countTo45 = 0;
 
-    // Countdown from 20 to 0
+    // Countdown variable that will countdown from 20 to 0
     int from20to0 = 20;
 
-    // Countdown from 45 to 0
+    // Countdown variable that will countdown from 45 to 0
     int from45to0 = 45;
 
     // Finds out if the session scrolldown animation is finished (only works when session finishes at its described /
     // prescribed time and not earlier than that).
     bool finishedScrolledDown = false;
 
-    // Custom duration value variable
+    // Custom duration value variable that is set to 0.
     int customDuration = 0;
 
     // Custom counter for the custom duration (used in the QTimer named customTimer)
@@ -344,7 +345,7 @@ private:
     // Custom QTimer for the custom duration
     QTimer *customTimer = nullptr;
 
-    // Custom countdown
+    // Custom countdown that is set to 0.
     int countdownCustom = 0;
 
 };
