@@ -241,7 +241,7 @@ private:
     QTimer *batteryStartTimer = nullptr;
     QTimer *batteryStopTimer = nullptr;
     bool selectedSessionOrNot = false;
-    int batteryLevel = 43;
+    int batteryLevel = 11;
 
     // LEDs variables (boolean).
     bool ledOneStatus = false;

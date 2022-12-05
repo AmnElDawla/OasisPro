@@ -165,6 +165,16 @@ void MainWindow::flashSelectedLevel(){
 void MainWindow::on_powerBtn_clicked()
 {
 
+    // Check that battery level is not equal to or below 12%.
+    if(batteryLevel <= 12){
+        // Start the necessary timers.
+        batteryStartTimer->start(500);
+        batteryStopTimer->start(2500);
+        qDebug() << "Battery level critically low. Please replace the battery.";
+        // Exit loop.
+        return;
+    }
+
     // Change color of lights, enable/disable buttons.
 
     // Clicked power button once...
@@ -186,7 +196,7 @@ void MainWindow::on_powerBtn_clicked()
 
         // Start the necessary timers.
         batteryStartTimer->start(500);
-        batteryStopTimer->start(3500);
+        batteryStopTimer->start(2500);
 
         // Set the number of clicks to 1.
         numberOfTimesPowerBtnClicked = 1;
@@ -815,15 +825,27 @@ void MainWindow::stopBatteryLevel() {
     // Stop the timer.
     batteryStartTimer->stop();
 
-    // Turn on all LEDs.
-    ledEightOn();
-    ledSevenOn();
-    ledSixOn();
-    ledFiveOn();
-    ledFourOn();
-    ledThreeOn();
-    ledTwoOn();
-    ledOneOn();
+    if(batteryLevel <= 12){
+        // Turn off all LEDs.
+        ledEightOff();
+        ledSevenOff();
+        ledSixOff();
+        ledFiveOff();
+        ledFourOff();
+        ledThreeOff();
+        ledTwoOff();
+        ledOneOff();
+    } else {
+        // Turn on all LEDs.
+        ledEightOn();
+        ledSevenOn();
+        ledSixOn();
+        ledFiveOn();
+        ledFourOn();
+        ledThreeOn();
+        ledTwoOn();
+        ledOneOn();
+    }
 
     // Enable the power button.
     ui->powerBtn->setEnabled(true);
