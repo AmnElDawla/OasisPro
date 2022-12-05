@@ -1119,6 +1119,8 @@ void MainWindow::onGroupBoxEars() {
 }
 
 // Toggle between on or off state of the CES mode light (graph turn on or off).
+// graphSessionStatus = false ====> means turn off CES Mode light.
+// graphSessionStatus = true  ====> means turn on CES Mode light.
 void MainWindow::toggleCesModeLight()
 {
 
@@ -1133,29 +1135,52 @@ void MainWindow::toggleCesModeLight()
 
 }
 
-// This function flashes the CES Mode light for 3 seconds
+// This function creates, sets, and start the timer that will flashes the CES Mode light for 3 seconds
 void MainWindow::flashCesModeLight()
 {
 
+    // Checks if the timer is equal to nullptr, if the device or application is turned on, and if the combobox has not
+    // been pressed or changed.
     if(timerCES == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+
+        // Initializes timer.
         timerCES = new QTimer(this);
+
+        // Set the timer's interval to every 500 miliseconds (at 500 miliseconds the device will timeout).
         timerCES->setInterval(500);
+
+        // Connect the timer's timeout to the slot function name flashGraphCounter (it will call this slot function whenever the
+        // timer timeout).
         connect(timerCES, SIGNAL(timeout()), this, SLOT(flashGraphCounter()));
+
+        // Start the timer.
         timerCES->start();
     }
 
 }
 
+// This function is the one toggles the light of the graph (CES Mode Light) from on to off or off to on.
 void MainWindow::flashGraphCounter() {
 
+    // Checks if the counter is equal to 6.
+    // The CES mode light cannot be blinked more than 5 times.
     if(counterFlashGraph == 6) {
 
+        // Stop the timer.
         timerCES->stop();
+
+        // Delete the timer.
         delete timerCES;
+
+        // Set the timer to nullptr.
         timerCES = nullptr;
 
+        // Reset the counter to 0.
         counterFlashGraph = 0;
 
+        // Check if the device is connected or not and set the CES Mode light to on or off based on that.
+        // Disconnected ====> CES Mode light off.
+        // Connected    ====> CES Mode light on.
         if(connectivity == false) {
             graphSessionOff();
         }
@@ -1163,18 +1188,27 @@ void MainWindow::flashGraphCounter() {
             graphSessionOn();
         }
 
+        // Call this function to display the type of connection.
+        // The connection is either green, yellow, or red.
         displayConnection(signal);
 
     }
+    // Else if the counter is not equal to 6 then do the following.
     else {
 
+        // Blink the CES Mode lights again.
         toggleCesModeLight();
+
+        // Increment the counter by 1.
         counterFlashGraph++;
 
     }
 
 }
 
+// This function changes the status of the connection of the device from connected to connected.
+// - connectivity = false ====> means disconnected.
+// - connectivity = true  ====> means connected.
 void MainWindow::onConnectivity()
 {
 
@@ -1182,6 +1216,9 @@ void MainWindow::onConnectivity()
 
 }
 
+// This function changes the status of the connection of the device from connected to disconnected.
+// - connectivity = false ====> means disconnected.
+// - connectivity = true  ====> means connected.
 void MainWindow::offConnectivity()
 {
 
@@ -1190,6 +1227,7 @@ void MainWindow::offConnectivity()
 }
 
 // Set elements in graph to blanked status
+// This function turns off all 8 LEDs.
 void MainWindow::offLeds()
 {
 
@@ -1205,6 +1243,7 @@ void MainWindow::offLeds()
 }
 
 // Resume graph display
+// This function turns on all 8 LEDs.
 void MainWindow::onLeds()
 {
 
@@ -1219,11 +1258,21 @@ void MainWindow::onLeds()
 
 }
 
+
+// This function start the timer that will call the function everytime it timeout (the called function is the one that
+// will blink the LEDs based on the signal (the strength of the connection).
 void MainWindow::ledBlinkTimer() {
 
+    // Initializes timer.
     timerBlinkLed = new QTimer(this);
+
+    // Set timer interval to every 500 miliseconds (half a second).
     timerBlinkLed->setInterval(500);
+
+    // Connect the timer's timeout (every 1 seconds) to the function named blinkCounter.
     connect(timerBlinkLed, SIGNAL(timeout()), this, SLOT(blinkCounter()));
+
+    // Start the timer.
     timerBlinkLed->start();
 
 }
@@ -1386,7 +1435,7 @@ void MainWindow::blinkCounter() {
 
                 qDebug() << "Timer will go on for 20s";
 
-                // Start 20 seconds timer.
+                // Initializes 20 seconds timer.
                 seconds20Timer = new QTimer(this);
 
                 // Set the timer interval for every 1 second (1000 miliseconds).
@@ -1405,7 +1454,7 @@ void MainWindow::blinkCounter() {
 
                 qDebug() << "Timer will go on for 45s";
 
-                // Start 45 seconds timer.
+                // Initializes 45 seconds timer.
                 seconds45Timer = new QTimer(this);
 
                 // Set the timer interval for every 1 second (1000 miliseconds).
@@ -1424,7 +1473,7 @@ void MainWindow::blinkCounter() {
 
                 qDebug().noquote() << "Timer will go on for "+QString::number(objData.sessionArray[0])+"s";
 
-                // Start custom time timer.
+                // Initializes custom time timer.
                 customTimer = new QTimer(this);
 
                 // Set the timer interval for every 1 second (1000 miliseconds).
@@ -1672,24 +1721,40 @@ void MainWindow::intervalTimerIntensity() {
         // wet/dry combobox has not been pressed.
         if(intensityTimer == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             qDebug() << "New intensity timer...";
+
+            // Initializes the timer.
             intensityTimer = new QTimer(this);
+
+            // Set the timer interval (when it will timeout) to 500 miliseconds (half a second)
             intensityTimer->setInterval(500);
+
+            // Connect the timer's timeout to the slot function named swicthLeds.
             connect(intensityTimer, SIGNAL(timeout()), this, SLOT(switchLeds()));
+
+            // Start the timer.
             intensityTimer->start();
         }
         // Checks if the application / device is disconnected, if the device / application is fully turned on,
         // and if the wet/dry combobox has not been pressed.
         else if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             qDebug() << "Continue scrolling animation...";
+
+            // Reset counter to 0.
             countSwitch = 0;
+
+            // Restart the timer.
             intensityTimer->start();
         }
         // Checks if the user pressed the wet/dry combobox.
         else if(changeWetOrDry == true) {
+
+            // Set counter to 0.
             countSwitch = 0;
             qDebug() << "Switched stated...";
         }
         else {
+
+            // Set counter to 0.
             countSwitch = 0;
             qDebug() << "Scrolling animation has stopped...";
         }
@@ -1787,7 +1852,7 @@ void MainWindow::pauseTimer(int value) {
     // Set variable equal to the value
     valuePause = value;
 
-    // Start and define parameter for the timer, such as setting the interval to 9 seconds (900 miliseconds).
+    // Initializes and define parameter for the timer, such as setting the interval to 9 seconds (900 miliseconds).
     pauseTimerDefault = new QTimer(this);
 
     // Set the interval of this timer to 9 seconds (9000 miliseconds) meaning that this timer will timeout every 9 seconds.
