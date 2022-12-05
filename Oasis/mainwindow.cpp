@@ -1599,8 +1599,12 @@ void MainWindow::playScrollAnimation()
 // intensity timer at an interval of 500 miliseconds (half a second).
 void MainWindow::intervalTimerIntensity() {
 
-    //
+    // Checks if the countForPauseEnd is less than 5 (valuePause is equal to 5).
+    // This means that the timer must only time out 5 times and not more.
     if(countForPauseEnd < valuePause) {
+
+        // Checks if the timer is equal to nullptr, if the device / application is fully turned on, and if the
+        // wet/dry combobox has not been pressed.
         if(intensityTimer == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             qDebug() << "New intensity timer...";
             intensityTimer = new QTimer(this);
@@ -1608,11 +1612,14 @@ void MainWindow::intervalTimerIntensity() {
             connect(intensityTimer, SIGNAL(timeout()), this, SLOT(switchLeds()));
             intensityTimer->start();
         }
+        // Checks if the application / device is disconnected, if the device / application is fully turned on,
+        // and if the wet/dry combobox has not been pressed.
         else if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
             qDebug() << "Continue scrolling animation...";
             countSwitch = 0;
             intensityTimer->start();
         }
+        // Checks if the user pressed the wet/dry combobox.
         else if(changeWetOrDry == true) {
             countSwitch = 0;
             qDebug() << "Switched stated...";
