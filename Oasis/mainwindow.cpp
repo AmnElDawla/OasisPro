@@ -186,6 +186,8 @@ void MainWindow::on_powerBtn_clicked()
         // Start the necessary timers.
         batteryStartTimer->start(500);
         batteryStopTimer->start(3500);
+
+        // Set the number of clicks to 1.
         numberOfTimesPowerBtnClicked = 1;
 
         qDebug() << "Device is partly turned on...";
@@ -196,10 +198,15 @@ void MainWindow::on_powerBtn_clicked()
     // This turns the device completely on (everything is turned on).
     else if(numberOfTimesPowerBtnClicked == 1) {
 
+        // Fully turn on the device / application.
         onConnect();
         iconsOn();
+
+        // Start the necessary timers.
         connectionTestStartTimer->start(500);
         connectionTestStopTimer->start(3500);
+
+        // Set the number of clicks to 2.
         numberOfTimesPowerBtnClicked = 2;
 
         qDebug() << "Device is turned on...";
