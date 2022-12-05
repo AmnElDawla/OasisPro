@@ -746,7 +746,10 @@ void MainWindow::flashSelectedLevelAfterSelection() {
 // the delay5Seconds function.
 void MainWindow::flashTimer() {
 
+    // Checks if the wet/dry combobox has not been pressed (changeWetOrDry = false) and
+    // if the device / application is fully turned on.
     if(changeWetOrDry == false && numberOfTimesPowerBtnClicked == 2) {
+
         if(objData.sessionArray[1] == 0 && ledFiveFlash == true){
             ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border: 3px solid red; }");
             ledFiveFlash = false;
@@ -786,8 +789,12 @@ void MainWindow::flashTimer() {
             delay5Seconds();
         }
         else {
+
+            // Increment counter by 1.
             valueIntUntilEndOfFlash++;
+
         }
+
     }
 
 }
@@ -809,7 +816,7 @@ void MainWindow::continueAfter5Seconds() {
 
     qDebug() << "5 seconds delay over...";
 
-    // Checks if the connection test does not finish properly (unsuccessful)
+    // Checks if the connection test does not finish properly (unsuccessful).
     if(connectionTestMain() != -1) {
 
         qDebug() << "Connection test has unsuccessfully finished...";
