@@ -2472,14 +2472,17 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     // and if there is a session currently selected (selected button has been pressed).
     if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
         qDebug() << "Changed to wet...";
-        if(customDuration > 0 && newRowItemDuration == 2) {
-            customCounter = (customDuration+1);
+        if(seconds20Timer != nullptr) {
+            delete seconds20Timer;
+            seconds20Timer = nullptr;
         }
-        if(newRowItemDuration == 0) {
-            countTo20 = 21;
+        if(seconds45Timer != nullptr) {
+            delete seconds45Timer;
+            seconds45Timer = nullptr;
         }
-        if(newRowItemDuration == 1) {
-            countTo45 = 46;
+        if(customTimer != nullptr) {
+            delete customTimer;
+            customTimer = nullptr;
         }
         connectionTestMain();
     }
@@ -2488,14 +2491,17 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
         qDebug() << "Changed to dry...";
         changeWetOrDry = true;
-        if(customDuration > 0 && newRowItemDuration == 2) {
-            customCounter = (customDuration+1);
+        if(seconds20Timer != nullptr) {
+            delete seconds20Timer;
+            seconds20Timer = nullptr;
         }
-        if(newRowItemDuration == 0) {
-            countTo20 = 21;
+        if(seconds45Timer != nullptr) {
+            delete seconds45Timer;
+            seconds45Timer = nullptr;
         }
-        if(newRowItemDuration == 1) {
-            countTo45 = 46;
+        if(customTimer != nullptr) {
+            delete customTimer;
+            customTimer = nullptr;
         }
         connectionTestMain();
     }
