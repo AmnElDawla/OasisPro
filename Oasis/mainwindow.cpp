@@ -2429,8 +2429,6 @@ void MainWindow::on_newBattery_clicked()
 void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 {
 
-    qDebug() << arg1;
-
     // Checks if the value is connected, if the device / application is fully on, and if there is a session currenly selected (selected button has been pressed).
     if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true) {
         qDebug() << "Connected...";
@@ -2451,9 +2449,11 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
     // - numberOfTimesPowerBtnClicked = 1 ======> means device is partly turned on.
     // - numberOfTimesPowerBtnClicked = 2 ======> means device is completely turned on.
     else if(numberOfTimesPowerBtnClicked == 0) {
+        qDebug().noquote() << "Unable to switch to "+arg1;
         qDebug() << "Device is not turned on...";
     }
     else {
+        qDebug().noquote() << "Unable to switch to "+arg1;
         qDebug() << "Selection button has not been pressed...";
     }
 
@@ -2467,8 +2467,6 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 // (no session has been selected).
 void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 {
-
-    qDebug() << arg1;
 
     // Checks if the value is wet, if the device / application is fully on, if there is a session currently running
     // and if there is a session currently selected (selected button has been pressed).
@@ -2507,9 +2505,11 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     }
     // Checks if there is no session currently running.
     else if(sessionOnOrOff == false) {
+        qDebug().noquote() << "Unable to switch to "+arg1;
         qDebug() << "Device is disconnected or no session was selected...";
     }
     else {
+        qDebug().noquote() << "Unable to switch to "+arg1;
         qDebug() << "Selection button has not been pressed...";
     }
 
