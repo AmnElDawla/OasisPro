@@ -463,6 +463,7 @@ void MainWindow::on_durationLeft_clicked()
         QString str = QInputDialog::getText(this, "User-defined Duration (Integer)", "0");
         customDuration = str.toInt();
 
+        // Show the custom duration in the UI.
         ui->TimeElapse->setText(QString::number(customDuration)+"s");
     }
     else if(newRowItemDuration == 1) {
@@ -487,7 +488,6 @@ void MainWindow::on_sessionLeft_clicked()
         newRowItemSession = 3;
         resetButtons();
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
-
         ui->TimeText->setText("Time Left (Theta)");
     }
     else if(newRowItemSession == 1) {
@@ -533,6 +533,7 @@ void MainWindow::on_durationRight_clicked()
         QString str = QInputDialog::getText(this, "User-defined Duration (Integer)", "0");
         customDuration = str.toInt();
 
+        // Show the custom duration in the UI.
         ui->TimeElapse->setText(QString::number(customDuration)+"s");
     }
     else {
@@ -2490,6 +2491,9 @@ void MainWindow::startDescendEndSession() {
 
             // Set the text in time left section back to default.
             ui->TimeText->setText("Time Left");
+
+            // Set the text in time elapsed section back to default.
+            ui->TimeElapse->setText("0s");
 
             qDebug() << "Device is turned off...";
 
