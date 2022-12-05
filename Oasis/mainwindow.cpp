@@ -1,4 +1,5 @@
-﻿#include "mainwindow.h"
+﻿// Including the necessary header files (.h files) and libraries (qDebug).
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
 
