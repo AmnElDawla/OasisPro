@@ -286,8 +286,13 @@ void MainWindow::offConnect() {
 // clears (remove selection) and deselect the session and duration icons.
 void MainWindow::deviceOff() {
 
+    // Style groupbox border to white (this signifies that it has been turned off).
     ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid white; border-radius: 30px; background-color: black; } ");
+
+    // Style progress bar background color to white (this signifies that it has been turned off).
     ui->indicatorOffOrOn->setStyleSheet("#indicatorOffOrOn::chunk{ background-color: white; }");
+
+    // Turn off all LEDs.
     ledEightOff();
     ledSevenOff();
     ledSixOff();
@@ -296,11 +301,17 @@ void MainWindow::deviceOff() {
     ledThreeOff();
     ledTwoOff();
     ledOneOff();
+
+    // Disable buttons.
     ui->selectionBtn->setEnabled(false);
     ui->increaseIntensityBtn->setEnabled(false);
     ui->decreaseIntensityBtn->setEnabled(false);
+
+    // Clear selected options in listDuration and listSession.
     ui->listDuration->selectionModel()->clear();
     ui->listSession->selectionModel()->clear();
+
+    // Disable buttons.
     ui->sessionRight->setEnabled(false);
     ui->sessionLeft->setEnabled(false);
     ui->durationRight->setEnabled(false);
@@ -328,18 +339,28 @@ void MainWindow::iconsOn() {
     // to limegreen).
     ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid limegreen; border-radius: 30px; background-color: black; } ");
 
+    // Initializes and set the values of the array that will contain the path of the images for the duration icons
+    // (these images will the on version).
     QString arrQListDurationOn[3] = {":/resources/icons/20MinuteOn.png", ":/resources/icons/45MinuteOn.png", ":/resources/icons/UserDesignatedOn.png"};
+
+    // Initializes and set the values of the array that will contain the path of the images for the sessions icons
+    // (these images will the on version).
     QString arrQListSessionOn[4] = {":/resources/icons/AlphaOn.png", ":/resources/icons/Beta1On.png", ":/resources/icons/Beta2On.png", ":/resources/icons/ThetaOn.png"};
 
+    // Set the icon size for both list to be 48 pixels by 48 pixels.
     ui->listDuration->setIconSize(QSize(48, 48));
     ui->listSession->setIconSize(QSize(48, 48));
 
+    // Loop through all items in the arrQListDuration array and set the icon in the listDuration QListWidget displayed on
+    // the GUI to the corresponding item found at the specified index in the arrQListDuration array.
     for(int i = 0; i < 3; i++)  {
 
         ui->listDuration->item(i)->setIcon(QIcon(arrQListDurationOn[i]));
 
     }
 
+    // Loop through all items in the arrQListSession array and set the icon in the listSession QListWidget displayed on
+    // the GUI to the corresponding item found at the specified index in the arrQListSession array.
     for(int i = 0; i < 4; i++)  {
 
         ui->listSession->item(i)->setIcon(QIcon(arrQListSessionOn[i]));
