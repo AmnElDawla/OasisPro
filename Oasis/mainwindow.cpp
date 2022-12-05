@@ -2474,7 +2474,15 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     // and if there is a session currently selected (selected button has been pressed).
     if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
         qDebug() << "Changed to wet...";
-        changeWetOrDry = true;
+        if(customDuration > 0 && newRowItemDuration == 2) {
+            customCounter = (customDuration+1);
+        }
+        if(newRowItemDuration == 0) {
+            countTo20 = 21;
+        }
+        if(newRowItemDuration == 1) {
+            countTo45 = 46;
+        }
         connectionTestMain();
     }
     // Checks if the value is dry, if the device / application is fully on, if there is a session currently running
@@ -2482,6 +2490,15 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
         qDebug() << "Changed to dry...";
         changeWetOrDry = true;
+        if(customDuration > 0 && newRowItemDuration == 2) {
+            customCounter = (customDuration+1);
+        }
+        if(newRowItemDuration == 0) {
+            countTo20 = 21;
+        }
+        if(newRowItemDuration == 1) {
+            countTo45 = 46;
+        }
         connectionTestMain();
     }
     // Checks if the device / application is turned off.
