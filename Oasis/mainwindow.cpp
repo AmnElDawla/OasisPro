@@ -86,9 +86,11 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
+// This is the destructor function. When the application is close, it will delete ui pointer (to prevent memory leaks).
 MainWindow::~MainWindow()
 {
 
+    // Delete pointer named ui.
     delete ui;
 
 }
