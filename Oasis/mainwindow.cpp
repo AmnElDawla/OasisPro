@@ -1289,6 +1289,8 @@ void MainWindow::blinkCounter() {
 
     }
 
+    // Checks counter's value is equal to 6, if the device / application is fully turned on and if the wet/dry combobox has not been
+    // pressed (means that it has not change).
     if(counterBlinkingLed == 6 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
         // Stop the timer.
@@ -1378,6 +1380,8 @@ void MainWindow::blinkCounter() {
             ui->selectionBtn->setEnabled(true);
 
             // Start session timer based on the duration
+
+            // Duration is 20 seconds.
             if(objData.sessionArray[0] == 0) {
                 qDebug() << "Timer will go on for 20s";
                 seconds20Timer = new QTimer(this);
@@ -1385,6 +1389,8 @@ void MainWindow::blinkCounter() {
                 connect(seconds20Timer, SIGNAL(timeout()), this, SLOT(updateUITime20sDisplay()));
                 seconds20Timer->start();
             }
+
+            // Duration is 45 seconds.
             else if(objData.sessionArray[0] == 1) {
                 qDebug() << "Timer will go on for 45s";
                 seconds45Timer = new QTimer(this);
@@ -1392,6 +1398,8 @@ void MainWindow::blinkCounter() {
                 connect(seconds45Timer, SIGNAL(timeout()), this, SLOT(updateUITime45sDisplay()));
                 seconds45Timer->start();
             }
+
+            // Duration is based on custom time provided by the user.
             else {
                 qDebug().noquote() << "Timer will go on for "+QString::number(objData.sessionArray[0])+"s";
                 customTimer = new QTimer(this);
@@ -1400,14 +1408,21 @@ void MainWindow::blinkCounter() {
                 customTimer->start();
                 countdownCustom = customDuration;
             }
+
         }
+        // If none of the above is true, then that means that the device / application is turned off.
         else {
+
             qDebug() << "Device has been turned off. Unable to process with test....";
+
         }
 
     }
     else {
+
+        // Increment counter by 1.
         counterBlinkingLed++;
+
     }
 
 }
