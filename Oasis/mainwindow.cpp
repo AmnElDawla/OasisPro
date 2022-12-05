@@ -324,7 +324,8 @@ void MainWindow::deviceOn() {
 // sets the current selected item in the duration and session's QListWidget.
 void MainWindow::iconsOn() {
 
-    // turns the icons on
+    // Turns the groupbox (the groupbox that will contain the right and left ear icon) on (by changing its border
+    // to limegreen).
     ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid limegreen; border-radius: 30px; background-color: black; } ");
 
     QString arrQListDurationOn[3] = {":/resources/icons/20MinuteOn.png", ":/resources/icons/45MinuteOn.png", ":/resources/icons/UserDesignatedOn.png"};
@@ -386,8 +387,10 @@ void MainWindow::iconsOn() {
     connect(timer, SIGNAL(timeout()), this, SLOT(turnOffNoSessionSelected()));
     timer->start(120000);
 
-    // Reset buttons and start find the current intensity (that is based on the session number) based on the database data.
+    // Reset LEDs (turn them all on).
     resetButtons();
+
+    // Call this function to start to find the current session number based on the database data
     selectedIntensityAtStart();
 
 }
