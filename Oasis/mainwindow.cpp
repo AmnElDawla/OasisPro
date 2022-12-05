@@ -685,6 +685,7 @@ void MainWindow::stopBatteryLevel() {
 // After this, flashes the selected session's intensity for 3 seconds (3000 miliseconds) at an interval of 500 miliseconds.
 void MainWindow::on_selectionBtn_clicked()
 {
+
     // ADD CODE TO DISABLE BUTTON WHEN WE HAVE A WAY
     // TO KEEP TRACK OF THE NUMBER OF TIMES THE POWER
     // BUTTON HAS BEEN PRESSED
@@ -729,7 +730,7 @@ void MainWindow::on_selectionBtn_clicked()
 
 }
 
-// This function starts the QTimer named timerFlashes to flash the selected session's intensity at a 500 miliseconds
+// This function starts the QTimer named timerFlashes to flash the selected session's intensity at a 500 miliseconds (half a second)
 // interval.
 void MainWindow::flashSelectedLevelAfterSelection() {
 
