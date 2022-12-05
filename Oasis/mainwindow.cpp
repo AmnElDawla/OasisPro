@@ -170,6 +170,7 @@ void MainWindow::on_powerBtn_clicked()
     // Turns on the device, but not completely (icons for both duration and session, CES graph, and left and right ear.
     if(numberOfTimesPowerBtnClicked == 0) {
 
+        // Disable all buttons.
         ui->powerBtn->setEnabled(false);
         ui->selectionBtn->setEnabled(false);
         ui->increaseIntensityBtn->setEnabled(false);
@@ -178,7 +179,11 @@ void MainWindow::on_powerBtn_clicked()
         ui->sessionLeft->setEnabled(false);
         ui->durationRight->setEnabled(false);
         ui->durationLeft->setEnabled(false);
+
+        // Turn the device / application partly on.
         deviceOn();
+
+        // Start the necessary timers.
         batteryStartTimer->start(500);
         batteryStopTimer->start(3500);
         numberOfTimesPowerBtnClicked = 1;
