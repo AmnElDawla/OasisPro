@@ -33,21 +33,31 @@ MainWindow::MainWindow(QWidget *parent)
         success = 0;
     }
 
+    // Checks if the database tables were not initialized.
     if(!newDatabase->initializeDatabaseTables()) {
         qDebug() << "Unable to create the database's tables (users, therapy, therapy_history)...";
+
+        // Set success variable to 1 (not successful - errors found).
         success = 1;
     }
     else {
         qDebug() << "Created the database's tables (users, therapy, therapy_history)...";
+
+        // Set success variable to 0 (success - no errors found).
         success = 0;
     }
 
+    // Checks if the success variable is equal to 0 (if it is then that means that it was able to
+    // to successfully initialize the table and database).
     if(success == 0) {
         qDebug() << "Operation was successfully completed...";
         qDebug() << "Testing: Getting users details...";
+
+        // Testing if it can retrieve user data.
         newDatabase->getUserData(1);
         newDatabase->getUserData(2);
         newDatabase->getUserData(3);
+
         qDebug() << "Operation was successfully completed...";
     }
     else {
@@ -59,22 +69,19 @@ MainWindow::MainWindow(QWidget *parent)
     offConnect();
     initialiazeListOfIcons();
 
+    // Set application icon.
     setWindowIcon(QIcon(":/resources/icons/companyIcon.png"));
 
+    // Initialize and set parameters and connections of the necessary timers.
     batteryStartTimer = new QTimer(this);
     batteryStopTimer = new QTimer(this);
     connect(batteryStartTimer, SIGNAL(timeout()), this, SLOT(showBatteryLevel()));
     connect(batteryStopTimer, SIGNAL(timeout()), this, SLOT(stopBatteryLevel()));
     batteryStopTimer->setSingleShot(true);
 
-    // When connection test passed:
+    // When connection test passed do the following.
     connectionTestStartTimer = new QTimer(this);
     connectionTestStopTimer = new QTimer(this);
-    // ANDRE AND MENGRUI, YOU MADE A MISTAKE HERE. THIS IS REPEATING MY CODE FROM LINE 58 AND 59 AND BROKE THE FLASHING MECHANIC.
-    // I LEFT THIS HERE COMMENTED INSTEAD OF DELETED IN CASE YOU INTENDED TO USE IT FOR SOMETHING ELSE.
-    // DELETE THIS COMMENT WHEN YOU SEE THIS AND DO WHAT YOU WANT WITH THE TWO LINES BELOW.
-    // connect(batteryStartTimer, SIGNAL(timeout()), this, SLOT(showBatteryLevel()));
-    // connect(batteryStopTimer, SIGNAL(timeout()), this, SLOT(stopBatteryLevel()));
     connectionTestStopTimer->setSingleShot(true);
 
 }
