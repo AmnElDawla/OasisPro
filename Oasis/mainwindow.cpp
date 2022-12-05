@@ -1290,13 +1290,21 @@ void MainWindow::blinkCounter() {
     }
 
     if(counterBlinkingLed == 6 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+
+        // Stop the timer.
         timerBlinkLed->stop();
+
+        // Reset the counter to 0.
         counterBlinkingLed = 0;
 
         // Turn on all leds
         onLeds();
 
-        // Finding correct intensity level
+        // Finding correct session number based on the newRowItemSession value.
+        // - newRowItemSession = 0 =====> means that actual session number value is based on the Theta session type.
+        // - newRowItemSession = 1 =====> means that actual session number value is based on the Alpha session type.
+        // - newRowItemSession = 2 =====> means that actual session number value is based on the SMR session type.
+        // - newRowItemSession = 3 =====> means that actual session number value is based on the Beta session type.
         int realValueRow = 0;
         if(newRowItemSession == 0) {
             realValueRow = 3;
@@ -1311,7 +1319,7 @@ void MainWindow::blinkCounter() {
             realValueRow = 2;
         }
 
-        // Displaying correct intensity level
+        // Displaying correct session number.
         if(realValueRow == 0) {
             ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         }
