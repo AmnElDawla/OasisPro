@@ -1383,30 +1383,63 @@ void MainWindow::blinkCounter() {
 
             // Duration is 20 seconds.
             if(objData.sessionArray[0] == 0) {
+
                 qDebug() << "Timer will go on for 20s";
+
+                // Start 20 seconds timer.
                 seconds20Timer = new QTimer(this);
+
+                // Set the timer interval for every 1 second (1000 miliseconds).
                 seconds20Timer->setInterval(1000);
+
+                // Connect the timer's timeout (every 1 seconds) to the function named updateUITime20sDisplay.
                 connect(seconds20Timer, SIGNAL(timeout()), this, SLOT(updateUITime20sDisplay()));
+
+                // Start the timer.
                 seconds20Timer->start();
+
             }
 
             // Duration is 45 seconds.
             else if(objData.sessionArray[0] == 1) {
+
                 qDebug() << "Timer will go on for 45s";
+
+                // Start 45 seconds timer.
                 seconds45Timer = new QTimer(this);
+
+                // Set the timer interval for every 1 second (1000 miliseconds).
                 seconds45Timer->setInterval(1000);
+
+                // Connect the timer's timeout (every 1 seconds) to the function named updateUITime45sDisplay.
                 connect(seconds45Timer, SIGNAL(timeout()), this, SLOT(updateUITime45sDisplay()));
+
+                // Start the timer.
                 seconds45Timer->start();
+
             }
 
             // Duration is based on custom time provided by the user.
             else {
+
                 qDebug().noquote() << "Timer will go on for "+QString::number(objData.sessionArray[0])+"s";
+
+                // Start custom time timer.
                 customTimer = new QTimer(this);
+
+                // Set the timer interval for every 1 second (1000 miliseconds).
                 customTimer->setInterval(1000);
+
+                // Connect the timer's timeout (every 1 seconds) to the function named updateUITimeCustomDisplay.
                 connect(customTimer, SIGNAL(timeout()), this, SLOT(updateUITimeCustomDisplay()));
+
+                // Start the timer.
                 customTimer->start();
+
+                // Set countdown value (the counter that will keep track of much time is left until session end) equal to the
+                // customDuration (the time value in seconds that was defined by the user).
                 countdownCustom = customDuration;
+
             }
 
         }
