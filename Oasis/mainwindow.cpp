@@ -349,6 +349,9 @@ void MainWindow::iconsOn() {
     // Set default values and enables buttons.
     ui->listDuration->setCurrentRow(newRowItemDuration);
     ui->listSession->setCurrentRow(newRowItemSession);
+
+    // Set the text (the time left section) in GUI for the current session
+    // (that is currently selected (or stored in database) or if not selected then go for default option).
     if(newRowItemSession == 0) {
         ui->TimeText->setText("Time Left (Alpha)");
     }
@@ -362,6 +365,8 @@ void MainWindow::iconsOn() {
         ui->TimeText->setText("Time Left (Theta)");
     }
 
+    // Set the text (for the time elapse section - this section just display how much time is left until end of session)
+    // in GUI for the current session (that is currently selected (or stored in database) or if not selected then go for default option).
     if(newRowItemDuration == 0) {
         ui->TimeElapse->setText("20s");
     }
@@ -369,11 +374,14 @@ void MainWindow::iconsOn() {
         ui->TimeElapse->setText("45s");
     }
     else {
-        ui->TimeElapse->setText("N/A");
+        ui->TimeElapse->setText("0s");
     }
 
+    // Set the styling of the listDuration and listSession's borders.
     ui->listDuration->setStyleSheet("#listDuration::item:selected { background: transparent; border: 2px solid yellow; } #listDuration { background: black; } #listDuration::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
     ui->listSession->setStyleSheet("#listSession::item:selected { background: transparent; border: 2px solid yellow; } #listSession { background: black; } #listSession::item { border: 2px solid transparent; padding-left: 3px; padding-right: 6px; }");
+
+    // Enables buttons.
     ui->sessionRight->setEnabled(true);
     ui->sessionLeft->setEnabled(true);
     ui->durationRight->setEnabled(true);
