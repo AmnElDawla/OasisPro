@@ -733,9 +733,17 @@ void MainWindow::on_selectionBtn_clicked()
 // interval.
 void MainWindow::flashSelectedLevelAfterSelection() {
 
+    // Initializes the timer.
     timerFlashes = new QTimer(this);
+
+    // Set the interval of the timer (when it will timeout) to every 500 miliseconds (half a second).
     timerFlashes->setInterval(500);
+
+    // Connect the timer's timeout to the slot function name flashTimer (it will call this slot function whenever the
+    // timer timeout).
     connect(timerFlashes, SIGNAL(timeout()), this, SLOT(flashTimer()));
+
+    // Start the timer.
     timerFlashes->start();
 
 }
