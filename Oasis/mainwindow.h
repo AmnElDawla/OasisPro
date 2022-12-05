@@ -136,6 +136,7 @@ private slots:
     // and session are stored as variables.
     void on_selectionBtn_clicked();
 
+    // These slots show battery level and reset the graph afterwards when called.
     void showBatteryLevel();
     void stopBatteryLevel();
 
