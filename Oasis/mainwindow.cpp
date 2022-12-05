@@ -744,49 +744,137 @@ void MainWindow::flashSelectedLevelAfterSelection() {
 // It does this for 3 seconds. After 3 seconds, it stops the timer, resets the counter named valueIntUntilEndOfFlash
 // that keeps track of the amount of time this function has been called and starts the 5 seconds delay by calling
 // the delay5Seconds function.
+// REMEMBER:
+// - sessionArray[0]: Stores duration of the session
+// - sessionArray[1]: Stores session type
+// - sessionArray[2]: Stores intensity level of the session at the time of completion
 void MainWindow::flashTimer() {
 
     // Checks if the wet/dry combobox has not been pressed (changeWetOrDry = false) and
     // if the device / application is fully turned on.
     if(changeWetOrDry == false && numberOfTimesPowerBtnClicked == 2) {
 
+        // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 0 and
+        // if the fifth LED boolean variable is true (meaning the LED is off and now needs to be turned on).
         if(objData.sessionArray[1] == 0 && ledFiveFlash == true){
+
+            // Turn on the LED (make the border's color red).
             ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border: 3px solid red; }");
+
+            // This boolean variable keeps track of what the next state of the LED is.
+            // In this case the next state is off (as the variable is equal to false).
             ledFiveFlash = false;
+
         }
+
+        // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 0 and
+        // if the fifth LED boolean variable is false (meaning the LED is on and now needs to be turned off).
         else if(objData.sessionArray[1] == 0 && ledFiveFlash == false){
+
+            // Turn off the LED (make the border's color cyan).
             ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+
+            // This boolean variable keeps track of what the next state of the LED is.
+            // In this case the next state is on (as the variable is equal to true).
             ledFiveFlash = true;
+
         }
+
+        // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 1 and
+        // if the sixth LED boolean variable is true (meaning the LED is off and now needs to be turned on).
         else if(objData.sessionArray[1] == 1 && ledSixFlash == true){
+
+            // Turn on the LED (make the border's color red).
             ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border: 3px solid red; }");
+
+            // This boolean variable keeps track of what the next state of the LED is.
+            // In this case the next state is off (as the variable is equal to false).
             ledSixFlash = false;
+
         }
+
+        // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 1 and
+        // if the sixth LED boolean variable is false (meaning the LED is on and now needs to be turned off).
         else if(objData.sessionArray[1] == 1 && ledSixFlash == false){
+
+            // Turn on the LED (make the border's color cyan).
             ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+
+            // This boolean variable keeps track of what the next state of the LED is.
+            // In this case the next state is on (as the variable is equal to true).
             ledSixFlash = true;
+
         }
+
+        // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 2 and
+        // if the seventh LED boolean variable is true (meaning the LED is off and now needs to be turned on).
         else if(objData.sessionArray[1] == 2 && ledSevenFlash == true){
+
+            // Turn on the LED (make the border's color red).
             ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: #FF7e82; border: 3px solid red; }");
+
+            // This boolean variable keeps track of what the next state of the LED is.
+            // In this case the next state is off (as the variable is equal to false).
             ledSevenFlash = false;
+
         }
+
+        // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 2 and
+        // if the seventh LED boolean variable is false (meaning the LED is on and now needs to be turned off).
         else if(objData.sessionArray[1] == 2 && ledSevenFlash == false){
+
+            // Turn on the LED (make the border's color cyan).
             ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
+
+            // This boolean variable keeps track of what the next state of the LED is.
+            // In this case the next state is on (as the variable is equal to true).
             ledSevenFlash = true;
+
         }
+
+        // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 3 and
+        // if the fourth LED boolean variable is true (meaning the LED is off and now needs to be turned on).
         else if(objData.sessionArray[1] == 3 && ledFourFlash == true){
+
+            // Turn on the LED (make the border's color red).
             ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid red; }");
+
+            // This boolean variable keeps track of what the next state of the LED is.
+            // In this case the next state is off (as the variable is equal to false).
             ledFourFlash = false;
+
         }
+
+        // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 3 and
+        // if the fourth LED boolean variable is false (meaning the LED is on and now needs to be turned off).
         else if(objData.sessionArray[1] == 3 && ledFourFlash == false){
+
+            // Turn on the LED (make the border's color cyan).
             ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); ; border: 3px solid cyan; }");
+
+            // This boolean variable keeps track of what the next state of the LED is.
+            // In this case the next state is on (as the variable is equal to true).
             ledFourFlash = true;
+
         }
+
+        // Checks if the counter is equal to 10 (as the LED can only flash on and off five times).
         if(valueIntUntilEndOfFlash == 10) {
+
+            // Stops the timer.
             timerFlashes->stop();
+
+            // Reset the counter to 0.
             valueIntUntilEndOfFlash = 0;
+
+            // Set the flashing boolean value (the one that check if the flashing of the LED is finished) to true.
+            // This is needed to prevent the LED to light up when it is no longer needed (in other words to prevent
+            // bugs).
             finishedFlashing = true;
+
+            // Call the 5 seconds delay function to start the 5 seconds delay (before the connection test starts).
             delay5Seconds();
+
         }
         else {
 
@@ -803,10 +891,22 @@ void MainWindow::flashTimer() {
 void MainWindow::delay5Seconds() {
 
     qDebug() << "Start 5 seconds delay...";
+
+    // Initializes the timer.
     fiveSecondsDelay = new QTimer(this);
+
+    // Set the timer interval to 5 seconds (5000 miliseconds).
     fiveSecondsDelay->setInterval(5000);
+
+    // Set the timer to single shot. This means that the timer will end when it timeout (it will still call the slot function, but
+    // it will no longer continue after that).
     fiveSecondsDelay->setSingleShot(true);
+
+    // Connect the timer's timeout to the slot function name continueAfter5Seconds (it will call this slot function whenever the
+    // timer timeout).
     connect(fiveSecondsDelay, SIGNAL(timeout()), this, SLOT(continueAfter5Seconds()));
+
+    // Start the timer.
     fiveSecondsDelay->start();
 
 }
