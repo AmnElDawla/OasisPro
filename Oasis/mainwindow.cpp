@@ -1235,6 +1235,8 @@ void MainWindow::ledBlinkTimer() {
 // counterBlinkingLed - counter that keeps track of how many times the blinkCounter
 void MainWindow::blinkCounter() {
 
+    // Checks if the grpToBlink is equal to 0, if the device / application is fully turned on and if the wet/dry combobox has not been
+    // pressed (means that it has not change).
     if(groupToBlink == 0 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
         if(blinkTrueOrFalse == true) {
@@ -1249,6 +1251,9 @@ void MainWindow::blinkCounter() {
         }
 
     }
+
+    // Checks if the grpToBlink is equal to 1, if the device / application is fully turned on and if the wet/dry combobox has not been
+    // pressed (means that it has not change).
     if(groupToBlink == 1 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
         if(blinkTrueOrFalse == true) {
@@ -1264,6 +1269,9 @@ void MainWindow::blinkCounter() {
             blinkTrueOrFalse = true;
         }
     }
+
+    // Checks if the grpToBlink is equal to 2, if the device / application is fully turned on and if the wet/dry combobox has not been
+    // pressed (means that it has not change).
     if(groupToBlink == 2 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
         if(blinkTrueOrFalse == true) {
