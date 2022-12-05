@@ -422,19 +422,28 @@ void MainWindow::selectedIntensityAtStart() {
 // device). This turns off all the icons for the duration and session (bringing them back to white).
 void MainWindow::iconsOff() {
 
-    //off icons
+    // Initializes and set the values of the array that will contain the path of the images for the duration icons
+    // (these images will the off version).
     QString arrQListDuration[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
+
+    // Initializes and set the values of the array that will contain the path of the images for the sessions icons
+    // (these images will the off version).
     QString arrQListSession[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
+    // Set the icon size for both list to be 48 pixels by 48 pixels.
     ui->listDuration->setIconSize(QSize(48, 48));
     ui->listSession->setIconSize(QSize(48, 48));
 
+    // Loop through all items in the arrQListDuration array and set the icon in the listDuration QListWidget displayed on
+    // the GUI to the corresponding item found at the specified index in the arrQListDuration array.
     for(int i = 0; i < 3; i++)  {
 
         ui->listDuration->item(i)->setIcon(QIcon(arrQListDuration[i]));
 
     }
 
+    // Loop through all items in the arrQListSession array and set the icon in the listSession QListWidget displayed on
+    // the GUI to the corresponding item found at the specified index in the arrQListSession array.
     for(int i = 0; i < 4; i++)  {
 
         ui->listSession->item(i)->setIcon(QIcon(arrQListSession[i]));
@@ -459,7 +468,7 @@ void MainWindow::initialiazeListOfIcons() {
     ui->listDuration->setStyleSheet("#listDuration { background: black; }");
 
     // Loop through all items in the arrQListDuration array and add these items to the listDuration QListWidgetItem to display them on
-    // the UI.
+    // the GUI.
     for(int i = 0; i < 3; i++)  {
 
         ui->listDuration->addItem(new QListWidgetItem(QIcon(arrQListDuration[i]), NULL));
