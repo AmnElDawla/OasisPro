@@ -808,9 +808,17 @@ void MainWindow::delay5Seconds() {
 void MainWindow::continueAfter5Seconds() {
 
     qDebug() << "5 seconds delay over...";
-    // Checks if the connection test does not
+
+    // Checks if the connection test does not finish properly (unsuccessful)
     if(connectionTestMain() != -1) {
-        qDebug() << "Start of the connection test...";
+
+        qDebug() << "Connection test has unsuccessfully finished...";
+
+    }
+    else  {
+
+        qDebug() << "Connection test has successfully finished...";
+
     }
 
 }
@@ -819,41 +827,63 @@ void MainWindow::continueAfter5Seconds() {
 // miliseconds).
 void MainWindow::turnOffNoSessionSelected() {
 
+    // Checks if timer is still active.
     if(timer->isActive()) {
+
+        // If it is then stop the timer.
         timer->stop();
+
     }
+
     qDebug() << "Shut down OasisPro...";
+
+    // Proceeds to turn off device.
     deviceOff();
     iconsOff();
     offConnect();
+
+    // Reset this variable that counts the number of time the power button has been clicked to 0.
+    // When this variable is set to 0, then it means that the device is off (turned off).
     numberOfTimesPowerBtnClicked = 0;
 
 }
 
+// This function is called when the increase intensity button (arrow up) is pressed by the user.
 void MainWindow::on_increaseIntensityBtn_clicked()
 {
 
-    // Don't increase intensity level beyond 8
     // qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
 
+    // Don't increase intensity level beyond 8
     if(objData.sessionArray[2] < 8){
+
+        // Increment the intensity value.
         objData.sessionArray[2]++;
+
     }
 
+    // Call this function to show what intensity value is currently selected.
     flashSelectedLevel();
 
 }
 
+// This function is called when the decrease intensity button (arrow down) is pressed by the user.
 void MainWindow::on_decreaseIntensityBtn_clicked()
 {
 
     // qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
-    // Don't decrease intensity level beyond 0
 
+    // Don't decrease intensity level beyond 0
+    // If we set objData.sessionArray[2] > 0 instead of objData.sessionArray[2] > 1, then the user will never be able
+    // to select intensity value 1.
     if(objData.sessionArray[2] > 1){
+
+        // Decrement the intensity value.
         objData.sessionArray[2]--;
+
     }
 
+    // Call this function to show what intensity value is currently selected.
     flashSelectedLevel();
 
 }
@@ -862,6 +892,7 @@ void MainWindow::on_decreaseIntensityBtn_clicked()
 //                            LED Control Functions                           //
 //============================================================================//
 
+// This function turns off the 1st LED and set the boolean variable named ledOneStatus to false (meaning it is off).
 void MainWindow::ledOneOff(){
 
     ui->ledOne->setStyleSheet("#ledOne { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
@@ -869,6 +900,7 @@ void MainWindow::ledOneOff(){
 
 }
 
+// This function turns off the 2nd LED and set the boolean variable named ledTwoStatus to false (meaning it is off).
 void MainWindow::ledTwoOff(){
 
     ui->ledTwo->setStyleSheet("#ledTwo { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
@@ -876,6 +908,7 @@ void MainWindow::ledTwoOff(){
 
 }
 
+// This function turns off the 3rd LED and set the boolean variable named ledThreeStatus to false (meaning it is off).
 void MainWindow::ledThreeOff(){
 
     ui->ledThree->setStyleSheet("#ledThree { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
@@ -883,6 +916,7 @@ void MainWindow::ledThreeOff(){
 
 }
 
+// This function turns off the 4th LED and set the boolean variable named ledFourStatus to false (meaning it is off).
 void MainWindow::ledFourOff(){
 
     ui->ledFour->setStyleSheet("#ledFour { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
@@ -890,11 +924,13 @@ void MainWindow::ledFourOff(){
 
 }
 
+// This function turns off the 5th LED and set the boolean variable named ledFiveStatus to false (meaning it is off).
 void MainWindow::ledFiveOff(){
     ui->ledFive->setStyleSheet("#ledFive { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledFiveStatus = false;
 }
 
+// This function turns off the 6th LED and set the boolean variable named ledSixStatus to false (meaning it is off).
 void MainWindow::ledSixOff(){
 
     ui->ledSix->setStyleSheet("#ledSix { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
@@ -902,6 +938,7 @@ void MainWindow::ledSixOff(){
 
 }
 
+// This function turns off the 7th LED and set the boolean variable named ledSevenStatus to false (meaning it is off).
 void MainWindow::ledSevenOff(){
 
     ui->ledSeven->setStyleSheet("#ledSeven { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
@@ -909,12 +946,14 @@ void MainWindow::ledSevenOff(){
 
 }
 
+// This function turns off the 8th LED and set the boolean variable named ledEightStatus to false (meaning it is off).
 void MainWindow::ledEightOff(){
 
     ui->ledEight->setStyleSheet("#ledEight { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledEightStatus = false;
 }
 
+// This function turns on the 1st LED and set the boolean variable named ledOneStatus to true (meaning it is on).
 void MainWindow::ledOneOn(){
 
     ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
@@ -922,6 +961,7 @@ void MainWindow::ledOneOn(){
 
 }
 
+// This function turns on the 2nd LED and set the boolean variable named ledTwoStatus to true (meaning it is on).
 void MainWindow::ledTwoOn(){
 
     ui->ledTwo->setStyleSheet("#ledTwo { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
@@ -929,6 +969,7 @@ void MainWindow::ledTwoOn(){
 
 }
 
+// This function turns on the 3rd LED and set the boolean variable named ledThreeStatus to true (meaning it is on).
 void MainWindow::ledThreeOn(){
 
     ui->ledThree->setStyleSheet("#ledThree { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
@@ -936,6 +977,7 @@ void MainWindow::ledThreeOn(){
 
 }
 
+// This function turns on the 4th LED and set the boolean variable named ledFourStatus to true (meaning it is on).
 void MainWindow::ledFourOn(){
 
     ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
@@ -943,6 +985,7 @@ void MainWindow::ledFourOn(){
 
 }
 
+// This function turns on the 5th LED and set the boolean variable named ledFiveStatus to true (meaning it is on).
 void MainWindow::ledFiveOn(){
 
     ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
@@ -950,6 +993,7 @@ void MainWindow::ledFiveOn(){
 
 }
 
+// This function turns on the 6th LED and set the boolean variable named ledSixStatus to true (meaning it is on).
 void MainWindow::ledSixOn(){
 
     ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
@@ -957,6 +1001,7 @@ void MainWindow::ledSixOn(){
 
 }
 
+// This function turns on the 7th LED and set the boolean variable named ledSevenStatus to true (meaning it is on).
 void MainWindow::ledSevenOn(){
 
     ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
@@ -964,12 +1009,14 @@ void MainWindow::ledSevenOn(){
 
 }
 
+// This function turns on the 8th LED and set the boolean variable named ledEightStatus to true (meaning it is on).
 void MainWindow::ledEightOn(){
 
     ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
     ledEightStatus = true;
 }
 
+// This function toggles the 1st LED on or off.
 void MainWindow::toggleLedOne(){
 
     if(ledOneStatus == false){
@@ -980,6 +1027,7 @@ void MainWindow::toggleLedOne(){
 
 }
 
+// This function toggles the 2nd LED on or off.
 void MainWindow::toggleLedTwo(){
 
     if(ledTwoStatus == false){
@@ -990,7 +1038,7 @@ void MainWindow::toggleLedTwo(){
 
 }
 
-
+// This function toggles the 3rd LED on or off.
 void MainWindow::toggleLedThree(){
 
     if(ledThreeStatus == false){
@@ -1001,6 +1049,7 @@ void MainWindow::toggleLedThree(){
 
 }
 
+// This function toggles the 4th LED on or off.
 void MainWindow::toggleLedFour(){
 
     if(ledFourStatus == false){
@@ -1011,6 +1060,7 @@ void MainWindow::toggleLedFour(){
 
 }
 
+// This function toggles the 5th LED on or off.
 void MainWindow::toggleLedFive(){
 
     if(ledFiveStatus == false){
@@ -1021,6 +1071,7 @@ void MainWindow::toggleLedFive(){
 
 }
 
+// This function toggles the 6th LED on or off.
 void MainWindow::toggleLedSix(){
 
     if(ledSixStatus == false){
@@ -1031,6 +1082,7 @@ void MainWindow::toggleLedSix(){
 
 }
 
+// This function toggles the 7th LED on or off.
 void MainWindow::toggleLedSeven(){
 
     if(ledSevenStatus == false){
@@ -1041,6 +1093,7 @@ void MainWindow::toggleLedSeven(){
 
 }
 
+// This function toggles the 8th LED on or off.
 void MainWindow::toggleLedEight(){
 
     if(ledEightStatus == false){
