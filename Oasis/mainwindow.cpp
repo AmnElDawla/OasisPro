@@ -1558,6 +1558,7 @@ void MainWindow::displayConnection(int signal)
     // Turn off all LEDs. Just a precaution in case the LEDs are still on.
     offLeds();
 
+    // Switch case that handles cases based on the signal's value.
     switch (signal)
     {
         case 0:
@@ -1581,7 +1582,7 @@ void MainWindow::displayConnection(int signal)
 
 }
 
-// Play scroll animation on GUI.
+// This function calls the function(s) that plays the scroll animation on GUI.
 void MainWindow::playScrollAnimation()
 {
 
