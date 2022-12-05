@@ -613,6 +613,7 @@ void MainWindow::showBatteryLevel() {
     // Checks if the battery level is greater than 87%.
     if(batteryLevel > 87) {
 
+        // Turn on all LEDs.
         toggleLedEight();
         toggleLedSeven();
         toggleLedSix();
@@ -627,6 +628,7 @@ void MainWindow::showBatteryLevel() {
     // Checks if the battery level is greater than 75%, but less than or equal to 87%.
     else if(batteryLevel <= 87 && batteryLevel > 75) {
 
+        // Turn off all LEDs except the first, second, third, fourth, fifth, sixth, and seventh LED.
         ledEightOff();
         toggleLedSeven();
         toggleLedSix();
@@ -641,6 +643,7 @@ void MainWindow::showBatteryLevel() {
     // Checks if the battery level is greater than 62%, but less than or equal to 75%.
     else if(batteryLevel <= 75 && batteryLevel > 62) {
 
+        // Turn off all LEDs except the first, second, third, fourth, fifth, and sixth LED.
         ledEightOff();
         ledSevenOff();
         toggleLedSix();
@@ -655,6 +658,7 @@ void MainWindow::showBatteryLevel() {
     // Checks if the battery level is greater than 50%, but less than or equal to 62%.
     else if(batteryLevel <= 62 && batteryLevel > 50) {
 
+        // Turn off all LEDs except the first, second, third, fourth, and fifth LED.
         ledEightOff();
         ledSevenOff();
         ledSixOff();
@@ -669,6 +673,7 @@ void MainWindow::showBatteryLevel() {
     // Checks if the battery level is greater than 37%, but less than or equal to 50%.
     else if(batteryLevel <= 50 && batteryLevel > 37) {
 
+        // Turn off all LEDs except the first, second, third, and fourth LED.
         ledEightOff();
         ledSevenOff();
         ledSixOff();
@@ -683,6 +688,7 @@ void MainWindow::showBatteryLevel() {
     // Checks if the battery level is greater than 25%, but less than or equal to 37%.
     else if(batteryLevel <= 37 && batteryLevel > 25) {
 
+        // Turn off all LEDs except the first, second, and third LED.
         ledEightOff();
         ledSevenOff();
         ledSixOff();
@@ -697,6 +703,7 @@ void MainWindow::showBatteryLevel() {
     // Checks if the battery level is greater than 12%, but less than or equal to 25%.
     else if(batteryLevel <= 25 && batteryLevel > 12) {
 
+        // Turn off all LEDs except the first and second LED.
         ledEightOff();
         ledSevenOff();
         ledSixOff();
@@ -711,6 +718,7 @@ void MainWindow::showBatteryLevel() {
     // Checks if the battery level is greater than 0%, but less than or equal to 12%.
     else if(batteryLevel <= 12 && batteryLevel > 0) {
 
+        // Turn off all LEDs except the first LED.
         ledEightOff();
         ledSevenOff();
         ledSixOff();
