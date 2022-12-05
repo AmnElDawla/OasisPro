@@ -221,6 +221,9 @@ void MainWindow::on_powerBtn_clicked()
         // Set the text in time left section back to default.
         ui->TimeText->setText("Time Left");
 
+        // Set the text in time elapsed section back to default.
+        ui->TimeElapse->setText("0s");
+
         qDebug() << "Device is turned off...";
 
     }
