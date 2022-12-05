@@ -594,7 +594,7 @@ void MainWindow::on_sessionRight_clicked()
 
 }
 
-// Need to comment this - Khaled.
+// Toggle graph LEDs to display battery level.
 void MainWindow::showBatteryLevel() {
 
     if(batteryLevel > 87) {
@@ -689,7 +689,7 @@ void MainWindow::showBatteryLevel() {
 
 }
 
-// Need to comment this - Khaled.
+// Reset all LEDs by turning them all on.
 void MainWindow::stopBatteryLevel() {
 
     // Stop the timer.
