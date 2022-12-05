@@ -447,10 +447,13 @@ void MainWindow::iconsOff() {
 // the QListWidget that will contains the duration and session icons.
 void MainWindow::initialiazeListOfIcons() {
 
+    // Initializes and set the values of the array that will contain the path of the images for the duration icons.
     QString arrQListDuration[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
+
+    // Initializes and set the values of the array that will contain the path of the images for the sessions icons.
     QString arrQListSession[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
-    //QList (above) initialize starts here...
+    //QList (above) for duration initializes starts here...
     ui->listDuration->setFlow(QListView::Flow::LeftToRight);
     ui->listDuration->setIconSize(QSize(48, 48));
     ui->listDuration->setStyleSheet("#listDuration { background: black; }");
@@ -461,7 +464,7 @@ void MainWindow::initialiazeListOfIcons() {
 
     }
 
-    //QList (below) initialize starts here...
+    //QList (below) for session initializes starts here...
     ui->listSession->setFlow(QListView::Flow::LeftToRight);
     ui->listSession->setIconSize(QSize(48, 48));
     ui->listSession->setStyleSheet("#listSession { background: black; }");
@@ -483,6 +486,7 @@ void MainWindow::on_durationLeft_clicked()
 {
 
     if(newRowItemDuration == 0) {
+
         newRowItemDuration = 2;
         ui->listDuration->setCurrentRow(newRowItemDuration);
 
@@ -495,16 +499,21 @@ void MainWindow::on_durationLeft_clicked()
 
         // Show the custom duration in the UI.
         ui->TimeElapse->setText(QString::number(customDuration)+"s");
+
     }
     else if(newRowItemDuration == 1) {
+
         newRowItemDuration = 0;
         ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("20s");
+
     }
     else {
+
         newRowItemDuration = 1;
         ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("45s");
+
     }
 
 }
@@ -515,28 +524,36 @@ void MainWindow::on_sessionLeft_clicked()
 {
 
     if(newRowItemSession == 0) {
+
         newRowItemSession = 3;
         resetButtons();
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Theta)");
+
     }
     else if(newRowItemSession == 1) {
+
         newRowItemSession = 0;
         resetButtons();
         ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Alpha)");
+
     }
     else if(newRowItemSession == 2) {
+
         newRowItemSession = 1;
         resetButtons();
         ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (SMR)");
+
     }
     else {
+
         newRowItemSession = 2;
         resetButtons();
         ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Beta)");
+
     }
     ui->listSession->setCurrentRow(newRowItemSession);
 
@@ -548,11 +565,14 @@ void MainWindow::on_durationRight_clicked()
 {
 
     if(newRowItemDuration == 0) {
+
         newRowItemDuration = 1;
         ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("45s");
+
     }
     else if(newRowItemDuration == 1) {
+
         newRowItemDuration = 2;
         ui->listDuration->setCurrentRow(newRowItemDuration);
 
@@ -565,11 +585,14 @@ void MainWindow::on_durationRight_clicked()
 
         // Show the custom duration in the UI.
         ui->TimeElapse->setText(QString::number(customDuration)+"s");
+
     }
     else {
+
         newRowItemDuration = 0;
         ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("20s");
+
     }
 
 }
@@ -580,28 +603,36 @@ void MainWindow::on_sessionRight_clicked()
 {
 
     if(newRowItemSession == 0) {
+
         newRowItemSession = 1;
         resetButtons();
         ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (SMR)");
+
     }
     else if(newRowItemSession == 1) {
+
         newRowItemSession = 2;
         resetButtons();
         ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Beta)");
+
     }
     else if(newRowItemSession == 2) {
+
         newRowItemSession = 3;
         resetButtons();
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Theta)");
+
     }
     else {
+
         newRowItemSession = 0;
         resetButtons();
         ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Alpha)");
+
     }
     ui->listSession->setCurrentRow(newRowItemSession);
 
