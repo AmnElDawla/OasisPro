@@ -8,20 +8,28 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // device off's icons
+    // Device off's icons for duration and sessions.
     QString arrQListAbove[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
     QString arrQListBelow[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
     qDebug() << "Starting database initialization...";
 
+    // Creates a success variable to see if the database has successfully started certain components without errors.
+    // - success = 0 =====> success (no errors).
+    // - success = 1 =====> not successfully (errors were encountered).
     int success = 0;
 
+    // Checks if the database was not initialize.
     if(!newDatabase->initializeDatabase())  {
         qDebug() << "Unable to initialize the database...";
+
+        // Set success variable to 1 (not successful - errors found).
         success = 1;
     }
     else {
         qDebug() << "Created database...";
+
+        // Set success variable to 0 (success - no errors found).
         success = 0;
     }
 
