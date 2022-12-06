@@ -48,11 +48,11 @@ Each milestone in this project will bring a package release showcasing what we h
 
 This project has 5 milestones (necessary), which are: 
 
-- [ ] Power which has `Turn On/Turn Off` and `Ending A Session` features as described on page 4 of the manual.
-- [ ] Battery level as described in section on page 5 of the manual. 
-- [ ] Selecting a session as per `Selecting A Session` on page 5 of the manual.
-- [ ] Connection test as per `Connection Test` on page 6 of the manual.
-- [ ] Intensity as per `Adjusting Intensity` on page 7 of the manual.
+- [x] Power which has `Turn On/Turn Off` and `Ending A Session` features as described on page 4 of the manual.
+- [x] Battery level as described in section on page 5 of the manual. 
+- [x] Selecting a session as per `Selecting A Session` on page 5 of the manual.
+- [x] Connection test as per `Connection Test` on page 6 of the manual.
+- [x] Intensity as per `Adjusting Intensity` on page 7 of the manual.
 
 This project also has 2 additional milestones, which are: 
 
