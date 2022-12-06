@@ -1955,10 +1955,10 @@ void MainWindow::updateUITimeCustomDisplay() {
             qDebug().noquote() << QString::number(customDuration)+"s timer finished...";
 
             // Stopping battery degradation.
-            batteryDegradationTimer->stop();
-            degradeBatteryAllowed = false;
+            // batteryDegradationTimer->stop();
+            // degradeBatteryAllowed = false;
 
-            // Stopping, deleteing and making timer equal to nullptr;
+            // Stopping, deleting and making timer equal to nullptr;
             customTimer->stop();
             delete customTimer;
             customTimer = nullptr;
@@ -2009,10 +2009,10 @@ void MainWindow::updateUITime20sDisplay() {
             qDebug() << "20s timer finished...";
 
             // Stopping battery degradation.
-            batteryDegradationTimer->stop();
-            degradeBatteryAllowed = false;
+            // batteryDegradationTimer->stop();
+            // degradeBatteryAllowed = false;
 
-            // Stopping, deleteing and making timer equal to nullptr;
+            // Stopping, deleting and making timer equal to nullptr;
             seconds20Timer->stop();
             delete seconds20Timer;
             seconds20Timer = nullptr;
@@ -2062,10 +2062,10 @@ void MainWindow::updateUITime45sDisplay() {
             qDebug() << "45s timer finished...";
 
             // Stopping battery degradation.
-            batteryDegradationTimer->stop();
-            degradeBatteryAllowed = false;
+            // batteryDegradationTimer->stop();
+            // degradeBatteryAllowed = false;
 
-            // Stopping, deleteing and making timer equal to nullptr;
+            // Stopping, deleting and making timer equal to nullptr;
             seconds45Timer->stop();
             delete seconds45Timer;
             seconds45Timer = nullptr;
@@ -2825,59 +2825,61 @@ void MainWindow::startDescendEndSession() {
 
     // The scrolling animation based on the value of the countSwitchDescent counter.
     // It either turns on or off a certain LED based on the counter's current value.
-    if(countSwitchDescent == 15) {
-        ledOneOff();
-        if(batteryLevel <= 12){
-            qDebug() << "Device has shut down due to critical battery level.";
-            batteryStartTimer->start(500);
-            batteryStopTimer->start(2500);
-        }
-    }
-    else if(countSwitchDescent == 14) {
-        ledOneOn();
-    }
-    else if(countSwitchDescent == 13) {
-        ledTwoOff();
-    }
-    else if(countSwitchDescent == 12) {
-        ledTwoOn();
-    }
-    else if(countSwitchDescent == 11) {
-        ledThreeOff();
-    }
-    else if(countSwitchDescent == 10) {
-        ledThreeOn();
-    }
-    else if(countSwitchDescent == 9) {
-        ledFourOff();
-    }
-    else if(countSwitchDescent == 8) {
-        ledFourOn();
-    }
-    else if(countSwitchDescent == 7) {
-        ledFiveOff();
-    }
-    else if(countSwitchDescent == 6) {
-        ledFiveOn();
-    }
-    else if(countSwitchDescent == 5) {
-        ledSixOff();
-    }
-    else if(countSwitchDescent == 4) {
-        ledSixOn();
-    }
-    else if(countSwitchDescent == 3) {
-        ledSevenOff();
-    }
-    else if(countSwitchDescent == 2) {
-        ledSevenOn();
-    }
-    else if(countSwitchDescent == 1) {
-        ledEightOff();
+    if(batteryLevel <= 12){
+        qDebug() << "Device has shut down due to critical battery level.";
+        batteryStartTimer->start(500);
+        batteryStopTimer->start(2500);
     }
     else {
-        qDebug() << "Arrived at the first intensity...";
-        ledEightOn();
+        if(countSwitchDescent == 15) {
+            ledOneOff();
+        }
+        else if(countSwitchDescent == 14) {
+            ledOneOn();
+        }
+        else if(countSwitchDescent == 13) {
+            ledTwoOff();
+        }
+        else if(countSwitchDescent == 12) {
+            ledTwoOn();
+        }
+        else if(countSwitchDescent == 11) {
+            ledThreeOff();
+        }
+        else if(countSwitchDescent == 10) {
+            ledThreeOn();
+        }
+        else if(countSwitchDescent == 9) {
+            ledFourOff();
+        }
+        else if(countSwitchDescent == 8) {
+            ledFourOn();
+        }
+        else if(countSwitchDescent == 7) {
+            ledFiveOff();
+        }
+        else if(countSwitchDescent == 6) {
+            ledFiveOn();
+        }
+        else if(countSwitchDescent == 5) {
+            ledSixOff();
+        }
+        else if(countSwitchDescent == 4) {
+            ledSixOn();
+        }
+        else if(countSwitchDescent == 3) {
+            ledSevenOff();
+        }
+        else if(countSwitchDescent == 2) {
+            ledSevenOn();
+        }
+        else if(countSwitchDescent == 1) {
+            ledEightOff();
+        }
+        else {
+            qDebug() << "Arrived at the first intensity...";
+            ledEightOn();
+        }
     }
 
     // Checks if the countSwitchDescent counter is equal to 15.
@@ -2919,6 +2921,10 @@ void MainWindow::startDescendEndSession() {
                 timerFlashes->stop();
                 valueIntUntilEndOfFlash = 10;
             }
+
+            // Stopping battery degradation.
+            batteryDegradationTimer->stop();
+            degradeBatteryAllowed = false;
 
             // Turns off the device completely.
             deviceOff();
