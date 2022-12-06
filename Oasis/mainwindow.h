@@ -140,6 +140,9 @@ private slots:
     void showBatteryLevel();
     void stopBatteryLevel();
 
+    // Simulate battery degradation.
+    void degradeBattery();
+
     // This slot below is called when user presses the up arrow next to the intensity labels (1 to 8).
     // This is used to select an intensity.
     void on_increaseIntensityBtn_clicked();
@@ -240,8 +243,11 @@ private:
     // Battery variables.
     QTimer *batteryStartTimer = nullptr;
     QTimer *batteryStopTimer = nullptr;
+    QTimer *batteryDegradationTimer = nullptr;
     bool selectedSessionOrNot = false;
-    int batteryLevel = 11;
+    int batteryLevel = 13;
+    int batteryLevelEnlarged = batteryLevel * 100;
+    bool degradeBatteryAllowed = true;
 
     // LEDs variables (boolean).
     bool ledOneStatus = false;
