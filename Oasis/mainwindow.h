@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+// Includes all the necessary libraries and header files.
 #include <unistd.h>
 #include <QMainWindow>
 #include <QtSql>
@@ -23,6 +24,7 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+    // Database object to store session data.
     Database objData;
 
 public:
