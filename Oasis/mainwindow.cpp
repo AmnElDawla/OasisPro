@@ -240,6 +240,10 @@ void MainWindow::on_powerBtn_clicked()
         // Set selected session boolean variable to false.
         selectedSessionOrNot = false;
 
+        // Stop battery degradation.
+        batteryDegradationTimer->stop();
+        degradeBatteryAllowed = false;
+
         // Turn off all LEDs.
         offLeds();
 
@@ -876,6 +880,7 @@ void MainWindow::degradeBattery(){
     // Check if battery level is critical. If it is, shut down device.
     if(batteryLevel <= 12){
         degradeBatteryAllowed = false;
+        batteryDegradationTimer->stop();
         on_powerBtn_clicked();
     }
 }
