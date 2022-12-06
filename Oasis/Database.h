@@ -13,22 +13,27 @@ class Database
 {
 
 public:
+    // Constructor:
     Database();
+    // Destructor:
+    ~Database();
+    // Member functions:
     bool initializeDatabaseTables();
     bool initializeDatabase();
     bool initializeDefaultUserRecord();
-    bool addUserRecord();
-    QVector<Users *> getUserData(int id);
+    bool addUserRecord(int userId, QString name);
+    QVector<Users *> getUserData(int userId);
     bool validateTherapyRecord(const int sessionType, const int intensityLevel, const int duration);
     int getTherapyId(int userId);
     bool addTherapyHistoryRecord(int userId, TherapyRecord *tr);
-    bool addUserRecord(QString name);
     QVector<TherapyRecord *> getTherapyHistoryRecords(int userId);
+    bool deleteTherapyHistoryRecords(int userId);
     void updateSelectedSession(TherapyRecord *tr);
 
-    ~Database();
+//    bool getTherapyHistoryRecord(int userId, int therapyId);
 
 private:
+    // Member variables:
     QSqlDatabase databaseGui;
     /*
      * This array is special. Its indices all follow a standard that should
