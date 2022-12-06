@@ -76,9 +76,11 @@ MainWindow::MainWindow(QWidget *parent)
     // Initialize and set parameters and connections of the necessary timers.
     batteryStartTimer = new QTimer(this);
     batteryStopTimer = new QTimer(this);
+    batteryDegradationTimer = new QTimer(this);
     connect(batteryStartTimer, SIGNAL(timeout()), this, SLOT(showBatteryLevel()));
     connect(batteryStopTimer, SIGNAL(timeout()), this, SLOT(stopBatteryLevel()));
     batteryStopTimer->setSingleShot(true);
+    connect(batteryDegradationTimer, SIGNAL(timeout()), this, SLOT(degradeBattery()));
 
     // When connection test passed do the following.
     connectionTestStartTimer = new QTimer(this);
@@ -165,6 +167,16 @@ void MainWindow::flashSelectedLevel(){
 void MainWindow::on_powerBtn_clicked()
 {
 
+    // Check that battery level is not equal to or below 12%.
+    if(batteryLevel <= 12){
+        // Start the necessary timers.
+        batteryStartTimer->start(500);
+        batteryStopTimer->start(2500);
+        qDebug() << "Battery level critically low. Please replace the battery.";
+        // Exit loop.
+        return;
+    }
+
     // Change color of lights, enable/disable buttons.
 
     // Clicked power button once...
@@ -181,12 +193,15 @@ void MainWindow::on_powerBtn_clicked()
         ui->durationRight->setEnabled(false);
         ui->durationLeft->setEnabled(false);
 
+        // Allow battery to degrade.
+        degradeBatteryAllowed = true;
+
         // Turn the device / application partly on.
         deviceOn();
 
         // Start the necessary timers.
         batteryStartTimer->start(500);
-        batteryStopTimer->start(3500);
+        batteryStopTimer->start(2500);
 
         // Set the number of clicks to 1.
         numberOfTimesPowerBtnClicked = 1;
@@ -809,25 +824,55 @@ void MainWindow::showBatteryLevel() {
 
 }
 
-// Reset all LEDs by turning them all on.
+// Reset all LEDs.
 void MainWindow::stopBatteryLevel() {
 
-    // Stop the timer.
+    // Stop the timers.
     batteryStartTimer->stop();
 
-    // Turn on all LEDs.
-    ledEightOn();
-    ledSevenOn();
-    ledSixOn();
-    ledFiveOn();
-    ledFourOn();
-    ledThreeOn();
-    ledTwoOn();
-    ledOneOn();
+    if(batteryLevel <= 12){
+        // Turn off all LEDs.
+        ledEightOff();
+        ledSevenOff();
+        ledSixOff();
+        ledFiveOff();
+        ledFourOff();
+        ledThreeOff();
+        ledTwoOff();
+        ledOneOff();
+    } else {
+        // Turn on all LEDs.
+        ledEightOn();
+        ledSevenOn();
+        ledSixOn();
+        ledFiveOn();
+        ledFourOn();
+        ledThreeOn();
+        ledTwoOn();
+        ledOneOn();
+    }
 
     // Enable the power button.
     ui->powerBtn->setEnabled(true);
 
+}
+
+// Degrade the battery.
+void MainWindow::degradeBattery(){
+    // Calculate degradation.
+    int degRate = 50 + objData.sessionArray[2] * 3;
+    batteryLevelEnlarged = batteryLevelEnlarged - degRate;
+    qDebug("New Battery Percentage is %d.%d%.", batteryLevelEnlarged / 100, batteryLevelEnlarged % 100);
+    // Adjust battery level to new level.
+    batteryLevel = batteryLevelEnlarged / 100;
+    // Display battery.
+    batteryStartTimer->start(500);
+    batteryStopTimer->start(2500);
+    // Check if battery level is critical. If it is, shut down device.
+    if(batteryLevel <= 12){
+        degradeBatteryAllowed = false;
+        on_powerBtn_clicked();
+    }
 }
 
 // This function is called when the user has pressed the selection button.
@@ -1746,7 +1791,7 @@ void MainWindow::blinkCounter() {
         }
         else if(connectivity == true && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
-            // Allocate and add a new histroy record into the QSQL database
+            // Allocate and add a new history record into the QSQL database
             // Show a message
             QMessageBox Alert;
             Alert.setWindowTitle("Add Preferences");
@@ -1802,6 +1847,11 @@ void MainWindow::blinkCounter() {
                 // Start the timer.
                 seconds20Timer->start();
 
+                // Start the battery degradation timer (ten second intervals).
+                if(degradeBatteryAllowed){
+                    batteryDegradationTimer->start(10000);
+                }
+
             }
 
             // Duration is 45 seconds.
@@ -1820,6 +1870,12 @@ void MainWindow::blinkCounter() {
 
                 // Start the timer.
                 seconds45Timer->start();
+
+                // Start the battery degradation timer (ten second intervals).
+                if(degradeBatteryAllowed){
+                    batteryDegradationTimer->start(2000);
+                }
+
 
             }
 
@@ -1843,6 +1899,12 @@ void MainWindow::blinkCounter() {
                 // Set countdown value (the counter that will keep track of much time is left until session end) equal to the
                 // customDuration (the time value in seconds that was defined by the user).
                 countdownCustom = customDuration;
+
+                // Start the battery degradation timer (ten second intervals).
+                if(degradeBatteryAllowed){
+                    batteryDegradationTimer->start(2000);
+                }
+
 
             }
 
@@ -2337,9 +2399,9 @@ int MainWindow::connectionTestMain()
 
     }
 
-    // Checks if the device is connected, if the battery level is greater or equal to 25, and
+    // Checks if the device is connected, if the battery level is greater than to 12, and
     // if the device is fully turned on.
-    else if (connectivity == true && batteryLevel >= 25 && numberOfTimesPowerBtnClicked == 2) {
+    else if (connectivity == true && batteryLevel > 12 && numberOfTimesPowerBtnClicked == 2) {
 
         // Successful scenario: passed connection test
         // Start session
@@ -2416,8 +2478,9 @@ void MainWindow::on_newBattery_clicked()
 
     qDebug() << "Battery has been recharged back to 100%...";
 
-    // Set batteryLevel varianle back to 100%.
+    // Set batteryLevel variable back to 100%.
     batteryLevel = 100;
+    batteryLevelEnlarged = batteryLevel * 100;
 
 }
 
