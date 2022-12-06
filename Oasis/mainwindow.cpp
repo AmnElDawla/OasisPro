@@ -2473,16 +2473,56 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
         qDebug() << "Changed to wet...";
         if(seconds20Timer != nullptr) {
+            seconds20Timer->stop();
             delete seconds20Timer;
             seconds20Timer = nullptr;
+            countTo20 = 0;
+            from20to0 = 20;
+            qDebug() << "Deleted 20s timer...";
         }
         if(seconds45Timer != nullptr) {
+            seconds45Timer->stop();
             delete seconds45Timer;
             seconds45Timer = nullptr;
+            countTo45 = 0;
+            from45to0 = 20;
+            qDebug() << "Deleted 45s timer...";
         }
         if(customTimer != nullptr) {
+            customTimer->stop();
             delete customTimer;
             customTimer = nullptr;
+            countdownCustom = customDuration;
+            customCounter = 0;
+            qDebug() << "Deleted custom time timer...";
+        }
+
+        // Checks if the timer that is used to blink / flash the LEDs based on their connection is not equal to nullptr.
+        // This is to prevent animation from occurring while change in state (wet to dry or dry to wet) is happening.
+        if(timerBlinkLed != nullptr) {
+
+            // Stop the timer.
+            timerBlinkLed->stop();
+
+            // Delete the timer.
+            delete timerBlinkLed;
+
+            // Set the timer to nullptr.
+            timerBlinkLed = nullptr;
+        }
+
+        // Checks if the timer that is used to blink / flash the CES Mode light on or off is not equal to nullptr.
+        // This is to prevent animation from occurring while change in state (wet to dry or dry to wet) is happening.
+        if(timerCES != nullptr) {
+
+            // Stop the timer.
+            timerCES->stop();
+
+            // Delete the timer.
+            delete timerCES;
+
+            // Set timer to nullptr.
+            timerCES = nullptr;
         }
         connectionTestMain();
     }
@@ -2491,17 +2531,98 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
         qDebug() << "Changed to dry...";
         changeWetOrDry = true;
+
+        // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
+        // or started).
         if(seconds20Timer != nullptr) {
+
+            // Stop timer.
+            seconds20Timer->stop();
+
+            // Delete timer.
             delete seconds20Timer;
+
+            // Set timer to nullptr.
             seconds20Timer = nullptr;
+
+            // Reset counter to 0.
+            countTo20 = 0;
+
+            // Reset countdown value back to 20.
+            from20to0 = 20;
+            qDebug() << "Deleted 20s timer...";
+
         }
+
+        // Check if the 45 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
+        // or started).
         if(seconds45Timer != nullptr) {
+
+            // Stop timer.
+            seconds45Timer->stop();
+
+            // Delete timer.
             delete seconds45Timer;
+
+            // Set timer to nullptr.
             seconds45Timer = nullptr;
+
+            // Reset counter to 0.
+            countTo45 = 0;
+
+            // Reset countdown value back to 45.
+            from45to0 = 45;
+            qDebug() << "Deleted 45s timer...";
+
         }
+
+        // Check if the custom timer is not equal to nullptr.
         if(customTimer != nullptr) {
+
+            // Stop timer.
+            customTimer->stop();
+
+            // Delete timer.
             delete customTimer;
+
+            // Set timer to nullptr.
             customTimer = nullptr;
+
+            // Set countdownCustom equal to the customDuration given by the user (custom time inputted by the user).
+            countdownCustom = customDuration;
+
+            // Reset counter to 0.
+            customCounter = 0;
+            qDebug() << "Deleted custom time timer...";
+
+        }
+
+        // Checks if the timer that is used to blink / flash the LEDs based on their connection is not equal to nullptr.
+        // This is to prevent animation from occurring while change in state (wet to dry or dry to wet) is happening.
+        if(timerBlinkLed != nullptr) {
+
+            // Stop the timer.
+            timerBlinkLed->stop();
+
+            // Delete the timer.
+            delete timerBlinkLed;
+
+            // Set the timer to nullptr.
+            timerBlinkLed = nullptr;
+        }
+
+        // Checks if the timer that is used to blink / flash the CES Mode light on or off is not equal to nullptr.
+        // This is to prevent animation from occurring while change in state (wet to dry or dry to wet) is happening.
+        if(timerCES != nullptr) {
+
+            // Stop the timer.
+            timerCES->stop();
+
+            // Delete the timer.
+            delete timerCES;
+
+            // Set timer to nullptr.
+            timerCES = nullptr;
         }
         connectionTestMain();
     }
