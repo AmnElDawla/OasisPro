@@ -556,8 +556,9 @@ void MainWindow::on_durationLeft_clicked()
         qDebug() << "Selected custom duration...";
 
         // Input box for custom time selection (duration).
-        QString str = QInputDialog::getText(this, "Custom Duration", "");
-        customDuration = str.toInt();
+        customDuration = QInputDialog::getInt(this, "Custom Duration", "Enter duration:");
+        // QString str = QInputDialog::getInt(this, "Custom Duration", "");
+        // customDuration = str.toInt();
 
         // Show the custom duration in the UI.
         ui->TimeElapse->setText(QString::number(customDuration)+"s");
@@ -642,8 +643,9 @@ void MainWindow::on_durationRight_clicked()
         qDebug() << "Selected custom duration...";
 
         // Input box for custom time selection (duration).
-        QString str = QInputDialog::getText(this, "Custom Duration", "");
-        customDuration = str.toInt();
+        customDuration = QInputDialog::getInt(this, "Custom Duration", "Enter duration:");
+        // QString str = QInputDialog::getInt(this, "Custom Duration", "");
+        // customDuration = str.toInt();
 
         // Show the custom duration in the UI.
         ui->TimeElapse->setText(QString::number(customDuration)+"s");
@@ -886,11 +888,11 @@ void MainWindow::on_selectionBtn_clicked()
 
     // Checks if the custom duration value is 0 seconds and if the choosen newRowItemDuration (meaning the duration type that the
     // user has choosen - either 20 seconds, 45 seconds, or custom timer) is equal to 2, which is the custom time.
-    if(customDuration == 0 && newRowItemDuration == 2) {
+    if((customDuration == 0 || customDuration < 0) && newRowItemDuration == 2) {
 
         // If it is then, display that the custom time cannot be 0 seconds long
         // (as this does not make sense to have as a session duration).
-        qDebug() << "Custom duration cannot be 0 seconds long...";
+        qDebug() << "Custom duration cannot be 0 seconds or less long...";
 
     }
     else {
