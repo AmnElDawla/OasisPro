@@ -247,7 +247,7 @@ private:
     QTimer *batteryStopTimer = nullptr;
     QTimer *batteryDegradationTimer = nullptr;
     bool selectedSessionOrNot = false;
-    int batteryLevel = 13;
+    int batteryLevel = 54;
     int batteryLevelEnlarged = batteryLevel * 100;
     bool degradeBatteryAllowed = true;
 

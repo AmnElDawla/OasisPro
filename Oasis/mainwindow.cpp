@@ -1947,6 +1947,10 @@ void MainWindow::updateUITimeCustomDisplay() {
 
             qDebug().noquote() << QString::number(customDuration)+"s timer finished...";
 
+            // Stopping battery degradation.
+            batteryDegradationTimer->stop();
+            degradeBatteryAllowed = false;
+
             // Stopping, deleteing and making timer equal to nullptr;
             customTimer->stop();
             delete customTimer;
@@ -1997,6 +2001,10 @@ void MainWindow::updateUITime20sDisplay() {
 
             qDebug() << "20s timer finished...";
 
+            // Stopping battery degradation.
+            batteryDegradationTimer->stop();
+            degradeBatteryAllowed = false;
+
             // Stopping, deleteing and making timer equal to nullptr;
             seconds20Timer->stop();
             delete seconds20Timer;
@@ -2045,6 +2053,10 @@ void MainWindow::updateUITime45sDisplay() {
         if(countTo45 == 46) {
 
             qDebug() << "45s timer finished...";
+
+            // Stopping battery degradation.
+            batteryDegradationTimer->stop();
+            degradeBatteryAllowed = false;
 
             // Stopping, deleteing and making timer equal to nullptr;
             seconds45Timer->stop();
@@ -2405,9 +2417,9 @@ int MainWindow::connectionTestMain()
 
     }
 
-    // Checks if the device is connected, if the battery level is greater than to 12, and
+    // Checks if the device is connected, and
     // if the device is fully turned on.
-    else if (connectivity == true && batteryLevel > 12 && numberOfTimesPowerBtnClicked == 2) {
+    else if (connectivity == true && numberOfTimesPowerBtnClicked == 2) {
 
         // Successful scenario: passed connection test
         // Start session
