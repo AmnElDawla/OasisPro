@@ -127,6 +127,7 @@ void MainWindow::resetButtons() {
 // This function flashes the current selected intensity level for 3 seconds
 void MainWindow::flashSelectedLevel(){
 
+    // Turn on all LEDs and set their respective boolean values to true.
     resetButtons();
 
     if(objData.sessionArray[2] == 1){
