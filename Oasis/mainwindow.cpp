@@ -1884,7 +1884,7 @@ void MainWindow::blinkCounter() {
 
                 // Start the battery degradation timer (ten second intervals).
                 if(degradeBatteryAllowed){
-                    batteryDegradationTimer->start(2000);
+                    batteryDegradationTimer->start(10000);
                 }
 
 
@@ -1913,7 +1913,7 @@ void MainWindow::blinkCounter() {
 
                 // Start the battery degradation timer (ten second intervals).
                 if(degradeBatteryAllowed){
-                    batteryDegradationTimer->start(2000);
+                    batteryDegradationTimer->start(10000);
                 }
 
 
