@@ -557,6 +557,7 @@ void MainWindow::on_durationLeft_clicked()
 
         // Input box for custom time selection (duration).
         customDuration = QInputDialog::getInt(this, "Custom Duration", "Enter duration:");
+        // Old version:
         // QString str = QInputDialog::getInt(this, "Custom Duration", "");
         // customDuration = str.toInt();
 
@@ -644,6 +645,7 @@ void MainWindow::on_durationRight_clicked()
 
         // Input box for custom time selection (duration).
         customDuration = QInputDialog::getInt(this, "Custom Duration", "Enter duration:");
+        // Old version:
         // QString str = QInputDialog::getInt(this, "Custom Duration", "");
         // customDuration = str.toInt();
 
