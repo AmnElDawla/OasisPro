@@ -1792,37 +1792,38 @@ void MainWindow::blinkCounter() {
         }
         else if(connectivity == true && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
 
+            // Not sure if this will be needed or removed.
             // Allocate and add a new history record into the QSQL database
             // Show a message
-            QMessageBox Alert;
-            Alert.setWindowTitle("Add Preferences");
-            Alert.setText("Would you like to create a threapy record for the current user?");
-            Alert.setStandardButtons(QMessageBox::Yes);
-            Alert.addButton(QMessageBox::No);
-            Alert.setDefaultButton(QMessageBox::No);
-            if (Alert.exec() == QMessageBox::Yes)
-            {
-                int userId = ui->listOfUsers->currentIndex();
-                userId++;
-                qDebug() << "Debug: User id: " << userId;
-                int duration = objData.sessionArray[0];
-                qDebug() << "Debug: Duration: " << duration;
-                int sessionType = objData.sessionArray[1];
-                qDebug() << "Debug: Session type: " << sessionType;
-                int intensityLevel = objData.sessionArray[2];
-                qDebug() << "Debug: Intensity level: " << intensityLevel;
-                TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
-                newDatabase->addTherapyHistoryRecord(userId, tr);
-                qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
-                QString result = tr->stringify();
-                qDebug() << result;
-                // delete tr;
-            }
-            else
-            {
-                // Do something else (cancelled adding action).
-                qDebug() << "Action adding therapy record has been cancelled. ";
-            };
+            // QMessageBox Alert;
+            // Alert.setWindowTitle("Add Preferences");
+            // Alert.setText("Would you like to create a threapy record for the current user?");
+            // Alert.setStandardButtons(QMessageBox::Yes);
+            // Alert.addButton(QMessageBox::No);
+            // Alert.setDefaultButton(QMessageBox::No);
+            // if (Alert.exec() == QMessageBox::Yes)
+            // {
+            //  int userId = ui->listOfUsers->currentIndex();
+            //  userId++;
+            //  qDebug() << "Debug: User id: " << userId;
+            //  int duration = objData.sessionArray[0];
+            //  qDebug() << "Debug: Duration: " << duration;
+            //  int sessionType = objData.sessionArray[1];
+            //  qDebug() << "Debug: Session type: " << sessionType;
+            //  int intensityLevel = objData.sessionArray[2];
+            //  qDebug() << "Debug: Intensity level: " << intensityLevel;
+            //  TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
+            //  newDatabase->addTherapyHistoryRecord(userId, tr);
+            //  qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
+            //  QString result = tr->stringify();
+            //  qDebug() << result;
+            //  // delete tr;
+            // }
+            // else
+            // {
+            //  // Do something else (cancelled adding action).
+            //  qDebug() << "Action adding therapy record has been cancelled. ";
+            // };
 
             // Enable intensity and selection buttons
             ui->increaseIntensityBtn->setEnabled(true);
