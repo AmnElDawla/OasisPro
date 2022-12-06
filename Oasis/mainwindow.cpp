@@ -168,21 +168,21 @@ void MainWindow::flashSelectedLevel(){
 void MainWindow::on_powerBtn_clicked()
 {
 
-    // Check that battery level is not equal to or below 12%.
-    if(batteryLevel <= 12){
-        // Start the necessary timers.
-        batteryStartTimer->start(500);
-        batteryStopTimer->start(2500);
-        qDebug() << "Battery level critically low. Please replace the battery.";
-        // Exit loop.
-        return;
-    }
-
     // Change color of lights, enable/disable buttons.
 
     // Clicked power button once...
     // Turns on the device, but not completely (icons for both duration and session, CES graph, and left and right ear.
     if(numberOfTimesPowerBtnClicked == 0) {
+
+        // Check that battery level is not equal to or below 12%.
+        if(batteryLevel <= 12){
+            // Start the necessary timers.
+            batteryStartTimer->start(500);
+            batteryStopTimer->start(2500);
+            qDebug() << "Battery level critically low. Please replace the battery.";
+            // Exit loop.
+            return;
+        }
 
         // Disable all buttons.
         ui->powerBtn->setEnabled(false);
@@ -874,9 +874,11 @@ void MainWindow::degradeBattery(){
     qDebug("New Battery Percentage is %d.%d%.", batteryLevelEnlarged / 100, batteryLevelEnlarged % 100);
     // Adjust battery level to new level.
     batteryLevel = batteryLevelEnlarged / 100;
-    // Display battery.
-    batteryStartTimer->start(500);
-    batteryStopTimer->start(2500);
+    // Display battery if battery level is not critical.
+    if(batteryLevel > 12){
+        batteryStartTimer->start(500);
+        batteryStopTimer->start(2500);
+    }
     // Check if battery level is critical. If it is, shut down device.
     if(batteryLevel <= 12){
         degradeBatteryAllowed = false;
@@ -2818,12 +2820,18 @@ void MainWindow::descendEndSession() {
 // clicked for a third time (numberOfTimesPowerBtnClicked = 0, this means the session ended early).
 // Notice: countSwitchDescent starts at 0 and increments by 1 everytime this function is called, which is what allows the scrolling
 // animation to happen as for each increment, the corresponding LED will be either turned on or off.
+// If battery level is below 12, display battery.
 void MainWindow::startDescendEndSession() {
 
     // The scrolling animation based on the value of the countSwitchDescent counter.
     // It either turns on or off a certain LED based on the counter's current value.
     if(countSwitchDescent == 15) {
         ledOneOff();
+        if(batteryLevel <= 12){
+            qDebug() << "Device has shut down due to critical battery level.";
+            batteryStartTimer->start(500);
+            batteryStopTimer->start(2500);
+        }
     }
     else if(countSwitchDescent == 14) {
         ledOneOn();
