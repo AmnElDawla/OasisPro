@@ -2536,6 +2536,8 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
 
         qDebug() << "Changed to wet...";
+        changeWetOrDry = true;
+
         // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
         // or started).
         if(seconds20Timer != nullptr) {
@@ -2554,6 +2556,9 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Reset countdown value back to 20.
             from20to0 = 20;
+
+            // Reset to default text.
+            ui->TimeElapse->setText("20s");
             qDebug() << "Deleted 20s timer...";
 
         }
@@ -2576,6 +2581,9 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Reset countdown value back to 45.
             from45to0 = 45;
+
+            // Reset to default text.
+            ui->TimeElapse->setText("45s");
             qDebug() << "Deleted 45s timer...";
 
         }
@@ -2597,6 +2605,9 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Reset counter to 0.
             customCounter = 0;
+
+            // Reset to default text.
+            ui->TimeElapse->setText(QString::number(customDuration)+"s");
             qDebug() << "Deleted custom time timer...";
 
         }
@@ -2656,6 +2667,9 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Reset countdown value back to 20.
             from20to0 = 20;
+
+            // Reset to default text.
+            ui->TimeElapse->setText("20s");
             qDebug() << "Deleted 20s timer...";
 
         }
@@ -2678,6 +2692,9 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Reset countdown value back to 45.
             from45to0 = 45;
+
+            // Reset to default text.
+            ui->TimeElapse->setText("45s");
             qDebug() << "Deleted 45s timer...";
 
         }
@@ -2699,6 +2716,9 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Reset counter to 0.
             customCounter = 0;
+
+            // Reset to default text.
+            ui->TimeElapse->setText(QString::number(customDuration)+"s");
             qDebug() << "Deleted custom time timer...";
 
         }
