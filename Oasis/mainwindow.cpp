@@ -1223,6 +1223,9 @@ void MainWindow::turnOffNoSessionSelected()
 
         // If it is then stop the timer.
         timer->stop();
+        delete timer;
+        timer = nullptr;
+
     }
 
     qDebug() << "Shut down OasisPro...";
@@ -2945,14 +2948,23 @@ void MainWindow::startDescendEndSession()
         // Set selected session boolean variable to false.
         selectedSessionOrNot = false;
 
-        // Stop necessary timers.
+        // Stop, delete, and set necessary timers.
         if(timerCES != nullptr) {
             timerCES->stop();
+            delete timerCES;
+            timerCES = nullptr;
             counterFlashGraph = 6;
         }
         if(timerFlashes != nullptr) {
             timerFlashes->stop();
+            delete timerFlashes;
+            timerFlashes = nullptr;
             valueIntUntilEndOfFlash = 10;
+        }
+        if(timer != nullptr) {
+            timer->stop();
+            delete timer;
+            timer = nullptr;
         }
 
         // Stopping battery degradation.
@@ -3055,7 +3067,7 @@ void MainWindow::startDescendEndSession()
     }
 
     // Checks if the countSwitchDescent counter is equal to 15.
-    if(countSwitchDescent == 15 && batteryLevel > 12) {
+    if(countSwitchDescent == 15 && batteryLevel > 12 && endSession != nullptr) {
 
         qDebug() << "Stopping end session timer...";
 
