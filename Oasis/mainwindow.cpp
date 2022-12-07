@@ -4,8 +4,7 @@
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
@@ -21,13 +20,15 @@ MainWindow::MainWindow(QWidget *parent)
     int success = 0;
 
     // Checks if the database was not initialize.
-    if(!newDatabase->initializeDatabase())  {
+    if (!newDatabase->initializeDatabase())
+    {
         qDebug() << "Unable to initialize the database...";
 
         // Set success variable to 1 (not successful - errors found).
         success = 1;
     }
-    else {
+    else
+    {
         qDebug() << "Created database...";
 
         // Set success variable to 0 (success - no errors found).
@@ -35,13 +36,15 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     // Checks if the database tables were not initialized.
-    if(!newDatabase->initializeDatabaseTables()) {
+    if (!newDatabase->initializeDatabaseTables())
+    {
         qDebug() << "Unable to create the database's tables (users, therapy, therapy_history)...";
 
         // Set success variable to 1 (not successful - errors found).
         success = 1;
     }
-    else {
+    else
+    {
         qDebug() << "Created the database's tables (users, therapy, therapy_history)...";
 
         // Set success variable to 0 (success - no errors found).
@@ -50,7 +53,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Checks if the success variable is equal to 0 (if it is then that means that it was able to
     // to successfully initialize the table and database).
-    if(success == 0) {
+    if (success == 0)
+    {
         qDebug() << "Operation was successfully completed...";
         qDebug() << "Testing: Getting users details...";
 
@@ -61,7 +65,8 @@ MainWindow::MainWindow(QWidget *parent)
 
         qDebug() << "Operation was successfully completed...";
     }
-    else {
+    else
+    {
         qDebug() << "Operation was not successfully completed...";
     }
 
@@ -86,7 +91,6 @@ MainWindow::MainWindow(QWidget *parent)
     connectionTestStartTimer = new QTimer(this);
     connectionTestStopTimer = new QTimer(this);
     connectionTestStopTimer->setSingleShot(true);
-
 }
 
 // This is the destructor function. When the application is close, it will delete ui pointer (to prevent memory leaks).
@@ -95,7 +99,6 @@ MainWindow::~MainWindow()
 
     // Delete pointer named ui.
     delete ui;
-
 }
 
 //============================================================================//
@@ -103,7 +106,8 @@ MainWindow::~MainWindow()
 //============================================================================//
 
 // This function keeps the LEDs on while removing the highlighting of any single LED.
-void MainWindow::resetButtons() {
+void MainWindow::resetButtons()
+{
 
     ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
     ledEightStatus = true;
@@ -121,40 +125,47 @@ void MainWindow::resetButtons() {
     ledTwoStatus = true;
     ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ledOneStatus = true;
-
 }
 
 // This function flashes the current selected intensity level for 3 seconds
-void MainWindow::flashSelectedLevel(){
+void MainWindow::flashSelectedLevel()
+{
 
     // Turn on all LEDs and set their respective boolean values to true.
     resetButtons();
 
-    if(objData.sessionArray[2] == 1){
+    if (objData.sessionArray[2] == 1)
+    {
         ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; border: 3px solid #008080; }");
     }
-    else if(objData.sessionArray[2] == 2){
+    else if (objData.sessionArray[2] == 2)
+    {
         ui->ledTwo->setStyleSheet("#ledTwo { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; border: 3px solid #008080; }");
     }
-    else if(objData.sessionArray[2] == 3){
+    else if (objData.sessionArray[2] == 3)
+    {
         ui->ledThree->setStyleSheet("#ledThree { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; border: 3px solid #008080; }");
     }
-    else if(objData.sessionArray[2] == 4){
+    else if (objData.sessionArray[2] == 4)
+    {
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid #008080; }");
     }
-    else if(objData.sessionArray[2] == 5){
+    else if (objData.sessionArray[2] == 5)
+    {
         ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid #008080; }");
     }
-    else if(objData.sessionArray[2] == 6){
+    else if (objData.sessionArray[2] == 6)
+    {
         ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid #008080; }");
     }
-    else if(objData.sessionArray[2] == 7){
+    else if (objData.sessionArray[2] == 7)
+    {
         ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid #008080; }");
     }
-    else if(objData.sessionArray[2] == 8){
+    else if (objData.sessionArray[2] == 8)
+    {
         ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid #008080; }");
     }
-
 }
 
 //============================================================================//
@@ -172,10 +183,12 @@ void MainWindow::on_powerBtn_clicked()
 
     // Clicked power button once...
     // Turns on the device, but not completely (icons for both duration and session, CES graph, and left and right ear.
-    if(numberOfTimesPowerBtnClicked == 0) {
+    if (numberOfTimesPowerBtnClicked == 0)
+    {
 
         // Check that battery level is not equal to or below 12%.
-        if(batteryLevel <= 12){
+        if (batteryLevel <= 12)
+        {
             // Start the necessary timers.
             batteryStartTimer->start(500);
             batteryStopTimer->start(2500);
@@ -208,12 +221,12 @@ void MainWindow::on_powerBtn_clicked()
         numberOfTimesPowerBtnClicked = 1;
 
         qDebug() << "Device is partly turned on...";
-
     }
 
     // Clicked power button for the second time...
     // This turns the device completely on (everything is turned on).
-    else if(numberOfTimesPowerBtnClicked == 1) {
+    else if (numberOfTimesPowerBtnClicked == 1)
+    {
 
         // Fully turn on the device / application.
         onConnect();
@@ -227,12 +240,12 @@ void MainWindow::on_powerBtn_clicked()
         numberOfTimesPowerBtnClicked = 2;
 
         qDebug() << "Device is turned on...";
-
     }
 
     // Clicked power button for the third time...
     // This completely turns off the device (everything is off).
-    else {
+    else
+    {
 
         // Reset number of clicks to 0.
         numberOfTimesPowerBtnClicked = 0;
@@ -248,11 +261,13 @@ void MainWindow::on_powerBtn_clicked()
         offLeds();
 
         // Stop necessary timers.
-        if(timerCES != nullptr) {
+        if (timerCES != nullptr)
+        {
             timerCES->stop();
             counterFlashGraph = 6;
         }
-        if(timerFlashes != nullptr) {
+        if (timerFlashes != nullptr)
+        {
             timerFlashes->stop();
             valueIntUntilEndOfFlash = 10;
         }
@@ -275,36 +290,35 @@ void MainWindow::on_powerBtn_clicked()
         ui->TimeElapse->setText("0s");
 
         qDebug() << "Device is turned off...";
-
     }
-
 }
 
 // When the device is completely turn on, this function is called to turn on the CES graph, left ear, and right
 // ear icons.
-void MainWindow::onConnect() {
+void MainWindow::onConnect()
+{
 
     ui->graphSession->setStyleSheet("#graphSession { border-image: url(:/resources/icons/connect.PNG); border: 2px solid red; border-radius: 20px; }");
     ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Connected.PNG); border: 2px solid red; border-radius: 20px; }");
     ui->rightEar->setStyleSheet("#rightEar { border-image: url(:/resources/icons/rightConnectOn.PNG); border: 2px solid red; border-radius: 20px; }");
-
 }
 
 // When the device is completely turn off, this function is called to turn off the CES graph, left ear, and right
 // ear icons.
-void MainWindow::offConnect() {
+void MainWindow::offConnect()
+{
 
     ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Off.PNG); border: 2px solid red; border-radius: 20px; }");
     ui->graphSession->setStyleSheet("#graphSession { border-image: url(:/resources/icons/connectOff.png); border: 2px solid red; border-radius: 20px; }");
     ui->rightEar->setStyleSheet("#rightEar { border-image: url(:/resources/icons/rightConnect.PNG); border: 2px solid red; border-radius: 20px; }");
-
 }
 
 // When the device is completely turn off, this function is called to turn off all the LEDs (the section in the UI
 // where the labels going from 1 to 8 are found), turning off border of where left and right ear are located, changes
 // the colors progress bar found on top of the power button to white, disables all the buttons found in the device's UI,
 // clears (remove selection) and deselect the session and duration icons.
-void MainWindow::deviceOff() {
+void MainWindow::deviceOff()
+{
 
     // Style groupbox border to white (this signifies that it has been turned off).
     ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid white; border-radius: 30px; background-color: black; } ");
@@ -336,24 +350,24 @@ void MainWindow::deviceOff() {
     ui->sessionLeft->setEnabled(false);
     ui->durationRight->setEnabled(false);
     ui->durationLeft->setEnabled(false);
-
 }
 
 // This function is called when the device's turned on for the first time (numberOfTimesPowerBtnClicked variable = 1).
 // It changes the color of the progress bar found on top of the power button to green as well as turns on the
 // LEDs of the labels going from 1 to 8 (through the resetButtons function).
-void MainWindow::deviceOn() {
+void MainWindow::deviceOn()
+{
 
     ui->indicatorOffOrOn->setStyleSheet("#indicatorOffOrOn::chunk { background-color: #01fe00; }");
     resetButtons();
-
 }
 
 // This function turns on the icons for the duration and session. This occurs when the power button is clicked
 // for the second time. It also calls and starts a QTimer called timer to checks if the user does not respond or click the selection
 // button for 2 minutes (120000 miliseconds), enables the duration and session's left and right arrows, and
 // sets the current selected item in the duration and session's QListWidget.
-void MainWindow::iconsOn() {
+void MainWindow::iconsOn()
+{
 
     // Turns the groupbox (the groupbox that will contain the right and left ear icon) on (by changing its border
     // to limegreen).
@@ -373,18 +387,18 @@ void MainWindow::iconsOn() {
 
     // Loop through all items in the arrQListDuration array and set the icon in the listDuration QListWidget displayed on
     // the GUI to the corresponding item found at the specified index in the arrQListDuration array.
-    for(int i = 0; i < 3; i++)  {
+    for (int i = 0; i < 3; i++)
+    {
 
         ui->listDuration->item(i)->setIcon(QIcon(arrQListDurationOn[i]));
-
     }
 
     // Loop through all items in the arrQListSession array and set the icon in the listSession QListWidget displayed on
     // the GUI to the corresponding item found at the specified index in the arrQListSession array.
-    for(int i = 0; i < 4; i++)  {
+    for (int i = 0; i < 4; i++)
+    {
 
         ui->listSession->item(i)->setIcon(QIcon(arrQListSessionOn[i]));
-
     }
 
     // Set default values and enables buttons.
@@ -393,28 +407,35 @@ void MainWindow::iconsOn() {
 
     // Set the text (the time left section) in GUI for the current session
     // (that is currently selected (or stored in database) or if not selected then go for default option).
-    if(newRowItemSession == 0) {
+    if (newRowItemSession == 0)
+    {
         ui->TimeText->setText("Time Left (Alpha)");
     }
-    else if(newRowItemSession == 1) {
+    else if (newRowItemSession == 1)
+    {
         ui->TimeText->setText("Time Left (SMR)");
     }
-    else if(newRowItemSession == 2) {
+    else if (newRowItemSession == 2)
+    {
         ui->TimeText->setText("Time Left (Beta)");
     }
-    else {
+    else
+    {
         ui->TimeText->setText("Time Left (Theta)");
     }
 
     // Set the text (for the time elapse section - this section just display how much time is left until end of session)
     // in GUI for the current session (that is currently selected (or stored in database) or if not selected then go for default option).
-    if(newRowItemDuration == 0) {
+    if (newRowItemDuration == 0)
+    {
         ui->TimeElapse->setText("20s");
     }
-    else if(newRowItemDuration == 1) {
+    else if (newRowItemDuration == 1)
+    {
         ui->TimeElapse->setText("45s");
     }
-    else {
+    else
+    {
         ui->TimeElapse->setText("0s");
     }
 
@@ -441,7 +462,6 @@ void MainWindow::iconsOn() {
 
     // Call this function to start to find the current session number based on the database data
     selectedIntensityAtStart();
-
 }
 
 // This function checks if there is a value for newRowItemSession (which stores the session number that corresponds to an LED).
@@ -453,26 +473,31 @@ void MainWindow::iconsOn() {
 //   is 7.
 // - If the newRowItemSession equals to 3 then it select (puts a cyan border around the label) corresponding LED, which
 //   is 4.
-void MainWindow::selectedIntensityAtStart() {
+void MainWindow::selectedIntensityAtStart()
+{
 
-    if(newRowItemSession == 0) {
+    if (newRowItemSession == 0)
+    {
         ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
     }
-    else if(newRowItemSession == 1) {
+    else if (newRowItemSession == 1)
+    {
         ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
     }
-    else if(newRowItemSession == 2) {
+    else if (newRowItemSession == 2)
+    {
         ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
     }
-    else {
+    else
+    {
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
     }
-
 }
 
 // This function is called when the user presses the power button for the third time (to completely turn off the
 // device). This turns off all the icons for the duration and session (bringing them back to white).
-void MainWindow::iconsOff() {
+void MainWindow::iconsOff()
+{
 
     // Initializes and set the values of the array that will contain the path of the images for the duration icons
     // (these images will the off version).
@@ -488,25 +513,25 @@ void MainWindow::iconsOff() {
 
     // Loop through all items in the arrQListDuration array and set the icon in the listDuration QListWidget displayed on
     // the GUI to the corresponding item found at the specified index in the arrQListDuration array.
-    for(int i = 0; i < 3; i++)  {
+    for (int i = 0; i < 3; i++)
+    {
 
         ui->listDuration->item(i)->setIcon(QIcon(arrQListDuration[i]));
-
     }
 
     // Loop through all items in the arrQListSession array and set the icon in the listSession QListWidget displayed on
     // the GUI to the corresponding item found at the specified index in the arrQListSession array.
-    for(int i = 0; i < 4; i++)  {
+    for (int i = 0; i < 4; i++)
+    {
 
         ui->listSession->item(i)->setIcon(QIcon(arrQListSession[i]));
-
     }
-
 }
 
 // This function initializes the icons for the duration and session as well as sets the parameters for
 // the QListWidget that will contains the duration and session icons.
-void MainWindow::initialiazeListOfIcons() {
+void MainWindow::initialiazeListOfIcons()
+{
 
     // Initializes and set the values of the array that will contain the path of the images for the duration icons.
     QString arrQListDuration[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
@@ -521,10 +546,10 @@ void MainWindow::initialiazeListOfIcons() {
 
     // Loop through all items in the arrQListDuration array and add these items to the listDuration QListWidgetItem to display them on
     // the GUI.
-    for(int i = 0; i < 3; i++)  {
+    for (int i = 0; i < 3; i++)
+    {
 
         ui->listDuration->addItem(new QListWidgetItem(QIcon(arrQListDuration[i]), NULL));
-
     }
 
     // QList (below) for session initializes starts here...
@@ -534,16 +559,15 @@ void MainWindow::initialiazeListOfIcons() {
 
     // Loop through all items in the arrQListSession array and add these items to the listSession QListWidgetItem to display them on
     // the GUI.
-    for(int i = 0; i < 4; i++)  {
+    for (int i = 0; i < 4; i++)
+    {
 
         ui->listSession->addItem(new QListWidgetItem(QIcon(arrQListSession[i]), NULL));
-
     }
 
     // Style the look for the QListWidget named listDuration and listSession on the GUI.
     ui->listDuration->setStyleSheet("#listDuration { background: black; } #listDuration::item { background: black; outline: none; border: 2px solid black; padding-left: 3px; padding-right: 6px; }");
     ui->listSession->setStyleSheet("#listSession { background: black; } #listSession::item { background: black; outline: none; border: 2px solid black; padding-left: 3px; padding-right: 6px; }");
-
 }
 
 // This function allows the user to traverse the QListWidget of duration from left to right
@@ -551,7 +575,8 @@ void MainWindow::initialiazeListOfIcons() {
 void MainWindow::on_durationLeft_clicked()
 {
 
-    if(newRowItemDuration == 0) {
+    if (newRowItemDuration == 0)
+    {
 
         newRowItemDuration = 2;
         ui->listDuration->setCurrentRow(newRowItemDuration);
@@ -566,24 +591,22 @@ void MainWindow::on_durationLeft_clicked()
         // customDuration = str.toInt();
 
         // Show the custom duration in the UI.
-        ui->TimeElapse->setText(QString::number(customDuration)+"s");
-
+        ui->TimeElapse->setText(QString::number(customDuration) + "s");
     }
-    else if(newRowItemDuration == 1) {
+    else if (newRowItemDuration == 1)
+    {
 
         newRowItemDuration = 0;
         ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("20s");
-
     }
-    else {
+    else
+    {
 
         newRowItemDuration = 1;
         ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("45s");
-
     }
-
 }
 
 // This function allows the user to traverse the QListWidget of session from left to right
@@ -591,40 +614,39 @@ void MainWindow::on_durationLeft_clicked()
 void MainWindow::on_sessionLeft_clicked()
 {
 
-    if(newRowItemSession == 0) {
+    if (newRowItemSession == 0)
+    {
 
         newRowItemSession = 3;
         resetButtons();
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Theta)");
-
     }
-    else if(newRowItemSession == 1) {
+    else if (newRowItemSession == 1)
+    {
 
         newRowItemSession = 0;
         resetButtons();
         ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Alpha)");
-
     }
-    else if(newRowItemSession == 2) {
+    else if (newRowItemSession == 2)
+    {
 
         newRowItemSession = 1;
         resetButtons();
         ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (SMR)");
-
     }
-    else {
+    else
+    {
 
         newRowItemSession = 2;
         resetButtons();
         ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Beta)");
-
     }
     ui->listSession->setCurrentRow(newRowItemSession);
-
 }
 
 // This function allows the user to traverse the QListWidget of duration from right to left
@@ -632,14 +654,15 @@ void MainWindow::on_sessionLeft_clicked()
 void MainWindow::on_durationRight_clicked()
 {
 
-    if(newRowItemDuration == 0) {
+    if (newRowItemDuration == 0)
+    {
 
         newRowItemDuration = 1;
         ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("45s");
-
     }
-    else if(newRowItemDuration == 1) {
+    else if (newRowItemDuration == 1)
+    {
 
         newRowItemDuration = 2;
         ui->listDuration->setCurrentRow(newRowItemDuration);
@@ -654,17 +677,15 @@ void MainWindow::on_durationRight_clicked()
         // customDuration = str.toInt();
 
         // Show the custom duration in the UI.
-        ui->TimeElapse->setText(QString::number(customDuration)+"s");
-
+        ui->TimeElapse->setText(QString::number(customDuration) + "s");
     }
-    else {
+    else
+    {
 
         newRowItemDuration = 0;
         ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("20s");
-
     }
-
 }
 
 // This function allows the user to traverse the QListWidget of session from right to left
@@ -672,47 +693,48 @@ void MainWindow::on_durationRight_clicked()
 void MainWindow::on_sessionRight_clicked()
 {
 
-    if(newRowItemSession == 0) {
+    if (newRowItemSession == 0)
+    {
 
         newRowItemSession = 1;
         resetButtons();
         ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (SMR)");
-
     }
-    else if(newRowItemSession == 1) {
+    else if (newRowItemSession == 1)
+    {
 
         newRowItemSession = 2;
         resetButtons();
         ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Beta)");
-
     }
-    else if(newRowItemSession == 2) {
+    else if (newRowItemSession == 2)
+    {
 
         newRowItemSession = 3;
         resetButtons();
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Theta)");
-
     }
-    else {
+    else
+    {
 
         newRowItemSession = 0;
         resetButtons();
         ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Alpha)");
-
     }
     ui->listSession->setCurrentRow(newRowItemSession);
-
 }
 
 // Toggle graph LEDs to display battery level.
-void MainWindow::showBatteryLevel() {
+void MainWindow::showBatteryLevel()
+{
 
     // Checks if the battery level is greater than 87%.
-    if(batteryLevel > 87) {
+    if (batteryLevel > 87)
+    {
 
         // Turn on all LEDs.
         toggleLedEight();
@@ -723,11 +745,11 @@ void MainWindow::showBatteryLevel() {
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
-
     }
 
     // Checks if the battery level is greater than 75%, but less than or equal to 87%.
-    else if(batteryLevel <= 87 && batteryLevel > 75) {
+    else if (batteryLevel <= 87 && batteryLevel > 75)
+    {
 
         // Turn off all LEDs except the first, second, third, fourth, fifth, sixth, and seventh LED.
         ledEightOff();
@@ -738,11 +760,11 @@ void MainWindow::showBatteryLevel() {
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
-
     }
 
     // Checks if the battery level is greater than 62%, but less than or equal to 75%.
-    else if(batteryLevel <= 75 && batteryLevel > 62) {
+    else if (batteryLevel <= 75 && batteryLevel > 62)
+    {
 
         // Turn off all LEDs except the first, second, third, fourth, fifth, and sixth LED.
         ledEightOff();
@@ -753,11 +775,11 @@ void MainWindow::showBatteryLevel() {
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
-
     }
 
     // Checks if the battery level is greater than 50%, but less than or equal to 62%.
-    else if(batteryLevel <= 62 && batteryLevel > 50) {
+    else if (batteryLevel <= 62 && batteryLevel > 50)
+    {
 
         // Turn off all LEDs except the first, second, third, fourth, and fifth LED.
         ledEightOff();
@@ -768,11 +790,11 @@ void MainWindow::showBatteryLevel() {
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
-
     }
 
     // Checks if the battery level is greater than 37%, but less than or equal to 50%.
-    else if(batteryLevel <= 50 && batteryLevel > 37) {
+    else if (batteryLevel <= 50 && batteryLevel > 37)
+    {
 
         // Turn off all LEDs except the first, second, third, and fourth LED.
         ledEightOff();
@@ -783,11 +805,11 @@ void MainWindow::showBatteryLevel() {
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
-
     }
 
     // Checks if the battery level is greater than 25%, but less than or equal to 37%.
-    else if(batteryLevel <= 37 && batteryLevel > 25) {
+    else if (batteryLevel <= 37 && batteryLevel > 25)
+    {
 
         // Turn off all LEDs except the first, second, and third LED.
         ledEightOff();
@@ -798,11 +820,11 @@ void MainWindow::showBatteryLevel() {
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
-
     }
 
     // Checks if the battery level is greater than 12%, but less than or equal to 25%.
-    else if(batteryLevel <= 25 && batteryLevel > 12) {
+    else if (batteryLevel <= 25 && batteryLevel > 12)
+    {
 
         // Turn off all LEDs except the first and second LED.
         ledEightOff();
@@ -813,11 +835,11 @@ void MainWindow::showBatteryLevel() {
         ledThreeOff();
         toggleLedTwo();
         toggleLedOne();
-
     }
 
     // Checks if the battery level is greater than 0%, but less than or equal to 12%.
-    else if(batteryLevel <= 12 && batteryLevel > 0) {
+    else if (batteryLevel <= 12 && batteryLevel > 0)
+    {
 
         // Turn off all LEDs except the first LED.
         ledEightOff();
@@ -828,18 +850,18 @@ void MainWindow::showBatteryLevel() {
         ledThreeOff();
         ledTwoOff();
         toggleLedOne();
-
     }
-
 }
 
 // Reset all LEDs.
-void MainWindow::stopBatteryLevel() {
+void MainWindow::stopBatteryLevel()
+{
 
     // Stop the timers.
     batteryStartTimer->stop();
 
-    if(batteryLevel <= 12){
+    if (batteryLevel <= 12)
+    {
         // Turn off all LEDs.
         ledEightOff();
         ledSevenOff();
@@ -849,7 +871,9 @@ void MainWindow::stopBatteryLevel() {
         ledThreeOff();
         ledTwoOff();
         ledOneOff();
-    } else {
+    }
+    else
+    {
         // Turn on all LEDs.
         ledEightOn();
         ledSevenOn();
@@ -863,11 +887,11 @@ void MainWindow::stopBatteryLevel() {
 
     // Enable the power button.
     ui->powerBtn->setEnabled(true);
-
 }
 
 // Degrade the battery.
-void MainWindow::degradeBattery(){
+void MainWindow::degradeBattery()
+{
     // Calculate degradation.
     int degRate = 50 + objData.sessionArray[2] * 3;
     batteryLevelEnlarged = batteryLevelEnlarged - degRate;
@@ -875,12 +899,14 @@ void MainWindow::degradeBattery(){
     // Adjust battery level to new level.
     batteryLevel = batteryLevelEnlarged / 100;
     // Display battery if battery level is not critical.
-    if(batteryLevel > 12){
+    if (batteryLevel > 12)
+    {
         batteryStartTimer->start(500);
         batteryStopTimer->start(2500);
     }
     // Check if battery level is critical. If it is, shut down device.
-    if(batteryLevel <= 12){
+    if (batteryLevel <= 12)
+    {
         degradeBatteryAllowed = false;
         batteryDegradationTimer->stop();
         on_powerBtn_clicked();
@@ -897,14 +923,15 @@ void MainWindow::on_selectionBtn_clicked()
 
     // Checks if the custom duration value is 0 seconds and if the choosen newRowItemDuration (meaning the duration type that the
     // user has choosen - either 20 seconds, 45 seconds, or custom timer) is equal to 2, which is the custom time.
-    if((customDuration == 0 || customDuration < 0) && newRowItemDuration == 2) {
+    if ((customDuration == 0 || customDuration < 0) && newRowItemDuration == 2)
+    {
 
         // If it is then, display that the custom time cannot be 0 seconds long
         // (as this does not make sense to have as a session duration).
         qDebug() << "Custom duration cannot be 0 seconds or less long...";
-
     }
-    else {
+    else
+    {
 
         // Set the corresponding variables to false or true.
 
@@ -920,10 +947,12 @@ void MainWindow::on_selectionBtn_clicked()
         // Check if the timer is not equal to nullptr and it the timeEnded variable is equal to false.
         // This timer is the one that keeps track if the user has not responded (has not clicked on the selection button)
         // after 2 minutes (120000 miliseconds).
-        if(timer != nullptr && timerEnded == false) {
+        if (timer != nullptr && timerEnded == false)
+        {
 
             // If this timer is still active then do the following.
-            if(timer->isActive()) {
+            if (timer->isActive())
+            {
 
                 // Stop the timer.
                 timer->stop();
@@ -938,9 +967,7 @@ void MainWindow::on_selectionBtn_clicked()
                 timerEnded = true;
 
                 qDebug() << "Stopping timer...";
-
             }
-
         }
 
         // Reset the counter to 0.
@@ -954,7 +981,8 @@ void MainWindow::on_selectionBtn_clicked()
         objData.sessionArray[0] = selectedDuration;
 
         // If the selectedDuration variable value is equal to 2 (that means that the custom time was choosen).
-        if(selectedDuration == 2) {
+        if (selectedDuration == 2)
+        {
 
             // Set the duration in the session array index to be equal to the customDuration variable value.
             objData.sessionArray[0] = customDuration;
@@ -968,14 +996,13 @@ void MainWindow::on_selectionBtn_clicked()
 
         // Call the function flashSelectedLevelAfterSelection to flash the selected session number.
         flashSelectedLevelAfterSelection();
-
     }
-
 }
 
 // This function starts the QTimer named timerFlashes to flash the selected session's intensity at a 500 miliseconds (half a second)
 // interval.
-void MainWindow::flashSelectedLevelAfterSelection() {
+void MainWindow::flashSelectedLevelAfterSelection()
+{
 
     // Initializes the timer.
     timerFlashes = new QTimer(this);
@@ -989,7 +1016,6 @@ void MainWindow::flashSelectedLevelAfterSelection() {
 
     // Start the timer.
     timerFlashes->start();
-
 }
 
 // This function flashes the selected session's intensity based on the QTimer named timerFlashes.
@@ -1000,15 +1026,18 @@ void MainWindow::flashSelectedLevelAfterSelection() {
 // - sessionArray[0]: Stores duration of the session
 // - sessionArray[1]: Stores session type
 // - sessionArray[2]: Stores intensity level of the session at the time of completion
-void MainWindow::flashTimer() {
+void MainWindow::flashTimer()
+{
 
     // Checks if the wet/dry combobox has not been pressed (changeWetOrDry = false) and
     // if the device / application is fully turned on.
-    if(changeWetOrDry == false && numberOfTimesPowerBtnClicked == 2) {
+    if (changeWetOrDry == false && numberOfTimesPowerBtnClicked == 2)
+    {
 
         // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 0 and
         // if the fifth LED boolean variable is true (meaning the LED is off and now needs to be turned on).
-        if(objData.sessionArray[1] == 0 && ledFiveFlash == true){
+        if (objData.sessionArray[1] == 0 && ledFiveFlash == true)
+        {
 
             // Turn on the LED (make the border's color red).
             ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border: 3px solid red; }");
@@ -1016,12 +1045,12 @@ void MainWindow::flashTimer() {
             // This boolean variable keeps track of what the next state of the LED is.
             // In this case the next state is off (as the variable is equal to false).
             ledFiveFlash = false;
-
         }
 
         // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 0 and
         // if the fifth LED boolean variable is false (meaning the LED is on and now needs to be turned off).
-        else if(objData.sessionArray[1] == 0 && ledFiveFlash == false){
+        else if (objData.sessionArray[1] == 0 && ledFiveFlash == false)
+        {
 
             // Turn off the LED (make the border's color cyan).
             ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
@@ -1029,12 +1058,12 @@ void MainWindow::flashTimer() {
             // This boolean variable keeps track of what the next state of the LED is.
             // In this case the next state is on (as the variable is equal to true).
             ledFiveFlash = true;
-
         }
 
         // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 1 and
         // if the sixth LED boolean variable is true (meaning the LED is off and now needs to be turned on).
-        else if(objData.sessionArray[1] == 1 && ledSixFlash == true){
+        else if (objData.sessionArray[1] == 1 && ledSixFlash == true)
+        {
 
             // Turn on the LED (make the border's color red).
             ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: yellow; border: 3px solid red; }");
@@ -1042,12 +1071,12 @@ void MainWindow::flashTimer() {
             // This boolean variable keeps track of what the next state of the LED is.
             // In this case the next state is off (as the variable is equal to false).
             ledSixFlash = false;
-
         }
 
         // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 1 and
         // if the sixth LED boolean variable is false (meaning the LED is on and now needs to be turned off).
-        else if(objData.sessionArray[1] == 1 && ledSixFlash == false){
+        else if (objData.sessionArray[1] == 1 && ledSixFlash == false)
+        {
 
             // Turn on the LED (make the border's color cyan).
             ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
@@ -1055,12 +1084,12 @@ void MainWindow::flashTimer() {
             // This boolean variable keeps track of what the next state of the LED is.
             // In this case the next state is on (as the variable is equal to true).
             ledSixFlash = true;
-
         }
 
         // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 2 and
         // if the seventh LED boolean variable is true (meaning the LED is off and now needs to be turned on).
-        else if(objData.sessionArray[1] == 2 && ledSevenFlash == true){
+        else if (objData.sessionArray[1] == 2 && ledSevenFlash == true)
+        {
 
             // Turn on the LED (make the border's color red).
             ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: #FF7e82; border: 3px solid red; }");
@@ -1068,12 +1097,12 @@ void MainWindow::flashTimer() {
             // This boolean variable keeps track of what the next state of the LED is.
             // In this case the next state is off (as the variable is equal to false).
             ledSevenFlash = false;
-
         }
 
         // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 2 and
         // if the seventh LED boolean variable is false (meaning the LED is on and now needs to be turned off).
-        else if(objData.sessionArray[1] == 2 && ledSevenFlash == false){
+        else if (objData.sessionArray[1] == 2 && ledSevenFlash == false)
+        {
 
             // Turn on the LED (make the border's color cyan).
             ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
@@ -1081,12 +1110,12 @@ void MainWindow::flashTimer() {
             // This boolean variable keeps track of what the next state of the LED is.
             // In this case the next state is on (as the variable is equal to true).
             ledSevenFlash = true;
-
         }
 
         // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 3 and
         // if the fourth LED boolean variable is true (meaning the LED is off and now needs to be turned on).
-        else if(objData.sessionArray[1] == 3 && ledFourFlash == true){
+        else if (objData.sessionArray[1] == 3 && ledFourFlash == true)
+        {
 
             // Turn on the LED (make the border's color red).
             ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: red; background-repeat: none; background: rgb(255, 255, 0); border: 3px solid red; }");
@@ -1094,12 +1123,12 @@ void MainWindow::flashTimer() {
             // This boolean variable keeps track of what the next state of the LED is.
             // In this case the next state is off (as the variable is equal to false).
             ledFourFlash = false;
-
         }
 
         // Checks if the sessionArray value at index 1 (which is in this case the session type) is equal to 3 and
         // if the fourth LED boolean variable is false (meaning the LED is on and now needs to be turned off).
-        else if(objData.sessionArray[1] == 3 && ledFourFlash == false){
+        else if (objData.sessionArray[1] == 3 && ledFourFlash == false)
+        {
 
             // Turn on the LED (make the border's color cyan).
             ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); ; border: 3px solid cyan; }");
@@ -1107,11 +1136,11 @@ void MainWindow::flashTimer() {
             // This boolean variable keeps track of what the next state of the LED is.
             // In this case the next state is on (as the variable is equal to true).
             ledFourFlash = true;
-
         }
 
         // Checks if the counter is equal to 10 (as the LED can only flash on and off five times).
-        if(valueIntUntilEndOfFlash == 10) {
+        if (valueIntUntilEndOfFlash == 10)
+        {
 
             // Stops the timer.
             timerFlashes->stop();
@@ -1126,21 +1155,19 @@ void MainWindow::flashTimer() {
 
             // Call the 5 seconds delay function to start the 5 seconds delay (before the connection test starts).
             delay5Seconds();
-
         }
-        else {
+        else
+        {
 
             // Increment counter by 1.
             valueIntUntilEndOfFlash++;
-
         }
-
     }
-
 }
 
 // This function start the fiveSecondsDelay timer (this timer is a single shot one).
-void MainWindow::delay5Seconds() {
+void MainWindow::delay5Seconds()
+{
 
     qDebug() << "Start 5 seconds delay...";
 
@@ -1148,7 +1175,7 @@ void MainWindow::delay5Seconds() {
     fiveSecondsDelay = new QTimer(this);
 
     // Set the timer interval to 5 seconds (5000 miliseconds).
-    fiveSecondsDelay->setInterval(5000);
+    fiveSecondsDelay->setInterval(5); // 5 for testing code; 5000 for product code
 
     // Set the timer to single shot. This means that the timer will end when it timeout (it will still call the slot function, but
     // it will no longer continue after that).
@@ -1160,38 +1187,38 @@ void MainWindow::delay5Seconds() {
 
     // Start the timer.
     fiveSecondsDelay->start();
-
 }
 
 // After the 5 seconds have been finished, this function will then call the connection test function.
-void MainWindow::continueAfter5Seconds() {
+void MainWindow::continueAfter5Seconds()
+{
 
     qDebug() << "5 seconds delay over...";
 
     // Checks if the connection test does not finish properly (unsuccessful).
-    if(connectionTestMain() != -1) {
+    if (connectionTestMain() != -1)
+    {
 
         qDebug() << "Connection test has unsuccessfully finished...";
-
     }
-    else  {
+    else
+    {
 
         qDebug() << "Connection test has successfully finished...";
-
     }
-
 }
 
 // This function completely turns off the device if the user does not select a session after 2 minutes (120000
 // miliseconds).
-void MainWindow::turnOffNoSessionSelected() {
+void MainWindow::turnOffNoSessionSelected()
+{
 
     // Checks if timer is still active.
-    if(timer->isActive()) {
+    if (timer->isActive())
+    {
 
         // If it is then stop the timer.
         timer->stop();
-
     }
 
     qDebug() << "Shut down OasisPro...";
@@ -1204,7 +1231,6 @@ void MainWindow::turnOffNoSessionSelected() {
     // Reset this variable that counts the number of time the power button has been clicked to 0.
     // When this variable is set to 0, then it means that the device is off (turned off).
     numberOfTimesPowerBtnClicked = 0;
-
 }
 
 // This function is called when the increase intensity button (arrow up) is pressed by the user.
@@ -1214,16 +1240,15 @@ void MainWindow::on_increaseIntensityBtn_clicked()
     // qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
 
     // Don't increase intensity level beyond 8
-    if(objData.sessionArray[2] < 8){
+    if (objData.sessionArray[2] < 8)
+    {
 
         // Increment the intensity value.
         objData.sessionArray[2]++;
-
     }
 
     // Call this function to show what intensity value is currently selected.
     flashSelectedLevel();
-
 }
 
 // This function is called when the decrease intensity button (arrow down) is pressed by the user.
@@ -1235,16 +1260,15 @@ void MainWindow::on_decreaseIntensityBtn_clicked()
     // Don't decrease intensity level beyond 0
     // If we set objData.sessionArray[2] > 0 instead of objData.sessionArray[2] > 1, then the user will never be able
     // to select intensity value 1.
-    if(objData.sessionArray[2] > 1){
+    if (objData.sessionArray[2] > 1)
+    {
 
         // Decrement the intensity value.
         objData.sessionArray[2]--;
-
     }
 
     // Call this function to show what intensity value is currently selected.
     flashSelectedLevel();
-
 }
 
 //============================================================================//
@@ -1252,218 +1276,243 @@ void MainWindow::on_decreaseIntensityBtn_clicked()
 //============================================================================//
 
 // This function turns off the 1st LED and set the boolean variable named ledOneStatus to false (meaning it is off).
-void MainWindow::ledOneOff(){
+void MainWindow::ledOneOff()
+{
 
     ui->ledOne->setStyleSheet("#ledOne { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledOneStatus = false;
-
 }
 
 // This function turns off the 2nd LED and set the boolean variable named ledTwoStatus to false (meaning it is off).
-void MainWindow::ledTwoOff(){
+void MainWindow::ledTwoOff()
+{
 
     ui->ledTwo->setStyleSheet("#ledTwo { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledTwoStatus = false;
-
 }
 
 // This function turns off the 3rd LED and set the boolean variable named ledThreeStatus to false (meaning it is off).
-void MainWindow::ledThreeOff(){
+void MainWindow::ledThreeOff()
+{
 
     ui->ledThree->setStyleSheet("#ledThree { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledThreeStatus = false;
-
 }
 
 // This function turns off the 4th LED and set the boolean variable named ledFourStatus to false (meaning it is off).
-void MainWindow::ledFourOff(){
+void MainWindow::ledFourOff()
+{
 
     ui->ledFour->setStyleSheet("#ledFour { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledFourStatus = false;
-
 }
 
 // This function turns off the 5th LED and set the boolean variable named ledFiveStatus to false (meaning it is off).
-void MainWindow::ledFiveOff(){
+void MainWindow::ledFiveOff()
+{
     ui->ledFive->setStyleSheet("#ledFive { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledFiveStatus = false;
 }
 
 // This function turns off the 6th LED and set the boolean variable named ledSixStatus to false (meaning it is off).
-void MainWindow::ledSixOff(){
+void MainWindow::ledSixOff()
+{
 
     ui->ledSix->setStyleSheet("#ledSix { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledSixStatus = false;
-
 }
 
 // This function turns off the 7th LED and set the boolean variable named ledSevenStatus to false (meaning it is off).
-void MainWindow::ledSevenOff(){
+void MainWindow::ledSevenOff()
+{
 
     ui->ledSeven->setStyleSheet("#ledSeven { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledSevenStatus = false;
-
 }
 
 // This function turns off the 8th LED and set the boolean variable named ledEightStatus to false (meaning it is off).
-void MainWindow::ledEightOff(){
+void MainWindow::ledEightOff()
+{
 
     ui->ledEight->setStyleSheet("#ledEight { background-color: white; font-weight: 600; color: black; background-repeat: none; }");
     ledEightStatus = false;
 }
 
 // This function turns on the 1st LED and set the boolean variable named ledOneStatus to true (meaning it is on).
-void MainWindow::ledOneOn(){
+void MainWindow::ledOneOn()
+{
 
     ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ledOneStatus = true;
-
 }
 
 // This function turns on the 2nd LED and set the boolean variable named ledTwoStatus to true (meaning it is on).
-void MainWindow::ledTwoOn(){
+void MainWindow::ledTwoOn()
+{
 
     ui->ledTwo->setStyleSheet("#ledTwo { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ledTwoStatus = true;
-
 }
 
 // This function turns on the 3rd LED and set the boolean variable named ledThreeStatus to true (meaning it is on).
-void MainWindow::ledThreeOn(){
+void MainWindow::ledThreeOn()
+{
 
     ui->ledThree->setStyleSheet("#ledThree { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ledThreeStatus = true;
-
 }
 
 // This function turns on the 4th LED and set the boolean variable named ledFourStatus to true (meaning it is on).
-void MainWindow::ledFourOn(){
+void MainWindow::ledFourOn()
+{
 
     ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
     ledFourStatus = true;
-
 }
 
 // This function turns on the 5th LED and set the boolean variable named ledFiveStatus to true (meaning it is on).
-void MainWindow::ledFiveOn(){
+void MainWindow::ledFiveOn()
+{
 
     ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
     ledFiveStatus = true;
-
 }
 
 // This function turns on the 6th LED and set the boolean variable named ledSixStatus to true (meaning it is on).
-void MainWindow::ledSixOn(){
+void MainWindow::ledSixOn()
+{
 
     ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: rgb(255, 255, 0); }");
     ledSixStatus = true;
-
 }
 
 // This function turns on the 7th LED and set the boolean variable named ledSevenStatus to true (meaning it is on).
-void MainWindow::ledSevenOn(){
+void MainWindow::ledSevenOn()
+{
 
     ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
     ledSevenStatus = true;
-
 }
 
 // This function turns on the 8th LED and set the boolean variable named ledEightStatus to true (meaning it is on).
-void MainWindow::ledEightOn(){
+void MainWindow::ledEightOn()
+{
 
     ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; }");
     ledEightStatus = true;
 }
 
 // This function toggles the 1st LED on or off.
-void MainWindow::toggleLedOne(){
+void MainWindow::toggleLedOne()
+{
 
-    if(ledOneStatus == false){
+    if (ledOneStatus == false)
+    {
         ledOneOn();
-    } else if(ledOneStatus == true){
+    }
+    else if (ledOneStatus == true)
+    {
         ledOneOff();
     }
-
 }
 
 // This function toggles the 2nd LED on or off.
-void MainWindow::toggleLedTwo(){
+void MainWindow::toggleLedTwo()
+{
 
-    if(ledTwoStatus == false){
+    if (ledTwoStatus == false)
+    {
         ledTwoOn();
-    } else if(ledTwoStatus == true){
+    }
+    else if (ledTwoStatus == true)
+    {
         ledTwoOff();
     }
-
 }
 
 // This function toggles the 3rd LED on or off.
-void MainWindow::toggleLedThree(){
+void MainWindow::toggleLedThree()
+{
 
-    if(ledThreeStatus == false){
+    if (ledThreeStatus == false)
+    {
         ledThreeOn();
-    } else if(ledThreeStatus == true){
+    }
+    else if (ledThreeStatus == true)
+    {
         ledThreeOff();
     }
-
 }
 
 // This function toggles the 4th LED on or off.
-void MainWindow::toggleLedFour(){
+void MainWindow::toggleLedFour()
+{
 
-    if(ledFourStatus == false){
+    if (ledFourStatus == false)
+    {
         ledFourOn();
-    } else if(ledFourStatus == true){
+    }
+    else if (ledFourStatus == true)
+    {
         ledFourOff();
     }
-
 }
 
 // This function toggles the 5th LED on or off.
-void MainWindow::toggleLedFive(){
+void MainWindow::toggleLedFive()
+{
 
-    if(ledFiveStatus == false){
+    if (ledFiveStatus == false)
+    {
         ledFiveOn();
-    } else if(ledFiveStatus == true){
+    }
+    else if (ledFiveStatus == true)
+    {
         ledFiveOff();
     }
-
 }
 
 // This function toggles the 6th LED on or off.
-void MainWindow::toggleLedSix(){
+void MainWindow::toggleLedSix()
+{
 
-    if(ledSixStatus == false){
+    if (ledSixStatus == false)
+    {
         ledSixOn();
-    } else if(ledSixStatus == true){
+    }
+    else if (ledSixStatus == true)
+    {
         ledSixOff();
     }
-
 }
 
 // This function toggles the 7th LED on or off.
-void MainWindow::toggleLedSeven(){
+void MainWindow::toggleLedSeven()
+{
 
-    if(ledSevenStatus == false){
+    if (ledSevenStatus == false)
+    {
         ledSevenOn();
-    } else if(ledSevenStatus == true){
+    }
+    else if (ledSevenStatus == true)
+    {
         ledSevenOff();
     }
-
 }
 
 // This function toggles the 8th LED on or off.
-void MainWindow::toggleLedEight(){
+void MainWindow::toggleLedEight()
+{
 
-    if(ledEightStatus == false){
+    if (ledEightStatus == false)
+    {
         ledEightOn();
-    } else if(ledEightStatus == true){
+    }
+    else if (ledEightStatus == true)
+    {
         ledEightOff();
     }
-
 }
-
-
 
 //============================================================================//
 //                          Connection Test Functions                         //
@@ -1477,7 +1526,6 @@ void MainWindow::graphSessionOn()
 
     ui->graphSession->setStyleSheet("#graphSession { border-image: url(:/resources/icons/connect.PNG); border: 2px solid red; border-radius: 20px; }");
     graphSessionStatus = true;
-
 }
 
 // This function turn CES graph (CES mode light) off and set the corresponding boolean variable to false.
@@ -1486,48 +1534,47 @@ void MainWindow::graphSessionOff()
 
     ui->graphSession->setStyleSheet("#graphSession { border-image: url(:/resources/icons/connectOff.png); border: 2px solid red; border-radius: 20px; }");
     graphSessionStatus = false;
-
 }
 // This function turn the left ear icon off.
-void MainWindow::offLeftEar() {
+void MainWindow::offLeftEar()
+{
 
     ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Off.PNG); border: 2px solid red; border-radius: 20px; }");
-
 }
 
 // This function turn the left ear icon on.
-void MainWindow::onLeftEar() {
+void MainWindow::onLeftEar()
+{
 
     ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Connected.PNG); border: 2px solid red; border-radius: 20px; }");
-
 }
 
 // This function turn the right ear icon off.
-void MainWindow::offRightEar() {
+void MainWindow::offRightEar()
+{
 
     ui->rightEar->setStyleSheet("#rightEar { border-image: url(:/resources/icons/rightConnect.PNG); border: 2px solid red; border-radius: 20px; }");
-
 }
 
 // This function turn the right ear icon on.
-void MainWindow::onRightEar() {
+void MainWindow::onRightEar()
+{
 
     ui->rightEar->setStyleSheet("#rightEar { border-image: url(:/resources/icons/rightConnectOn.PNG); border: 2px solid red; border-radius: 20px; }");
-
 }
 
 // This function turns off the group box where the left and right ear are found and change its color to white.
-void MainWindow::offGroupBoxEars() {
+void MainWindow::offGroupBoxEars()
+{
 
     ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid white; border-radius: 30px; background-color: black; } ");
-
 }
 
 // This function turns on the group box where the left and right ear are found.
-void MainWindow::onGroupBoxEars() {
+void MainWindow::onGroupBoxEars()
+{
 
     ui->groupBox_10->setStyleSheet("#groupBox_10 { border: 5px solid limegreen; border-radius: 30px; background-color: black; } ");
-
 }
 
 // Toggle between on or off state of the CES mode light (graph turn on or off).
@@ -1544,7 +1591,6 @@ void MainWindow::toggleCesModeLight()
     {
         graphSessionOff();
     }
-
 }
 
 // This function creates, sets, and start the timer that will flashes the CES Mode light for 3 seconds
@@ -1553,7 +1599,8 @@ void MainWindow::flashCesModeLight()
 
     // Checks if the timer is equal to nullptr, if the device or application is turned on, and if the combobox has not
     // been pressed or changed.
-    if(timerCES == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+    if (timerCES == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+    {
 
         // Initializes timer.
         timerCES = new QTimer(this);
@@ -1568,15 +1615,16 @@ void MainWindow::flashCesModeLight()
         // Start the timer.
         timerCES->start();
     }
-
 }
 
 // This function is the one toggles the light of the graph (CES Mode Light) from on to off or off to on.
-void MainWindow::flashGraphCounter() {
+void MainWindow::flashGraphCounter()
+{
 
     // Checks if the counter is equal to 6.
     // The CES mode light cannot be blinked more than 5 times.
-    if(counterFlashGraph == 6) {
+    if (counterFlashGraph == 6)
+    {
 
         // Stop the timer.
         timerCES->stop();
@@ -1593,29 +1641,29 @@ void MainWindow::flashGraphCounter() {
         // Check if the device is connected or not and set the CES Mode light to on or off based on that.
         // Disconnected ====> CES Mode light off.
         // Connected    ====> CES Mode light on.
-        if(connectivity == false) {
+        if (connectivity == false)
+        {
             graphSessionOff();
         }
-        else {
+        else
+        {
             graphSessionOn();
         }
 
         // Call this function to display the type of connection.
         // The connection is either green, yellow, or red.
         displayConnection(signal);
-
     }
     // Else if the counter is not equal to 6 then do the following.
-    else {
+    else
+    {
 
         // Blink the CES Mode lights again.
         toggleCesModeLight();
 
         // Increment the counter by 1.
         counterFlashGraph++;
-
     }
-
 }
 
 // This function changes the status of the connection of the device from connected to connected.
@@ -1625,7 +1673,6 @@ void MainWindow::onConnectivity()
 {
 
     connectivity = true;
-
 }
 
 // This function changes the status of the connection of the device from connected to disconnected.
@@ -1635,7 +1682,6 @@ void MainWindow::offConnectivity()
 {
 
     connectivity = false;
-
 }
 
 // Set elements in graph to blanked status
@@ -1651,7 +1697,6 @@ void MainWindow::offLeds()
     ledThreeOff();
     ledTwoOff();
     ledOneOff();
-
 }
 
 // Resume graph display
@@ -1667,13 +1712,12 @@ void MainWindow::onLeds()
     ledThreeOn();
     ledTwoOn();
     ledOneOn();
-
 }
-
 
 // This function start the timer that will call the function everytime it timeout (the called function is the one that
 // will blink the LEDs based on the signal (the strength of the connection).
-void MainWindow::ledBlinkTimer() {
+void MainWindow::ledBlinkTimer()
+{
 
     // Initializes timer.
     timerBlinkLed = new QTimer(this);
@@ -1686,7 +1730,6 @@ void MainWindow::ledBlinkTimer() {
 
     // Start the timer.
     timerBlinkLed->start();
-
 }
 
 // This function is called when the QTimer named timerBlinked timeout.
@@ -1694,36 +1737,42 @@ void MainWindow::ledBlinkTimer() {
 // Grp 1 - Blinks LEDs 4, 5, and 6 (okay connection)
 // Grp 2 - Blinks LEDs 1, 2, and 3 (good or excellent connection)
 // counterBlinkingLed - counter that keeps track of how many times the blinkCounter
-void MainWindow::blinkCounter() {
+void MainWindow::blinkCounter()
+{
 
     // Checks if the grpToBlink is equal to 0, if the device / application is fully turned on and if the wet/dry combobox has not been
     // pressed (means that it has not change).
-    if(groupToBlink == 0 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+    if (groupToBlink == 0 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+    {
 
-        if(blinkTrueOrFalse == true) {
+        if (blinkTrueOrFalse == true)
+        {
             ledEightOn();
             ledSevenOn();
             blinkTrueOrFalse = false;
         }
-        else {
+        else
+        {
             ledEightOff();
             ledSevenOff();
             blinkTrueOrFalse = true;
         }
-
     }
 
     // Checks if the grpToBlink is equal to 1, if the device / application is fully turned on and if the wet/dry combobox has not been
     // pressed (means that it has not change).
-    if(groupToBlink == 1 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+    if (groupToBlink == 1 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+    {
 
-        if(blinkTrueOrFalse == true) {
+        if (blinkTrueOrFalse == true)
+        {
             ledSixOn();
             ledFiveOn();
             ledFourOn();
             blinkTrueOrFalse = false;
         }
-        else {
+        else
+        {
             ledSixOff();
             ledFiveOff();
             ledFourOff();
@@ -1733,26 +1782,29 @@ void MainWindow::blinkCounter() {
 
     // Checks if the grpToBlink is equal to 2, if the device / application is fully turned on and if the wet/dry combobox has not been
     // pressed (means that it has not change).
-    if(groupToBlink == 2 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+    if (groupToBlink == 2 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+    {
 
-        if(blinkTrueOrFalse == true) {
+        if (blinkTrueOrFalse == true)
+        {
             ledOneOn();
             ledTwoOn();
             ledThreeOn();
             blinkTrueOrFalse = false;
         }
-        else {
+        else
+        {
             ledOneOff();
             ledTwoOff();
             ledThreeOff();
             blinkTrueOrFalse = true;
         }
-
     }
 
     // Checks counter's value is equal to 6, if the device / application is fully turned on and if the wet/dry combobox has not been
     // pressed (means that it has not change).
-    if(counterBlinkingLed == 6 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+    if (counterBlinkingLed == 6 && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+    {
 
         // Stop the timer.
         timerBlinkLed->stop();
@@ -1769,72 +1821,69 @@ void MainWindow::blinkCounter() {
         // - newRowItemSession = 2 =====> means that actual session number value is based on the SMR session type.
         // - newRowItemSession = 3 =====> means that actual session number value is based on the Beta session type.
         int realValueRow = 0;
-        if(newRowItemSession == 0) {
+        if (newRowItemSession == 0)
+        {
             realValueRow = 3;
         }
-        else if(newRowItemSession == 1) {
+        else if (newRowItemSession == 1)
+        {
             realValueRow = 0;
         }
-        else if(newRowItemSession == 2) {
+        else if (newRowItemSession == 2)
+        {
             realValueRow = 1;
         }
-        else {
+        else
+        {
             realValueRow = 2;
         }
 
         // Displaying correct session number.
-        if(realValueRow == 0) {
+        if (realValueRow == 0)
+        {
             ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         }
-        else if(realValueRow == 1) {
+        else if (realValueRow == 1)
+        {
             ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
         }
-        else if(realValueRow == 2) {
+        else if (realValueRow == 2)
+        {
             ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         }
-        else {
+        else
+        {
             ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         }
 
         // After finishing all the tests, it now performs the following functions based on whether the
         // device is connected or not.
-        if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+        if (connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+        {
             playScrollAnimation();
         }
-        else if(connectivity == true && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+        else if (connectivity == true && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+        {
 
-            // Not sure if this will be needed or removed.
-            // Allocate and add a new history record into the QSQL database
-            // Show a message
-            // QMessageBox Alert;
-            // Alert.setWindowTitle("Add Preferences");
-            // Alert.setText("Would you like to create a threapy record for the current user?");
-            // Alert.setStandardButtons(QMessageBox::Yes);
-            // Alert.addButton(QMessageBox::No);
-            // Alert.setDefaultButton(QMessageBox::No);
-            // if (Alert.exec() == QMessageBox::Yes)
-            // {
-            //  int userId = ui->listOfUsers->currentIndex();
-            //  userId++;
-            //  qDebug() << "Debug: User id: " << userId;
-            //  int duration = objData.sessionArray[0];
-            //  qDebug() << "Debug: Duration: " << duration;
-            //  int sessionType = objData.sessionArray[1];
-            //  qDebug() << "Debug: Session type: " << sessionType;
-            //  int intensityLevel = objData.sessionArray[2];
-            //  qDebug() << "Debug: Intensity level: " << intensityLevel;
-            //  TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
-            //  newDatabase->addTherapyHistoryRecord(userId, tr);
-            //  qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
-            //  QString result = tr->stringify();
-            //  qDebug() << result;
-            //  // delete tr;
-            // }
-            // else
-            // {
-            //  // Do something else (cancelled adding action).
-            //  qDebug() << "Action adding therapy record has been cancelled. ";
-            // };
+            // Get current user id from combo box on GUI:
+            int userId = ui->listOfUsers->currentIndex();
+            userId++; // Lowerbound of user id is one
+
+            // Get elements from section array:
+            int duration = objData.sessionArray[0];
+            int sessionType = objData.sessionArray[1];
+            int intensityLevel = objData.sessionArray[2];
+
+            // Add a therapy histroy record in to patient.db:
+            TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
+            newDatabase->addTherapyHistoryRecord(userId, tr);
+
+            // Print Status:
+            qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
+            qDebug() << "Size of Recording Vector: " << newDatabase->getTherapyHistoryRecords(userId).size();
+
+            // Free memory:
+            delete tr;
 
             // Enable intensity and selection buttons
             ui->increaseIntensityBtn->setEnabled(true);
@@ -1844,7 +1893,8 @@ void MainWindow::blinkCounter() {
             // Start session timer based on the duration
 
             // Duration is 20 seconds.
-            if(objData.sessionArray[0] == 0) {
+            if (objData.sessionArray[0] == 0)
+            {
 
                 qDebug() << "Timer will go on for 20s";
 
@@ -1861,14 +1911,15 @@ void MainWindow::blinkCounter() {
                 seconds20Timer->start();
 
                 // Start the battery degradation timer (ten second intervals).
-                if(degradeBatteryAllowed){
+                if (degradeBatteryAllowed)
+                {
                     batteryDegradationTimer->start(10000);
                 }
-
             }
 
             // Duration is 45 seconds.
-            else if(objData.sessionArray[0] == 1) {
+            else if (objData.sessionArray[0] == 1)
+            {
 
                 qDebug() << "Timer will go on for 45s";
 
@@ -1885,17 +1936,17 @@ void MainWindow::blinkCounter() {
                 seconds45Timer->start();
 
                 // Start the battery degradation timer (ten second intervals).
-                if(degradeBatteryAllowed){
+                if (degradeBatteryAllowed)
+                {
                     batteryDegradationTimer->start(10000);
                 }
-
-
             }
 
             // Duration is based on custom time provided by the user.
-            else {
+            else
+            {
 
-                qDebug().noquote() << "Timer will go on for "+QString::number(objData.sessionArray[0])+"s";
+                qDebug().noquote() << "Timer will go on for " + QString::number(objData.sessionArray[0]) + "s";
 
                 // Initializes custom time timer.
                 customTimer = new QTimer(this);
@@ -1914,45 +1965,44 @@ void MainWindow::blinkCounter() {
                 countdownCustom = customDuration;
 
                 // Start the battery degradation timer (ten second intervals).
-                if(degradeBatteryAllowed){
+                if (degradeBatteryAllowed)
+                {
                     batteryDegradationTimer->start(10000);
                 }
-
-
             }
-
         }
         // If none of the above is true, then that means that the device / application is turned off.
-        else {
+        else
+        {
 
             qDebug() << "Device has been turned off. Unable to process with test....";
-
         }
-
     }
-    else {
+    else
+    {
 
         // Increment counter by 1.
         counterBlinkingLed++;
-
     }
-
 }
 
 // This function updates the time left based on a custom time countdown (if the user chooses the custom duration).
 // Once custom time has elapse, it will proceed to shut down the application, reset all counters, and delete timer for
 // the custom time countdown named customTimer.
-void MainWindow::updateUITimeCustomDisplay() {
+void MainWindow::updateUITimeCustomDisplay()
+{
 
     // Checks if application is fully turn on and the wet/dry state has not been changed.
-    if(numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+    if (numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+    {
 
         // If the counter that keeps track of how many times this function has been called is equal to custom duration
         // (given by the user when they selected the custom duration option), then that means that the custom time has
         // elapsed.
-        if(customCounter == (customDuration+1)) {
+        if (customCounter == (customDuration + 1))
+        {
 
-            qDebug().noquote() << QString::number(customDuration)+"s timer finished...";
+            qDebug().noquote() << QString::number(customDuration) + "s timer finished...";
 
             // Stopping battery degradation.
             // batteryDegradationTimer->stop();
@@ -1975,36 +2025,36 @@ void MainWindow::updateUITimeCustomDisplay() {
 
             // Scrolling down animation - end of session.
             descendEndSession();
-
         }
-        else {
+        else
+        {
 
             // Updates the UI with new time (goes down from custom time (given by user) every 1 second).
-            ui->TimeElapse->setText(QString::number(countdownCustom)+"s");
+            ui->TimeElapse->setText(QString::number(countdownCustom) + "s");
 
             // Increment counter that counts how many times function has been called.
             customCounter++;
 
             // Decrements counter that is used to keep track of time left or remaining.
             countdownCustom--;
-
         }
     }
-
 }
-
 
 // This function updates the time left based on a 20 seconds countdown (if the user chooses the 20 seconds duration).
 // Once 20 seconds has elapse, it will proceed to shut down the application, reset all counters, and delete timer for
 // the 20 seconds countdown named seconds20Timer.
-void MainWindow::updateUITime20sDisplay() {
+void MainWindow::updateUITime20sDisplay()
+{
 
     // Checks if application is fully turn on and the wet/dry state has not been changed.
-    if(numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+    if (numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+    {
 
         // If the counter that keeps track of how many times this function has been called is equal to 21, then that means
         // that the 20 seconds has elapsed.
-        if(countTo20 == 21) {
+        if (countTo20 == 21)
+        {
 
             qDebug() << "20s timer finished...";
 
@@ -2029,35 +2079,36 @@ void MainWindow::updateUITime20sDisplay() {
 
             // Scrolling down animation - end of session.
             descendEndSession();
-
         }
-        else {
+        else
+        {
 
             // Updates the UI with new time (goes down from 20 seconds every 1 second).
-            ui->TimeElapse->setText(QString::number(from20to0)+"s");
+            ui->TimeElapse->setText(QString::number(from20to0) + "s");
 
             // Increment counter that counts how many times function has been called.
             countTo20++;
 
             // Decrements counter that is used to keep track of time left or remaining.
             from20to0--;
-
         }
     }
-
 }
 
 // This function updates the time left based on a 45 seconds countdown (if the user chooses the 45 seconds duration).
 // Once 45 seconds has elapse, it will proceed to shut down the application, reset all counters, and delete timer for
 // the 45 seconds countdown named seconds45Timer.
-void MainWindow::updateUITime45sDisplay() {
+void MainWindow::updateUITime45sDisplay()
+{
 
     // Checks if application is fully turn on and the wet/dry state has not been changed.
-    if(numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+    if (numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+    {
 
         // If the counter that keeps track of how many times this function has been called is equal to 46, then that means
         // that the 45 seconds has elapsed.
-        if(countTo45 == 46) {
+        if (countTo45 == 46)
+        {
 
             qDebug() << "45s timer finished...";
 
@@ -2082,22 +2133,20 @@ void MainWindow::updateUITime45sDisplay() {
 
             // Scrolling down animation - end of session.
             descendEndSession();
-
         }
-        else {
+        else
+        {
 
             // Updates the UI with new time (goes down from 45 seconds every 1 second).
-            ui->TimeElapse->setText(QString::number(from45to0)+"s");
+            ui->TimeElapse->setText(QString::number(from45to0) + "s");
 
             // Increment counter that counts how many times function has been called.
             countTo45++;
 
             // Decrements counter that is used to keep track of time left or remaining.
             from45to0--;
-
         }
     }
-
 }
 
 // This function basically takes three signals, which are:
@@ -2116,25 +2165,24 @@ void MainWindow::displayConnection(int signal)
     // Switch case that handles cases based on the signal's value.
     switch (signal)
     {
-        case 0:
-            // No connection: blink Led Group (7 and 8):
-            groupToBlink = 0;
-            ledBlinkTimer();
-            break;
-        case 1:
-            // tigger by: dry tesing mode
-            // OK connection: blink Led Group (6, 5 and 4):
-            groupToBlink = 1;
-            ledBlinkTimer();
-            break;
-        default:
-            // triggered by: wet testing mode
-            // Excellent connection: blink Led Group (3, 2 and 1):
-            groupToBlink = 2;
-            ledBlinkTimer();
-            break;
+    case 0:
+        // No connection: blink Led Group (7 and 8):
+        groupToBlink = 0;
+        ledBlinkTimer();
+        break;
+    case 1:
+        // tigger by: dry tesing mode
+        // OK connection: blink Led Group (6, 5 and 4):
+        groupToBlink = 1;
+        ledBlinkTimer();
+        break;
+    default:
+        // triggered by: wet testing mode
+        // Excellent connection: blink Led Group (3, 2 and 1):
+        groupToBlink = 2;
+        ledBlinkTimer();
+        break;
     }
-
 }
 
 // This function calls the function(s) that plays the scroll animation on GUI.
@@ -2148,20 +2196,22 @@ void MainWindow::playScrollAnimation()
 
     // Call QTimer for starting and displaying animation in GUI.
     pauseTimer(timeout);
-
 }
 
 // This function manages the scrolling animation by stopping and starting a timer named
 // intensity timer at an interval of 500 miliseconds (half a second).
-void MainWindow::intervalTimerIntensity() {
+void MainWindow::intervalTimerIntensity()
+{
 
     // Checks if the countForPauseEnd is less than 5 (valuePause is equal to 5).
     // This means that the timer must only time out 5 times and not more.
-    if(countForPauseEnd < valuePause) {
+    if (countForPauseEnd < valuePause)
+    {
 
         // Checks if the timer is equal to nullptr, if the device / application is fully turned on, and if the
         // wet/dry combobox has not been pressed.
-        if(intensityTimer == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+        if (intensityTimer == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+        {
             qDebug() << "New intensity timer...";
 
             // Initializes the timer.
@@ -2178,7 +2228,8 @@ void MainWindow::intervalTimerIntensity() {
         }
         // Checks if the application / device is disconnected, if the device / application is fully turned on,
         // and if the wet/dry combobox has not been pressed.
-        else if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+        else if (connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+        {
             qDebug() << "Continue scrolling animation...";
 
             // Reset counter to 0.
@@ -2188,84 +2239,104 @@ void MainWindow::intervalTimerIntensity() {
             intensityTimer->start();
         }
         // Checks if the user pressed the wet/dry combobox.
-        else if(changeWetOrDry == true) {
+        else if (changeWetOrDry == true)
+        {
 
             // Set counter to 0.
             countSwitch = 0;
             qDebug() << "Switched stated...";
         }
-        else {
+        else
+        {
 
             // Set counter to 0.
             countSwitch = 0;
             qDebug() << "Scrolling animation has stopped...";
         }
     }
-
 }
 
 // This function does the scrolling animation (scrolling up from 1 to 8).
 // This only occurs if the device / application's disconnected.
-void MainWindow::switchLeds() {
+void MainWindow::switchLeds()
+{
 
     // First checks if the connectivity is false, the application is fully turned on (numberOfTimesPowerBtnClick is equal
     // to 2 when it is turned on fully, and if the wet/dry combobox has not been changed (or pressed).
-    if(connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false) {
+    if (connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
+    {
 
         // The scrolling animation based on the value of the countSwitchDescent counter.
         // It either turns on or off a certain LED based on the counter's current value.
-        if(countSwitch == 0) {
+        if (countSwitch == 0)
+        {
             ledOneOn();
         }
-        else if(countSwitch == 1) {
+        else if (countSwitch == 1)
+        {
             ledOneOff();
         }
-        else if(countSwitch == 2) {
+        else if (countSwitch == 2)
+        {
             ledTwoOn();
         }
-        else if(countSwitch == 3) {
+        else if (countSwitch == 3)
+        {
             ledTwoOff();
         }
-        else if(countSwitch == 4) {
+        else if (countSwitch == 4)
+        {
             ledThreeOn();
         }
-        else if(countSwitch == 5) {
+        else if (countSwitch == 5)
+        {
             ledThreeOff();
         }
-        else if(countSwitch == 6) {
+        else if (countSwitch == 6)
+        {
             ledFourOn();
         }
-        else if(countSwitch == 7) {
+        else if (countSwitch == 7)
+        {
             ledFourOff();
         }
-        else if(countSwitch == 8) {
+        else if (countSwitch == 8)
+        {
             ledFiveOn();
         }
-        else if(countSwitch == 9) {
+        else if (countSwitch == 9)
+        {
             ledFiveOff();
         }
-        else if(countSwitch == 10) {
+        else if (countSwitch == 10)
+        {
             ledSixOn();
         }
-        else if(countSwitch == 11) {
+        else if (countSwitch == 11)
+        {
             ledSixOff();
         }
-        else if(countSwitch == 12) {
+        else if (countSwitch == 12)
+        {
             ledSevenOn();
         }
-        else if(countSwitch == 13) {
+        else if (countSwitch == 13)
+        {
             ledSevenOff();
         }
-        else if(countSwitch == 14) {
+        else if (countSwitch == 14)
+        {
             ledEightOn();
         }
-        else {
+        else
+        {
             qDebug() << "Last intensity...";
             ledEightOff();
         }
 
         // Checks if the counter named countSwitch is equal to 15 (meaning it reached the last LED and should not continue the scrolling animation).
-        if(countSwitch == 15) {
+        if (countSwitch == 15)
+        {
             qDebug() << "Stopping timer...";
 
             // Resets the counter to 0.
@@ -2275,18 +2346,19 @@ void MainWindow::switchLeds() {
             intensityTimer->stop();
         }
         // If the counter is not equal to 15, then increment the counter by 1.
-        else {
+        else
+        {
 
             // Increments counter by 1.
             countSwitch++;
         }
     }
-
 }
 
 // This function creates, defines, and starts the timer that calls the function that those the scrolling animation,
 // which is the function named pauseCounter.
-void MainWindow::pauseTimer(int value) {
+void MainWindow::pauseTimer(int value)
+{
 
     // Turn off all LEDs (1 to 8)
     offLeds();
@@ -2306,18 +2378,19 @@ void MainWindow::pauseTimer(int value) {
 
     // Starts the timer.
     pauseTimerDefault->start();
-
 }
 
 // This function is called to start the scrolling animation. It does the animation as long as the counter named countForPaused is
 // not equal to the valuePause, which is 5. If it is equal to valuePause, it will proceed to stop the timer, delete it, reset the counter,
 // and set the value of the timer to nullptr.
-void MainWindow::pauseCounter() {
+void MainWindow::pauseCounter()
+{
 
     // If statement to check if the counter named countForPausedEnd (which keeps track of how times the function has been
     // called. If the counter equals to the valuePause, then stop and delete timer and reset all the counter found in that
     // file (or section of the code base.
-    if(countForPauseEnd == valuePause) {
+    if (countForPauseEnd == valuePause)
+    {
 
         // Stop timer.
         pauseTimerDefault->stop();
@@ -2338,7 +2411,8 @@ void MainWindow::pauseCounter() {
 
     // else statament that is called until the counter named countForPausedEnd is not equal to the valuePause, then
     // increment the counter and star intervalTimerIntensity.
-    else {
+    else
+    {
 
         // Call this function to start the scrolling animation.
         intervalTimerIntensity();
@@ -2346,7 +2420,6 @@ void MainWindow::pauseCounter() {
         // Increment counter by 1.
         countForPauseEnd++;
     }
-
 }
 
 /* Main control of connection test
@@ -2369,12 +2442,14 @@ int MainWindow::connectionTestMain()
 
     // Check if intensity level of the selected session is safe.
     // If it is greater than the safe value, then set the intensity level to the safe intensity value.
-    if (objData.sessionArray[2] > defaultSafeLevel) {
+    if (objData.sessionArray[2] > defaultSafeLevel)
+    {
         objData.sessionArray[2] = defaultSafeLevel;
     }
 
     // Checks if the wet/dry value is equal to wet and that the device is connected.
-    if(ui->listWetOrDry->currentIndex() == 0 && ui->listOfSkins->currentIndex() == 0) {
+    if (ui->listWetOrDry->currentIndex() == 0 && ui->listOfSkins->currentIndex() == 0)
+    {
         signal = 2;
         OptionWet = true;
         OptionDry = false;
@@ -2382,7 +2457,8 @@ int MainWindow::connectionTestMain()
     }
 
     // Checks if the wet/dry value is equal to dry and that the device is connected.
-    else if(ui->listWetOrDry->currentIndex() == 1 && ui->listOfSkins->currentIndex() == 0) {
+    else if (ui->listWetOrDry->currentIndex() == 1 && ui->listOfSkins->currentIndex() == 0)
+    {
         signal = 1;
         OptionDry = true;
         OptionWet = false;
@@ -2390,7 +2466,8 @@ int MainWindow::connectionTestMain()
     }
 
     // This else statement will only be called if the device is disconnected.
-    else {
+    else
+    {
         signal = 0;
         connectivity = false;
     }
@@ -2400,7 +2477,8 @@ int MainWindow::connectionTestMain()
     // 2. press powerbutton (added functionality - working)
 
     // Check if the connection is false (disconnected) and the application is fully turn on.
-    if (connectivity == false && numberOfTimesPowerBtnClicked == 2) {
+    if (connectivity == false && numberOfTimesPowerBtnClicked == 2)
+    {
 
         qDebug() << "Device is disconnected...";
 
@@ -2421,12 +2499,12 @@ int MainWindow::connectionTestMain()
 
         // Update GUI elements
         flashCesModeLight();
-
     }
 
     // Checks if the device is connected, and
     // if the device is fully turned on.
-    else if (connectivity == true && numberOfTimesPowerBtnClicked == 2) {
+    else if (connectivity == true && numberOfTimesPowerBtnClicked == 2)
+    {
 
         // Successful scenario: passed connection test
         // Start session
@@ -2437,8 +2515,9 @@ int MainWindow::connectionTestMain()
         // To make sure scrolling animation is off completely.
         offLeds();
 
-        //Checks if the device is still turned on.
-        if(numberOfTimesPowerBtnClicked == 2) {
+        // Checks if the device is still turned on.
+        if (numberOfTimesPowerBtnClicked == 2)
+        {
 
             // Connect right and left ear
             onLeftEar();
@@ -2452,20 +2531,18 @@ int MainWindow::connectionTestMain()
 
             // Update GUI elements
             flashCesModeLight();
-
         }
 
         // Exit with connection
         qDebug() << "Connection test ended successfully...";
 
         ui->selectionBtn->setDisabled(false);
-
     }
 
     // Checks if device is turned off (that only happens if numberOfTimesPowerBtnClicked == 0), and that there is
     // a session running.
-    else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true) {
-
+    else if (numberOfTimesPowerBtnClicked == 0 && sessionOnOrOff == true)
+    {
 
         // Only true if the session ends at the time it needs to end.
         // In this case session ends early.
@@ -2483,19 +2560,16 @@ int MainWindow::connectionTestMain()
         sessionOnOrOff = false;
 
         qDebug() << "Session ended...";
-
     }
-    else {
+    else
+    {
 
         // Exit without connection
         qDebug() << "Connection test has been terminated ...";
-
     }
 
     return -1;
-
 }
-
 
 // This function displays the battery level going back to 100%. It sets the battery level variable to 100.
 void MainWindow::on_newBattery_clicked()
@@ -2506,7 +2580,6 @@ void MainWindow::on_newBattery_clicked()
     // Set batteryLevel variable back to 100%.
     batteryLevel = 100;
     batteryLevelEnlarged = batteryLevel * 100;
-
 }
 
 // This function only is called when the user press the combobox to connect or disconnect their application / device.
@@ -2518,17 +2591,19 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 {
 
     // Checks if the value is connected, if the device / application is fully on, and if there is a session currenly selected (selected button has been pressed).
-    if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true) {
+    if (ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true)
+    {
         qDebug() << "Connected...";
 
-        //If the conditions are true, it reruns the connection test.
+        // If the conditions are true, it reruns the connection test.
         connectionTestMain();
     }
     // Checks if the value is disconnected, if the device / application is fully on, and if there is a session currenly selected (selected button has been pressed).
-    else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true) {
+    else if (ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true)
+    {
         qDebug() << "Disconnected...";
 
-        //If the conditions are true, it reruns the connection test.
+        // If the conditions are true, it reruns the connection test.
         connectionTestMain();
     }
     // Checks if the device is turned off.
@@ -2536,15 +2611,16 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
     // - numberOfTimesPowerBtnClicked = 0 ======> means device is fully off (turned off).
     // - numberOfTimesPowerBtnClicked = 1 ======> means device is partly turned on.
     // - numberOfTimesPowerBtnClicked = 2 ======> means device is completely turned on.
-    else if(numberOfTimesPowerBtnClicked == 0) {
-        qDebug().noquote() << "Unable to switch to "+arg1;
+    else if (numberOfTimesPowerBtnClicked == 0)
+    {
+        qDebug().noquote() << "Unable to switch to " + arg1;
         qDebug() << "Device is not turned on...";
     }
-    else {
-        qDebug().noquote() << "Unable to switch to "+arg1;
+    else
+    {
+        qDebug().noquote() << "Unable to switch to " + arg1;
         qDebug() << "Selection button has not been pressed...";
     }
-
 }
 
 // This function only is called when the user press the combobox to change state from wet to dry or dry to wet for their application / device.
@@ -2558,14 +2634,16 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
     // Checks if the value is wet, if the device / application is fully on, if there is a session currently running
     // and if there is a session currently selected (selected button has been pressed).
-    if(ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
+    if (ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true)
+    {
 
         qDebug() << "Changed to wet...";
         changeWetOrDry = true;
 
         // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
         // or started).
-        if(seconds20Timer != nullptr) {
+        if (seconds20Timer != nullptr)
+        {
 
             // Stop timer.
             seconds20Timer->stop();
@@ -2585,12 +2663,12 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
             // Reset to default text.
             ui->TimeElapse->setText("20s");
             qDebug() << "Deleted 20s timer...";
-
         }
 
         // Check if the 45 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
         // or started).
-        if(seconds45Timer != nullptr) {
+        if (seconds45Timer != nullptr)
+        {
 
             // Stop timer.
             seconds45Timer->stop();
@@ -2610,11 +2688,11 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
             // Reset to default text.
             ui->TimeElapse->setText("45s");
             qDebug() << "Deleted 45s timer...";
-
         }
 
         // Check if the custom timer is not equal to nullptr.
-        if(customTimer != nullptr) {
+        if (customTimer != nullptr)
+        {
 
             // Stop timer.
             customTimer->stop();
@@ -2632,14 +2710,14 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
             customCounter = 0;
 
             // Reset to default text.
-            ui->TimeElapse->setText(QString::number(customDuration)+"s");
+            ui->TimeElapse->setText(QString::number(customDuration) + "s");
             qDebug() << "Deleted custom time timer...";
-
         }
 
         // Checks if the timer that is used to blink / flash the LEDs based on their connection is not equal to nullptr.
         // This is to prevent animation from occurring while change in state (wet to dry or dry to wet) is happening.
-        if(timerBlinkLed != nullptr) {
+        if (timerBlinkLed != nullptr)
+        {
 
             // Stop the timer.
             timerBlinkLed->stop();
@@ -2653,7 +2731,8 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
         // Checks if the timer that is used to blink / flash the CES Mode light on or off is not equal to nullptr.
         // This is to prevent animation from occurring while change in state (wet to dry or dry to wet) is happening.
-        if(timerCES != nullptr) {
+        if (timerCES != nullptr)
+        {
 
             // Stop the timer.
             timerCES->stop();
@@ -2665,18 +2744,19 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
             timerCES = nullptr;
         }
         connectionTestMain();
-
     }
     // Checks if the value is dry, if the device / application is fully on, if there is a session currently running
     // and if there is a session currently selected (selected button has been pressed).
-    else if(ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true) {
+    else if (ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true)
+    {
 
         qDebug() << "Changed to dry...";
         changeWetOrDry = true;
 
         // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
         // or started).
-        if(seconds20Timer != nullptr) {
+        if (seconds20Timer != nullptr)
+        {
 
             // Stop timer.
             seconds20Timer->stop();
@@ -2696,12 +2776,12 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
             // Reset to default text.
             ui->TimeElapse->setText("20s");
             qDebug() << "Deleted 20s timer...";
-
         }
 
         // Check if the 45 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
         // or started).
-        if(seconds45Timer != nullptr) {
+        if (seconds45Timer != nullptr)
+        {
 
             // Stop timer.
             seconds45Timer->stop();
@@ -2721,11 +2801,11 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
             // Reset to default text.
             ui->TimeElapse->setText("45s");
             qDebug() << "Deleted 45s timer...";
-
         }
 
         // Check if the custom timer is not equal to nullptr.
-        if(customTimer != nullptr) {
+        if (customTimer != nullptr)
+        {
 
             // Stop timer.
             customTimer->stop();
@@ -2743,14 +2823,14 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
             customCounter = 0;
 
             // Reset to default text.
-            ui->TimeElapse->setText(QString::number(customDuration)+"s");
+            ui->TimeElapse->setText(QString::number(customDuration) + "s");
             qDebug() << "Deleted custom time timer...";
-
         }
 
         // Checks if the timer that is used to blink / flash the LEDs based on their connection is not equal to nullptr.
         // This is to prevent animation from occurring while change in state (wet to dry or dry to wet) is happening.
-        if(timerBlinkLed != nullptr) {
+        if (timerBlinkLed != nullptr)
+        {
 
             // Stop the timer.
             timerBlinkLed->stop();
@@ -2764,7 +2844,8 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
         // Checks if the timer that is used to blink / flash the CES Mode light on or off is not equal to nullptr.
         // This is to prevent animation from occurring while change in state (wet to dry or dry to wet) is happening.
-        if(timerCES != nullptr) {
+        if (timerCES != nullptr)
+        {
 
             // Stop the timer.
             timerCES->stop();
@@ -2776,26 +2857,28 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
             timerCES = nullptr;
         }
         connectionTestMain();
-
     }
     // Checks if the device / application is turned off.
-    else if(numberOfTimesPowerBtnClicked == 0){
+    else if (numberOfTimesPowerBtnClicked == 0)
+    {
         qDebug() << "Device is not turned on...";
     }
     // Checks if there is no session currently running.
-    else if(sessionOnOrOff == false) {
-        qDebug().noquote() << "Unable to switch to "+arg1;
+    else if (sessionOnOrOff == false)
+    {
+        qDebug().noquote() << "Unable to switch to " + arg1;
         qDebug() << "Device is disconnected or no session was selected...";
     }
-    else {
-        qDebug().noquote() << "Unable to switch to "+arg1;
+    else
+    {
+        qDebug().noquote() << "Unable to switch to " + arg1;
         qDebug() << "Selection button has not been pressed...";
     }
-
 }
 
 // This function initializes the timer that will allow for the descent scrolling animation from 8 to 1 to work.
-void MainWindow::descendEndSession() {
+void MainWindow::descendEndSession()
+{
 
     // Turns off all LEDS (1 to 8)
     offLeds();
@@ -2813,7 +2896,6 @@ void MainWindow::descendEndSession() {
 
     // Starts the timer.
     endSession->start();
-
 }
 
 // This function is the one that performs the scrolling down animation when a session ends on-time or when the power button is
@@ -2821,11 +2903,13 @@ void MainWindow::descendEndSession() {
 // Notice: countSwitchDescent starts at 0 and increments by 1 everytime this function is called, which is what allows the scrolling
 // animation to happen as for each increment, the corresponding LED will be either turned on or off.
 // If battery level is below 12, display battery.
-void MainWindow::startDescendEndSession() {
+void MainWindow::startDescendEndSession()
+{
 
     // The scrolling animation based on the value of the countSwitchDescent counter.
     // It either turns on or off a certain LED based on the counter's current value.
-    if(batteryLevel <= 12){
+    if (batteryLevel <= 12)
+    {
 
         qDebug() << "Device has shut down due to critical battery level.";
 
@@ -2845,62 +2929,79 @@ void MainWindow::startDescendEndSession() {
         // Timer is value is set to nullptr.
         endSession = nullptr;
     }
-    else {
+    else
+    {
 
-        if(countSwitchDescent == 15) {
+        if (countSwitchDescent == 15)
+        {
             ledOneOff();
         }
-        else if(countSwitchDescent == 14) {
+        else if (countSwitchDescent == 14)
+        {
             ledOneOn();
         }
-        else if(countSwitchDescent == 13) {
+        else if (countSwitchDescent == 13)
+        {
             ledTwoOff();
         }
-        else if(countSwitchDescent == 12) {
+        else if (countSwitchDescent == 12)
+        {
             ledTwoOn();
         }
-        else if(countSwitchDescent == 11) {
+        else if (countSwitchDescent == 11)
+        {
             ledThreeOff();
         }
-        else if(countSwitchDescent == 10) {
+        else if (countSwitchDescent == 10)
+        {
             ledThreeOn();
         }
-        else if(countSwitchDescent == 9) {
+        else if (countSwitchDescent == 9)
+        {
             ledFourOff();
         }
-        else if(countSwitchDescent == 8) {
+        else if (countSwitchDescent == 8)
+        {
             ledFourOn();
         }
-        else if(countSwitchDescent == 7) {
+        else if (countSwitchDescent == 7)
+        {
             ledFiveOff();
         }
-        else if(countSwitchDescent == 6) {
+        else if (countSwitchDescent == 6)
+        {
             ledFiveOn();
         }
-        else if(countSwitchDescent == 5) {
+        else if (countSwitchDescent == 5)
+        {
             ledSixOff();
         }
-        else if(countSwitchDescent == 4) {
+        else if (countSwitchDescent == 4)
+        {
             ledSixOn();
         }
-        else if(countSwitchDescent == 3) {
+        else if (countSwitchDescent == 3)
+        {
             ledSevenOff();
         }
-        else if(countSwitchDescent == 2) {
+        else if (countSwitchDescent == 2)
+        {
             ledSevenOn();
         }
-        else if(countSwitchDescent == 1) {
+        else if (countSwitchDescent == 1)
+        {
             ledEightOff();
         }
-        else {
+        else
+        {
             qDebug() << "Arrived at the first intensity...";
             ledEightOn();
         }
-
     }
 
     // Checks if the countSwitchDescent counter is equal to 15.
-    if(countSwitchDescent == 15) {
+    if (countSwitchDescent == 15)
+    {
 
         qDebug() << "Stopping end session timer...";
 
@@ -2917,7 +3018,8 @@ void MainWindow::startDescendEndSession() {
         endSession = nullptr;
 
         // Checks if the session ended on time (this means that no power button has been pressed).
-        if(finishedScrolledDown == true) {
+        if (finishedScrolledDown == true)
+        {
 
             qDebug() << "Resetting all necessary components before shut down...";
 
@@ -2931,11 +3033,13 @@ void MainWindow::startDescendEndSession() {
             selectedSessionOrNot = false;
 
             // Stop necessary timers.
-            if(timerCES != nullptr) {
+            if (timerCES != nullptr)
+            {
                 timerCES->stop();
                 counterFlashGraph = 6;
             }
-            if(timerFlashes != nullptr) {
+            if (timerFlashes != nullptr)
+            {
                 timerFlashes->stop();
                 valueIntUntilEndOfFlash = 10;
             }
@@ -2959,18 +3063,22 @@ void MainWindow::startDescendEndSession() {
             ui->TimeElapse->setText("0s");
 
             qDebug() << "Device is turned off...";
-
         }
-
     }
-    else {
+    else
+    {
 
         // Increment the counter by 1.
         countSwitchDescent++;
-
     }
-
 }
+
+// Read a therapy record and update elements of session array.
+void MainWindow::updateSelectedSession(TherapyRecord *tr){
+    objData.sessionArray[0] = tr->getDuration();
+    objData.sessionArray[1] = tr->getSessionType();
+    objData.sessionArray[2] = tr->getIntensityLevel();
+};
 
 void MainWindow::on_treatmentRefreshBtn_clicked()
 {
@@ -2982,11 +3090,13 @@ void MainWindow::on_treatmentRefreshBtn_clicked()
     // Populate listview with result of getTherapyHistoryRecords
 
     // No recordings, so do nothing
-    if(!recordings.isEmpty()){
+    if (!recordings.isEmpty())
+    {
         qDebug("no recordings\n");
     }
     // Populate listview with recordings
-    else{
+    else
+    {
         ui->listWidget->addItem("testing");
     }
 }
@@ -3006,7 +3116,8 @@ void MainWindow::on_treatmentDownBtn_clicked()
 
 void MainWindow::on_treatmentUpBtn_clicked()
 {
-    if(recordlistItemIndex > 0){
+    if (recordlistItemIndex > 0)
+    {
         recordlistItemIndex--;
     }
 
