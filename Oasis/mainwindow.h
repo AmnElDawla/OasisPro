@@ -225,6 +225,12 @@ private slots:
     // the time left for the session (time left before the session ends).
     void updateUITimeCustomDisplay();
 
+    void on_treatmentRefreshBtn_clicked();
+
+    void on_treatmentDownBtn_clicked();
+
+    void on_treatmentUpBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -356,6 +362,9 @@ private:
 
     // Custom countdown that is set to 0.
     int countdownCustom = 0;
+
+    // Keep track of which item in the recordings listview we've selected
+    int recordlistItemIndex = -1;
 
 };
 #endif // MAINWINDOW_H

@@ -6,17 +6,11 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1428</width>
+    <width>1560</width>
     <height>579</height>
    </rect>
   </property>
   <property name="minimumSize">
-   <size>
-    <width>1428</width>
-    <height>579</height>
-   </size>
-  </property>
-  <property name="maximumSize">
    <size>
     <width>1428</width>
     <height>579</height>
@@ -893,7 +887,7 @@ border-radius: 20px;
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>1100</x>
+      <x>1170</x>
       <y>150</y>
       <width>321</width>
       <height>51</height>
@@ -941,8 +935,8 @@ background-repeat: none;
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>1100</x>
-      <y>84</y>
+      <x>1170</x>
+      <y>80</y>
       <width>321</width>
       <height>51</height>
      </rect>
@@ -990,7 +984,7 @@ background-repeat: none;
      <rect>
       <x>1100</x>
       <y>490</y>
-      <width>321</width>
+      <width>441</width>
       <height>41</height>
      </rect>
     </property>
@@ -1010,7 +1004,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>1100</x>
       <y>350</y>
-      <width>321</width>
+      <width>441</width>
       <height>31</height>
      </rect>
     </property>
@@ -1030,7 +1024,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>1100</x>
       <y>380</y>
-      <width>321</width>
+      <width>441</width>
       <height>111</height>
      </rect>
     </property>
@@ -1101,8 +1095,8 @@ border-radius: 10px;
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>1100</x>
-      <y>20</y>
+      <x>1170</x>
+      <y>10</y>
       <width>321</width>
       <height>51</height>
      </rect>
@@ -1149,7 +1143,7 @@ background-repeat: none;
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>1100</x>
+      <x>1170</x>
       <y>220</y>
       <width>321</width>
       <height>51</height>
@@ -1204,11 +1198,11 @@ background-repeat: none;
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>1100</x>
-      <y>289</y>
+      <x>1170</x>
+      <y>290</y>
       <width>321</width>
       <height>41</height>
      </rect>
@@ -1244,13 +1238,26 @@ background-repeat: none;
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="treatmentRefreshBtn">
+    <property name="geometry">
+     <rect>
+      <x>1440</x>
+      <y>500</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Refresh</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1428</width>
+     <width>1560</width>
      <height>22</height>
     </rect>
    </property>
