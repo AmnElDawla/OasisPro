@@ -3132,13 +3132,14 @@ void MainWindow::startDescendEndSession()
         }
 
     }
-    else
+    else if(endSession != nullptr)
     {
 
         // Increment the counter by 1.
         countSwitchDescent++;
 
     }
+
 }
 
 // Read a therapy record and update elements of session array.
