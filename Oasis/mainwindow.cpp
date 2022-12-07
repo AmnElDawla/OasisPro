@@ -2648,7 +2648,7 @@ int MainWindow::connectionTestMain()
 
         // Set variable to false as there is no active session.
         sessionOnOrOff = false;
-+
+
         qDebug() << "Session ended...";
     }
     else
