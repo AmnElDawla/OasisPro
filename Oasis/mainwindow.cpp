@@ -2569,6 +2569,80 @@ int MainWindow::connectionTestMain()
         // Turning all LEDs off.
         offLeds();
 
+        // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
+        // or started).
+        if (seconds20Timer != nullptr)
+        {
+
+            // Stop timer.
+            seconds20Timer->stop();
+
+            // Delete timer.
+            delete seconds20Timer;
+
+            // Set timer to nullptr.
+            seconds20Timer = nullptr;
+
+            // Reset counter to 0.
+            countTo20 = 0;
+
+            // Reset countdown value back to 20.
+            from20to0 = 20;
+
+            // Reset to default text.
+            ui->TimeElapse->setText("20s");
+            qDebug() << "Deleted 20s timer...";
+        }
+
+        // Check if the 45 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
+        // or started).
+        if (seconds45Timer != nullptr)
+        {
+
+            // Stop timer.
+            seconds45Timer->stop();
+
+            // Delete timer.
+            delete seconds45Timer;
+
+            // Set timer to nullptr.
+            seconds45Timer = nullptr;
+
+            // Reset counter to 0.
+            countTo45 = 0;
+
+            // Reset countdown value back to 45.
+            from45to0 = 45;
+
+            // Reset to default text.
+            ui->TimeElapse->setText("45s");
+            qDebug() << "Deleted 45s timer...";
+        }
+
+        // Check if the custom timer is not equal to nullptr.
+        if (customTimer != nullptr)
+        {
+
+            // Stop timer.
+            customTimer->stop();
+
+            // Delete timer.
+            delete customTimer;
+
+            // Set timer to nullptr.
+            customTimer = nullptr;
+
+            // Set countdownCustom equal to the customDuration given by the user (custom time inputted by the user).
+            countdownCustom = customDuration;
+
+            // Reset counter to 0.
+            customCounter = 0;
+
+            // Reset to default text.
+            ui->TimeElapse->setText(QString::number(customDuration) + "s");
+            qDebug() << "Deleted custom time timer...";
+        }
+
         // Scrolling down animation - end of session.
         descendEndSession();
 
@@ -2611,6 +2685,80 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
     {
         qDebug() << "Connected...";
 
+        // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
+        // or started).
+        if (seconds20Timer != nullptr)
+        {
+
+            // Stop timer.
+            seconds20Timer->stop();
+
+            // Delete timer.
+            delete seconds20Timer;
+
+            // Set timer to nullptr.
+            seconds20Timer = nullptr;
+
+            // Reset counter to 0.
+            countTo20 = 0;
+
+            // Reset countdown value back to 20.
+            from20to0 = 20;
+
+            // Reset to default text.
+            ui->TimeElapse->setText("20s");
+            qDebug() << "Deleted 20s timer...";
+        }
+
+        // Check if the 45 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
+        // or started).
+        if (seconds45Timer != nullptr)
+        {
+
+            // Stop timer.
+            seconds45Timer->stop();
+
+            // Delete timer.
+            delete seconds45Timer;
+
+            // Set timer to nullptr.
+            seconds45Timer = nullptr;
+
+            // Reset counter to 0.
+            countTo45 = 0;
+
+            // Reset countdown value back to 45.
+            from45to0 = 45;
+
+            // Reset to default text.
+            ui->TimeElapse->setText("45s");
+            qDebug() << "Deleted 45s timer...";
+        }
+
+        // Check if the custom timer is not equal to nullptr.
+        if (customTimer != nullptr)
+        {
+
+            // Stop timer.
+            customTimer->stop();
+
+            // Delete timer.
+            delete customTimer;
+
+            // Set timer to nullptr.
+            customTimer = nullptr;
+
+            // Set countdownCustom equal to the customDuration given by the user (custom time inputted by the user).
+            countdownCustom = customDuration;
+
+            // Reset counter to 0.
+            customCounter = 0;
+
+            // Reset to default text.
+            ui->TimeElapse->setText(QString::number(customDuration) + "s");
+            qDebug() << "Deleted custom time timer...";
+        }
+
         // If the conditions are true, it reruns the connection test.
         connectionTestMain();
     }
@@ -2618,6 +2766,80 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
     else if (ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true)
     {
         qDebug() << "Disconnected...";
+
+        // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
+        // or started).
+        if (seconds20Timer != nullptr)
+        {
+
+            // Stop timer.
+            seconds20Timer->stop();
+
+            // Delete timer.
+            delete seconds20Timer;
+
+            // Set timer to nullptr.
+            seconds20Timer = nullptr;
+
+            // Reset counter to 0.
+            countTo20 = 0;
+
+            // Reset countdown value back to 20.
+            from20to0 = 20;
+
+            // Reset to default text.
+            ui->TimeElapse->setText("20s");
+            qDebug() << "Deleted 20s timer...";
+        }
+
+        // Check if the 45 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
+        // or started).
+        if (seconds45Timer != nullptr)
+        {
+
+            // Stop timer.
+            seconds45Timer->stop();
+
+            // Delete timer.
+            delete seconds45Timer;
+
+            // Set timer to nullptr.
+            seconds45Timer = nullptr;
+
+            // Reset counter to 0.
+            countTo45 = 0;
+
+            // Reset countdown value back to 45.
+            from45to0 = 45;
+
+            // Reset to default text.
+            ui->TimeElapse->setText("45s");
+            qDebug() << "Deleted 45s timer...";
+        }
+
+        // Check if the custom timer is not equal to nullptr.
+        if (customTimer != nullptr)
+        {
+
+            // Stop timer.
+            customTimer->stop();
+
+            // Delete timer.
+            delete customTimer;
+
+            // Set timer to nullptr.
+            customTimer = nullptr;
+
+            // Set countdownCustom equal to the customDuration given by the user (custom time inputted by the user).
+            countdownCustom = customDuration;
+
+            // Reset counter to 0.
+            customCounter = 0;
+
+            // Reset to default text.
+            ui->TimeElapse->setText(QString::number(customDuration) + "s");
+            qDebug() << "Deleted custom time timer...";
+        }
 
         // If the conditions are true, it reruns the connection test.
         connectionTestMain();
