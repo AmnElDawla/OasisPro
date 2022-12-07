@@ -2422,6 +2422,16 @@ void MainWindow::pauseCounter()
 
         // Set the timer to nullptr.
         pauseTimerDefault = nullptr;
+
+        if(timer != nullptr) {
+
+            // If it is then stop, delete, and reset the timer (2 minutes timer).
+            timer->stop();
+            delete timer;
+            timer = nullptr;
+
+        }
+
         qDebug() << "End scrolling animation...";
     }
 
