@@ -2983,7 +2983,7 @@ void MainWindow::startDescendEndSession()
 
     // The scrolling animation based on the value of the countSwitchDescent counter.
     // It either turns on or off a certain LED based on the counter's current value.
-    if(criticalTrueOrFalse == false)
+    if(criticalTrueOrFalse == false && endSession != nullptr)
     {
 
         if (countSwitchDescent == 15)
