@@ -3219,8 +3219,8 @@ void MainWindow::startDescendEndSession()
         qDebug() << "Device has shut down due to critical battery level.";
 
         // Stopping necessary battery timers.
-        // batteryStartTimer->start(500);
-        // batteryStopTimer->start(2500);
+        batteryStartTimer->start(500);
+        batteryStopTimer->start(2500);
 
     }
 
