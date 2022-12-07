@@ -243,6 +243,11 @@ void MainWindow::on_powerBtn_clicked()
         // has been called.
         criticalTrueOrFalse = false;
 
+        // Enable necessary buttons
+        ui->increaseIntensityBtn->setEnabled(true);
+        ui->decreaseIntensityBtn->setEnabled(true);
+        ui->selectionBtn->setEnabled(true);
+
         qDebug() << "Device is turned on...";
     }
 
@@ -1876,6 +1881,9 @@ void MainWindow::blinkCounter()
         // device is connected or not.
         if (connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
         {
+            ui->increaseIntensityBtn->setEnabled(false);
+            ui->decreaseIntensityBtn->setEnabled(false);
+            ui->selectionBtn->setEnabled(false);
             playScrollAnimation();
         }
         else if (connectivity == true && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
@@ -1902,9 +1910,9 @@ void MainWindow::blinkCounter()
             delete tr;
 
             // Enable intensity and selection buttons
-            ui->increaseIntensityBtn->setEnabled(true);
-            ui->decreaseIntensityBtn->setEnabled(true);
-            ui->selectionBtn->setEnabled(true);
+            ui->increaseIntensityBtn->setEnabled(false);
+            ui->decreaseIntensityBtn->setEnabled(false);
+            ui->selectionBtn->setEnabled(false);
 
             // Start session timer based on the duration
 
@@ -2353,6 +2361,7 @@ void MainWindow::switchLeds()
         // Checks if the counter named countSwitch is equal to 15 (meaning it reached the last LED and should not continue the scrolling animation).
         if (countSwitch == 15)
         {
+
             qDebug() << "Stopping timer...";
 
             // Resets the counter to 0.
@@ -2360,6 +2369,11 @@ void MainWindow::switchLeds()
 
             // Stops the timer.
             intensityTimer->stop();
+
+            ui->increaseIntensityBtn->setEnabled(true);
+            ui->decreaseIntensityBtn->setEnabled(true);
+            ui->selectionBtn->setEnabled(true);
+
         }
         // If the counter is not equal to 15, then increment the counter by 1.
         else
@@ -2367,6 +2381,7 @@ void MainWindow::switchLeds()
 
             // Increments counter by 1.
             countSwitch++;
+
         }
     }
 }
