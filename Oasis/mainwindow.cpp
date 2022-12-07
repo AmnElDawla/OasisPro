@@ -2823,15 +2823,54 @@ void MainWindow::descendEndSession() {
 // If battery level is below 12, display battery.
 void MainWindow::startDescendEndSession() {
 
-    // The scrolling animation based on the value of the countSwitchDescent counter.
-    // It either turns on or off a certain LED based on the counter's current value.
-    if(batteryLevel <= 12){
+    // Checks if the battery level is less or equal to 12 (12%), if it is, it will shutdown the device (not continue the descent
+    // animation).
+    if(batteryLevel <= 12) {
+
+        qDebug() << "Resetting all necessary components before immediate shut down...";
+
+        // Set variable to false as there is no active session.
+        sessionOnOrOff = false;
+
+        // Reset number of clicks to 0.
+        numberOfTimesPowerBtnClicked = 0;
+
+        // Set selected session boolean variable to false.
+        selectedSessionOrNot = false;
+
+        // Stop necessary timers.
+        if(timerCES != nullptr) {
+            timerCES->stop();
+            counterFlashGraph = 6;
+        }
+        if(timerFlashes != nullptr) {
+            timerFlashes->stop();
+            valueIntUntilEndOfFlash = 10;
+        }
+
+        // Stopping battery degradation.
+        batteryDegradationTimer->stop();
+        degradeBatteryAllowed = false;
+
+        // Turns off the device completely.
+        deviceOff();
+        iconsOff();
+        offConnect();
+
+        // Reset to finished scroll down animation to false.
+        finishedScrolledDown = false;
+
+        // Set the text in time left section back to default.
+        ui->TimeText->setText("Time Left");
+
+        // Set the text in time elapsed section back to default.
+        ui->TimeElapse->setText("0s");
 
         qDebug() << "Device has shut down due to critical battery level.";
 
         // Stopping necessary battery timers.
-        batteryStartTimer->start(500);
-        batteryStopTimer->start(2500);
+        // batteryStartTimer->start(500);
+        // batteryStopTimer->start(2500);
 
         // Counter is reset to 0.
         countSwitchDescent = 0;
@@ -2844,7 +2883,10 @@ void MainWindow::startDescendEndSession() {
 
         // Timer is value is set to nullptr.
         endSession = nullptr;
+
     }
+    // The scrolling animation based on the value of the countSwitchDescent counter.
+    // It either turns on or off a certain LED based on the counter's current value.
     else {
 
         if(countSwitchDescent == 15) {
