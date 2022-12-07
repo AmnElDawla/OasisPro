@@ -2826,11 +2826,27 @@ void MainWindow::startDescendEndSession() {
     // The scrolling animation based on the value of the countSwitchDescent counter.
     // It either turns on or off a certain LED based on the counter's current value.
     if(batteryLevel <= 12){
+
         qDebug() << "Device has shut down due to critical battery level.";
+
+        // Stopping necessary battery timers.
         batteryStartTimer->start(500);
         batteryStopTimer->start(2500);
+
+        // Counter is reset to 0.
+        countSwitchDescent = 0;
+
+        // Timer is stopped.
+        endSession->stop();
+
+        // Timer is deleted.
+        delete endSession;
+
+        // Timer is value is set to nullptr.
+        endSession = nullptr;
     }
     else {
+
         if(countSwitchDescent == 15) {
             ledOneOff();
         }
@@ -2880,10 +2896,12 @@ void MainWindow::startDescendEndSession() {
             qDebug() << "Arrived at the first intensity...";
             ledEightOn();
         }
+
     }
 
     // Checks if the countSwitchDescent counter is equal to 15.
     if(countSwitchDescent == 15) {
+
         qDebug() << "Stopping end session timer...";
 
         // Counter is reset to 0.
@@ -2949,6 +2967,7 @@ void MainWindow::startDescendEndSession() {
 
         // Increment the counter by 1.
         countSwitchDescent++;
+
     }
 
 }
