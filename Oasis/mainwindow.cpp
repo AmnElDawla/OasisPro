@@ -2648,7 +2648,7 @@ int MainWindow::connectionTestMain()
 
         // Set variable to false as there is no active session.
         sessionOnOrOff = false;
-
++
         qDebug() << "Session ended...";
     }
     else
@@ -2670,6 +2670,7 @@ void MainWindow::on_newBattery_clicked()
     // Set batteryLevel variable back to 100%.
     batteryLevel = 100;
     batteryLevelEnlarged = batteryLevel * 100;
+
 }
 
 // This function only is called when the user press the combobox to connect or disconnect their application / device.
@@ -2859,6 +2860,7 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
         qDebug().noquote() << "Unable to switch to " + arg1;
         qDebug() << "Selection button has not been pressed...";
     }
+
 }
 
 // This function only is called when the user press the combobox to change state from wet to dry or dry to wet for their application / device.
