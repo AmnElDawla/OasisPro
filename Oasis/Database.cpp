@@ -28,8 +28,8 @@ bool Database::initializeDatabaseTables()
 {
     databaseGui.transaction();
     QSqlQuery queryTable;
-    QString queryDatabaseUsersTable = "CREATE TABLE IF NOT EXISTS users (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, username TEXT NOT NULL);";
-    QString queryDatabaseTreatmentHistoryTable = "CREATE TABLE IF NOT EXISTS treatmentHistory (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, tid INTEGER NOT NULL, session_type INTEGER NOT NULL, intensity_level INTEGER NOT NULL, duration INTEGER NOT NULL);";
+    QString queryDatabaseUsersTable = "CREATE TABLE IF NOT EXISTS users (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, username TEXT NOT NULL)";
+    QString queryDatabaseTreatmentHistoryTable = "CREATE TABLE IF NOT EXISTS treatmentHistory (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, tid INTEGER NOT NULL, session_type INTEGER NOT NULL, intensity_level INTEGER NOT NULL, duration INTEGER NOT NULL)";
     queryTable.exec(queryDatabaseUsersTable);
     queryTable.exec(queryDatabaseTreatmentHistoryTable);
 
@@ -136,9 +136,12 @@ int Database::getTherapyId(int userId)
     query.exec();
 
     // Generate new therapy id:
-    query.first();
-    int therapyId = query.value(0).toInt() + 1;
-
+    int therapyId = 0;
+    while (query.next())
+    {
+        therapyId++;
+    }
+    therapyId++;
     return therapyId;
 };
 
@@ -181,8 +184,8 @@ bool Database::addTherapyHistoryRecord(int userId, TherapyRecord *tr)
     qDebug() << "Database: Inserting therapy history record into Table treatmentHistory:";
     qDebug() << "   user id: " << userId;
     qDebug() << "   therapy id: " << therapyId;
-    qDebug() << "   session: " << session;
-    qDebug() << "   database: " << intensity;
+    qDebug() << "   session type: " << session;
+    qDebug() << "   intensity level: " << intensity;
     qDebug() << "   duration: " << duration;
 
     return databaseGui.commit();
@@ -231,11 +234,4 @@ bool Database::deleteTherapyHistoryRecords(int userId)
     queryTable.exec();
 
     return databaseGui.commit();
-};
-
-// Read a therapy record and update elements of session array.
-void Database::updateSelectedSession(TherapyRecord *tr){
-    //        objData.sessionArray[0] = tr->getDuration();
-    //        objData.sessionArray[1] = tr->getSessionType();
-    //        objData.sessionArray[2] = tr->getIntensityLevel();
 };

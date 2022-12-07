@@ -225,6 +225,9 @@ private slots:
     // the time left for the session (time left before the session ends).
     void updateUITimeCustomDisplay();
 
+    // This function is to update elements in the session array based on a therapy record.
+    void updateSelectedSession(TherapyRecord *tr);
+
     void on_treatmentRefreshBtn_clicked();
 
     void on_treatmentDownBtn_clicked();
