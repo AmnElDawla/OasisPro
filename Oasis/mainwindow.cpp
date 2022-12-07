@@ -3114,6 +3114,7 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
         qDebug().noquote() << "Unable to switch to " + arg1;
         qDebug() << "Selection button has not been pressed...";
     }
+
 }
 
 // This function initializes the timer that will allow for the descent scrolling animation from 8 to 1 to work.
@@ -3136,6 +3137,7 @@ void MainWindow::descendEndSession()
 
     // Starts the timer.
     endSession->start();
+
 }
 
 // This function is the one that performs the scrolling down animation when a session ends on-time or when the power button is
