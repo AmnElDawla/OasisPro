@@ -3118,12 +3118,14 @@ void MainWindow::startDescendEndSession()
 
             qDebug() << "Device is turned off...";
         }
+
     }
     else
     {
 
         // Increment the counter by 1.
         countSwitchDescent++;
+
     }
 }
 
