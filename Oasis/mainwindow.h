@@ -366,5 +366,8 @@ private:
     // Keep track of which item in the recordings listview we've selected
     int recordlistItemIndex = -1;
 
+    // Keep track of how many time shut down due to critical battery is called.
+    int criticalTrueOrFalse = false;
+
 };
 #endif // MAINWINDOW_H

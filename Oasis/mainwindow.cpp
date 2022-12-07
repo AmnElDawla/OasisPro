@@ -226,6 +226,10 @@ void MainWindow::on_powerBtn_clicked()
         // Set the number of clicks to 2.
         numberOfTimesPowerBtnClicked = 2;
 
+        // Set the variable to false. This variable is used to keep track of when and how many times the critical battery shut down
+        // has been called.
+        criticalTrueOrFalse = false;
+
         qDebug() << "Device is turned on...";
 
     }
@@ -2825,7 +2829,27 @@ void MainWindow::startDescendEndSession() {
 
     // Checks if the battery level is less or equal to 12 (12%), if it is, it will shutdown the device (not continue the descent
     // animation).
-    if(batteryLevel <= 12) {
+    if(batteryLevel <= 12 && criticalTrueOrFalse == false) {
+
+        // Set the variable to true.
+        criticalTrueOrFalse = true;
+
+        // Counter is reset to 0.
+        countSwitchDescent = 0;
+
+        // Check if the timer is not equal to nullptr.
+        if(endSession != nullptr) {
+
+            // Timer is stopped.
+            endSession->stop();
+
+            // Timer is deleted.
+            delete endSession;
+
+            // Timer is value is set to nullptr.
+            endSession = nullptr;
+
+        }
 
         qDebug() << "Resetting all necessary components before immediate shut down...";
 
@@ -2872,22 +2896,11 @@ void MainWindow::startDescendEndSession() {
         // batteryStartTimer->start(500);
         // batteryStopTimer->start(2500);
 
-        // Counter is reset to 0.
-        countSwitchDescent = 0;
-
-        // Timer is stopped.
-        endSession->stop();
-
-        // Timer is deleted.
-        delete endSession;
-
-        // Timer is value is set to nullptr.
-        endSession = nullptr;
-
     }
     // The scrolling animation based on the value of the countSwitchDescent counter.
     // It either turns on or off a certain LED based on the counter's current value.
-    else {
+    if(criticalTrueOrFalse == false)
+    {
 
         if(countSwitchDescent == 15) {
             ledOneOff();
@@ -2942,7 +2955,7 @@ void MainWindow::startDescendEndSession() {
     }
 
     // Checks if the countSwitchDescent counter is equal to 15.
-    if(countSwitchDescent == 15) {
+    if(countSwitchDescent == 15 && batteryLevel > 12) {
 
         qDebug() << "Stopping end session timer...";
 
