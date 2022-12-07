@@ -264,16 +264,25 @@ void MainWindow::on_powerBtn_clicked()
         // Turn off all LEDs.
         offLeds();
 
-        // Stop necessary timers.
+        // Stop, delete, and resetting necessary timers.
         if (timerCES != nullptr)
         {
             timerCES->stop();
+            delete timerCES;
+            timerCES = nullptr;
             counterFlashGraph = 6;
         }
         if (timerFlashes != nullptr)
         {
             timerFlashes->stop();
+            delete timerFlashes;
+            timerFlashes = nullptr;
             valueIntUntilEndOfFlash = 10;
+        }
+        if(timer != nullptr) {
+            timer->stop();
+            delete timer;
+            timer = nullptr;
         }
 
         // Restart connection test to end the session.
@@ -2948,7 +2957,7 @@ void MainWindow::startDescendEndSession()
         // Set selected session boolean variable to false.
         selectedSessionOrNot = false;
 
-        // Stop, delete, and set necessary timers.
+        // Stop, delete, and resetting necessary timers.
         if(timerCES != nullptr) {
             timerCES->stop();
             delete timerCES;
@@ -3098,16 +3107,23 @@ void MainWindow::startDescendEndSession()
             // Set selected session boolean variable to false.
             selectedSessionOrNot = false;
 
-            // Stop necessary timers.
-            if (timerCES != nullptr)
-            {
+            // Stop, delete, and resetting necessary timers.
+            if(timerCES != nullptr) {
                 timerCES->stop();
+                delete timerCES;
+                timerCES = nullptr;
                 counterFlashGraph = 6;
             }
-            if (timerFlashes != nullptr)
-            {
+            if(timerFlashes != nullptr) {
                 timerFlashes->stop();
+                delete timerFlashes;
+                timerFlashes = nullptr;
                 valueIntUntilEndOfFlash = 10;
+            }
+            if(timer != nullptr) {
+                timer->stop();
+                delete timer;
+                timer = nullptr;
             }
 
             // Stopping battery degradation.
