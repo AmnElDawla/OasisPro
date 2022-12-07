@@ -2910,24 +2910,9 @@ void MainWindow::descendEndSession()
 void MainWindow::startDescendEndSession()
 {
 
-<<<<<<< HEAD
     // Checks if the battery level is less or equal to 12 (12%), if it is, it will shutdown the device (not continue the descent
     // animation).
     if(batteryLevel <= 12 && criticalTrueOrFalse == false) {
-||||||| be8e102
-    // The scrolling animation based on the value of the countSwitchDescent counter.
-    // It either turns on or off a certain LED based on the counter's current value.
-    if(batteryLevel <= 12){
-
-        qDebug() << "Device has shut down due to critical battery level.";
-=======
-    // The scrolling animation based on the value of the countSwitchDescent counter.
-    // It either turns on or off a certain LED based on the counter's current value.
-    if (batteryLevel <= 12)
-    {
-
-        qDebug() << "Device has shut down due to critical battery level.";
->>>>>>> d014434a8b7f14eb628c9746a04be8f3b42e827c
 
         // Set the variable to true.
         criticalTrueOrFalse = true;
@@ -2995,17 +2980,11 @@ void MainWindow::startDescendEndSession()
         // batteryStopTimer->start(2500);
 
     }
-<<<<<<< HEAD
+
     // The scrolling animation based on the value of the countSwitchDescent counter.
     // It either turns on or off a certain LED based on the counter's current value.
     if(criticalTrueOrFalse == false)
     {
-||||||| be8e102
-    else {
-=======
-    else
-    {
->>>>>>> d014434a8b7f14eb628c9746a04be8f3b42e827c
 
         if (countSwitchDescent == 15)
         {
@@ -3072,17 +3051,11 @@ void MainWindow::startDescendEndSession()
             qDebug() << "Arrived at the first intensity...";
             ledEightOn();
         }
+
     }
 
     // Checks if the countSwitchDescent counter is equal to 15.
-<<<<<<< HEAD
     if(countSwitchDescent == 15 && batteryLevel > 12) {
-||||||| be8e102
-    if(countSwitchDescent == 15) {
-=======
-    if (countSwitchDescent == 15)
-    {
->>>>>>> d014434a8b7f14eb628c9746a04be8f3b42e827c
 
         qDebug() << "Stopping end session timer...";
 
@@ -3155,14 +3128,17 @@ void MainWindow::startDescendEndSession()
 }
 
 // Read a therapy record and update elements of session array.
-void MainWindow::updateSelectedSession(TherapyRecord *tr){
+void MainWindow::updateSelectedSession(TherapyRecord *tr) {
+
     objData.sessionArray[0] = tr->getDuration();
     objData.sessionArray[1] = tr->getSessionType();
     objData.sessionArray[2] = tr->getIntensityLevel();
-};
+
+}
 
 void MainWindow::on_treatmentRefreshBtn_clicked()
 {
+
     // User getTherapyHistoryRecords for the currently selected user
     int userId = ui->listOfUsers->currentIndex();
     userId++;
@@ -3180,10 +3156,12 @@ void MainWindow::on_treatmentRefreshBtn_clicked()
     {
         ui->listWidget->addItem("testing");
     }
+
 }
 
 void MainWindow::on_treatmentDownBtn_clicked()
 {
+
     /*
      * Add when getTherapyHistoryRecords works properly
     QVector<TherapyRecord *> recordings = newDatabase->getTherapyHistoryRecords(userId);
@@ -3191,16 +3169,20 @@ void MainWindow::on_treatmentDownBtn_clicked()
         recordlistItemIndex++;
     }
     */
+
     recordlistItemIndex++;
     ui->listWidget->setCurrentRow(recordlistItemIndex);
+
 }
 
 void MainWindow::on_treatmentUpBtn_clicked()
 {
+
     if (recordlistItemIndex > 0)
     {
         recordlistItemIndex--;
     }
 
     ui->listWidget->setCurrentRow(recordlistItemIndex);
+
 }
