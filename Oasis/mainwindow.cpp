@@ -2952,3 +2952,44 @@ void MainWindow::startDescendEndSession() {
     }
 
 }
+
+void MainWindow::on_treatmentRefreshBtn_clicked()
+{
+    // User getTherapyHistoryRecords for the currently selected user
+    int userId = ui->listOfUsers->currentIndex();
+    userId++;
+    QVector<TherapyRecord *> recordings = newDatabase->getTherapyHistoryRecords(userId);
+
+    // Populate listview with result of getTherapyHistoryRecords
+
+    // No recordings, so do nothing
+    if(!recordings.isEmpty()){
+        qDebug("no recordings\n");
+    }
+    // Populate listview with recordings
+    else{
+        ui->listWidget->addItem("testing");
+    }
+}
+
+void MainWindow::on_treatmentDownBtn_clicked()
+{
+    /*
+     * Add when getTherapyHistoryRecords works properly
+    QVector<TherapyRecord *> recordings = newDatabase->getTherapyHistoryRecords(userId);
+    if(recordlistItemIndex < recordings.size()-1){
+        recordlistItemIndex++;
+    }
+    */
+    recordlistItemIndex++;
+    ui->listWidget->setCurrentRow(recordlistItemIndex);
+}
+
+void MainWindow::on_treatmentUpBtn_clicked()
+{
+    if(recordlistItemIndex > 0){
+        recordlistItemIndex--;
+    }
+
+    ui->listWidget->setCurrentRow(recordlistItemIndex);
+}
