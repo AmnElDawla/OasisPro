@@ -107,9 +107,9 @@ Notice 2: The Progress Report Table will need to be updated throughout the proje
 | Battery Level    |   &#128994;     | Khaled Farag          | N/A  | 2022-11-30 | 2022-12-05 | 3 weeks | Basic features were completed in <1 weeks; needed to wait for other features to be sufficiently completed to finish this one. |
 | Session Selection Feature |   &#128994;  | Alex Nedev   | Andre Nonaka Cordova  | 2022-11-30 | 2022-11-18      | 1 week | N/A |
 | Connection Test Feature |   &#128994;  | Andre Nonaka Cordova  | Mingrui Liang | 2022-11-30 | 2022-11-18      | 1.5 week | N/A |
-| Intensity Feature  |   &#128994;   | Alex Nedev  | Andre Nonaka Cordova   | 2022-11-18 | 2022-11-18      | 1 weeks | N/A |
-| Record Therapy Feature (should have support for at least 4 users) |   &#128993;  | Mingrui Liang  | N/A  | 2022-11-30 | 2022-11-19      | N/A | N/A |
-| Replay Therapy Feature (should have support for at least 4 users) |   &#128308;  | N/A  | N/A | 2022-11-30               | 2022-11-19      | N/A        | N/A   |
+| Intensity Feature  |   &#128994;   | Andre Nonaka Cordova  | Alex Nedev   | 2022-11-18 | 2022-11-18      | 1 weeks | N/A |
+| Record Therapy Feature (should have support for at least 4 users) |   &#128993;  | Mingrui Liang  | Andre Nonaka Cordova  | 2022-11-30 | 2022-11-19      | N/A | N/A |
+| Replay Therapy Feature (should have support for at least 4 users) |   &#128308;  | Alex Nedev | Mingrui Liang | 2022-11-30               | 2022-11-19      | N/A        | N/A   |
 
 ## How to work on this project in your personal computer
 
