@@ -3570,3 +3570,48 @@ void MainWindow::on_treatmentUpBtn_clicked()
     ui->listWidget->setCurrentRow(recordlistItemIndex);
 
 }
+
+void MainWindow::on_treatmenSelectpBtn_clicked()
+{
+    int tid = recordlistItemIndex + 1;
+    qDebug("selectedTherapy = %d\n", tid);
+    // Get current user id from combo box on GUI:
+    int userId = ui->listOfUsers->currentIndex();
+    userId++; // Lowerbound of user id is one
+
+    QVector<TherapyRecord *> recordings = newDatabase->getTherapyHistoryRecords(userId);
+    TherapyRecord* selectedRecord = recordings[recordlistItemIndex];
+
+    int sessionNumberTherapy = selectedRecord->getSessionType();
+    int sessionDurationTherapy = selectedRecord->getDuration();
+    int sessionIntensityLevelTherapy = selectedRecord->getIntensityLevel();
+
+    qDebug() << QString::number(sessionDurationTherapy);
+    qDebug() <<"sessioNumberTherapy = " << QString::number(sessionNumberTherapy);
+    qDebug() << QString::number(sessionIntensityLevelTherapy);
+
+    objData.sessionArray[0] = sessionDurationTherapy;
+    objData.sessionArray[1] = sessionNumberTherapy;
+    objData.sessionArray[2] = sessionIntensityLevelTherapy;
+
+    selectedRecordedTherapy = true;
+
+
+    //***** Update GUI to reflect selected record *****//
+
+    // Highlight session duration of recording
+    if(sessionDurationTherapy == 0){
+        ui->listDuration->setCurrentRow(0);
+        ui->TimeElapse->setText(QString::number(20));
+    }
+    else if(sessionDurationTherapy == 1){
+        ui->listDuration->setCurrentRow(1);
+        ui->TimeElapse->setText(QString::number(45));
+    }
+    else{
+        ui->listDuration->setCurrentRow(2);
+        ui->TimeElapse->setText(QString::number(sessionDurationTherapy));
+    }
+
+    ui->listSession->setCurrentRow(sessionNumberTherapy); // Highlight session type of recording
+}
