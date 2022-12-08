@@ -63,10 +63,10 @@ This project also has 2 additional milestones, which are:
 
 | Team Members         | Tasks                 |
 | -------------------- | --------------------- |
-| Andre Nonaka Cordova | Readme.md<br>GUI Creation<br>Use Case Model<br>Traceability Matrix<br>Program Logic |
-| Alex Nedev | Session Selection Feature<br>Intensity Feature |
+| Andre Nonaka Cordova | Readme.md<br>GUI Creation<br>Use Case Model<br>Traceability Matrix<br>Program Logic<br>Connection Test Feature <br> Intensity Feature |
+| Alex Nedev | Session Selection Feature<br>Replay Feature |
 | Khaled Farag | UML Model<br>Power Feature<br>Battery Level |
-| Mingrui Liang | Connection Test Feature<br>Record Therapy Feature |
+| Mingrui Liang | Replay Feature<br>Record Therapy Feature |
 
 ## Status of OasisPro
 
