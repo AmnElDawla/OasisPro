@@ -140,7 +140,7 @@ QString Database::getUserById(int id) {
 
     }
 
-    return nullptr;
+    return QString::null;
 }
 
 // Check if each value in a therapy record is valid.
