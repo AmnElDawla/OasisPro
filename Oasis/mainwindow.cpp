@@ -61,6 +61,12 @@ MainWindow::MainWindow(QWidget *parent)
         // Testing if it can retrieve user data.
         newDatabase->getUserData();
 
+        // Setting usernames in combobox.
+        ui->listOfUsers->setItemText(0, newDatabase->getUserById(1));
+        ui->listOfUsers->setItemText(1, newDatabase->getUserById(2));
+        ui->listOfUsers->setItemText(2, newDatabase->getUserById(3));
+        ui->listOfUsers->setItemText(3, newDatabase->getUserById(4));
+
         qDebug() << "Operation was successfully completed...";
     }
     else

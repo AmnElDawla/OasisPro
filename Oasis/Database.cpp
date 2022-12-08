@@ -117,6 +117,33 @@ QVector<Users *> Database::getUserData()
     return userData;
 };
 
+// Return the specific username given a specific user id.
+QString Database::getUserById(int id) {
+
+    databaseGui.transaction();
+    QSqlQuery queryTable;
+    // Select fields:
+    QString queryDatabaseUsersTable = "SELECT * FROM users";
+    queryTable.prepare(queryDatabaseUsersTable);
+    queryTable.exec();
+
+    int count = 0;
+    while (queryTable.next())
+    {
+
+        count++;
+        int userId = queryTable.value("uid").toInt();
+
+        if(userId == id) {
+            QString userName = queryTable.value("username").toString();
+            return userName;
+        }
+    }
+
+    return nullptr;
+
+}
+
 // Check if each value in a therapy record is valid.
 bool Database::validateTherapyRecord(const int sessionType, const int intensityLevel, const int duration)
 {
