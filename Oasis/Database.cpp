@@ -118,7 +118,7 @@ QVector<Users *> Database::getUserData()
 };
 
 // Return the specific username given a specific user id.
-QString Database::getUserById(int id) {
+Users* Database::getUserById(int id) {
     databaseGui.transaction();
     QSqlQuery queryTable;
     // Select fields:
@@ -135,12 +135,21 @@ QString Database::getUserById(int id) {
 
         if(userId == id) {
             QString userName = queryTable.value("username").toString();
-            return userName;
+            if (userId == 1)
+            {
+                Administrator *admin = new Administrator(userId, userName, "admin");
+                return admin;
+            }
+            else if (userId > 1)
+            {
+                Guest *guest = new Guest(userId, userName, "guest");
+                return guest;
+            }
         }
 
     }
 
-    return QString::null;
+    return nullptr;
 };
 
 // Check if each value in a therapy record is valid.

@@ -30,7 +30,7 @@ public:
     QVector<TherapyRecord *> getTherapyHistoryRecords(int userId);
     bool deleteTherapyHistoryRecords(int userId);
     // bool getTherapyHistoryRecord(int userId, int therapyId);
-    QString getUserById(int id);
+    Users* getUserById(int id);
 
 private:
     // Member variables:
