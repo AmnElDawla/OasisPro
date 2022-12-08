@@ -16,14 +16,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Administrator.cpp \
     Database.cpp \
+    Guest.cpp \
     TherapyRecord.cpp \
     Users.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    Administrator.h \
     Database.h \
+    Guest.h \
     TherapyRecord.h \
     Users.h \
     mainwindow.h

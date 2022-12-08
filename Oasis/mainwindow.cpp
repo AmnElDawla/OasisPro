@@ -59,9 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "Testing: Getting users details...";
 
         // Testing if it can retrieve user data.
-        newDatabase->getUserData(1);
-        newDatabase->getUserData(2);
-        newDatabase->getUserData(3);
+        newDatabase->getUserData();
 
         qDebug() << "Operation was successfully completed...";
     }

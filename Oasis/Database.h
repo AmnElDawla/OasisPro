@@ -1,13 +1,14 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#include <QDebug>
 #include <QString>
+#include <QCoreApplication>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include "Users.h"
 #include "TherapyRecord.h"
-#include <QDebug>
-#include <QCoreApplication>
+#include "Administrator.h"
+#include "Guest.h"
 
 class Database
 {
@@ -20,9 +21,9 @@ public:
     // Member functions:
     bool initializeDatabaseTables();
     bool initializeDatabase();
-    bool initializeDefaultUserRecord();
     bool addUserRecord(int userId, QString name);
-    QVector<Users *> getUserData(int userId);
+    bool initializeDefaultUserRecord();
+    QVector<Users *> getUserData();
     bool validateTherapyRecord(const int sessionType, const int intensityLevel, const int duration);
     int getTherapyId(int userId);
     bool addTherapyHistoryRecord(int userId, TherapyRecord *tr);

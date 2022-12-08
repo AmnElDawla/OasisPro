@@ -8,52 +8,6 @@ Database::~Database()
     QSqlDatabase::removeDatabase(databaseGui.defaultConnection);
 };
 
-// Initialize required datebase structure(s).
-bool Database::initializeDatabase()
-{
-    databaseGui = QSqlDatabase::addDatabase("QSQLITE");
-    databaseGui.setDatabaseName(QCoreApplication::applicationDirPath() + "/patient.db");
-
-    if (!databaseGui.open())
-    {
-        qDebug() << "ERROR: Cannot open Database patient.db";
-        return false;
-    }
-
-    return true;
-};
-
-// Initialize required tables in Database patient.db.
-bool Database::initializeDatabaseTables()
-{
-    databaseGui.transaction();
-    QSqlQuery queryTable;
-    QString queryDatabaseUsersTable = "CREATE TABLE IF NOT EXISTS users (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, username TEXT NOT NULL)";
-    QString queryDatabaseTreatmentHistoryTable = "CREATE TABLE IF NOT EXISTS treatmentHistory (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, tid INTEGER NOT NULL, session_type INTEGER NOT NULL, intensity_level INTEGER NOT NULL, duration INTEGER NOT NULL)";
-    queryTable.exec(queryDatabaseUsersTable);
-    queryTable.exec(queryDatabaseTreatmentHistoryTable);
-
-    return databaseGui.commit();
-};
-
-// Initialize values in a user record.
-bool Database::initializeDefaultUserRecord()
-{
-    databaseGui.transaction();
-    QSqlQuery queryTable;
-    // Initialize user names:
-    QString queryRecordUser1 = "INSERT INTO users (username) VALUES (Eric)";
-    QString queryRecordUser2 = "INSERT INTO users (username) VALUES (Robert)";
-    QString queryRecordUser3 = "INSERT INTO users (username) VALUES (Angelina)";
-    QString queryRecordUser4 = "INSERT INTO users (username) VALUES (Emma)";
-    queryTable.exec(queryRecordUser1);
-    queryTable.exec(queryRecordUser2);
-    queryTable.exec(queryRecordUser3);
-    queryTable.exec(queryRecordUser4);
-
-    return databaseGui.commit();
-};
-
 // Insert a new user record into Database patient.db.
 bool Database::addUserRecord(int userId, QString userName)
 {
@@ -75,26 +29,89 @@ bool Database::addUserRecord(int userId, QString userName)
     return databaseGui.commit();
 };
 
+// Initialize required datebase structure(s).
+bool Database::initializeDatabase()
+{
+    databaseGui = QSqlDatabase::addDatabase("QSQLITE");
+    databaseGui.setDatabaseName(QCoreApplication::applicationDirPath() + "/patient.db");
+
+    if (!databaseGui.open())
+    {
+        qDebug() << "ERROR: Cannot open Database patient.db";
+        return false;
+    }
+
+    return true;
+};
+
+// Initialize values in a user record.
+bool Database::initializeDefaultUserRecord()
+{
+    QString userNames[4] = {"Eric", "Robert", "Angelina", "Emma"};
+    for (int i = 0; i < 4; i++)
+    {
+        if ((this->addUserRecord(i + 1, userNames[i])) == false)
+        {
+            return false;
+        }
+    }
+    return true;
+};
+
+// Initialize required tables in Database patient.db.
+bool Database::initializeDatabaseTables()
+{
+    databaseGui.transaction();
+    QSqlQuery queryTable;
+
+    QString queryDropUsersTable = "DROP TABLE users;";
+    queryTable.exec(queryDropUsersTable);
+
+    QString queryDatabaseUsersTable = "CREATE TABLE IF NOT EXISTS users (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, username TEXT NOT NULL)";
+    QString queryDatabaseTreatmentHistoryTable = "CREATE TABLE IF NOT EXISTS treatmentHistory (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, tid INTEGER NOT NULL, session_type INTEGER NOT NULL, intensity_level INTEGER NOT NULL, duration INTEGER NOT NULL)";
+    queryTable.exec(queryDatabaseUsersTable);
+    queryTable.exec(queryDatabaseTreatmentHistoryTable);
+
+    databaseGui.commit();
+
+    return initializeDefaultUserRecord();
+};
+
 // Retrieve data of a user by user id from Database patient.db.
-QVector<Users *> Database::getUserData(int userId)
+QVector<Users *> Database::getUserData()
 {
     QVector<Users *> userData;
 
     databaseGui.transaction();
     QSqlQuery queryTable;
     // Select fields:
-    QString queryDatabaseUsersTable = "SELECT uid FROM users WHERE uid = :userId";
+    QString queryDatabaseUsersTable = "SELECT * FROM users";
     queryTable.prepare(queryDatabaseUsersTable);
-    queryTable.bindValue(":userId", userId);
     queryTable.exec();
 
     int count = 0;
     while (queryTable.next())
     {
         count++;
-        QString names = queryTable.value("username").toString();
+        int UserId = queryTable.value("uid").toInt();
+        QString userName = queryTable.value("username").toString();
+
+        // Print Status:
         QString newCount = QString::fromStdString(std::to_string(count));
-        qDebug() << "User " << newCount << " is named " << names;
+        qDebug() << "Database: User " << newCount << " is named " << userName;
+
+        if (UserId == 1)
+        {
+            Administrator *admin = new Administrator(UserId, userName, "admin");
+            userData.push_back(admin);
+            delete admin;
+        }
+        else if (UserId > 1)
+        {
+            Guest *guest = new Guest(UserId, userName, "guest");
+            userData.push_back(guest);
+            delete guest;
+        }
     }
 
     return userData;
@@ -108,17 +125,17 @@ bool Database::validateTherapyRecord(const int sessionType, const int intensityL
     bool validity = true;
     if (sessionType < 0)
     {
-        qDebug() << "ERROR: Invalid " << sessionType << " record: session number is not valid";
+        qDebug() << "ERROR: Invalid threapy record: session number is not valid";
         validity = false;
     }
     else if ((intensityLevel < intensityMin) || (intensityLevel > intensityMax))
     {
-        qDebug() << "ERROR: Invalid " << sessionType << " record: intensity level is not valid";
+        qDebug() << "ERROR: Invalid threapy record: intensity level is not valid";
         validity = false;
     }
     else if (duration < 0)
     {
-        qDebug() << "ERROR: Invalid " << sessionType << " record: duration is not valid";
+        qDebug() << "ERROR: Invalid threapy record: duration is not valid";
         validity = false;
     }
     return validity;
@@ -130,7 +147,7 @@ int Database::getTherapyId(int userId)
     databaseGui.transaction();
     // Select and iterate through the uid column in datbase:
     QSqlQuery query;
-    QString queryRecordHistory = "SELECT COUNT(uid) FROM treatmentHistory WHERE uid = :userId";
+    QString queryRecordHistory = "SELECT uid FROM treatmentHistory WHERE uid = :userId";
     query.prepare(queryRecordHistory);
     query.bindValue(":userId", userId);
     query.exec();
@@ -142,6 +159,7 @@ int Database::getTherapyId(int userId)
         therapyId++;
     }
     therapyId++;
+
     return therapyId;
 };
 

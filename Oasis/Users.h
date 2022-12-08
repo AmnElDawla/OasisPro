@@ -1,19 +1,39 @@
 #ifndef USERS_H
 #define USERS_H
 
+#include <QDebug>
 #include <QString>
+#include <QMessageBox>
 
-class Users {
+class Users
+{
 
 public:
-    Users(int, QString);
-    QString getName();
-    int getId();
+    // Constructor:
+    Users(int id = 0, QString name = "N/A", QString = "unknown");
 
-private:
+    // Destructor:
+    ~Users();
+
+    // Member funtions:
+    void print() const;
+
+    // Getters:
+    int getId() const;
+    QString getName() const;
+    QString getType() const;
+
+    // Setters:
+    void setName(const QString &newName);
+
+
+    // Virtual member functions (base case):
+
+protected:
+    // Member variables:
     int id;
     QString name;
-
+    QString type;
 };
 
 #endif // USERS_H
