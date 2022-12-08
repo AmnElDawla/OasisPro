@@ -908,8 +908,15 @@ void MainWindow::stopBatteryLevel()
 // Degrade the battery.
 void MainWindow::degradeBattery()
 {
+    // Check if connected to skin.
+    int connectVal = 0;
+    if(connectVal == true){
+        connectVal = 20;
+    } else {
+        connectVal = 0;
+    }
     // Calculate degradation.
-    int degRate = 50 + objData.sessionArray[2] * 3;
+    int degRate = 50 + connectVal + objData.sessionArray[2] * 3;
     batteryLevelEnlarged = batteryLevelEnlarged - degRate;
     qDebug("New Battery Percentage is %d.%d%.", batteryLevelEnlarged / 100, batteryLevelEnlarged % 100);
     // Adjust battery level to new level.
