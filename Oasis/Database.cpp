@@ -217,7 +217,7 @@ bool Database::addTherapyHistoryRecord(int userId, TherapyRecord *tr)
         return false;
     }
 
-    // Upadate the id of a therapy history record:
+    // Update the id of a therapy history record:
     int therapyId = getTherapyId(userId);
 
     // Insert therapy history into Table treatmentHistory:

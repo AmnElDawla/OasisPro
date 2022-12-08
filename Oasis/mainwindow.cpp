@@ -1911,18 +1911,22 @@ void MainWindow::blinkCounter()
 
             // Add a therapy histroy record in to patient.db:
             TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
-            newDatabase->addTherapyHistoryRecord(userId, tr);
+            if(newDatabase->addTherapyHistoryRecord(userId, tr)) {
+                qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database...";
+            }
+            else {
+                qDebug() << "Encountered an error while inserting record...";
+            }
 
             // Print Status:
-            qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database... ";
             qDebug() << "Size of Recording Vector: " << newDatabase->getTherapyHistoryRecords(userId).size();
 
             // Free memory:
             delete tr;
 
             // Enable intensity and selection buttons
-            ui->increaseIntensityBtn->setEnabled(false);
-            ui->decreaseIntensityBtn->setEnabled(false);
+            ui->increaseIntensityBtn->setEnabled(true);
+            ui->decreaseIntensityBtn->setEnabled(true);
             ui->selectionBtn->setEnabled(false);
 
             // Start session timer based on the duration
@@ -3492,22 +3496,38 @@ void MainWindow::updateSelectedSession(TherapyRecord *tr) {
 void MainWindow::on_treatmentRefreshBtn_clicked()
 {
 
-    // User getTherapyHistoryRecords for the currently selected user
+    // Get current user id from combo box on GUI:
     int userId = ui->listOfUsers->currentIndex();
-    userId++;
+    userId++; // Lowerbound of user id is one
+
     QVector<TherapyRecord *> recordings = newDatabase->getTherapyHistoryRecords(userId);
 
     // Populate listview with result of getTherapyHistoryRecords
 
     // No recordings, so do nothing
-    if (!recordings.isEmpty())
+    if (recordings.isEmpty())
     {
-        qDebug("no recordings\n");
+        qDebug("No recordings...");
     }
     // Populate listview with recordings
     else
     {
-        ui->listWidget->addItem("testing");
+        QVector<TherapyRecord *>::iterator ittTherapy;
+
+        for(ittTherapy = recordings.begin(); ittTherapy != recordings.end(); ++ittTherapy) {
+
+            int sessionNumberTherapy = (*ittTherapy)->getSessionType();
+            int sessionDurationTherapy = (*ittTherapy)->getDuration();
+            int sessionIntensityLevelTherapy = (*ittTherapy)->getIntensityLevel();
+
+            qDebug() << QString::number(sessionDurationTherapy);
+            qDebug() << QString::number(sessionNumberTherapy);
+            qDebug() << QString::number(sessionIntensityLevelTherapy);
+
+            ui->listWidget->addItem("Testing");
+
+        }
+
     }
 
 }
