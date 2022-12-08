@@ -596,6 +596,7 @@ void MainWindow::initialiazeListOfIcons()
 // from the first QlistDuration of icons.
 void MainWindow::on_durationLeft_clicked()
 {
+    selectedRecordedTherapy = false;
 
     if (newRowItemDuration == 0)
     {
@@ -635,6 +636,7 @@ void MainWindow::on_durationLeft_clicked()
 // from the first QlistSession of icons.
 void MainWindow::on_sessionLeft_clicked()
 {
+    selectedRecordedTherapy = false;
 
     if (newRowItemSession == 0)
     {
@@ -675,6 +677,7 @@ void MainWindow::on_sessionLeft_clicked()
 // from the first QlistDuration of icons.
 void MainWindow::on_durationRight_clicked()
 {
+    selectedRecordedTherapy = false;
 
     if (newRowItemDuration == 0)
     {
@@ -714,6 +717,7 @@ void MainWindow::on_durationRight_clicked()
 // from the first QlistSession of icons.
 void MainWindow::on_sessionRight_clicked()
 {
+    selectedRecordedTherapy = false;
 
     if (newRowItemSession == 0)
     {
@@ -949,7 +953,6 @@ void MainWindow::degradeBattery()
 // After this, it flashes the selected session's intensity for 3 seconds (3000 miliseconds) at an interval of 500 miliseconds.
 void MainWindow::on_selectionBtn_clicked()
 {
-
     // Checks if the custom duration value is 0 seconds and if the choosen newRowItemDuration (meaning the duration type that the
     // user has choosen - either 20 seconds, 45 seconds, or custom timer) is equal to 2, which is the custom time.
     if ((customDuration == 0 || customDuration < 0) && newRowItemDuration == 2)
@@ -1002,26 +1005,30 @@ void MainWindow::on_selectionBtn_clicked()
         // Reset the counter to 0.
         valueIntUntilEndOfFlash = 0;
 
-        // Set the selected duration and session values to the corresponding variables.
-        selectedDuration = newRowItemDuration;
-        selectedSession = newRowItemSession;
+        // Use selected values of the device only if we haven't selected a recorded therapy
+        if(!selectedRecordedTherapy){
+            // Set the selected duration and session values to the corresponding variables.
+            selectedDuration = newRowItemDuration;
+            selectedSession = newRowItemSession;
 
-        // Set the duration in the session array index to be equal to the selectedDuration variable value.
-        objData.sessionArray[0] = selectedDuration;
+            // Set the duration in the session array index to be equal to the selectedDuration variable value.
+            if(selectedDuration == 0){
+                objData.sessionArray[0] = 20;
+            }
+            else if(selectedDuration == 1){
+                objData.sessionArray[0] = 45;
+            }
+            else{
+                objData.sessionArray[0] = customDuration;
+            }
 
-        // If the selectedDuration variable value is equal to 2 (that means that the custom time was choosen).
-        if (selectedDuration == 2)
-        {
+            // Set the session in the session array index to be equal to the selectedSession variable value.
+            objData.sessionArray[1] = selectedSession;
 
-            // Set the duration in the session array index to be equal to the customDuration variable value.
-            objData.sessionArray[0] = customDuration;
+            // By default set intensity value to 0.
+            objData.sessionArray[2] = 0;
         }
-
-        // Set the session in the session array index to be equal to the selectedSession variable value.
-        objData.sessionArray[1] = selectedSession;
-
-        // By default set intensity value to 0.
-        objData.sessionArray[2] = 0;
+        selectedRecordedTherapy = false;
 
         // Call the function flashSelectedLevelAfterSelection to flash the selected session number.
         flashSelectedLevelAfterSelection();
@@ -1900,30 +1907,6 @@ void MainWindow::blinkCounter()
         else if (connectivity == true && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
         {
 
-            // Get current user id from combo box on GUI:
-            int userId = ui->listOfUsers->currentIndex();
-            userId++; // Lowerbound of user id is one
-
-            // Get elements from section array:
-            int duration = objData.sessionArray[0];
-            int sessionType = objData.sessionArray[1];
-            int intensityLevel = objData.sessionArray[2];
-
-            // Add a therapy histroy record in to patient.db:
-            TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
-            if(newDatabase->addTherapyHistoryRecord(userId, tr)) {
-                qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database...";
-            }
-            else {
-                qDebug() << "Encountered an error while inserting record...";
-            }
-
-            // Print Status:
-            qDebug() << "Size of Recording Vector: " << newDatabase->getTherapyHistoryRecords(userId).size();
-
-            // Free memory:
-            delete tr;
-
             // Enable intensity and selection buttons
             ui->increaseIntensityBtn->setEnabled(true);
             ui->decreaseIntensityBtn->setEnabled(true);
@@ -1932,7 +1915,7 @@ void MainWindow::blinkCounter()
             // Start session timer based on the duration
 
             // Duration is 20 seconds.
-            if (objData.sessionArray[0] == 0)
+            if (objData.sessionArray[0] == 20)
             {
 
                 qDebug() << "Timer will go on for 20s";
@@ -1957,7 +1940,7 @@ void MainWindow::blinkCounter()
             }
 
             // Duration is 45 seconds.
-            else if (objData.sessionArray[0] == 1)
+            else if (objData.sessionArray[0] == 45)
             {
 
                 qDebug() << "Timer will go on for 45s";
@@ -3469,6 +3452,30 @@ void MainWindow::startDescendEndSession()
 
             // Set the text in time elapsed section back to default.
             ui->TimeElapse->setText("0s");
+
+            // Get current user id from combo box on GUI:
+            int userId = ui->listOfUsers->currentIndex();
+            userId++; // Lowerbound of user id is one
+
+            // Get elements from section array:
+            int duration = objData.sessionArray[0];
+            int sessionType = objData.sessionArray[1];
+            int intensityLevel = objData.sessionArray[2];
+
+            // Add a therapy histroy record in to patient.db:
+            TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
+            if(newDatabase->addTherapyHistoryRecord(userId, tr)) {
+                qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database...";
+            }
+            else {
+                qDebug() << "Encountered an error while inserting record...";
+            }
+
+            // Print Status:
+            qDebug() << "Size of Recording Vector: " << newDatabase->getTherapyHistoryRecords(userId).size();
+
+            // Free memory:
+            delete tr;
 
             qDebug() << "Device is turned off...";
         }
