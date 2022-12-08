@@ -372,5 +372,11 @@ private:
     // Keep track of how many time shut down due to critical battery is called.
     int criticalTrueOrFalse = false;
 
+    // Keep track of the number of records for the currently selected user
+    int numRecordsForCurrUser = 0;
+
+    // Check if select button has been pressed
+    bool selectedRecordedTherapy = false;
+
 };
 #endif // MAINWINDOW_H

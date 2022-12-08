@@ -3496,13 +3496,15 @@ void MainWindow::updateSelectedSession(TherapyRecord *tr) {
 void MainWindow::on_treatmentRefreshBtn_clicked()
 {
 
+    ui->listWidget->clear();
+    recordlistItemIndex = -1;
+
     // Get current user id from combo box on GUI:
     int userId = ui->listOfUsers->currentIndex();
     userId++; // Lowerbound of user id is one
 
     QVector<TherapyRecord *> recordings = newDatabase->getTherapyHistoryRecords(userId);
-
-    // Populate listview with result of getTherapyHistoryRecords
+    numRecordsForCurrUser = recordings.size();
 
     // No recordings, so do nothing
     if (recordings.isEmpty())
@@ -3515,6 +3517,7 @@ void MainWindow::on_treatmentRefreshBtn_clicked()
         QVector<TherapyRecord *>::iterator ittTherapy;
 
         for(ittTherapy = recordings.begin(); ittTherapy != recordings.end(); ++ittTherapy) {
+            QString output; // Needs to be inside the for loop so we define an entirely new output string for every therapy entry
 
             int sessionNumberTherapy = (*ittTherapy)->getSessionType();
             int sessionDurationTherapy = (*ittTherapy)->getDuration();
@@ -3524,7 +3527,11 @@ void MainWindow::on_treatmentRefreshBtn_clicked()
             qDebug() << QString::number(sessionNumberTherapy);
             qDebug() << QString::number(sessionIntensityLevelTherapy);
 
-            ui->listWidget->addItem("Testing");
+            output.append("SessionDuration = " + QString::number(sessionDurationTherapy));
+            output.append("s, SessionNum = " + QString::number(sessionNumberTherapy));
+            output.append(", SessionIntensity = " + QString::number(sessionIntensityLevelTherapy));
+
+            ui->listWidget->addItem(output);
 
         }
 
@@ -3535,15 +3542,12 @@ void MainWindow::on_treatmentRefreshBtn_clicked()
 void MainWindow::on_treatmentDownBtn_clicked()
 {
 
-    /*
-     * Add when getTherapyHistoryRecords works properly
-    QVector<TherapyRecord *> recordings = newDatabase->getTherapyHistoryRecords(userId);
-    if(recordlistItemIndex < recordings.size()-1){
+    // Only select the next record in the list if we're
+    // not at the bottom of the list
+    if(recordlistItemIndex < numRecordsForCurrUser-1){
         recordlistItemIndex++;
     }
-    */
 
-    recordlistItemIndex++;
     ui->listWidget->setCurrentRow(recordlistItemIndex);
 
 }
