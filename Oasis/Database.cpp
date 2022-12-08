@@ -270,7 +270,7 @@ QVector<TherapyRecord *> Database::getTherapyHistoryRecords(int userId)
     }
 
     // Print status:
-    qDebug().noquote() << "   Result: Found " << rowCounter << " therapy history records about User " << getUserById(userId)->getName();
+    qDebug().noquote() << "   Result: Found " << rowCounter << " therapy history records about User" << getUserById(userId)->getName();
 
     return therapyHistoryRecordData;
 };
