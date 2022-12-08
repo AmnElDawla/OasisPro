@@ -2785,6 +2785,36 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
             qDebug() << "Deleted custom time timer...";
         }
 
+        // Checks if the timer that is used to blink / flash the LEDs based on their connection is not equal to nullptr.
+        // This is to prevent animation from occurring while change in state (wet to dry or dry to wet) is happening.
+        if (timerBlinkLed != nullptr)
+        {
+
+            // Stop the timer.
+            timerBlinkLed->stop();
+
+            // Delete the timer.
+            delete timerBlinkLed;
+
+            // Set the timer to nullptr.
+            timerBlinkLed = nullptr;
+        }
+
+        // Checks if the timer that is used to blink / flash the CES Mode light on or off is not equal to nullptr.
+        // This is to prevent animation from occurring while change in state (wet to dry or dry to wet) is happening.
+        if (timerCES != nullptr)
+        {
+
+            // Stop the timer.
+            timerCES->stop();
+
+            // Delete the timer.
+            delete timerCES;
+
+            // Set timer to nullptr.
+            timerCES = nullptr;
+        }
+
         // If the conditions are true, it reruns the connection test.
         connectionTestMain();
     }
@@ -2865,6 +2895,36 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
             // Reset to default text.
             ui->TimeElapse->setText(QString::number(customDuration) + "s");
             qDebug() << "Deleted custom time timer...";
+        }
+
+        // Checks if the timer that is used to blink / flash the LEDs based on their connection is not equal to nullptr.
+        // This is to prevent animation from occurring while change in state (wet to dry or dry to wet) is happening.
+        if (timerBlinkLed != nullptr)
+        {
+
+            // Stop the timer.
+            timerBlinkLed->stop();
+
+            // Delete the timer.
+            delete timerBlinkLed;
+
+            // Set the timer to nullptr.
+            timerBlinkLed = nullptr;
+        }
+
+        // Checks if the timer that is used to blink / flash the CES Mode light on or off is not equal to nullptr.
+        // This is to prevent animation from occurring while change in state (wet to dry or dry to wet) is happening.
+        if (timerCES != nullptr)
+        {
+
+            // Stop the timer.
+            timerCES->stop();
+
+            // Delete the timer.
+            delete timerCES;
+
+            // Set timer to nullptr.
+            timerCES = nullptr;
         }
 
         // If the conditions are true, it reruns the connection test.
