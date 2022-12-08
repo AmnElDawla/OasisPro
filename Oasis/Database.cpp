@@ -141,7 +141,7 @@ QString Database::getUserById(int id) {
     }
 
     return QString::null;
-}
+};
 
 // Check if each value in a therapy record is valid.
 bool Database::validateTherapyRecord(const int sessionType, const int intensityLevel, const int duration)
