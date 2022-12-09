@@ -109,7 +109,7 @@ Notice 2: The Progress Report Table will need to be updated throughout the proje
 | Connection Test Feature |   &#128994;  | Andre Nonaka Cordova  | Mingrui Liang | 2022-11-30 | 2022-11-18      | 1.5 week | N/A |
 | Intensity Feature  |   &#128994;   | Andre Nonaka Cordova  | Alex Nedev   | 2022-11-18 | 2022-11-18      | 1 weeks | N/A |
 | Record Therapy Feature (should have support for at least 4 users) |   &#128993;  | Mingrui Liang  | Andre Nonaka Cordova  | 2022-11-30 | 2022-11-19      | N/A | N/A |
-| Replay Therapy Feature (should have support for at least 4 users) |   &#128308;  | Alex Nedev | Mingrui Liang | 2022-11-30               | 2022-11-19      | N/A        | N/A   |
+| Replay Therapy Feature (should have support for at least 4 users) |   &#128993;  | Alex Nedev | Mingrui Liang | 2022-11-30               | 2022-11-19      | N/A        | N/A   |
 
 ## How to work on this project in your personal computer
 
