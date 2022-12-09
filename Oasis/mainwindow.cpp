@@ -2744,6 +2744,14 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
     {
         qDebug() << "Connected...";
 
+        if(intensityTimer != nullptr) {
+
+            intensityTimer->stop();
+            delete intensityTimer;
+            intensityTimer = nullptr;
+
+        }
+
         // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
         // or started).
         if (seconds20Timer != nullptr)
@@ -2855,6 +2863,15 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
     else if (ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true)
     {
         qDebug() << "Disconnected...";
+
+        // Stops the timer.
+        if(intensityTimer != nullptr) {
+
+            intensityTimer->stop();
+            delete intensityTimer;
+            intensityTimer = nullptr;
+
+        }
 
         // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
         // or started).
@@ -2997,6 +3014,14 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
         qDebug() << "Changed to wet...";
         changeWetOrDry = true;
 
+        if(intensityTimer != nullptr) {
+
+            intensityTimer->stop();
+            delete intensityTimer;
+            intensityTimer = nullptr;
+
+        }
+
         // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
         // or started).
         if (seconds20Timer != nullptr)
@@ -3109,6 +3134,14 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
         qDebug() << "Changed to dry...";
         changeWetOrDry = true;
+
+        if(intensityTimer != nullptr) {
+
+            intensityTimer->stop();
+            delete intensityTimer;
+            intensityTimer = nullptr;
+
+        }
 
         // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
         // or started).
