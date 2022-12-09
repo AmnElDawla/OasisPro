@@ -2744,10 +2744,16 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
     {
         qDebug() << "Connected...";
 
+        // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
         if(intensityTimer != nullptr) {
 
+            // Stop the timer.
             intensityTimer->stop();
+
+            // Delete the timer.
             delete intensityTimer;
+
+            // Set the timer to nullptr.
             intensityTimer = nullptr;
 
         }
@@ -2864,11 +2870,16 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
     {
         qDebug() << "Disconnected...";
 
-        // Stops the timer.
+        // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
         if(intensityTimer != nullptr) {
 
+            // Stop the timer.
             intensityTimer->stop();
+
+            // Delete the timer.
             delete intensityTimer;
+
+            // Set the timer to nullptr.
             intensityTimer = nullptr;
 
         }
@@ -3014,10 +3025,16 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
         qDebug() << "Changed to wet...";
         changeWetOrDry = true;
 
+        // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
         if(intensityTimer != nullptr) {
 
+            // Stop the timer.
             intensityTimer->stop();
+
+            // Delete the timer.
             delete intensityTimer;
+
+            // Set the timer to nullptr.
             intensityTimer = nullptr;
 
         }
@@ -3135,10 +3152,16 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
         qDebug() << "Changed to dry...";
         changeWetOrDry = true;
 
+        // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
         if(intensityTimer != nullptr) {
 
+            // Stop the timer.
             intensityTimer->stop();
+
+            // Delete the timer.
             delete intensityTimer;
+
+            // Set the timer to nullptr.
             intensityTimer = nullptr;
 
         }
