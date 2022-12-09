@@ -5,7 +5,7 @@ Guest::Guest() : Users(){
     this->type = "guest";
 };
 
-Guest::Guest(int id, QString name, QString type) : Users(id, name, type){};
+Guest::Guest(int id, QString name) : Users(id, name, "guest"){};
 
 // Destructors:
 Guest::~Guest(){};
@@ -15,7 +15,7 @@ void Guest::print() const
 {
     QString msg = "Guest Information: \n";
     msg += "    id:" + QString::number(this->id) + "\n" +
-           "    name:" + this->name;
+           "    name:" + this->name + "\n" +
            "    type:" + this->type;
     qDebug() << msg;
 };

@@ -5,7 +5,7 @@ Administrator::Administrator() : Users(){
     this->type = "admin";
 };
 
-Administrator::Administrator(int id, QString name, QString type) : Users(id, name, type){};
+Administrator::Administrator(int id, QString name) : Users(id, name, "admin"){};
 
 // Destructors:
 Administrator::~Administrator(){};

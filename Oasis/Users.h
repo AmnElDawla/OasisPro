@@ -23,10 +23,6 @@ public:
     QString getName() const;
     QString getType() const;
 
-    // Setters:
-    void setName(const QString &newName);
-
-
     // Virtual member functions (base case):
 
 protected:

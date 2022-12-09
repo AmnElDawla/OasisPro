@@ -12,24 +12,27 @@ MainWindow::MainWindow(QWidget *parent)
     QString arrQListAbove[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
     QString arrQListBelow[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
-    qDebug() << "Starting database initialization...";
+    qDebug() << "Mainwindow: Starting database initialization...";
 
     // Creates a success variable to see if the database has successfully started certain components without errors.
     // - success = 0 =====> success (no errors).
     // - success = 1 =====> not successfully (errors were encountered).
     int success = 0;
 
+    // Instantiate Database object.
+    newDatabase = new Database();
+
     // Checks if the database was not initialize.
     if (!newDatabase->initializeDatabase())
     {
-        qDebug() << "Unable to initialize the database...";
+        qDebug() << "Mainwindow: Unable to initialize the database...";
 
         // Set success variable to 1 (not successful - errors found).
         success = 1;
     }
     else
     {
-        qDebug() << "Created database...";
+        qDebug() << "Mainwindow: Created database...";
 
         // Set success variable to 0 (success - no errors found).
         success = 0;
@@ -38,14 +41,14 @@ MainWindow::MainWindow(QWidget *parent)
     // Checks if the database tables were not initialized.
     if (!newDatabase->initializeDatabaseTables())
     {
-        qDebug() << "Unable to create the database's tables (users, therapy, therapy_history)...";
+        qDebug() << "Mainwindow: Unable to create the database's tables ('users' and 'treatmentHistory')...";
 
         // Set success variable to 1 (not successful - errors found).
         success = 1;
     }
     else
     {
-        qDebug() << "Created the database's tables (users, therapy, therapy_history)...";
+        qDebug() << "Created the database's tables ('users' and 'treatmentHistory')...";
 
         // Set success variable to 0 (success - no errors found).
         success = 0;
@@ -55,23 +58,49 @@ MainWindow::MainWindow(QWidget *parent)
     // to successfully initialize the table and database).
     if (success == 0)
     {
-        qDebug() << "Operation was successfully completed...";
-        qDebug() << "Testing: Getting users details...";
-
-        // Testing if it can retrieve user data.
-        newDatabase->getUserData();
+        qDebug() << "Mainwindow: Operation 'initialize the table and database' was successfully completed...";
+        qDebug() << "Mainwindow: Testing: Getting users details...";
 
         // Setting usernames in combobox.
-        ui->listOfUsers->setItemText(0, newDatabase->getUserById(1)->getName());
-        ui->listOfUsers->setItemText(1, newDatabase->getUserById(2)->getName());
-        ui->listOfUsers->setItemText(2, newDatabase->getUserById(3)->getName());
-        ui->listOfUsers->setItemText(3, newDatabase->getUserById(4)->getName());
+        QVector<Users *> userRecords = newDatabase->getUserData();
+        bool flag = true;
 
-        qDebug() << "Operation was successfully completed...";
+        // Populate combo box with result of user records:
+
+        // Testing if it can retrieve user data.
+        if (userRecords.isEmpty())
+        {
+            flag = false;
+            qDebug("Mainwindow: No user records. ");
+        }
+        // Populate listview with recordings
+        else
+        {
+            qDebug("Mainwindow: Importing user records... ");
+            QVector<Users *>::iterator ittUser;
+
+            for (ittUser = userRecords.begin(); ittUser != userRecords.end(); ++ittUser)
+            {
+
+                int userId = (*ittUser)->getId();
+                QString userName = (*ittUser)->getName();
+                (*ittUser)->print();
+
+                ui->listOfUsers->setItemText(userId - 1, userName);
+            }
+        }
+        if (flag)
+        {
+            qDebug() << "Mainwindow: Operation 'import user records' was successfully completed...";
+        }
+        else
+        {
+            qDebug() << "Mainwindow: Operation 'import user records' was not completed...";
+        }
     }
     else
     {
-        qDebug() << "Operation was not successfully completed...";
+        qDebug() << "Operation 'initialize the table and database' was not completed...";
     }
 
     // Everything needs start in off state (power off) in the GUI
@@ -100,6 +129,8 @@ MainWindow::MainWindow(QWidget *parent)
 // This is the destructor function. When the application is close, it will delete ui pointer (to prevent memory leaks).
 MainWindow::~MainWindow()
 {
+    // Free allocated memory to Database object.
+    delete newDatabase;
 
     // Delete pointer named ui.
     delete ui;
@@ -288,7 +319,8 @@ void MainWindow::on_powerBtn_clicked()
             timerFlashes = nullptr;
             valueIntUntilEndOfFlash = 10;
         }
-        if(timer != nullptr) {
+        if (timer != nullptr)
+        {
             timer->stop();
             delete timer;
             timer = nullptr;
@@ -920,9 +952,12 @@ void MainWindow::degradeBattery()
 {
     // Check if connected to skin.
     int connectVal = 0;
-    if(connectVal == true){
+    if (connectVal == true)
+    {
         connectVal = 20;
-    } else {
+    }
+    else
+    {
         connectVal = 0;
     }
     // Calculate degradation.
@@ -1006,19 +1041,23 @@ void MainWindow::on_selectionBtn_clicked()
         valueIntUntilEndOfFlash = 0;
 
         // Use selected values of the device only if we haven't selected a recorded therapy
-        if(!selectedRecordedTherapy){
+        if (!selectedRecordedTherapy)
+        {
             // Set the selected duration and session values to the corresponding variables.
             selectedDuration = newRowItemDuration;
             selectedSession = newRowItemSession;
 
             // Set the duration in the session array index to be equal to the selectedDuration variable value.
-            if(selectedDuration == 0){
+            if (selectedDuration == 0)
+            {
                 objData.sessionArray[0] = 20;
             }
-            else if(selectedDuration == 1){
+            else if (selectedDuration == 1)
+            {
                 objData.sessionArray[0] = 45;
             }
-            else{
+            else
+            {
                 objData.sessionArray[0] = customDuration;
             }
 
@@ -1257,7 +1296,6 @@ void MainWindow::turnOffNoSessionSelected()
         timer->stop();
         delete timer;
         timer = nullptr;
-
     }
 
     qDebug() << "Shut down OasisPro...";
@@ -2371,7 +2409,6 @@ void MainWindow::switchLeds()
             ui->increaseIntensityBtn->setEnabled(true);
             ui->decreaseIntensityBtn->setEnabled(true);
             ui->selectionBtn->setEnabled(true);
-
         }
         // If the counter is not equal to 15, then increment the counter by 1.
         else
@@ -2379,7 +2416,6 @@ void MainWindow::switchLeds()
 
             // Increments counter by 1.
             countSwitch++;
-
         }
     }
 }
@@ -2436,13 +2472,13 @@ void MainWindow::pauseCounter()
         // Set the timer to nullptr.
         pauseTimerDefault = nullptr;
 
-        if(timer != nullptr) {
+        if (timer != nullptr)
+        {
 
             // If it is then stop, delete, and reset the timer (2 minutes timer).
             timer->stop();
             delete timer;
             timer = nullptr;
-
         }
 
         qDebug() << "End scrolling animation...";
@@ -2693,7 +2729,6 @@ void MainWindow::on_newBattery_clicked()
     // Set batteryLevel variable back to 100%.
     batteryLevel = 100;
     batteryLevelEnlarged = batteryLevel * 100;
-
 }
 
 // This function only is called when the user press the combobox to connect or disconnect their application / device.
@@ -2943,7 +2978,6 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
         qDebug().noquote() << "Unable to switch to " + arg1;
         qDebug() << "Selection button has not been pressed...";
     }
-
 }
 
 // This function only is called when the user press the combobox to change state from wet to dry or dry to wet for their application / device.
@@ -3197,7 +3231,6 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
         qDebug().noquote() << "Unable to switch to " + arg1;
         qDebug() << "Selection button has not been pressed...";
     }
-
 }
 
 // This function initializes the timer that will allow for the descent scrolling animation from 8 to 1 to work.
@@ -3220,7 +3253,6 @@ void MainWindow::descendEndSession()
 
     // Starts the timer.
     endSession->start();
-
 }
 
 // This function is the one that performs the scrolling down animation when a session ends on-time or when the power button is
@@ -3233,7 +3265,8 @@ void MainWindow::startDescendEndSession()
 
     // Checks if the battery level is less or equal to 12 (12%), if it is, it will shutdown the device (not continue the descent
     // animation).
-    if(batteryLevel <= 12 && criticalTrueOrFalse == false) {
+    if (batteryLevel <= 12 && criticalTrueOrFalse == false)
+    {
 
         // Set the variable to true.
         criticalTrueOrFalse = true;
@@ -3242,7 +3275,8 @@ void MainWindow::startDescendEndSession()
         countSwitchDescent = 0;
 
         // Check if the timer is not equal to nullptr.
-        if(endSession != nullptr) {
+        if (endSession != nullptr)
+        {
 
             // Timer is stopped.
             endSession->stop();
@@ -3252,7 +3286,6 @@ void MainWindow::startDescendEndSession()
 
             // Timer is value is set to nullptr.
             endSession = nullptr;
-
         }
 
         qDebug() << "Resetting all necessary components before immediate shut down...";
@@ -3267,19 +3300,22 @@ void MainWindow::startDescendEndSession()
         selectedSessionOrNot = false;
 
         // Stop, delete, and resetting necessary timers.
-        if(timerCES != nullptr) {
+        if (timerCES != nullptr)
+        {
             timerCES->stop();
             delete timerCES;
             timerCES = nullptr;
             counterFlashGraph = 6;
         }
-        if(timerFlashes != nullptr) {
+        if (timerFlashes != nullptr)
+        {
             timerFlashes->stop();
             delete timerFlashes;
             timerFlashes = nullptr;
             valueIntUntilEndOfFlash = 10;
         }
-        if(timer != nullptr) {
+        if (timer != nullptr)
+        {
             timer->stop();
             delete timer;
             timer = nullptr;
@@ -3308,12 +3344,11 @@ void MainWindow::startDescendEndSession()
         // Stopping necessary battery timers.
         batteryStartTimer->start(500);
         batteryStopTimer->start(2500);
-
     }
 
     // The scrolling animation based on the value of the countSwitchDescent counter.
     // It either turns on or off a certain LED based on the counter's current value.
-    if(criticalTrueOrFalse == false && endSession != nullptr)
+    if (criticalTrueOrFalse == false && endSession != nullptr)
     {
 
         if (countSwitchDescent == 15)
@@ -3381,11 +3416,11 @@ void MainWindow::startDescendEndSession()
             qDebug() << "Arrived at the first intensity...";
             ledEightOn();
         }
-
     }
 
     // Checks if the countSwitchDescent counter is equal to 15.
-    if(countSwitchDescent == 15 && batteryLevel > 12 && endSession != nullptr) {
+    if (countSwitchDescent == 15 && batteryLevel > 12 && endSession != nullptr)
+    {
 
         qDebug() << "Stopping end session timer...";
 
@@ -3417,19 +3452,22 @@ void MainWindow::startDescendEndSession()
             selectedSessionOrNot = false;
 
             // Stop, delete, and resetting necessary timers.
-            if(timerCES != nullptr) {
+            if (timerCES != nullptr)
+            {
                 timerCES->stop();
                 delete timerCES;
                 timerCES = nullptr;
                 counterFlashGraph = 6;
             }
-            if(timerFlashes != nullptr) {
+            if (timerFlashes != nullptr)
+            {
                 timerFlashes->stop();
                 delete timerFlashes;
                 timerFlashes = nullptr;
                 valueIntUntilEndOfFlash = 10;
             }
-            if(timer != nullptr) {
+            if (timer != nullptr)
+            {
                 timer->stop();
                 delete timer;
                 timer = nullptr;
@@ -3464,10 +3502,12 @@ void MainWindow::startDescendEndSession()
 
             // Add a therapy histroy record in to patient.db:
             TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
-            if(newDatabase->addTherapyHistoryRecord(userId, tr)) {
+            if (newDatabase->addTherapyHistoryRecord(userId, tr))
+            {
                 qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database...";
             }
-            else {
+            else
+            {
                 qDebug() << "Encountered an error while inserting record...";
             }
 
@@ -3479,25 +3519,22 @@ void MainWindow::startDescendEndSession()
 
             qDebug() << "Device is turned off...";
         }
-
     }
-    else if(endSession != nullptr)
+    else if (endSession != nullptr)
     {
 
         // Increment the counter by 1.
         countSwitchDescent++;
-
     }
-
 }
 
 // Read a therapy record and update elements of session array.
-void MainWindow::updateSelectedSession(TherapyRecord *tr) {
+void MainWindow::updateSelectedSession(TherapyRecord *tr)
+{
 
     objData.sessionArray[0] = tr->getDuration();
     objData.sessionArray[1] = tr->getSessionType();
     objData.sessionArray[2] = tr->getIntensityLevel();
-
 }
 
 void MainWindow::on_treatmentRefreshBtn_clicked()
@@ -3523,7 +3560,8 @@ void MainWindow::on_treatmentRefreshBtn_clicked()
     {
         QVector<TherapyRecord *>::iterator ittTherapy;
 
-        for(ittTherapy = recordings.begin(); ittTherapy != recordings.end(); ++ittTherapy) {
+        for (ittTherapy = recordings.begin(); ittTherapy != recordings.end(); ++ittTherapy)
+        {
             QString output; // Needs to be inside the for loop so we define an entirely new output string for every therapy entry
 
             int sessionNumberTherapy = (*ittTherapy)->getSessionType();
@@ -3539,11 +3577,8 @@ void MainWindow::on_treatmentRefreshBtn_clicked()
             output.append(", SessionIntensity = " + QString::number(sessionIntensityLevelTherapy));
 
             ui->listWidget->addItem(output);
-
         }
-
     }
-
 }
 
 void MainWindow::on_treatmentDownBtn_clicked()
@@ -3551,12 +3586,12 @@ void MainWindow::on_treatmentDownBtn_clicked()
 
     // Only select the next record in the list if we're
     // not at the bottom of the list
-    if(recordlistItemIndex < numRecordsForCurrUser-1){
+    if (recordlistItemIndex < numRecordsForCurrUser - 1)
+    {
         recordlistItemIndex++;
     }
 
     ui->listWidget->setCurrentRow(recordlistItemIndex);
-
 }
 
 void MainWindow::on_treatmentUpBtn_clicked()
@@ -3568,7 +3603,6 @@ void MainWindow::on_treatmentUpBtn_clicked()
     }
 
     ui->listWidget->setCurrentRow(recordlistItemIndex);
-
 }
 
 void MainWindow::on_treatmenSelectpBtn_clicked()
@@ -3580,14 +3614,14 @@ void MainWindow::on_treatmenSelectpBtn_clicked()
     userId++; // Lowerbound of user id is one
 
     QVector<TherapyRecord *> recordings = newDatabase->getTherapyHistoryRecords(userId);
-    TherapyRecord* selectedRecord = recordings[recordlistItemIndex];
+    TherapyRecord *selectedRecord = recordings[recordlistItemIndex];
 
     int sessionNumberTherapy = selectedRecord->getSessionType();
     int sessionDurationTherapy = selectedRecord->getDuration();
     int sessionIntensityLevelTherapy = selectedRecord->getIntensityLevel();
 
     qDebug() << QString::number(sessionDurationTherapy);
-    qDebug() <<"sessioNumberTherapy = " << QString::number(sessionNumberTherapy);
+    qDebug() << "sessioNumberTherapy = " << QString::number(sessionNumberTherapy);
     qDebug() << QString::number(sessionIntensityLevelTherapy);
 
     objData.sessionArray[0] = sessionDurationTherapy;
@@ -3596,19 +3630,21 @@ void MainWindow::on_treatmenSelectpBtn_clicked()
 
     selectedRecordedTherapy = true;
 
-
     //***** Update GUI to reflect selected record *****//
 
     // Highlight session duration of recording
-    if(sessionDurationTherapy == 0){
+    if (sessionDurationTherapy == 0)
+    {
         ui->listDuration->setCurrentRow(0);
         ui->TimeElapse->setText(QString::number(20));
     }
-    else if(sessionDurationTherapy == 1){
+    else if (sessionDurationTherapy == 1)
+    {
         ui->listDuration->setCurrentRow(1);
         ui->TimeElapse->setText(QString::number(45));
     }
-    else{
+    else
+    {
         ui->listDuration->setCurrentRow(2);
         ui->TimeElapse->setText(QString::number(sessionDurationTherapy));
     }

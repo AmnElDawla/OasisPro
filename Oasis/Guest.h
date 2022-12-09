@@ -8,7 +8,7 @@ class Guest : public Users
 public:
     // Constructor:
     Guest(); // Default constructor
-    Guest(int id, QString name, QString type);
+    Guest(int id, QString name);
 
     // Destructor:
     ~Guest();
@@ -17,7 +17,6 @@ public:
     void print() const;
 
     // Inherited virtual memember functions:
-
 };
 
 #endif // GUEST_H

@@ -92,64 +92,29 @@ QVector<Users *> Database::getUserData()
     int count = 0;
     while (queryTable.next())
     {
-        count++;
-        int UserId = queryTable.value("uid").toInt();
+        int userId = queryTable.value("uid").toInt();
         QString userName = queryTable.value("username").toString();
 
         // Print Status:
-        QString newCount = QString::fromStdString(std::to_string(count));
-        qDebug() << "Database: User " << newCount << " is named " << userName;
+        qDebug() << "Database: User " << userId << " is named " << userName;
 
-        if (UserId == 1)
+        if (userId == 1)
         {
-            Administrator *admin = new Administrator(UserId, userName, "admin");
+            Administrator *admin = new Administrator(userId, userName);
             userData.push_back(admin);
-            delete admin;
+            // delete admin;
+            count++;
         }
-        else if (UserId > 1)
+        else if (userId > 1)
         {
-            Guest *guest = new Guest(UserId, userName, "guest");
+            Guest *guest = new Guest(userId, userName);
             userData.push_back(guest);
-            delete guest;
+            // delete guest;
+            count++;
         }
     }
 
     return userData;
-};
-
-// Return the specific username given a specific user id.
-Users* Database::getUserById(int id) {
-    databaseGui.transaction();
-    QSqlQuery queryTable;
-    // Select fields:
-    QString queryDatabaseUsersTable = "SELECT * FROM users";
-    queryTable.prepare(queryDatabaseUsersTable);
-    queryTable.exec();
-
-    int count = 0;
-    while (queryTable.next())
-    {
-
-        count++;
-        int userId = queryTable.value("uid").toInt();
-
-        if(userId == id) {
-            QString userName = queryTable.value("username").toString();
-            if (userId == 1)
-            {
-                Administrator *admin = new Administrator(userId, userName, "admin");
-                return admin;
-            }
-            else if (userId > 1)
-            {
-                Guest *guest = new Guest(userId, userName, "guest");
-                return guest;
-            }
-        }
-
-    }
-
-    return nullptr;
 };
 
 // Check if each value in a therapy record is valid.
@@ -270,7 +235,7 @@ QVector<TherapyRecord *> Database::getTherapyHistoryRecords(int userId)
     }
 
     // Print status:
-    qDebug().noquote() << "   Result: Found " << rowCounter << " therapy history records about User" << getUserById(userId)->getName();
+    qDebug() << "   Result: Found " << rowCounter << " therapy history records";
 
     return therapyHistoryRecordData;
 };
