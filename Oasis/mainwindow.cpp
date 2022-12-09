@@ -3753,22 +3753,18 @@ void MainWindow::on_treatmenSelectpBtn_clicked()
     selectedIntensityAtStart();
     if (sessionNumberTherapy == 1)
     {
-        //ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (SMR)");
     }
     else if (sessionNumberTherapy == 2)
     {
-        //ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Beta)");
     }
     else if (sessionNumberTherapy == 3)
     {
-        //ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Theta)");
     }
     else if(sessionNumberTherapy == 0)
     {
-        //ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Alpha)");
     }
 
