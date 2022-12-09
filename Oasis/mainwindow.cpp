@@ -326,6 +326,20 @@ void MainWindow::on_powerBtn_clicked()
             timer = nullptr;
         }
 
+        // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
+        if(intensityTimer != nullptr) {
+
+            // Stop the timer.
+            intensityTimer->stop();
+
+            // Delete the timer.
+            delete intensityTimer;
+
+            // Set the timer to nullptr.
+            intensityTimer = nullptr;
+
+        }
+
         // Restart connection test to end the session.
         connectionTestMain();
 
