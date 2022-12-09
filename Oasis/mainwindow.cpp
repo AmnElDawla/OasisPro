@@ -418,6 +418,10 @@ void MainWindow::deviceOff()
     ui->sessionLeft->setEnabled(false);
     ui->durationRight->setEnabled(false);
     ui->durationLeft->setEnabled(false);
+    ui->treatmenSelectpBtn->setEnabled(false);
+    ui->treatmentUpBtn->setEnabled(false);
+    ui->treatmentDownBtn->setEnabled(false);
+    ui->treatmentRefreshBtn->setEnabled(false);
 }
 
 // This function is called when the device's turned on for the first time (numberOfTimesPowerBtnClicked variable = 1).
@@ -517,6 +521,10 @@ void MainWindow::iconsOn()
     ui->durationRight->setEnabled(true);
     ui->durationLeft->setEnabled(true);
     ui->selectionBtn->setEnabled(true);
+    ui->treatmenSelectpBtn->setEnabled(true);
+    ui->treatmentUpBtn->setEnabled(true);
+    ui->treatmentDownBtn->setEnabled(true);
+    ui->treatmentRefreshBtn->setEnabled(true);
 
     qDebug() << "Start the 2 minutes timer...";
 
@@ -3587,6 +3595,8 @@ void MainWindow::startDescendEndSession()
             // Free memory:
             delete tr;
 
+            ui->listWidget->clear();
+
             qDebug() << "Device is turned off...";
         }
     }
@@ -3638,12 +3648,26 @@ void MainWindow::on_treatmentRefreshBtn_clicked()
             int sessionDurationTherapy = (*ittTherapy)->getDuration();
             int sessionIntensityLevelTherapy = (*ittTherapy)->getIntensityLevel();
 
+            // Record the session number associated with the index of the selected session
+            if(sessionNumberTherapy == 0){
+                sessionNumberTherapy = 5;
+            }
+            else if(sessionNumberTherapy == 1){
+                sessionNumberTherapy = 6;
+            }
+            else if(sessionNumberTherapy == 2){
+                sessionNumberTherapy = 7;
+            }
+            else if(sessionNumberTherapy == 3){
+                sessionNumberTherapy = 4;
+            }
+
             qDebug() << QString::number(sessionDurationTherapy);
             qDebug() << QString::number(sessionNumberTherapy);
             qDebug() << QString::number(sessionIntensityLevelTherapy);
 
             output.append("SessionDuration = " + QString::number(sessionDurationTherapy));
-            output.append("s, SessionNum = " + QString::number(sessionNumberTherapy));
+            output.append("s, SessionNumber = " + QString::number(sessionNumberTherapy));
             output.append(", SessionIntensity = " + QString::number(sessionIntensityLevelTherapy));
 
             ui->listWidget->addItem(output);
@@ -3677,8 +3701,11 @@ void MainWindow::on_treatmentUpBtn_clicked()
 
 void MainWindow::on_treatmenSelectpBtn_clicked()
 {
-    int tid = recordlistItemIndex + 1;
-    qDebug("selectedTherapy = %d\n", tid);
+    if(recordlistItemIndex == -1){
+        qDebug("Refresh and highlight a record before selecting one!");
+        return;
+    }
+
     // Get current user id from combo box on GUI:
     int userId = ui->listOfUsers->currentIndex();
     userId++; // Lowerbound of user id is one
@@ -3691,7 +3718,7 @@ void MainWindow::on_treatmenSelectpBtn_clicked()
     int sessionIntensityLevelTherapy = selectedRecord->getIntensityLevel();
 
     qDebug() << QString::number(sessionDurationTherapy);
-    qDebug() << "sessioNumberTherapy = " << QString::number(sessionNumberTherapy);
+    qDebug() << "sessionNumberTherapy = " << QString::number(sessionNumberTherapy);
     qDebug() << QString::number(sessionIntensityLevelTherapy);
 
     objData.sessionArray[0] = sessionDurationTherapy;
@@ -3703,21 +3730,47 @@ void MainWindow::on_treatmenSelectpBtn_clicked()
     //***** Update GUI to reflect selected record *****//
 
     // Highlight session duration of recording
-    if (sessionDurationTherapy == 0)
+    qDebug("sessionDurationTherapy = %d\n", sessionDurationTherapy);
+    if (sessionDurationTherapy == 20)
     {
         ui->listDuration->setCurrentRow(0);
-        ui->TimeElapse->setText(QString::number(20));
     }
-    else if (sessionDurationTherapy == 1)
+    else if (sessionDurationTherapy == 45)
     {
         ui->listDuration->setCurrentRow(1);
-        ui->TimeElapse->setText(QString::number(45));
     }
     else
     {
         ui->listDuration->setCurrentRow(2);
-        ui->TimeElapse->setText(QString::number(sessionDurationTherapy));
+    }
+    ui->TimeElapse->setText(QString::number(sessionDurationTherapy));
+
+    // Highlight session type of recording
+    resetButtons();
+
+    // Highlight corresponding session number on graph
+    newRowItemSession = sessionNumberTherapy;
+    selectedIntensityAtStart();
+    if (sessionNumberTherapy == 1)
+    {
+        //ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (SMR)");
+    }
+    else if (sessionNumberTherapy == 2)
+    {
+        //ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Beta)");
+    }
+    else if (sessionNumberTherapy == 3)
+    {
+        //ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Theta)");
+    }
+    else if(sessionNumberTherapy == 0)
+    {
+        //ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
+        ui->TimeText->setText("Time Left (Alpha)");
     }
 
-    ui->listSession->setCurrentRow(sessionNumberTherapy); // Highlight session type of recording
+    ui->listSession->setCurrentRow(sessionNumberTherapy);
 }
