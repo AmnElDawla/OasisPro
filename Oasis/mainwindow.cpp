@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     QString arrQListAbove[3] = {":/resources/icons/20Minute.png", ":/resources/icons/45Minute.png", ":/resources/icons/UserDesignated.png"};
     QString arrQListBelow[4] = {":/resources/icons/Alpha.png", ":/resources/icons/Beta1.png", ":/resources/icons/Beta2.png", ":/resources/icons/Theta.png"};
 
-    qDebug() << "Mainwindow: Starting database initialization...";
+    qDebug() << "MainWindow: Starting database initialization...";
 
     // Creates a success variable to see if the database has successfully started certain components without errors.
     // - success = 0 =====> success (no errors).
@@ -25,14 +25,14 @@ MainWindow::MainWindow(QWidget *parent)
     // Checks if the database was not initialize.
     if (!newDatabase->initializeDatabase())
     {
-        qDebug() << "Mainwindow: Unable to initialize the database...";
+        qDebug() << "MainWindow: Unable to initialize the database...";
 
         // Set success variable to 1 (not successful - errors found).
         success = 1;
     }
     else
     {
-        qDebug() << "Mainwindow: Created database...";
+        qDebug() << "MainWindow: Created database...";
 
         // Set success variable to 0 (success - no errors found).
         success = 0;
@@ -41,14 +41,14 @@ MainWindow::MainWindow(QWidget *parent)
     // Checks if the database tables were not initialized.
     if (!newDatabase->initializeDatabaseTables())
     {
-        qDebug() << "Mainwindow: Unable to create the database's tables ('users' and 'treatmentHistory')...";
+        qDebug() << "MainWindow: Unable to create the database's tables ('users' and 'treatmentHistory')...";
 
         // Set success variable to 1 (not successful - errors found).
         success = 1;
     }
     else
     {
-        qDebug() << "Created the database's tables ('users' and 'treatmentHistory')...";
+        qDebug() << "MainWindow: Created the database's tables ('users' and 'treatmentHistory')...";
 
         // Set success variable to 0 (success - no errors found).
         success = 0;
@@ -58,8 +58,8 @@ MainWindow::MainWindow(QWidget *parent)
     // to successfully initialize the table and database).
     if (success == 0)
     {
-        qDebug() << "Mainwindow: Operation 'initialize the table and database' was successfully completed...";
-        qDebug() << "Mainwindow: Testing: Getting users details...";
+        qDebug() << "MainWindow: Operation 'initialize the table and database' was successfully completed...";
+        qDebug() << "MainWindow: Testing: Getting users details...";
 
         // Setting usernames in combobox.
         userRecords = newDatabase->getUserData();
@@ -71,12 +71,12 @@ MainWindow::MainWindow(QWidget *parent)
         if (userRecords.isEmpty())
         {
             flag = false;
-            qDebug("Mainwindow: No user records. ");
+            qDebug("MainWindow: No user records. ");
         }
         // Populate listview with recordings
         else
         {
-            qDebug("Mainwindow: Importing user records... ");
+            qDebug("MainWindow: Importing user records... ");
             QVector<Users *>::iterator ittUser;
 
             for (ittUser = userRecords.begin(); ittUser != userRecords.end(); ++ittUser)
@@ -91,16 +91,16 @@ MainWindow::MainWindow(QWidget *parent)
         }
         if (flag)
         {
-            qDebug() << "Mainwindow: Operation 'import user records' was successfully completed...";
+            qDebug() << "MainWindow: Operation 'import user records' was successfully completed...";
         }
         else
         {
-            qDebug() << "Mainwindow: Operation 'import user records' was not completed...";
+            qDebug() << "MainWindow: Operation 'import user records' was not completed...";
         }
     }
     else
     {
-        qDebug() << "Operation 'initialize the table and database' was not completed...";
+        qDebug() << "MainWindow: Operation 'initialize the table and database' was not completed...";
     }
 
     // Everything needs start in off state (power off) in the GUI
@@ -249,7 +249,7 @@ void MainWindow::on_powerBtn_clicked()
             // Start the necessary timers.
             batteryStartTimer->start(500);
             batteryStopTimer->start(2500);
-            qDebug() << "Battery level critically low. Please replace the battery.";
+            qDebug() << "MainWindow: Battery level critically low. Please replace the battery.";
             // Exit loop.
             return;
         }
@@ -277,7 +277,7 @@ void MainWindow::on_powerBtn_clicked()
         // Set the number of clicks to 1.
         numberOfTimesPowerBtnClicked = 1;
 
-        qDebug() << "Device is partly turned on...";
+        qDebug() << "MainWindow: Device is partly turned on...";
     }
 
     // Clicked power button for the second time...
@@ -305,7 +305,7 @@ void MainWindow::on_powerBtn_clicked()
         ui->decreaseIntensityBtn->setEnabled(true);
         ui->selectionBtn->setEnabled(true);
 
-        qDebug() << "Device is turned on...";
+        qDebug() << "MainWindow: Device is turned on...";
     }
 
     // Clicked power button for the third time...
@@ -379,7 +379,7 @@ void MainWindow::on_powerBtn_clicked()
         // Set the text in time elapsed section back to default.
         ui->TimeElapse->setText("0s");
 
-        qDebug() << "Device is turned off...";
+        qDebug() << "MainWindow: Device is turned off...";
     }
 }
 
@@ -550,7 +550,7 @@ void MainWindow::iconsOn()
     ui->treatmentRefreshBtn->setEnabled(true);
     ui->clearTreatmentRecordsBtn->setEnabled(true);
 
-    qDebug() << "Start the 2 minutes timer...";
+    qDebug() << "MainWindow: Start the 2 minutes timer...";
 
     // Start timer to check if user has not click selection button after 2 minutes.
     timer = new QTimer(this);
@@ -683,7 +683,7 @@ void MainWindow::on_durationLeft_clicked()
         ui->listDuration->setCurrentRow(newRowItemDuration);
 
         // Button index -> actual value of duration
-        qDebug() << "Selected custom duration...";
+        qDebug() << "MainWindow: Selected custom duration...";
 
         // Input box for custom time selection (duration).
         customDuration = QInputDialog::getInt(this, "Custom Duration", "Enter duration:");
@@ -771,7 +771,7 @@ void MainWindow::on_durationRight_clicked()
         ui->listDuration->setCurrentRow(newRowItemDuration);
 
         // Button index -> actual value of duration
-        qDebug() << "Selected custom duration...";
+        qDebug() << "MainWindow: Selected custom duration...";
 
         // Input box for custom time selection (duration).
         customDuration = QInputDialog::getInt(this, "Custom Duration", "Enter duration:");
@@ -1009,7 +1009,7 @@ void MainWindow::degradeBattery()
     // Calculate degradation.
     int degRate = 50 + connectVal + objData.sessionArray[2] * 3;
     batteryLevelEnlarged = batteryLevelEnlarged - degRate;
-    qDebug("New Battery Percentage is %d.%d%.", batteryLevelEnlarged / 100, batteryLevelEnlarged % 100);
+    qDebug("MainWindow: New Battery Percentage is %d.%d%.", batteryLevelEnlarged / 100, batteryLevelEnlarged % 100);
     // Adjust battery level to new level.
     batteryLevel = batteryLevelEnlarged / 100;
     // Display battery if battery level is not critical.
@@ -1041,7 +1041,7 @@ void MainWindow::on_selectionBtn_clicked()
 
         // If it is then, display that the custom time cannot be 0 seconds long
         // (as this does not make sense to have as a session duration).
-        qDebug() << "Custom duration cannot be 0 seconds or less long...";
+        qDebug() << "MainWindow: Custom duration cannot be 0 seconds or less long...";
     }
     else
     {
@@ -1079,7 +1079,7 @@ void MainWindow::on_selectionBtn_clicked()
                 // Set the timerEnded variable to false as the timer has ended (has been deleted).
                 timerEnded = true;
 
-                qDebug() << "Stopping timer...";
+                qDebug() << "MainWindow: Stopping timer...";
             }
         }
 
@@ -1290,7 +1290,7 @@ void MainWindow::flashTimer()
 void MainWindow::delay5Seconds()
 {
 
-    qDebug() << "Start 5 seconds delay...";
+    qDebug() << "MainWindow: Start 5 seconds delay...";
 
     // Initializes the timer.
     fiveSecondsDelay = new QTimer(this);
@@ -1314,18 +1314,18 @@ void MainWindow::delay5Seconds()
 void MainWindow::continueAfter5Seconds()
 {
 
-    qDebug() << "5 seconds delay over...";
+    qDebug() << "MainWindow: 5 seconds delay over...";
 
     // Checks if the connection test does not finish properly (unsuccessful).
     if (connectionTestMain() != -1)
     {
 
-        qDebug() << "Connection test has unsuccessfully finished...";
+        qDebug() << "MainWindow: Connection test has unsuccessfully finished...";
     }
     else
     {
 
-        qDebug() << "Connection test has successfully finished...";
+        qDebug() << "MainWindow: Connection test has successfully finished...";
     }
 }
 
@@ -1344,7 +1344,7 @@ void MainWindow::turnOffNoSessionSelected()
         timer = nullptr;
     }
 
-    qDebug() << "Shut down OasisPro...";
+    qDebug() << "MainWindow: Shut down OasisPro...";
 
     // Proceeds to turn off device.
     deviceOff();
@@ -1360,7 +1360,7 @@ void MainWindow::turnOffNoSessionSelected()
 void MainWindow::on_increaseIntensityBtn_clicked()
 {
 
-    // qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
+    // qDebug() << "MainWindow: Intensity level is "+QString::number(objData.sessionArray[2]);
 
     // Don't increase intensity level beyond 8
     if (objData.sessionArray[2] < 8)
@@ -1378,7 +1378,7 @@ void MainWindow::on_increaseIntensityBtn_clicked()
 void MainWindow::on_decreaseIntensityBtn_clicked()
 {
 
-    // qDebug() << "Intensity level is "+QString::number(objData.sessionArray[2]);
+    // qDebug() << "MainWindow: Intensity level is "+QString::number(objData.sessionArray[2]);
 
     // Don't decrease intensity level beyond 0
     // If we set objData.sessionArray[2] > 0 instead of objData.sessionArray[2] > 1, then the user will never be able
@@ -2002,7 +2002,7 @@ void MainWindow::blinkCounter()
             if (objData.sessionArray[0] == 20)
             {
 
-                qDebug() << "Timer will go on for 20s";
+                qDebug() << "MainWindow: Timer will go on for 20s";
 
                 // Initializes 20 seconds timer.
                 seconds20Timer = new QTimer(this);
@@ -2027,7 +2027,7 @@ void MainWindow::blinkCounter()
             else if (objData.sessionArray[0] == 45)
             {
 
-                qDebug() << "Timer will go on for 45s";
+                qDebug() << "MainWindow: Timer will go on for 45s";
 
                 // Initializes 45 seconds timer.
                 seconds45Timer = new QTimer(this);
@@ -2052,7 +2052,7 @@ void MainWindow::blinkCounter()
             else
             {
 
-                qDebug().noquote() << "Timer will go on for " + QString::number(objData.sessionArray[0]) + "s";
+                qDebug().noquote() << "MainWindow: Timer will go on for " + QString::number(objData.sessionArray[0]) + "s";
 
                 // Initializes custom time timer.
                 customTimer = new QTimer(this);
@@ -2081,7 +2081,7 @@ void MainWindow::blinkCounter()
         else
         {
 
-            qDebug() << "Device has been turned off. Unable to process with test....";
+            qDebug() << "MainWindow: Device has been turned off. Unable to process with test....";
         }
     }
     else
@@ -2108,7 +2108,7 @@ void MainWindow::updateUITimeCustomDisplay()
         if (customCounter == (customDuration + 1))
         {
 
-            qDebug().noquote() << QString::number(customDuration) + "s timer finished...";
+            qDebug().noquote() << "MainWindow: " << QString::number(customDuration) + "s timer finished...";
 
             // Stopping battery degradation.
             // batteryDegradationTimer->stop();
@@ -2162,7 +2162,7 @@ void MainWindow::updateUITime20sDisplay()
         if (countTo20 == 21)
         {
 
-            qDebug() << "20s timer finished...";
+            qDebug() << "MainWindow: 20s timer finished...";
 
             // Stopping battery degradation.
             // batteryDegradationTimer->stop();
@@ -2216,7 +2216,7 @@ void MainWindow::updateUITime45sDisplay()
         if (countTo45 == 46)
         {
 
-            qDebug() << "45s timer finished...";
+            qDebug() << "MainWindow: 45s timer finished...";
 
             // Stopping battery degradation.
             // batteryDegradationTimer->stop();
@@ -2295,7 +2295,7 @@ void MainWindow::displayConnection(int signal)
 void MainWindow::playScrollAnimation()
 {
 
-    qDebug() << "Scrolling animation...";
+    qDebug() << "MainWindow: Scrolling animation...";
 
     // Run animation 5 times.
     int timeout = 5;
@@ -2318,7 +2318,7 @@ void MainWindow::intervalTimerIntensity()
         // wet/dry combobox has not been pressed.
         if (intensityTimer == nullptr && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
         {
-            qDebug() << "New intensity timer...";
+            qDebug() << "MainWindow: New intensity timer...";
 
             // Initializes the timer.
             intensityTimer = new QTimer(this);
@@ -2336,7 +2336,7 @@ void MainWindow::intervalTimerIntensity()
         // and if the wet/dry combobox has not been pressed.
         else if (connectivity == false && numberOfTimesPowerBtnClicked == 2 && changeWetOrDry == false)
         {
-            qDebug() << "Continue scrolling animation...";
+            qDebug() << "MainWindow: Continue scrolling animation...";
 
             // Reset counter to 0.
             countSwitch = 0;
@@ -2350,14 +2350,14 @@ void MainWindow::intervalTimerIntensity()
 
             // Set counter to 0.
             countSwitch = 0;
-            qDebug() << "Switched stated...";
+            qDebug() << "MainWindow: Switched stated...";
         }
         else
         {
 
             // Set counter to 0.
             countSwitch = 0;
-            qDebug() << "Scrolling animation has stopped...";
+            qDebug() << "MainWindow: Scrolling animation has stopped...";
         }
     }
 }
@@ -2436,7 +2436,7 @@ void MainWindow::switchLeds()
         }
         else
         {
-            qDebug() << "Last intensity...";
+            qDebug() << "MainWindow: Last intensity...";
             ledEightOff();
         }
 
@@ -2444,7 +2444,7 @@ void MainWindow::switchLeds()
         if (countSwitch == 15)
         {
 
-            qDebug() << "Stopping timer...";
+            qDebug() << "MainWindow: Stopping timer...";
 
             // Resets the counter to 0.
             countSwitch = 0;
@@ -2527,7 +2527,7 @@ void MainWindow::pauseCounter()
             timer = nullptr;
         }
 
-        qDebug() << "End scrolling animation...";
+        qDebug() << "MainWindow: End scrolling animation...";
     }
 
     // else statament that is called until the counter named countForPausedEnd is not equal to the valuePause, then
@@ -2552,7 +2552,7 @@ void MainWindow::pauseCounter()
 int MainWindow::connectionTestMain()
 {
 
-    qDebug() << "Connection test started...";
+    qDebug() << "MainWindow: Connection test started...";
 
     // Define maximum value for safe voltage level.
     int defaultSafeLevel = 4;
@@ -2601,7 +2601,7 @@ int MainWindow::connectionTestMain()
     if (connectivity == false && numberOfTimesPowerBtnClicked == 2)
     {
 
-        qDebug() << "Device is disconnected...";
+        qDebug() << "MainWindow: Device is disconnected...";
 
         // Not connected to session
         sessionOnOrOff = false;
@@ -2631,7 +2631,7 @@ int MainWindow::connectionTestMain()
         // Start session
         sessionOnOrOff = true;
 
-        qDebug() << "Device is successfully connected...";
+        qDebug() << "MainWindow: Device is successfully connected...";
 
         // To make sure scrolling animation is off completely.
         offLeds();
@@ -2645,7 +2645,7 @@ int MainWindow::connectionTestMain()
             onRightEar();
             onGroupBoxEars();
 
-            qDebug() << "Starting connection test with connected device...";
+            qDebug() << "MainWindow: Starting connection test with connected device...";
 
             // Set variable to false as the combobox is no longer being change from dry to wet or vice-versa.
             changeWetOrDry = false;
@@ -2655,7 +2655,7 @@ int MainWindow::connectionTestMain()
         }
 
         // Exit with connection
-        qDebug() << "Connection test ended successfully...";
+        qDebug() << "MainWindow: Connection test ended successfully...";
 
         ui->selectionBtn->setDisabled(false);
     }
@@ -2669,7 +2669,7 @@ int MainWindow::connectionTestMain()
         // In this case session ends early.
         finishedScrolledDown = false;
 
-        qDebug() << "Ending session early...";
+        qDebug() << "MainWindow: Ending session early...";
 
         // Turning all LEDs off.
         offLeds();
@@ -2696,7 +2696,7 @@ int MainWindow::connectionTestMain()
 
             // Reset to default text.
             ui->TimeElapse->setText("20s");
-            qDebug() << "Deleted 20s timer...";
+            qDebug() << "MainWindow: Deleted 20s timer...";
         }
 
         // Check if the 45 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
@@ -2721,7 +2721,7 @@ int MainWindow::connectionTestMain()
 
             // Reset to default text.
             ui->TimeElapse->setText("45s");
-            qDebug() << "Deleted 45s timer...";
+            qDebug() << "MainWindow: Deleted 45s timer...";
         }
 
         // Check if the custom timer is not equal to nullptr.
@@ -2745,7 +2745,7 @@ int MainWindow::connectionTestMain()
 
             // Reset to default text.
             ui->TimeElapse->setText(QString::number(customDuration) + "s");
-            qDebug() << "Deleted custom time timer...";
+            qDebug() << "MainWindow: Deleted custom time timer...";
         }
 
         // Scrolling down animation - end of session.
@@ -2754,13 +2754,13 @@ int MainWindow::connectionTestMain()
         // Set variable to false as there is no active session.
         sessionOnOrOff = false;
 
-        qDebug() << "Session ended...";
+        qDebug() << "MainWindow: Session ended...";
     }
     else
     {
 
         // Exit without connection
-        qDebug() << "Connection test has been terminated ...";
+        qDebug() << "MainWindow: Connection test has been terminated ...";
     }
 
     return -1;
@@ -2770,7 +2770,7 @@ int MainWindow::connectionTestMain()
 void MainWindow::on_newBattery_clicked()
 {
 
-    qDebug() << "Battery has been recharged back to 100%...";
+    qDebug() << "MainWindow: Battery has been recharged back to 100%...";
 
     // Set batteryLevel variable back to 100%.
     batteryLevel = 100;
@@ -2788,7 +2788,7 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
     // Checks if the value is connected, if the device / application is fully on, and if there is a session currenly selected (selected button has been pressed).
     if (ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true)
     {
-        qDebug() << "Connected...";
+        qDebug() << "MainWindow: Connected...";
 
         // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
         if (intensityTimer != nullptr)
@@ -2826,7 +2826,7 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 
             // Reset to default text.
             ui->TimeElapse->setText("20s");
-            qDebug() << "Deleted 20s timer...";
+            qDebug() << "MainWindow: Deleted 20s timer...";
         }
 
         // Check if the 45 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
@@ -2851,7 +2851,7 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 
             // Reset to default text.
             ui->TimeElapse->setText("45s");
-            qDebug() << "Deleted 45s timer...";
+            qDebug() << "MainWindow: Deleted 45s timer...";
         }
 
         // Check if the custom timer is not equal to nullptr.
@@ -2875,7 +2875,7 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 
             // Reset to default text.
             ui->TimeElapse->setText(QString::number(customDuration) + "s");
-            qDebug() << "Deleted custom time timer...";
+            qDebug() << "MainWindow: Deleted custom time timer...";
         }
 
         // Checks if the timer that is used to blink / flash the LEDs based on their connection is not equal to nullptr.
@@ -2914,7 +2914,7 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
     // Checks if the value is disconnected, if the device / application is fully on, and if there is a session currenly selected (selected button has been pressed).
     else if (ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && selectedSessionOrNot == true)
     {
-        qDebug() << "Disconnected...";
+        qDebug() << "MainWindow: Disconnected...";
 
         // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
         if (intensityTimer != nullptr)
@@ -2952,7 +2952,7 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 
             // Reset to default text.
             ui->TimeElapse->setText("20s");
-            qDebug() << "Deleted 20s timer...";
+            qDebug() << "MainWindow: Deleted 20s timer...";
         }
 
         // Check if the 45 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
@@ -2977,7 +2977,7 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 
             // Reset to default text.
             ui->TimeElapse->setText("45s");
-            qDebug() << "Deleted 45s timer...";
+            qDebug() << "MainWindow: Deleted 45s timer...";
         }
 
         // Check if the custom timer is not equal to nullptr.
@@ -3001,7 +3001,7 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 
             // Reset to default text.
             ui->TimeElapse->setText(QString::number(customDuration) + "s");
-            qDebug() << "Deleted custom time timer...";
+            qDebug() << "MainWindow: Deleted custom time timer...";
         }
 
         // Checks if the timer that is used to blink / flash the LEDs based on their connection is not equal to nullptr.
@@ -3044,13 +3044,13 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
     // - numberOfTimesPowerBtnClicked = 2 ======> means device is completely turned on.
     else if (numberOfTimesPowerBtnClicked == 0)
     {
-        qDebug().noquote() << "Unable to switch to " + arg1;
-        qDebug() << "Device is not turned on...";
+        qDebug().noquote() << "MainWindow: Unable to switch to " + arg1;
+        qDebug() << "MainWindow: Device is not turned on...";
     }
     else
     {
-        qDebug().noquote() << "Unable to switch to " + arg1;
-        qDebug() << "Selection button has not been pressed...";
+        qDebug().noquote() << "MainWindow: Unable to switch to " + arg1;
+        qDebug() << "MainWindow: Selection button has not been pressed...";
     }
 }
 
@@ -3068,7 +3068,7 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     if (ui->listOfSkins->currentIndex() == 0 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true)
     {
 
-        qDebug() << "Changed to wet...";
+        qDebug() << "MainWindow: Changed to wet...";
         changeWetOrDry = true;
 
         // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
@@ -3107,7 +3107,7 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Reset to default text.
             ui->TimeElapse->setText("20s");
-            qDebug() << "Deleted 20s timer...";
+            qDebug() << "MainWindow: Deleted 20s timer...";
         }
 
         // Check if the 45 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
@@ -3132,7 +3132,7 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Reset to default text.
             ui->TimeElapse->setText("45s");
-            qDebug() << "Deleted 45s timer...";
+            qDebug() << "MainWindow: Deleted 45s timer...";
         }
 
         // Check if the custom timer is not equal to nullptr.
@@ -3156,7 +3156,7 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Reset to default text.
             ui->TimeElapse->setText(QString::number(customDuration) + "s");
-            qDebug() << "Deleted custom time timer...";
+            qDebug() << "MainWindow: Deleted custom time timer...";
         }
 
         // Checks if the timer that is used to blink / flash the LEDs based on their connection is not equal to nullptr.
@@ -3195,7 +3195,7 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     else if (ui->listOfSkins->currentIndex() == 1 && numberOfTimesPowerBtnClicked == 2 && sessionOnOrOff == true && selectedSessionOrNot == true)
     {
 
-        qDebug() << "Changed to dry...";
+        qDebug() << "MainWindow: Changed to dry...";
         changeWetOrDry = true;
 
         // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
@@ -3234,7 +3234,7 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Reset to default text.
             ui->TimeElapse->setText("20s");
-            qDebug() << "Deleted 20s timer...";
+            qDebug() << "MainWindow: Deleted 20s timer...";
         }
 
         // Check if the 45 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
@@ -3259,7 +3259,7 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Reset to default text.
             ui->TimeElapse->setText("45s");
-            qDebug() << "Deleted 45s timer...";
+            qDebug() << "MainWindow: Deleted 45s timer...";
         }
 
         // Check if the custom timer is not equal to nullptr.
@@ -3283,7 +3283,7 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Reset to default text.
             ui->TimeElapse->setText(QString::number(customDuration) + "s");
-            qDebug() << "Deleted custom time timer...";
+            qDebug() << "MainWindow: Deleted custom time timer...";
         }
 
         // Checks if the timer that is used to blink / flash the LEDs based on their connection is not equal to nullptr.
@@ -3320,18 +3320,18 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
     // Checks if the device / application is turned off.
     else if (numberOfTimesPowerBtnClicked == 0)
     {
-        qDebug() << "Device is not turned on...";
+        qDebug() << "MainWindow: Device is not turned on...";
     }
     // Checks if there is no session currently running.
     else if (sessionOnOrOff == false)
     {
-        qDebug().noquote() << "Unable to switch to " + arg1;
-        qDebug() << "Device is disconnected or no session was selected...";
+        qDebug().noquote() << "MainWindow: Unable to switch to " + arg1;
+        qDebug() << "MainWindow: Device is disconnected or no session was selected...";
     }
     else
     {
-        qDebug().noquote() << "Unable to switch to " + arg1;
-        qDebug() << "Selection button has not been pressed...";
+        qDebug().noquote() << "MainWindow: Unable to switch to " + arg1;
+        qDebug() << "MainWindow: Selection button has not been pressed...";
     }
 }
 
@@ -3390,7 +3390,7 @@ void MainWindow::startDescendEndSession()
             endSession = nullptr;
         }
 
-        qDebug() << "Resetting all necessary components before immediate shut down...";
+        qDebug() << "MainWindow: Resetting all necessary components before immediate shut down...";
 
         // Set variable to false as there is no active session.
         sessionOnOrOff = false;
@@ -3441,7 +3441,7 @@ void MainWindow::startDescendEndSession()
         // Set the text in time elapsed section back to default.
         ui->TimeElapse->setText("0s");
 
-        qDebug() << "Device has shut down due to critical battery level.";
+        qDebug() << "MainWindow: Device has shut down due to critical battery level.";
 
         // Stopping necessary battery timers.
         batteryStartTimer->start(500);
@@ -3515,7 +3515,7 @@ void MainWindow::startDescendEndSession()
         }
         else
         {
-            qDebug() << "Arrived at the first intensity...";
+            qDebug() << "MainWindow: Arrived at the first intensity...";
             ledEightOn();
         }
     }
@@ -3524,7 +3524,7 @@ void MainWindow::startDescendEndSession()
     if (countSwitchDescent == 15 && batteryLevel > 12 && endSession != nullptr)
     {
 
-        qDebug() << "Stopping end session timer...";
+        qDebug() << "MainWindow: Stopping end session timer...";
 
         // Counter is reset to 0.
         countSwitchDescent = 0;
@@ -3542,7 +3542,7 @@ void MainWindow::startDescendEndSession()
         if (finishedScrolledDown == true)
         {
 
-            qDebug() << "Resetting all necessary components before shut down...";
+            qDebug() << "MainWindow: Resetting all necessary components before shut down...";
 
             // Set variable to false as there is no active session.
             sessionOnOrOff = false;
@@ -3606,22 +3606,22 @@ void MainWindow::startDescendEndSession()
             TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
             if (newDatabase->addTherapyHistoryRecord(userId, tr))
             {
-                qDebug() << "Adding a history therapy record into Table historyTreatments in QSQL Database...";
+                qDebug() << "MainWindow: Adding a history therapy record into Table historyTreatments in QSQL Database...";
             }
             else
             {
-                qDebug() << "Encountered an error while inserting record...";
+                qDebug() << "MainWindow: Encountered an error while inserting record...";
             }
 
             // Print Status:
-            qDebug() << "Size of Recording Vector: " << newDatabase->getTherapyHistoryRecords(userId).size();
+            qDebug() << "MainWindow: Size of Recording Vector: " << newDatabase->getTherapyHistoryRecords(userId).size();
 
             // Free memory:
             delete tr;
 
             ui->listWidget->clear();
 
-            qDebug() << "Device is turned off...";
+            qDebug() << "MainWindow: Device is turned off...";
         }
     }
     else if (endSession != nullptr)
@@ -3682,7 +3682,7 @@ void MainWindow::on_treatmentRefreshBtn_clicked()
     // No recordings, so do nothing
     if (recordings.isEmpty())
     {
-        qDebug("No recordings...");
+        qDebug("MainWindow: Refresh Button: No recordings.");
     }
     // Populate listview with recordings
     else
@@ -3691,38 +3691,9 @@ void MainWindow::on_treatmentRefreshBtn_clicked()
 
         for (ittTherapy = recordings.begin(); ittTherapy != recordings.end(); ++ittTherapy)
         {
-            QString output; // Needs to be inside the for loop so we define an entirely new output string for every therapy entry
-
-            int sessionNumberTherapy = (*ittTherapy)->getSessionType();
-            int sessionDurationTherapy = (*ittTherapy)->getDuration();
-            int sessionIntensityLevelTherapy = (*ittTherapy)->getIntensityLevel();
-
-            // Record the session number associated with the index of the selected session
-            if (sessionNumberTherapy == 0)
-            {
-                sessionNumberTherapy = 5;
-            }
-            else if (sessionNumberTherapy == 1)
-            {
-                sessionNumberTherapy = 6;
-            }
-            else if (sessionNumberTherapy == 2)
-            {
-                sessionNumberTherapy = 7;
-            }
-            else if (sessionNumberTherapy == 3)
-            {
-                sessionNumberTherapy = 4;
-            }
-
-            qDebug() << QString::number(sessionDurationTherapy);
-            qDebug() << QString::number(sessionNumberTherapy);
-            qDebug() << QString::number(sessionIntensityLevelTherapy);
-
-            output.append("SessionDuration = " + QString::number(sessionDurationTherapy));
-            output.append("s, SessionNumber = " + QString::number(sessionNumberTherapy));
-            output.append(", SessionIntensity = " + QString::number(sessionIntensityLevelTherapy));
-
+            QString output = (*ittTherapy)->stringify();
+            qDebug() << "MainWindow: Refresh Button: Threapy Record: " << output;
+            output = "\n" + output + "\n";
             ui->listWidget->addItem(output);
         }
     }
@@ -3757,7 +3728,7 @@ void MainWindow::on_treatmenSelectpBtn_clicked()
     // Check if any valid theray record was selected from listWidget:
     if ((recordlistItemIndex == -1) || (ui->listWidget->selectedItems().size() == 0))
     {
-        qDebug("MainWindow: Nothing was selected in listWidget. ");
+        qDebug("MainWindow: Refresh Button: Nothing was selected in listWidget. ");
         // Notify user:
         QMessageBox AlertSelectTherapyRecord;
         AlertSelectTherapyRecord.setText("Please press Up/Down Button and select a valid therapy record from the list widget first. ");
@@ -3777,9 +3748,9 @@ void MainWindow::on_treatmenSelectpBtn_clicked()
     int sessionDurationTherapy = selectedRecord->getDuration();
     int sessionIntensityLevelTherapy = selectedRecord->getIntensityLevel();
 
-    qDebug() << QString::number(sessionDurationTherapy);
-    qDebug() << "sessionNumberTherapy = " << QString::number(sessionNumberTherapy);
-    qDebug() << QString::number(sessionIntensityLevelTherapy);
+    qDebug() << "MainWindow: sessionDurationTherapy = " << QString::number(sessionDurationTherapy);
+    qDebug() << "MainWindow: sessionNumberTherapy = " << QString::number(sessionNumberTherapy);
+    qDebug() << "MainWindow: sessionIntensityLevelTherapy = " << QString::number(sessionIntensityLevelTherapy);
 
     objData.sessionArray[0] = sessionDurationTherapy;
     objData.sessionArray[1] = sessionNumberTherapy;
@@ -3790,7 +3761,7 @@ void MainWindow::on_treatmenSelectpBtn_clicked()
     //***** Update GUI to reflect selected record *****//
 
     // Highlight session duration of recording
-    qDebug("sessionDurationTherapy = %d\n", sessionDurationTherapy);
+    qDebug("MainWindow: sessionDurationTherapy = %d\n", sessionDurationTherapy);
     if (sessionDurationTherapy == 20)
     {
         ui->listDuration->setCurrentRow(0);
