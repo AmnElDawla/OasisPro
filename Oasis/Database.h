@@ -28,7 +28,7 @@ public:
     int getTherapyId(int userId);
     bool addTherapyHistoryRecord(int userId, TherapyRecord *tr);
     QVector<TherapyRecord *> getTherapyHistoryRecords(int userId);
-    bool deleteTherapyHistoryRecords(int userId);
+    bool deleteTherapyHistoryRecords(Users *user);
 
 private:
     // Member variables:

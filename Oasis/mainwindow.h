@@ -236,6 +236,8 @@ private slots:
 
     void on_treatmenSelectpBtn_clicked();
 
+    void on_clearTreatmentRecordsBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -379,6 +381,13 @@ private:
 
     // Check if select button has been pressed
     bool selectedRecordedTherapy = false;
+
+    // Vectors to user and therapy record data:
+    QVector<Users *> userRecords;
+    QVector<TherapyRecord *> therapyRecords;
+
+    // Get user pointer from vector by user id:
+    Users *getUserById(int userId);
 
 };
 #endif // MAINWINDOW_H

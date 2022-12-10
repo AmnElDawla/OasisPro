@@ -129,6 +129,28 @@ MainWindow::MainWindow(QWidget *parent)
 // This is the destructor function. When the application is close, it will delete ui pointer (to prevent memory leaks).
 MainWindow::~MainWindow()
 {
+    // Modified:
+
+    // Free allocated memory to user records.
+    for (int i = 0; i < userRecords.size(); ++i)
+    {
+        if (userRecords[i])
+        {
+            delete userRecords[i];
+        }
+    }
+
+    // Modified:
+
+    // Free allocated memory to therapy records.
+    for (int i = 0; i < therapyRecords.size(); ++i)
+    {
+        if (therapyRecords[i])
+        {
+            delete therapyRecords[i];
+        }
+    }
+
     // Free allocated memory to Database object.
     delete newDatabase;
 
@@ -3608,6 +3630,22 @@ void MainWindow::startDescendEndSession()
     }
 }
 
+// Get a user pointer from user records
+Users *MainWindow::getUserById(int userId)
+{
+    if (this->userRecords.size() > 0)
+    {
+        if (userRecords[userId - 1])
+        {
+            if (userRecords[userId - 1]->getId() == userId)
+            {
+                return userRecords[userId - 1];
+            }
+        }
+    }
+    return nullptr;
+}
+
 // Read a therapy record and update elements of session array.
 void MainWindow::updateSelectedSession(TherapyRecord *tr)
 {
@@ -3701,8 +3739,14 @@ void MainWindow::on_treatmentUpBtn_clicked()
 
 void MainWindow::on_treatmenSelectpBtn_clicked()
 {
-    if(recordlistItemIndex == -1){
-        qDebug("Refresh and highlight a record before selecting one!");
+    // Check if any valid theray record was selected from listWidget:
+    if ((recordlistItemIndex == -1) || (ui->listWidget->selectedItems().size()== 0)){
+        qDebug("MainWindow: Nothing was selected in listWidget. ");
+        // Notify user:
+        QMessageBox AlertSelectTherapyRecord;
+        AlertSelectTherapyRecord.setText("Please press Up/Down Button and select a valid therapy record from the list widget first. ");
+        AlertSelectTherapyRecord.exec();
+
         return;
     }
 
@@ -3769,4 +3813,20 @@ void MainWindow::on_treatmenSelectpBtn_clicked()
     }
 
     ui->listSession->setCurrentRow(sessionNumberTherapy);
+}
+
+
+// Event listener of Clear All button:
+void MainWindow::on_clearTreatmentRecordsBtn_clicked()
+{
+    // Get current user id from combo box on GUI:
+    int userId = ui->listOfUsers->currentIndex();
+    userId++;
+    // Find a user pointer by user id from user reocrd vector:
+    Users *selectedUser = this->getUserById(userId);
+    // Remove all therapy history records:
+    if (newDatabase->deleteTherapyHistoryRecords(selectedUser)) {
+        // Update replay display:
+        this->on_treatmentRefreshBtn_clicked();
+    }
 }

@@ -4,6 +4,7 @@ Database::Database() {}
 
 Database::~Database()
 {
+    qDebug() << "Database: Disconnecting from database...";
     databaseGui.close();
     QSqlDatabase::removeDatabase(databaseGui.defaultConnection);
 };
@@ -32,8 +33,13 @@ bool Database::addUserRecord(int userId, QString userName)
 // Initialize required datebase structure(s).
 bool Database::initializeDatabase()
 {
+    QString dbPath = QCoreApplication::applicationDirPath() + "/patient.db";
+    qDebug("MainWindow: Full file path of database: ");
+    qDebug()<<"     " << dbPath;
+    qDebug(" ");
+
     databaseGui = QSqlDatabase::addDatabase("QSQLITE");
-    databaseGui.setDatabaseName(QCoreApplication::applicationDirPath() + "/patient.db");
+    databaseGui.setDatabaseName(dbPath);
 
     if (!databaseGui.open())
     {
@@ -68,7 +74,7 @@ bool Database::initializeDatabaseTables()
     queryTable.exec(queryDropUsersTable);
 
     QString queryDatabaseUsersTable = "CREATE TABLE IF NOT EXISTS users (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, username TEXT NOT NULL)";
-    QString queryDatabaseTreatmentHistoryTable = "CREATE TABLE IF NOT EXISTS treatmentHistory (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, tid INTEGER NOT NULL, session_type INTEGER NOT NULL, intensity_level INTEGER NOT NULL, duration INTEGER NOT NULL)";
+    QString queryDatabaseTreatmentHistoryTable = "CREATE TABLE IF NOT EXISTS treatmentHistory (pid INTEGER NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL REFERENCES users, tid INTEGER NOT NULL, session_type INTEGER NOT NULL, intensity_level INTEGER NOT NULL, duration INTEGER NOT NULL)";
     queryTable.exec(queryDatabaseUsersTable);
     queryTable.exec(queryDatabaseTreatmentHistoryTable);
 
@@ -102,14 +108,12 @@ QVector<Users *> Database::getUserData()
         {
             Administrator *admin = new Administrator(userId, userName);
             userData.push_back(admin);
-            // delete admin;
             count++;
         }
         else if (userId > 1)
         {
             Guest *guest = new Guest(userId, userName);
             userData.push_back(guest);
-            // delete guest;
             count++;
         }
     }
@@ -123,6 +127,7 @@ bool Database::validateTherapyRecord(const int sessionType, const int intensityL
     int intensityMin = 0;
     int intensityMax = 8;
     bool validity = true;
+
     if (sessionType < 0)
     {
         qDebug() << "ERROR: Invalid threapy record: session number is not valid";
@@ -138,6 +143,7 @@ bool Database::validateTherapyRecord(const int sessionType, const int intensityL
         qDebug() << "ERROR: Invalid threapy record: duration is not valid";
         validity = false;
     }
+
     return validity;
 }
 
@@ -235,21 +241,68 @@ QVector<TherapyRecord *> Database::getTherapyHistoryRecords(int userId)
     }
 
     // Print status:
-    qDebug() << "   Result: Found " << rowCounter << " therapy history records";
+    qDebug() << "Database: Response: Found " << rowCounter << " therapy history records. ";
 
     return therapyHistoryRecordData;
 };
 
-// Delete all threapy history records of a specified user.
-bool Database::deleteTherapyHistoryRecords(int userId)
+// Delete all threapy history records as an administrator.
+bool Database::deleteTherapyHistoryRecords(Users *user)
 {
-    databaseGui.transaction();
-    QSqlQuery queryTable;
-    // select fields:
-    QString queryDatabaseTherapyHistoryRecordTable = "DELETE FROM treatmentHistory WHERE uid = :userId";
-    queryTable.prepare(queryDatabaseTherapyHistoryRecordTable);
-    queryTable.bindValue(":userId", userId);
-    queryTable.exec();
+    // Check if user pointer is valid:
+    if (user)
+    {
+        // Identiy authentication:
+        qDebug() << "Database: Veryfying user identiy before Operation 'delete all therapy history records'...";
 
-    return databaseGui.commit();
+        /* Unauthorized access: */
+
+        // Notify user:
+        if ((user->getId() != 1) || (user->getType() != "admin"))
+        {
+            QMessageBox AlertUnauthorizedUser;
+            AlertUnauthorizedUser.critical(0, "Permission Denied", "Only an administrator is allowed to delete therapy records.");
+
+            qDebug("Database: Operation 'delete all therapy records' was not completed (unauthorized user). ");
+
+            return false;
+        }
+
+        /* Authourized access: */
+
+        // Confirm operation:
+        if (QMessageBox::Yes == QMessageBox(QMessageBox::Information, "Administrator " + user->getName(), "Are you sure to remove all therapy records?", QMessageBox::Yes | QMessageBox::No).exec())
+        {
+            // Delete all therapy history records in database:
+            databaseGui.transaction();
+            QSqlQuery queryTable;
+            // Select table:
+            QString queryDatabaseTherapyHistoryRecordTable = "DELETE FROM treatmentHistory";
+            queryDatabaseTherapyHistoryRecordTable = "DROP TABLE treatmentHistory";
+            queryTable.prepare(queryDatabaseTherapyHistoryRecordTable);
+            queryTable.exec();
+
+            if (databaseGui.commit()) {
+                if (this->initializeDatabaseTables()) {
+                    qDebug("Database: Operation 'delete all therapy records' was successfually completed.");
+                    return true;
+                }
+            }
+
+            qDebug("Database: Operation 'delete all therapy records' was not completed.");
+
+            return false;
+        }
+
+        qDebug("Database: Operation 'delete all therapy records' was cancelled. ");
+
+        return false;
+    }
+    else
+    {
+        // Null pointer handler:
+        qDebug("Database: Operation 'delete all therapy records' was not completed (null user pointer). ");
+
+        return false;
+    }
 };
