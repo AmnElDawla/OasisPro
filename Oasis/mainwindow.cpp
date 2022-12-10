@@ -1349,6 +1349,9 @@ void MainWindow::turnOffNoSessionSelected()
 
     qDebug() << "MainWindow: Shut down OasisPro...";
 
+    // Reset listWidget for replay feature:
+    ui->listWidget->clear();
+
     // Proceeds to turn off device.
     deviceOff();
     iconsOff();
@@ -3607,6 +3610,7 @@ void MainWindow::startDescendEndSession()
 
             // Add a therapy histroy record in to patient.db:
             TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
+
             if (newDatabase->addTherapyHistoryRecord(userId, tr))
             {
                 qDebug() << "MainWindow: Adding a history therapy record into Table historyTreatments in QSQL Database...";
@@ -3622,6 +3626,7 @@ void MainWindow::startDescendEndSession()
             // Free memory:
             delete tr;
 
+            // Reset listWidget for replay feature:
             ui->listWidget->clear();
 
             qDebug() << "MainWindow: Device is turned off...";
