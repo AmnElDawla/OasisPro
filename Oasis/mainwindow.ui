@@ -1293,6 +1293,27 @@ color: white;
      <string>Clear All</string>
     </property>
    </widget>
+   <widget class="QProgressBar" name="batteryLeft">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>350</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#batteryLeft {
+border: 2px solid white;
+color: black;
+text-align: center;
+background-color: white;
+}</string>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

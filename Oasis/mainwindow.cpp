@@ -125,6 +125,20 @@ MainWindow::MainWindow(QWidget *parent)
     connectionTestStopTimer = new QTimer(this);
     connectionTestStopTimer->setSingleShot(true);
 
+    // Battery color control and percentage display (progressbar).
+    ui->batteryLeft->setOrientation(Qt::Horizontal);
+    ui->batteryLeft->setRange(0, 100);
+    ui->batteryLeft->setValue(batteryLevel);
+    if(batteryLevel > 75) {
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: green; }");
+    }
+    else if(batteryLevel > 12 && batteryLevel <= 75) {
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
+    }
+    else {
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: red; }");
+    }
+
     // Set button(s) to their off image (as application is off when first runned).
     ui->selectionBtn->setStyleSheet("#selectionBtn{ border-image: url(':/resources/buttons/off_Select.png'); border-radius: 10px; }");
     ui->increaseIntensityBtn->setStyleSheet("#increaseIntensityBtn{ border-image: url(':/resources/buttons/off_IncreaseIntensityBtn.png'); border-radius: 10px; }");
@@ -872,6 +886,9 @@ void MainWindow::showBatteryLevel()
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
+        ui->batteryLeft->setValue(batteryLevel);
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: green; }");
+
     }
 
     // Checks if the battery level is greater than 75%, but less than or equal to 87%.
@@ -887,6 +904,9 @@ void MainWindow::showBatteryLevel()
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
+        ui->batteryLeft->setValue(batteryLevel);
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: green; }");
+
     }
 
     // Checks if the battery level is greater than 62%, but less than or equal to 75%.
@@ -902,6 +922,9 @@ void MainWindow::showBatteryLevel()
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
+        ui->batteryLeft->setValue(batteryLevel);
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
+
     }
 
     // Checks if the battery level is greater than 50%, but less than or equal to 62%.
@@ -917,6 +940,9 @@ void MainWindow::showBatteryLevel()
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
+        ui->batteryLeft->setValue(batteryLevel);
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
+
     }
 
     // Checks if the battery level is greater than 37%, but less than or equal to 50%.
@@ -932,6 +958,9 @@ void MainWindow::showBatteryLevel()
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
+        ui->batteryLeft->setValue(batteryLevel);
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
+
     }
 
     // Checks if the battery level is greater than 25%, but less than or equal to 37%.
@@ -947,6 +976,8 @@ void MainWindow::showBatteryLevel()
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
+        ui->batteryLeft->setValue(batteryLevel);
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
     }
 
     // Checks if the battery level is greater than 12%, but less than or equal to 25%.
@@ -962,6 +993,9 @@ void MainWindow::showBatteryLevel()
         ledThreeOff();
         toggleLedTwo();
         toggleLedOne();
+        ui->batteryLeft->setValue(batteryLevel);
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
+
     }
 
     // Checks if the battery level is greater than 0%, but less than or equal to 12%.
@@ -977,6 +1011,9 @@ void MainWindow::showBatteryLevel()
         ledThreeOff();
         ledTwoOff();
         toggleLedOne();
+        ui->batteryLeft->setValue(batteryLevel);
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: red; }");
+
     }
 }
 
@@ -1037,14 +1074,23 @@ void MainWindow::degradeBattery()
     // Adjust battery level to new level.
     batteryLevel = batteryLevelEnlarged / 100;
     // Display battery if battery level is not critical.
-    if (batteryLevel > 12)
+
+    ui->batteryLeft->setValue(batteryLevel);
+
+    if (batteryLevel > 75) {
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: green; }");
+    }
+
+    if (batteryLevel > 12 && batteryLevel <= 75)
     {
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
         batteryStartTimer->start(500);
         batteryStopTimer->start(2500);
     }
     // Check if battery level is critical. If it is, shut down device.
     if (batteryLevel <= 12)
     {
+        ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: red; }");
         degradeBatteryAllowed = false;
         batteryDegradationTimer->stop();
         on_powerBtn_clicked();
@@ -2802,6 +2848,9 @@ void MainWindow::on_newBattery_clicked()
     // Set batteryLevel variable back to 100%.
     batteryLevel = 100;
     batteryLevelEnlarged = batteryLevel * 100;
+    ui->batteryLeft->setValue(batteryLevel);
+    ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: green; }");
+
 }
 
 // This function only is called when the user press the combobox to connect or disconnect their application / device.
