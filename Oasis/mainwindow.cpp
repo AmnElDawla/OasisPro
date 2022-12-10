@@ -1036,7 +1036,7 @@ void MainWindow::stopBatteryLevel()
         ledTwoOff();
         ledOneOff();
     }
-    else
+    else if(numberOfTimesPowerBtnClicked != 0)
     {
         // Turn on all LEDs.
         ledEightOn();
