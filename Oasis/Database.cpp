@@ -53,10 +53,10 @@ bool Database::initializeDatabase()
 // Initialize values in a user record.
 bool Database::initializeDefaultUserRecord()
 {
-    QString userNames[4] = {"Eric", "Robert", "Angelina", "Emma"};
-    for (int i = 0; i < 4; i++)
+    QVector <QString> userNames = {"Eric", "Robert", "Angelina", "Emma"};
+    for (int i = 0; i < userNames.size() ; i++)
     {
-        if ((this->addUserRecord(i + 1, userNames[i])) == false)
+        if (!(this->addUserRecord(i + 1, userNames[i])))
         {
             return false;
         }

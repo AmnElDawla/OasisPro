@@ -234,7 +234,7 @@ private slots:
 
     void on_treatmentUpBtn_clicked();
 
-    void on_treatmenSelectpBtn_clicked();
+    void on_treatmentSelectBtn_clicked();
 
     void on_clearTreatmentRecordsBtn_clicked();
 

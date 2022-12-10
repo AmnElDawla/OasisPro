@@ -443,7 +443,7 @@ void MainWindow::deviceOff()
     ui->sessionLeft->setEnabled(false);
     ui->durationRight->setEnabled(false);
     ui->durationLeft->setEnabled(false);
-    ui->treatmenSelectpBtn->setEnabled(false);
+    ui->treatmentSelectBtn->setEnabled(false);
     ui->treatmentUpBtn->setEnabled(false);
     ui->treatmentDownBtn->setEnabled(false);
     ui->treatmentRefreshBtn->setEnabled(false);
@@ -547,7 +547,7 @@ void MainWindow::iconsOn()
     ui->durationRight->setEnabled(true);
     ui->durationLeft->setEnabled(true);
     ui->selectionBtn->setEnabled(true);
-    ui->treatmenSelectpBtn->setEnabled(true);
+    ui->treatmentSelectBtn->setEnabled(true);
     ui->treatmentUpBtn->setEnabled(true);
     ui->treatmentDownBtn->setEnabled(true);
     ui->treatmentRefreshBtn->setEnabled(true);
@@ -1013,6 +1013,7 @@ void MainWindow::degradeBattery()
     int degRate = 50 + connectVal + objData.sessionArray[2] * 3;
     batteryLevelEnlarged = batteryLevelEnlarged - degRate;
     qDebug("MainWindow: New Battery Percentage is %d.%d%.", batteryLevelEnlarged / 100, batteryLevelEnlarged % 100);
+
     // Adjust battery level to new level.
     batteryLevel = batteryLevelEnlarged / 100;
     // Display battery if battery level is not critical.
@@ -3620,11 +3621,11 @@ void MainWindow::startDescendEndSession()
                 qDebug() << "MainWindow: Encountered an error while inserting record...";
             }
 
-            // Print Status:
-            qDebug() << "MainWindow: Size of Recording Vector: " << newDatabase->getTherapyHistoryRecords(userId).size();
-
             // Free memory:
             delete tr;
+
+            // Print Status:
+            qDebug() << "MainWindow: Size of Recording Vector: " << newDatabase->getTherapyHistoryRecords(userId).size();
 
             // Reset listWidget for replay feature:
             ui->listWidget->clear();
@@ -3731,7 +3732,7 @@ void MainWindow::on_treatmentUpBtn_clicked()
     ui->listWidget->setCurrentRow(recordlistItemIndex);
 }
 
-void MainWindow::on_treatmenSelectpBtn_clicked()
+void MainWindow::on_treatmentSelectBtn_clicked()
 {
     // Check if any valid theray record was selected from listWidget:
     if ((recordlistItemIndex == -1) || (ui->listWidget->selectedItems().size() == 0))
@@ -3782,7 +3783,7 @@ void MainWindow::on_treatmenSelectpBtn_clicked()
     {
         ui->listDuration->setCurrentRow(2);
     }
-    ui->TimeElapse->setText(QString::number(sessionDurationTherapy));
+    ui->TimeElapse->setText(QString::number(sessionDurationTherapy) + "s");
 
     // Highlight session type of recording
     resetButtons();
