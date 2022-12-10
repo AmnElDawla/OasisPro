@@ -3611,14 +3611,27 @@ void MainWindow::startDescendEndSession()
 
             // Add a therapy histroy record in to patient.db:
             TherapyRecord *tr = new TherapyRecord(sessionType, intensityLevel, duration);
+            QVector<TherapyRecord *> records = newDatabase->getTherapyHistoryRecords(userId);
+            bool containsRecord = false;
 
-            if (newDatabase->addTherapyHistoryRecord(userId, tr))
-            {
-                qDebug() << "MainWindow: Adding a history therapy record into Table historyTreatments in QSQL Database...";
+            // Look through all records and see if any of them match the new one we're trying to add
+            for(int i=0; i<records.size(); i++){
+                if(records[i]->getDuration() == tr->getDuration() && records[i]->getIntensityLevel() == tr->getIntensityLevel() && records[i]->getSessionType() == tr->getSessionType()){
+                    containsRecord = true;
+                    break;
+                }
             }
-            else
-            {
-                qDebug() << "MainWindow: Encountered an error while inserting record...";
+
+            // Only add record if it doesn't exists within the database
+            if(!containsRecord){
+                if (newDatabase->addTherapyHistoryRecord(userId, tr))
+                {
+                    qDebug() << "MainWindow: Adding a history therapy record into Table historyTreatments in QSQL Database...";
+                }
+                else
+                {
+                    qDebug() << "MainWindow: Encountered an error while inserting record...";
+                }
             }
 
             // Free memory:
