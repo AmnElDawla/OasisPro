@@ -242,7 +242,7 @@ private:
     Ui::MainWindow *ui;
 
     // Database variable (starts new database)
-    Database *newDatabase = new Database();
+    Database *newDatabase = nullptr;
 
     QVector<int> levels;
 

@@ -284,7 +284,7 @@ bool Database::deleteTherapyHistoryRecords(Users *user)
 
             if (databaseGui.commit()) {
                 if (this->initializeDatabaseTables()) {
-                    qDebug("Database: Operation 'delete all therapy records' was successfually completed.");
+                    qDebug("Database: Operation 'delete all therapy records' was successfully completed.");
                     return true;
                 }
             }
