@@ -379,6 +379,9 @@ void MainWindow::on_powerBtn_clicked()
         // Set the text in time elapsed section back to default.
         ui->TimeElapse->setText("0s");
 
+        // Reset listWidget for treament history replay:
+        ui->listWidget->clear();
+
         qDebug() << "MainWindow: Device is turned off...";
     }
 }
