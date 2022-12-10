@@ -62,7 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "Mainwindow: Testing: Getting users details...";
 
         // Setting usernames in combobox.
-        QVector<Users *> userRecords = newDatabase->getUserData();
+        userRecords = newDatabase->getUserData();
         bool flag = true;
 
         // Populate combo box with result of user records:
@@ -349,7 +349,8 @@ void MainWindow::on_powerBtn_clicked()
         }
 
         // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
-        if(intensityTimer != nullptr) {
+        if (intensityTimer != nullptr)
+        {
 
             // Stop the timer.
             intensityTimer->stop();
@@ -359,7 +360,6 @@ void MainWindow::on_powerBtn_clicked()
 
             // Set the timer to nullptr.
             intensityTimer = nullptr;
-
         }
 
         // Restart connection test to end the session.
@@ -444,6 +444,7 @@ void MainWindow::deviceOff()
     ui->treatmentUpBtn->setEnabled(false);
     ui->treatmentDownBtn->setEnabled(false);
     ui->treatmentRefreshBtn->setEnabled(false);
+    ui->clearTreatmentRecordsBtn->setEnabled(false);
 }
 
 // This function is called when the device's turned on for the first time (numberOfTimesPowerBtnClicked variable = 1).
@@ -547,6 +548,7 @@ void MainWindow::iconsOn()
     ui->treatmentUpBtn->setEnabled(true);
     ui->treatmentDownBtn->setEnabled(true);
     ui->treatmentRefreshBtn->setEnabled(true);
+    ui->clearTreatmentRecordsBtn->setEnabled(true);
 
     qDebug() << "Start the 2 minutes timer...";
 
@@ -2789,7 +2791,8 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
         qDebug() << "Connected...";
 
         // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
-        if(intensityTimer != nullptr) {
+        if (intensityTimer != nullptr)
+        {
 
             // Stop the timer.
             intensityTimer->stop();
@@ -2799,7 +2802,6 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 
             // Set the timer to nullptr.
             intensityTimer = nullptr;
-
         }
 
         // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
@@ -2915,7 +2917,8 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
         qDebug() << "Disconnected...";
 
         // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
-        if(intensityTimer != nullptr) {
+        if (intensityTimer != nullptr)
+        {
 
             // Stop the timer.
             intensityTimer->stop();
@@ -2925,7 +2928,6 @@ void MainWindow::on_listOfSkins_currentIndexChanged(const QString &arg1)
 
             // Set the timer to nullptr.
             intensityTimer = nullptr;
-
         }
 
         // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
@@ -3070,7 +3072,8 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
         changeWetOrDry = true;
 
         // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
-        if(intensityTimer != nullptr) {
+        if (intensityTimer != nullptr)
+        {
 
             // Stop the timer.
             intensityTimer->stop();
@@ -3080,7 +3083,6 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Set the timer to nullptr.
             intensityTimer = nullptr;
-
         }
 
         // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
@@ -3197,7 +3199,8 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
         changeWetOrDry = true;
 
         // Check if the timer named intensityTiner is not equal to nullptr (empty or null).
-        if(intensityTimer != nullptr) {
+        if (intensityTimer != nullptr)
+        {
 
             // Stop the timer.
             intensityTimer->stop();
@@ -3207,7 +3210,6 @@ void MainWindow::on_listWetOrDry_currentIndexChanged(const QString &arg1)
 
             // Set the timer to nullptr.
             intensityTimer = nullptr;
-
         }
 
         // Check if the 20 seconds timer is not equal to nullptr (if it is equal to nullptr, it means the timer has not been initialized)
@@ -3633,13 +3635,22 @@ void MainWindow::startDescendEndSession()
 // Get a user pointer from user records
 Users *MainWindow::getUserById(int userId)
 {
+
+    if (this->userRecords.isEmpty())
+    {
+        userRecords = newDatabase->getUserData();
+    }
+
     if (this->userRecords.size() > 0)
     {
-        if (userRecords[userId - 1])
+        if (this->userRecords.size() > 0)
         {
-            if (userRecords[userId - 1]->getId() == userId)
+            if (userRecords[userId - 1])
             {
-                return userRecords[userId - 1];
+                if (userRecords[userId - 1]->getId() == userId)
+                {
+                    return userRecords[userId - 1];
+                }
             }
         }
     }
@@ -3687,16 +3698,20 @@ void MainWindow::on_treatmentRefreshBtn_clicked()
             int sessionIntensityLevelTherapy = (*ittTherapy)->getIntensityLevel();
 
             // Record the session number associated with the index of the selected session
-            if(sessionNumberTherapy == 0){
+            if (sessionNumberTherapy == 0)
+            {
                 sessionNumberTherapy = 5;
             }
-            else if(sessionNumberTherapy == 1){
+            else if (sessionNumberTherapy == 1)
+            {
                 sessionNumberTherapy = 6;
             }
-            else if(sessionNumberTherapy == 2){
+            else if (sessionNumberTherapy == 2)
+            {
                 sessionNumberTherapy = 7;
             }
-            else if(sessionNumberTherapy == 3){
+            else if (sessionNumberTherapy == 3)
+            {
                 sessionNumberTherapy = 4;
             }
 
@@ -3740,7 +3755,8 @@ void MainWindow::on_treatmentUpBtn_clicked()
 void MainWindow::on_treatmenSelectpBtn_clicked()
 {
     // Check if any valid theray record was selected from listWidget:
-    if ((recordlistItemIndex == -1) || (ui->listWidget->selectedItems().size()== 0)){
+    if ((recordlistItemIndex == -1) || (ui->listWidget->selectedItems().size() == 0))
+    {
         qDebug("MainWindow: Nothing was selected in listWidget. ");
         // Notify user:
         QMessageBox AlertSelectTherapyRecord;
@@ -3807,14 +3823,13 @@ void MainWindow::on_treatmenSelectpBtn_clicked()
     {
         ui->TimeText->setText("Time Left (Theta)");
     }
-    else if(sessionNumberTherapy == 0)
+    else if (sessionNumberTherapy == 0)
     {
         ui->TimeText->setText("Time Left (Alpha)");
     }
 
     ui->listSession->setCurrentRow(sessionNumberTherapy);
 }
-
 
 // Event listener of Clear All button:
 void MainWindow::on_clearTreatmentRecordsBtn_clicked()
@@ -3825,7 +3840,8 @@ void MainWindow::on_clearTreatmentRecordsBtn_clicked()
     // Find a user pointer by user id from user reocrd vector:
     Users *selectedUser = this->getUserById(userId);
     // Remove all therapy history records:
-    if (newDatabase->deleteTherapyHistoryRecords(selectedUser)) {
+    if (newDatabase->deleteTherapyHistoryRecords(selectedUser))
+    {
         // Update replay display:
         this->on_treatmentRefreshBtn_clicked();
     }
