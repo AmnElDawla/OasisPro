@@ -971,7 +971,12 @@ background-repeat: none;
      <item>
       <widget class="QPushButton" name="newBattery">
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">#newBattery {
+color: white;
+padding: 4%;
+border: 2px solid white;
+background-color: black;
+}</string>
        </property>
        <property name="text">
         <string>New Battery</string>
@@ -1036,16 +1041,17 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="treatmentUpBtn">
     <property name="geometry">
      <rect>
-      <x>1110</x>
-      <y>500</y>
-      <width>80</width>
-      <height>25</height>
+      <x>1100</x>
+      <y>494</y>
+      <width>101</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#increaseIntensityBtn{
-border-image: url(&quot;:/resources/buttons/yellowUp.png&quot;);
-border-radius: 10px;
+     <string notr="true">#treatmentUpBtn{
+border: 2px solid white;
+color: white;
+background-color: transparent;
 }
 
 </string>
@@ -1057,16 +1063,17 @@ border-radius: 10px;
    <widget class="QPushButton" name="treatmentDownBtn">
     <property name="geometry">
      <rect>
-      <x>1220</x>
-      <y>500</y>
-      <width>80</width>
-      <height>25</height>
+      <x>1210</x>
+      <y>494</y>
+      <width>111</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#increaseIntensityBtn{
-border-image: url(&quot;:/resources/buttons/yellowUp.png&quot;);
-border-radius: 10px;
+     <string notr="true">#treatmentDownBtn{
+border: 2px solid white;
+color: white;
+background-color: transparent;
 }
 
 </string>
@@ -1079,15 +1086,16 @@ border-radius: 10px;
     <property name="geometry">
      <rect>
       <x>1330</x>
-      <y>500</y>
-      <width>80</width>
-      <height>25</height>
+      <y>494</y>
+      <width>101</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#increaseIntensityBtn{
-border-image: url(&quot;:/resources/buttons/yellowUp.png&quot;);
-border-radius: 10px;
+     <string notr="true">#treatmentSelectBtn{
+border: 2px solid white;
+color: white;
+background-color: transparent;
 }
 
 </string>
@@ -1246,10 +1254,17 @@ background-repeat: none;
     <property name="geometry">
      <rect>
       <x>1440</x>
-      <y>500</y>
-      <width>80</width>
-      <height>25</height>
+      <y>494</y>
+      <width>101</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#treatmentRefreshBtn {
+border: 2px solid white;
+color: white;
+background-color: transparent;
+}</string>
     </property>
     <property name="text">
      <string>Refresh</string>
@@ -1260,12 +1275,19 @@ background-repeat: none;
      <rect>
       <x>1440</x>
       <y>350</y>
-      <width>80</width>
-      <height>25</height>
+      <width>101</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#clearTreatmentRecordsBtn {
+border: 2px solid white;
+background-color: transparent;
+color: white;
+}</string>
     </property>
     <property name="text">
      <string>Clear All</string>

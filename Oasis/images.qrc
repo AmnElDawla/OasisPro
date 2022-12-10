@@ -34,5 +34,8 @@
         <file>icons/companyIcon.png</file>
         <file>buttons/leftButtonDisabled.png</file>
         <file>buttons/rightButtonDisabled.png</file>
+        <file>buttons/off_IncreaseIntensityBtn.png</file>
+        <file>buttons/off_DecreaseIntensityBtn.png</file>
+        <file>buttons/off_Select.png</file>
     </qresource>
 </RCC>

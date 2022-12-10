@@ -124,6 +124,11 @@ MainWindow::MainWindow(QWidget *parent)
     connectionTestStartTimer = new QTimer(this);
     connectionTestStopTimer = new QTimer(this);
     connectionTestStopTimer->setSingleShot(true);
+
+    // Set button(s) to their off image (as application is off when first runned).
+    ui->selectionBtn->setStyleSheet("#selectionBtn{ border-image: url(':/resources/buttons/off_Select.png'); border-radius: 10px; }");
+    ui->increaseIntensityBtn->setStyleSheet("#increaseIntensityBtn{ border-image: url(':/resources/buttons/off_IncreaseIntensityBtn.png'); border-radius: 10px; }");
+    ui->decreaseIntensityBtn->setStyleSheet("#decreaseIntensityBtn{ border-image: url(':/resources/buttons/off_DecreaseIntensityBtn.png'); border-radius: 10px; }");
 }
 
 // This is the destructor function. When the application is close, it will delete ui pointer (to prevent memory leaks).
@@ -264,6 +269,11 @@ void MainWindow::on_powerBtn_clicked()
         ui->durationRight->setEnabled(false);
         ui->durationLeft->setEnabled(false);
 
+        // Set button(s) to their off image.
+        ui->selectionBtn->setStyleSheet("#selectionBtn{ border-image: url(':/resources/buttons/off_Select.png'); border-radius: 10px; }");
+        ui->increaseIntensityBtn->setStyleSheet("#increaseIntensityBtn{ border-image: url(':/resources/buttons/off_IncreaseIntensityBtn.png'); border-radius: 10px; }");
+        ui->decreaseIntensityBtn->setStyleSheet("#decreaseIntensityBtn{ border-image: url(':/resources/buttons/off_DecreaseIntensityBtn.png'); border-radius: 10px; }");
+
         // Allow battery to degrade.
         degradeBatteryAllowed = true;
 
@@ -304,6 +314,11 @@ void MainWindow::on_powerBtn_clicked()
         ui->increaseIntensityBtn->setEnabled(true);
         ui->decreaseIntensityBtn->setEnabled(true);
         ui->selectionBtn->setEnabled(true);
+
+        // Set button(s) to their on image.
+        ui->selectionBtn->setStyleSheet("#selectionBtn{ border-image: url(':/resources/buttons/Select.png'); border-radius: 10px; }");
+        ui->increaseIntensityBtn->setStyleSheet("#increaseIntensityBtn{ border-image: url(':/resources/buttons/yellowUp.png'); border-radius: 10px; }");
+        ui->decreaseIntensityBtn->setStyleSheet("#decreaseIntensityBtn{ border-image: url(':/resources/buttons/yellowDown.png'); border-radius: 10px; }");
 
         qDebug() << "MainWindow: Device is turned on...";
     }
@@ -381,6 +396,11 @@ void MainWindow::on_powerBtn_clicked()
 
         // Reset listWidget for treament history replay:
         ui->listWidget->clear();
+
+        // Set button(s) to their off image.
+        ui->selectionBtn->setStyleSheet("#selectionBtn{ border-image: url(':/resources/buttons/off_Select.png'); border-radius: 10px; }");
+        ui->increaseIntensityBtn->setStyleSheet("#increaseIntensityBtn{ border-image: url(':/resources/buttons/off_IncreaseIntensityBtn.png'); border-radius: 10px; }");
+        ui->decreaseIntensityBtn->setStyleSheet("#decreaseIntensityBtn{ border-image: url(':/resources/buttons/off_DecreaseIntensityBtn.png'); border-radius: 10px; }");
 
         qDebug() << "MainWindow: Device is turned off...";
     }
