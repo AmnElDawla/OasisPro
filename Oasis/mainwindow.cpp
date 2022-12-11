@@ -150,11 +150,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->selectionBtn->setStyleSheet("#selectionBtn{ border-image: url(':/resources/buttons/off_Select.png'); border-radius: 10px; }");
     ui->increaseIntensityBtn->setStyleSheet("#increaseIntensityBtn{ border-image: url(':/resources/buttons/off_IncreaseIntensityBtn.png'); border-radius: 10px; }");
     ui->decreaseIntensityBtn->setStyleSheet("#decreaseIntensityBtn{ border-image: url(':/resources/buttons/off_DecreaseIntensityBtn.png'); border-radius: 10px; }");
+
+    qDebug() << "MainWindow: Device default configuration have been set...";
+
 }
 
 // This is the destructor function. When the application is close, it will delete ui pointer (to prevent memory leaks).
 MainWindow::~MainWindow()
 {
+
+    qDebug() << "MainWindow: Deleting pointers...";
+
     // Modified:
 
     // Free allocated memory to user records.
@@ -208,6 +214,9 @@ void MainWindow::resetButtons()
     ledTwoStatus = true;
     ui->ledOne->setStyleSheet("#ledOne { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #5ced73; }");
     ledOneStatus = true;
+
+    qDebug() << "MainWindow: LEDs have been resetted to their original color...";
+
 }
 
 // This function flashes the current selected intensity level for 3 seconds
@@ -249,6 +258,9 @@ void MainWindow::flashSelectedLevel()
     {
         ui->ledEight->setStyleSheet("#ledEight { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid #008080; }");
     }
+
+    qDebug() << "MainWindow: Selected choosen intensity...";
+
 }
 
 //============================================================================//
@@ -436,6 +448,8 @@ void MainWindow::onConnect()
     ui->graphSession->setStyleSheet("#graphSession { border-image: url(:/resources/icons/connect.PNG); border: 2px solid red; border-radius: 20px; }");
     ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Connected.PNG); border: 2px solid red; border-radius: 20px; }");
     ui->rightEar->setStyleSheet("#rightEar { border-image: url(:/resources/icons/rightConnectOn.PNG); border: 2px solid red; border-radius: 20px; }");
+    qDebug() << "MainWindow: Turned on CES Mode light and left/right ear...";
+
 }
 
 // When the device is completely turn off, this function is called to turn off the CES graph, left ear, and right
@@ -446,6 +460,8 @@ void MainWindow::offConnect()
     ui->leftEar->setStyleSheet("#leftEar { border-image: url(:/resources/icons/LeftEar_Off.PNG); border: 2px solid red; border-radius: 20px; }");
     ui->graphSession->setStyleSheet("#graphSession { border-image: url(:/resources/icons/connectOff.png); border: 2px solid red; border-radius: 20px; }");
     ui->rightEar->setStyleSheet("#rightEar { border-image: url(:/resources/icons/rightConnect.PNG); border: 2px solid red; border-radius: 20px; }");
+    qDebug() << "MainWindow: Turned off CES Mode light and left/right ear...";
+
 }
 
 // When the device is completely turn off, this function is called to turn off all the LEDs (the section in the UI
@@ -490,6 +506,9 @@ void MainWindow::deviceOff()
     ui->treatmentDownBtn->setEnabled(false);
     ui->treatmentRefreshBtn->setEnabled(false);
     ui->clearTreatmentRecordsBtn->setEnabled(false);
+
+    qDebug() << "MainWindow: Turned device off...";
+
 }
 
 // This function is called when the device's turned on for the first time (numberOfTimesPowerBtnClicked variable = 1).
@@ -500,6 +519,8 @@ void MainWindow::deviceOn()
 
     ui->indicatorOffOrOn->setStyleSheet("#indicatorOffOrOn::chunk { background-color: #01fe00; }");
     resetButtons();
+    qDebug() << "MainWindow: Turned device on...";
+
 }
 
 // This function turns on the icons for the duration and session. This occurs when the power button is clicked
@@ -607,6 +628,9 @@ void MainWindow::iconsOn()
 
     // Call this function to start to find the current session number based on the database data
     selectedIntensityAtStart();
+
+    qDebug() << "MainWindow: Turned on icons...";
+
 }
 
 // This function checks if there is a value for newRowItemSession (which stores the session number that corresponds to an LED).
@@ -671,6 +695,9 @@ void MainWindow::iconsOff()
 
         ui->listSession->item(i)->setIcon(QIcon(arrQListSession[i]));
     }
+
+    qDebug() << "MainWindow: Turned off icons...";
+
 }
 
 // This function initializes the icons for the duration and session as well as sets the parameters for
@@ -771,6 +798,7 @@ void MainWindow::on_durationLeft_clicked()
 // newRowItemSession = 3 ===> Theta session
 void MainWindow::on_sessionLeft_clicked()
 {
+
     selectedRecordedTherapy = false;
 
     if (newRowItemSession == 0)
@@ -1224,6 +1252,9 @@ void MainWindow::on_selectionBtn_clicked()
         // Use selected values of the device only if we haven't selected a recorded therapy
         if (!selectedRecordedTherapy)
         {
+
+            qDebug() << "MainWindow: Saving selected duration and session...";
+
             // Set the selected duration and session values to the corresponding variables.
             selectedDuration = newRowItemDuration;
             selectedSession = newRowItemSession;
