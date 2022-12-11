@@ -717,6 +717,10 @@ void MainWindow::initialiazeListOfIcons()
 
 // This function allows the user to traverse the QListWidget of duration from left to right
 // from the first QlistDuration of icons.
+// It records the value of item into the variable named newRowItemDuration.
+// newRowItemDuration = 0 ===> 20 seconds duration
+// newRowItemDuration = 1 ===> 45 seconds duration
+// newRowItemDuration = 2 ===> Custom time duration (user decides on the duration of the session).
 void MainWindow::on_durationLeft_clicked()
 {
     selectedRecordedTherapy = false;
@@ -757,6 +761,11 @@ void MainWindow::on_durationLeft_clicked()
 
 // This function allows the user to traverse the QListWidget of session from left to right
 // from the first QlistSession of icons.
+// It records the value of item into the variable named newRowItemSession.
+// newRowItemSession = 0 ===> Alpha session
+// newRowItemSession = 1 ===> SMR session
+// newRowItemSession = 2 ===> Beta session
+// newRowItemSession = 3 ===> Theta session
 void MainWindow::on_sessionLeft_clicked()
 {
     selectedRecordedTherapy = false;
@@ -765,6 +774,8 @@ void MainWindow::on_sessionLeft_clicked()
     {
 
         newRowItemSession = 3;
+
+        // Resets the color of the labels (1 to 8 LEDs). Added due to bug that changed color of LEDs.
         resetButtons();
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Theta)");
@@ -773,6 +784,8 @@ void MainWindow::on_sessionLeft_clicked()
     {
 
         newRowItemSession = 0;
+
+        // Resets the color of the labels (1 to 8 LEDs). Added due to bug that changed color of LEDs.
         resetButtons();
         ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Alpha)");
@@ -781,6 +794,8 @@ void MainWindow::on_sessionLeft_clicked()
     {
 
         newRowItemSession = 1;
+
+        // Resets the color of the labels (1 to 8 LEDs). Added due to bug that changed color of LEDs.
         resetButtons();
         ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (SMR)");
@@ -789,6 +804,8 @@ void MainWindow::on_sessionLeft_clicked()
     {
 
         newRowItemSession = 2;
+
+        // Resets the color of the labels (1 to 8 LEDs). Added due to bug that changed color of LEDs.
         resetButtons();
         ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Beta)");
@@ -798,6 +815,10 @@ void MainWindow::on_sessionLeft_clicked()
 
 // This function allows the user to traverse the QListWidget of duration from right to left
 // from the first QlistDuration of icons.
+// It records the value of item into the variable named newRowItemDuration.
+// newRowItemDuration = 0 ===> 20 seconds duration
+// newRowItemDuration = 1 ===> 45 seconds duration
+// newRowItemDuration = 2 ===> Custom time duration (user decides on the duration of the session).
 void MainWindow::on_durationRight_clicked()
 {
     selectedRecordedTherapy = false;
@@ -838,6 +859,11 @@ void MainWindow::on_durationRight_clicked()
 
 // This function allows the user to traverse the QListWidget of session from right to left
 // from the first QlistSession of icons.
+// It records the value of item into the variable named newRowItemSession.
+// newRowItemSession = 0 ===> Alpha session
+// newRowItemSession = 1 ===> SMR session
+// newRowItemSession = 2 ===> Beta session
+// newRowItemSession = 3 ===> Theta session
 void MainWindow::on_sessionRight_clicked()
 {
     selectedRecordedTherapy = false;
@@ -846,6 +872,8 @@ void MainWindow::on_sessionRight_clicked()
     {
 
         newRowItemSession = 1;
+
+        // Resets the color of the labels (1 to 8 LEDs). Added due to bug that changed color of LEDs.
         resetButtons();
         ui->ledSix->setStyleSheet("#ledSix { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (SMR)");
@@ -854,6 +882,8 @@ void MainWindow::on_sessionRight_clicked()
     {
 
         newRowItemSession = 2;
+
+        // Resets the color of the labels (1 to 8 LEDs). Added due to bug that changed color of LEDs.
         resetButtons();
         ui->ledSeven->setStyleSheet("#ledSeven { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: #FF7e82; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Beta)");
@@ -862,6 +892,8 @@ void MainWindow::on_sessionRight_clicked()
     {
 
         newRowItemSession = 3;
+
+        // Resets the color of the labels (1 to 8 LEDs). Added due to bug that changed color of LEDs.
         resetButtons();
         ui->ledFour->setStyleSheet("#ledFour { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Theta)");
@@ -870,6 +902,8 @@ void MainWindow::on_sessionRight_clicked()
     {
 
         newRowItemSession = 0;
+
+        // Resets the color of the labels (1 to 8 LEDs). Added due to bug that changed color of LEDs.
         resetButtons();
         ui->ledFive->setStyleSheet("#ledFive { background-color: transparent; font-weight: 600; color: black; background-repeat: none; background: yellow; border: 3px solid cyan; }");
         ui->TimeText->setText("Time Left (Alpha)");
