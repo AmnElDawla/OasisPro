@@ -56,8 +56,8 @@ This project has 5 milestones (necessary), which are:
 
 This project also has 2 additional milestones, which are: 
 
-- [ ] `Record feature` where users can choose to record a therapy and add to treatment history.
-- [ ] `Replay feature` where users can replay selected treatments from history of treatments.
+- [x] `Record feature` where users can choose to record a therapy and add to treatment history.
+- [x] `Replay feature` where users can replay selected treatments from history of treatments.
 
 ## Tasks Assignment
 
