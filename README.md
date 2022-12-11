@@ -70,7 +70,7 @@ This project also has 2 additional milestones, which are:
 
 ## Status of OasisPro
 
-Not completed &#10060;. 
+Not completed  	&#9989;. 
 
 ## Tested Scenarios
 
