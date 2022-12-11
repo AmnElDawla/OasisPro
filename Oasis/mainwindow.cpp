@@ -396,6 +396,7 @@ void MainWindow::on_powerBtn_clicked()
 
             // Set the timer to nullptr.
             intensityTimer = nullptr;
+
         }
 
         // Restart connection test to end the session.
@@ -893,6 +894,8 @@ void MainWindow::showBatteryLevel()
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
+
+        // Change progressbar color to green and set its value to the battery level.
         ui->batteryLeft->setValue(batteryLevel);
         ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: green; }");
 
@@ -911,6 +914,8 @@ void MainWindow::showBatteryLevel()
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
+
+        // Change progressbar color to green and set its value to the battery level.
         ui->batteryLeft->setValue(batteryLevel);
         ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: green; }");
 
@@ -929,6 +934,8 @@ void MainWindow::showBatteryLevel()
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
+
+        // Change progressbar color to yellow and set its value to the battery level.
         ui->batteryLeft->setValue(batteryLevel);
         ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
 
@@ -947,6 +954,8 @@ void MainWindow::showBatteryLevel()
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
+
+        // Change progressbar color to yellow and set its value to the battery level.
         ui->batteryLeft->setValue(batteryLevel);
         ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
 
@@ -965,6 +974,8 @@ void MainWindow::showBatteryLevel()
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
+
+        // Change progressbar color to yellow and set its value to the battery level.
         ui->batteryLeft->setValue(batteryLevel);
         ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
 
@@ -983,6 +994,8 @@ void MainWindow::showBatteryLevel()
         toggleLedThree();
         toggleLedTwo();
         toggleLedOne();
+
+        // Change progressbar color to yellow and set its value to the battery level.
         ui->batteryLeft->setValue(batteryLevel);
         ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
     }
@@ -1000,6 +1013,8 @@ void MainWindow::showBatteryLevel()
         ledThreeOff();
         toggleLedTwo();
         toggleLedOne();
+
+        // Change progressbar color to yellow and set its value to the battery level.
         ui->batteryLeft->setValue(batteryLevel);
         ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
 
@@ -1018,6 +1033,8 @@ void MainWindow::showBatteryLevel()
         ledThreeOff();
         ledTwoOff();
         toggleLedOne();
+
+        // Change progressbar color to red and set its value to the battery level.
         ui->batteryLeft->setValue(batteryLevel);
         ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: red; }");
 
