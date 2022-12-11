@@ -353,6 +353,9 @@ void MainWindow::on_powerBtn_clicked()
         ui->increaseIntensityBtn->setStyleSheet("#increaseIntensityBtn{ border-image: url(':/resources/buttons/yellowUp.png'); border-radius: 10px; }");
         ui->decreaseIntensityBtn->setStyleSheet("#decreaseIntensityBtn{ border-image: url(':/resources/buttons/yellowDown.png'); border-radius: 10px; }");
 
+        // Refresh database.
+        on_treatmentRefreshBtn_clicked();
+
         qDebug() << "MainWindow: Device is turned on...";
     }
 
