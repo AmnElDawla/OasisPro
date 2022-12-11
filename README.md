@@ -16,8 +16,8 @@ Some details on the important dates for this project.
 
 | Date(s)              | Importance            |
 | -------------------- | --------------------- |
-| December 5, 2022     | Finished all project  |
-| December 6 to 9, 2022 | Review project <br>Fix bugs<br>Meet with TA |
+| December 12, 2022     | Finished all project  |
+| December 14 to 15, 2022 | Meet with TA |
 
 ## Merge Errors
 
@@ -56,35 +56,21 @@ This project has 5 milestones (necessary), which are:
 
 This project also has 2 additional milestones, which are: 
 
-- [ ] `Record feature` where users can choose to record a therapy and add to treatment history.
-- [ ] `Replay feature` where users can replay selected treatments from history of treatments.
+- [x] `Record feature` where users can choose to record a therapy and add to treatment history.
+- [x] `Replay feature` where users can replay selected treatments from history of treatments.
 
 ## Tasks Assignment
 
 | Team Members         | Tasks                 |
 | -------------------- | --------------------- |
-| Andre Nonaka Cordova | Readme.md<br>GUI Creation<br>Use Case Model<br>Traceability Matrix<br>Program Logic<br>Connection Test Feature <br> Intensity Feature |
+| Andre Nonaka Cordova | Readme.md<br>GUI Creation<br>Use Case Model<br>Traceability Matrix<br>Sequence Diagram <br> Activity Diagram<br> State Diagram <br> Connection Test Feature <br> Intensity Feature |
 | Alex Nedev | Session Selection Feature<br>Replay Feature |
 | Khaled Farag | UML Model<br>Power Feature<br>Battery Level |
 | Mingrui Liang | Replay Feature<br>Record Therapy Feature |
 
 ## Status of OasisPro
 
-Not completed &#10060;. 
-
-## Tested Scenarios
-
-Tested Scenarios as of November 19, 2022:
-
-- [ ] Finishing our GUI application with database integration (SQL).
-- [ ] Adding logic to our GUI application.
-
-## Checklist
-
-Checklist as of November 19, 2022:
-
-- [ ] Finishing our GUI application with database integration (SQL).
-- [ ] Adding logic to our GUI application.
+Completed  &#9989;. 
 
 ## Progress Report Table
 
@@ -93,23 +79,22 @@ Checklist as of November 19, 2022:
 &#128308; = Not Started
 
 ```
-Notice 1: The Replay Therapy Feature will need to be assigned ASAP.
-Notice 2: The Progress Report Table will need to be updated throughout the project. 
+Notice 1: The Progress Report Table will need to be updated throughout the project. 
 ```
 
 | Task             | Status          | Lead                  | Collaborators | Expected end date | Actual end date | Time spent | Notes |
 | ---------------- | :-------------: | --------------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
-| Readme.md (will be continuously updated)       | 	 &#128993;     | Andre Nonaka Cordova  | Khaled Farag | 2022-11-25        | 2022-11-25      | N/A        | N/A   |
-| <br><br><br><br>Use Case Model and Traceability Matrix<br><br><br><br> |  &#128993;  | Andre Nonaka Cordova  | Alex Nedev | 2022-11-22 | N/A | N/A | Completed a Preliminary draft of the Use Cases.<br>However, we will most likely change certain cases as we move along in the project.<br> Alex N provided some feedback on Use Cases.<br>Will work back and forth with lead until we believe we’re done. |
+| Readme.md (will be continuously updated)       | 	 &#128994;     | Andre Nonaka Cordova  | Khaled Farag | 2022-11-25        | 2022-12-10      | 3 weeks      | N/A   |
+| <br><br><br><br>Use Case Model and Traceability Matrix<br><br><br><br> |  &#128994;  | Andre Nonaka Cordova  | Alex Nedev | 2022-11-22 | 2022-12-10 | N/A | Completed a Preliminary draft of the Use Cases.<br>However, we will most likely change certain cases as we move along in the project.<br> Alex N provided some feedback on Use Cases.<br>Will work back and forth with lead until we believe we’re done. |
 |    UML Model     |   &#128994;     | Khaled Farag  | Andre Nonaka Cordova  | 2022-11-14 | 2022-12-08 | 4 weeks | The original UML model was made by Andre in mid November. As changes to the project made the original UML obsolete, it was overhauled by Khaled. |
-| GUI Creation     |   &#128994;     | Andre Nonaka Cordova  | N/A  | 2022-11-14 | 2022-11-19      | 1 week | N/A |
+| GUI Creation     |   &#128994;     | Andre Nonaka Cordova  | N/A  | 2022-11-14 | 2022-11-25      | 2 weeks | N/A |
 | Power Feature    |   &#128994;     | Khaled Farag          | N/A | 2022-11-30 | 2022-11-30 | 2 weeks | Basic features were completed in <1 weeks; needed to wait for other features to be sufficiently completed to finish this one. |
 | Battery Level    |   &#128994;     | Khaled Farag          | N/A  | 2022-11-30 | 2022-12-05 | 3 weeks | Basic features were completed in <1 weeks; needed to wait for other features to be sufficiently completed to finish this one. |
-| Session Selection Feature |   &#128994;  | Alex Nedev   | Andre Nonaka Cordova  | 2022-11-30 | 2022-11-18      | 1 week | N/A |
-| Connection Test Feature |   &#128994;  | Andre Nonaka Cordova  | Mingrui Liang | 2022-11-30 | 2022-11-18      | 1.5 week | N/A |
+| Session Selection Feature |   &#128994;  | Alex Nedev   | Andre Nonaka Cordova  | 2022-11-30 | 2022-11-24      | 1 week | N/A |
+| Connection Test Feature |   &#128994;  | Andre Nonaka Cordova  | Mingrui Liang | 2022-12-10 | 2022-12-05      | 1.5 week | N/A |
 | Intensity Feature  |   &#128994;   | Andre Nonaka Cordova  | Alex Nedev   | 2022-11-18 | 2022-11-18      | 1 weeks | N/A |
-| Record Therapy Feature (should have support for at least 4 users) |   &#128993;  | Mingrui Liang  | Andre Nonaka Cordova  | 2022-11-30 | 2022-11-19      | N/A | N/A |
-| Replay Therapy Feature (should have support for at least 4 users) |   &#128993;  | Alex Nedev | Mingrui Liang | 2022-11-30               | 2022-11-19      | N/A        | N/A   |
+| Record Therapy Feature (should have support for at least 4 users) |   &#128994;  | Mingrui Liang  | Andre Nonaka Cordova  | 2022-11-30 | 2022-12-10      | N/A | N/A |
+| Replay Therapy Feature (should have support for at least 4 users) |   &#128994;  | Alex Nedev | Mingrui Liang | 2022-11-30               | 2022-12-10      | N/A        | N/A   |
 
 ## How to work on this project in your personal computer
 

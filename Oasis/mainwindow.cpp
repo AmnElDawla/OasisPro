@@ -3884,10 +3884,20 @@ void MainWindow::on_treatmentSelectBtn_clicked()
     int sessionDurationTherapy = selectedRecord->getDuration();
     int sessionIntensityLevelTherapy = selectedRecord->getIntensityLevel();
 
-    qDebug() << "MainWindow: sessionDurationTherapy = " << QString::number(sessionDurationTherapy);
-    qDebug() << "MainWindow: sessionNumberTherapy = " << QString::number(sessionNumberTherapy);
-    qDebug() << "MainWindow: sessionIntensityLevelTherapy = " << QString::number(sessionIntensityLevelTherapy);
+    // Set variable that keeps track of which duration option was selected
+    if(sessionDurationTherapy == 20){
+        newRowItemDuration = 0;
+    }
+    else if(sessionDurationTherapy == 45){
+        newRowItemDuration = 1;
+    }
+    else{
+        newRowItemDuration = 2;
+        customDuration = sessionDurationTherapy;
+    }
 
+    // Set variable that keeps track of which session option was selected
+    newRowItemSession = sessionNumberTherapy;
     objData.sessionArray[0] = sessionDurationTherapy;
     objData.sessionArray[1] = sessionNumberTherapy;
     objData.sessionArray[2] = sessionIntensityLevelTherapy;
