@@ -725,6 +725,7 @@ void MainWindow::on_durationLeft_clicked()
 {
     selectedRecordedTherapy = false;
 
+    // Custom time (in seconds) duration.
     if (newRowItemDuration == 0)
     {
 
@@ -743,6 +744,7 @@ void MainWindow::on_durationLeft_clicked()
         // Show the custom duration in the UI.
         ui->TimeElapse->setText(QString::number(customDuration) + "s");
     }
+    // 20 seconds duration.
     else if (newRowItemDuration == 1)
     {
 
@@ -750,6 +752,7 @@ void MainWindow::on_durationLeft_clicked()
         ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("20s");
     }
+    // 20 seconds duration.
     else
     {
 
@@ -823,6 +826,7 @@ void MainWindow::on_durationRight_clicked()
 {
     selectedRecordedTherapy = false;
 
+    // 45 seconds duration.
     if (newRowItemDuration == 0)
     {
 
@@ -830,6 +834,7 @@ void MainWindow::on_durationRight_clicked()
         ui->listDuration->setCurrentRow(newRowItemDuration);
         ui->TimeElapse->setText("45s");
     }
+    // Custom time (in seconds) duration.
     else if (newRowItemDuration == 1)
     {
 
@@ -848,6 +853,7 @@ void MainWindow::on_durationRight_clicked()
         // Show the custom duration in the UI.
         ui->TimeElapse->setText(QString::number(customDuration) + "s");
     }
+    // 20 seconds duration.
     else
     {
 
