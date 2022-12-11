@@ -16,8 +16,8 @@ Some details on the important dates for this project.
 
 | Date(s)              | Importance            |
 | -------------------- | --------------------- |
-| December 5, 2022     | Finished all project  |
-| December 6 to 9, 2022 | Review project <br>Fix bugs<br>Meet with TA |
+| December 12, 2022     | Finished all project  |
+| December 14 to 15, 2022 | Meet with TA |
 
 ## Merge Errors
 
