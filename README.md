@@ -61,7 +61,7 @@ This project also has 2 additional milestones, which are:
 
 ## Relevant Documents
 
-[Link to Use case document](https://docs.google.com/document/d/1MYg5dHoU1SRV3qOMvXtguB_YqrAV9xEW/edit)<br>
+[Link to Use Case Document](https://docs.google.com/document/d/1MYg5dHoU1SRV3qOMvXtguB_YqrAV9xEW/edit)<br>
 [Link to Traceability Matrix](https://docs.google.com/document/d/1dHgvpd0EOjXzUPfw5XxjvbdnfVWdI6Mz/edit)
 
 ## Tasks Assignment
