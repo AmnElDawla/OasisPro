@@ -72,20 +72,6 @@ This project also has 2 additional milestones, which are:
 
 Completed  &#9989;. 
 
-## Tested Scenarios
-
-Tested Scenarios as of November 19, 2022:
-
-- [ ] Finishing our GUI application with database integration (SQL).
-- [ ] Adding logic to our GUI application.
-
-## Checklist
-
-Checklist as of November 19, 2022:
-
-- [ ] Finishing our GUI application with database integration (SQL).
-- [ ] Adding logic to our GUI application.
-
 ## Progress Report Table
 
 &#128994; = Completed<br>
