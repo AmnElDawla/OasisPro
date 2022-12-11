@@ -84,10 +84,10 @@ Notice 1: The Progress Report Table will need to be updated throughout the proje
 
 | Task             | Status          | Lead                  | Collaborators | Expected end date | Actual end date | Time spent | Notes |
 | ---------------- | :-------------: | --------------------- | ------------- | ----------------- | --------------- | ---------- | ----- |
-| Readme.md (will be continuously updated)       | 	 &#128994;     | Andre Nonaka Cordova  | Khaled Farag | 2022-11-25        | 2022-12-10      | N/A        | N/A   |
-| <br><br><br><br>Use Case Model and Traceability Matrix<br><br><br><br> |  &#128994;  | Andre Nonaka Cordova  | Alex Nedev | 2022-11-22 | N/A | N/A | Completed a Preliminary draft of the Use Cases.<br>However, we will most likely change certain cases as we move along in the project.<br> Alex N provided some feedback on Use Cases.<br>Will work back and forth with lead until we believe we’re done. |
+| Readme.md (will be continuously updated)       | 	 &#128994;     | Andre Nonaka Cordova  | Khaled Farag | 2022-11-25        | 2022-12-10      | 3 weeks      | N/A   |
+| <br><br><br><br>Use Case Model and Traceability Matrix<br><br><br><br> |  &#128994;  | Andre Nonaka Cordova  | Alex Nedev | 2022-11-22 | 2022-12-10 | N/A | Completed a Preliminary draft of the Use Cases.<br>However, we will most likely change certain cases as we move along in the project.<br> Alex N provided some feedback on Use Cases.<br>Will work back and forth with lead until we believe we’re done. |
 |    UML Model     |   &#128994;     | Khaled Farag  | Andre Nonaka Cordova  | 2022-11-14 | 2022-12-08 | 4 weeks | The original UML model was made by Andre in mid November. As changes to the project made the original UML obsolete, it was overhauled by Khaled. |
-| GUI Creation     |   &#128994;     | Andre Nonaka Cordova  | N/A  | 2022-11-14 | 2022-11-19      | 1 week | N/A |
+| GUI Creation     |   &#128994;     | Andre Nonaka Cordova  | N/A  | 2022-11-14 | 2022-11-25      | 2 weeks | N/A |
 | Power Feature    |   &#128994;     | Khaled Farag          | N/A | 2022-11-30 | 2022-11-30 | 2 weeks | Basic features were completed in <1 weeks; needed to wait for other features to be sufficiently completed to finish this one. |
 | Battery Level    |   &#128994;     | Khaled Farag          | N/A  | 2022-11-30 | 2022-12-05 | 3 weeks | Basic features were completed in <1 weeks; needed to wait for other features to be sufficiently completed to finish this one. |
 | Session Selection Feature |   &#128994;  | Alex Nedev   | Andre Nonaka Cordova  | 2022-11-30 | 2022-11-18      | 1 week | N/A |
