@@ -79,8 +79,7 @@ Completed  &#9989;.
 &#128308; = Not Started
 
 ```
-Notice 1: The Replay Therapy Feature will need to be assigned ASAP.
-Notice 2: The Progress Report Table will need to be updated throughout the project. 
+Notice 1: The Progress Report Table will need to be updated throughout the project. 
 ```
 
 | Task             | Status          | Lead                  | Collaborators | Expected end date | Actual end date | Time spent | Notes |
