@@ -3845,7 +3845,7 @@ void MainWindow::updateSelectedSession(TherapyRecord *tr)
 void MainWindow::on_treatmentRefreshBtn_clicked()
 {
 
-    ui->listWidget->clear();
+    ui->listWidget->clear(); // Clear list that displays all the recordings
     recordlistItemIndex = -1;
 
     // Get current user id from combo box on GUI:
@@ -3865,12 +3865,13 @@ void MainWindow::on_treatmentRefreshBtn_clicked()
     {
         QVector<TherapyRecord *>::iterator ittTherapy;
 
+        // Loop over all recordings for the selected user that are stored in the database
         for (ittTherapy = recordings.begin(); ittTherapy != recordings.end(); ++ittTherapy)
         {
             QString output = (*ittTherapy)->stringify();
             qDebug() << "MainWindow: Refresh Button: Threapy Record: " << output;
             output = "\n" + output + "\n";
-            ui->listWidget->addItem(output);
+            ui->listWidget->addItem(output); // Add the current recording we are looking at to the list of recorded therapy sessions
         }
     }
 }
@@ -3885,18 +3886,18 @@ void MainWindow::on_treatmentDownBtn_clicked()
         recordlistItemIndex++;
     }
 
-    ui->listWidget->setCurrentRow(recordlistItemIndex);
+    ui->listWidget->setCurrentRow(recordlistItemIndex); // Select the recorded therapy session directly underneath the current one
 }
 
 void MainWindow::on_treatmentUpBtn_clicked()
 {
-
+    // Don't go outside the list of recorded therapy sessions
     if (recordlistItemIndex > 0)
     {
         recordlistItemIndex--;
     }
 
-    ui->listWidget->setCurrentRow(recordlistItemIndex);
+    ui->listWidget->setCurrentRow(recordlistItemIndex); // Select the recorded therapy session directly above the current one
 }
 
 void MainWindow::on_treatmentSelectBtn_clicked()
@@ -3917,14 +3918,14 @@ void MainWindow::on_treatmentSelectBtn_clicked()
     int userId = ui->listOfUsers->currentIndex();
     userId++; // Lowerbound of user id is one
 
-    QVector<TherapyRecord *> recordings = newDatabase->getTherapyHistoryRecords(userId);
-    TherapyRecord *selectedRecord = recordings[recordlistItemIndex];
+    QVector<TherapyRecord *> recordings = newDatabase->getTherapyHistoryRecords(userId); // List of all recordings
+    TherapyRecord *selectedRecord = recordings[recordlistItemIndex]; // Selected recording
 
     int sessionNumberTherapy = selectedRecord->getSessionType();
     int sessionDurationTherapy = selectedRecord->getDuration();
     int sessionIntensityLevelTherapy = selectedRecord->getIntensityLevel();
 
-    // Set variable that keeps track of which duration option was selected
+    // Set the variable that keeps track of which duration option from the GUI was selected
     if(sessionDurationTherapy == 20){
         newRowItemDuration = 0;
     }
@@ -3936,8 +3937,7 @@ void MainWindow::on_treatmentSelectBtn_clicked()
         customDuration = sessionDurationTherapy;
     }
 
-    // Set variable that keeps track of which session option was selected
-    newRowItemSession = sessionNumberTherapy;
+    newRowItemSession = sessionNumberTherapy; // Set the variable that keeps track of which session option from the GUI was selected
     objData.sessionArray[0] = sessionDurationTherapy;
     objData.sessionArray[1] = sessionNumberTherapy;
     objData.sessionArray[2] = sessionIntensityLevelTherapy;
@@ -3946,8 +3946,7 @@ void MainWindow::on_treatmentSelectBtn_clicked()
 
     //***** Update GUI to reflect selected record *****//
 
-    // Highlight session duration of recording
-    qDebug("MainWindow: sessionDurationTherapy = %d\n", sessionDurationTherapy);
+    // Update which duration of the session was selected on the GUI
     if (sessionDurationTherapy == 20)
     {
         ui->listDuration->setCurrentRow(0);
@@ -3960,14 +3959,15 @@ void MainWindow::on_treatmentSelectBtn_clicked()
     {
         ui->listDuration->setCurrentRow(2);
     }
-    ui->TimeElapse->setText(QString::number(sessionDurationTherapy) + "s");
+    ui->TimeElapse->setText(QString::number(sessionDurationTherapy) + "s"); // Update the timer to reflect the appropriate duration of the recording
 
-    // Highlight session type of recording
     resetButtons();
 
     // Highlight corresponding session number on graph
     newRowItemSession = sessionNumberTherapy;
     selectedIntensityAtStart();
+
+    // Set the GUI to display the session type next to the timer
     if (sessionNumberTherapy == 1)
     {
         ui->TimeText->setText("Time Left (SMR)");
@@ -3985,7 +3985,7 @@ void MainWindow::on_treatmentSelectBtn_clicked()
         ui->TimeText->setText("Time Left (Alpha)");
     }
 
-    ui->listSession->setCurrentRow(sessionNumberTherapy);
+    ui->listSession->setCurrentRow(sessionNumberTherapy); // Update which session type was selected on the GUI
 }
 
 // Event listener of Clear All button:
