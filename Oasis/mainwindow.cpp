@@ -129,13 +129,20 @@ MainWindow::MainWindow(QWidget *parent)
     ui->batteryLeft->setOrientation(Qt::Horizontal);
     ui->batteryLeft->setRange(0, 100);
     ui->batteryLeft->setValue(batteryLevel);
+
+    // Check whether the battery level at the start is greater than 75%.
     if(batteryLevel > 75) {
+        // Change color of progresbar to green.
         ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: green; }");
     }
+    // Check whether the battery level at the start is greater than 12% and less or equal to 75%.
     else if(batteryLevel > 12 && batteryLevel <= 75) {
+        // Change color of progresbar to yellow.
         ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: yellow; }");
     }
+    // Check whether the battery level at the start is less or equal to 12%.
     else {
+        // Change color of progresbar to red.
         ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: red; }");
     }
 
