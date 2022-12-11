@@ -60,8 +60,9 @@ This project also has 2 additional milestones, which are:
 - [x] `Replay feature` where users can replay selected treatments from history of treatments.
 
 ## Relevant Documents
-Use case document: https://docs.google.com/document/d/1MYg5dHoU1SRV3qOMvXtguB_YqrAV9xEW/edit
-Traceability Matrix: https://docs.google.com/document/d/1dHgvpd0EOjXzUPfw5XxjvbdnfVWdI6Mz/edit
+
+[Link to Use case document](https://docs.google.com/document/d/1MYg5dHoU1SRV3qOMvXtguB_YqrAV9xEW/edit)<br>
+[Link to Traceability Matrix](https://docs.google.com/document/d/1dHgvpd0EOjXzUPfw5XxjvbdnfVWdI6Mz/edit)
 
 ## Tasks Assignment
 
