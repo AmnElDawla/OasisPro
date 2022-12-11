@@ -1114,6 +1114,7 @@ void MainWindow::degradeBattery()
     // Check if battery level is critical. If it is, shut down device.
     if (batteryLevel <= 12)
     {
+        ui->listOfUsers->setEnabled(true);
         ui->batteryLeft->setStyleSheet("#batteryLeft { border: 2px solid white; color: black; text-align: center; background-color: white; } QProgressBar::chunk { background-color: red; }");
         degradeBatteryAllowed = false;
         batteryDegradationTimer->stop();
@@ -2226,6 +2227,9 @@ void MainWindow::updateUITimeCustomDisplay()
             // Only true if the session ends at the time it needs to end (in this case after 20 seconds).
             finishedScrolledDown = true;
 
+            // Disable change of user.
+            ui->listOfUsers->setDisabled(true);
+
             // Scrolling down animation - end of session.
             descendEndSession();
         }
@@ -2280,6 +2284,9 @@ void MainWindow::updateUITime20sDisplay()
             // Only true if the session ends at the time it needs to end (in this case after 20 seconds).
             finishedScrolledDown = true;
 
+            // Disable change of user.
+            ui->listOfUsers->setDisabled(true);
+
             // Scrolling down animation - end of session.
             descendEndSession();
         }
@@ -2333,6 +2340,9 @@ void MainWindow::updateUITime45sDisplay()
 
             // Only true if the session ends at the time it needs to end (in this case after 45 seconds).
             finishedScrolledDown = true;
+
+            // Disable change of user.
+            ui->listOfUsers->setDisabled(true);
 
             // Scrolling down animation - end of session.
             descendEndSession();
@@ -3638,6 +3648,9 @@ void MainWindow::startDescendEndSession()
         // Timer is value is set to nullptr.
         endSession = nullptr;
 
+        // Enable change of user (in case the power button has been pressed early).
+        ui->listOfUsers->setEnabled(true);
+
         // Checks if the session ended on time (this means that no power button has been pressed).
         if (finishedScrolledDown == true)
         {
@@ -3693,6 +3706,11 @@ void MainWindow::startDescendEndSession()
             // Set the text in time elapsed section back to default.
             ui->TimeElapse->setText("0s");
 
+            // Set button(s) to their off image (as application is off when first runned).
+            ui->selectionBtn->setStyleSheet("#selectionBtn{ border-image: url(':/resources/buttons/off_Select.png'); border-radius: 10px; }");
+            ui->increaseIntensityBtn->setStyleSheet("#increaseIntensityBtn{ border-image: url(':/resources/buttons/off_IncreaseIntensityBtn.png'); border-radius: 10px; }");
+            ui->decreaseIntensityBtn->setStyleSheet("#decreaseIntensityBtn{ border-image: url(':/resources/buttons/off_DecreaseIntensityBtn.png'); border-radius: 10px; }");
+
             // Get current user id from combo box on GUI:
             int userId = ui->listOfUsers->currentIndex();
             userId++; // Lowerbound of user id is one
@@ -3729,6 +3747,9 @@ void MainWindow::startDescendEndSession()
 
             // Free memory:
             delete tr;
+
+            // Enable change of user.
+            ui->listOfUsers->setEnabled(true);
 
             // Print Status:
             qDebug() << "MainWindow: Size of Recording Vector: " << newDatabase->getTherapyHistoryRecords(userId).size();
